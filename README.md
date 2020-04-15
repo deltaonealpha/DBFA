@@ -24,4 +24,4 @@ This changelog-registry will be regularly updates as changes are made. This upda
 <p align="center">Pranav Balaji (t.me/DeltaOneAlpha)</p>
 <p align="center">&nbsp;</p>
 <h2 align="center">License</h2>
-<p align="center"><a href="https://github.com/deltaonealpha/deltaBillingFramework/master/LICENSE">GNU Affero General Public License</a> - Version 1.c, April 2020</p>
+<p align="center"><a href="https://github.com/deltaonealpha/deltaBillingFramework/blob/master/LICENSE">GNU Affero General Public License</a> - Version 1.c, April 2020</p>
