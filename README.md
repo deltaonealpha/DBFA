@@ -1,4 +1,3 @@
-## deltaTECHNOLOGIES
 ### deltaBillingFramework
 
 
