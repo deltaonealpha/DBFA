@@ -1,0 +1,148 @@
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+19/04/2020 18:03:32 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+19/04/2020 18:06:15 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+19/04/2020 19:21:54 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+19/04/2020 19:31:05 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+19/04/2020 19:36:36 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+Appending product to order: 
+Tactical Essentials Keyboard 
+Appending product to order: 
+Mechanical Cherry MX (Red) RGB Gaming Keyboard 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+lapcare 120W Laptop Adapter 
+Appending product to order: 
+lapcare 60W Laptop Adapter 
+Appending product to order: 
+HyperPower Type-C Gallium-Nitride Charger 100W 
+Appending product to order: 
+Hewlett-Packard Essential's Student's Laptop (Chromebook) 
+Appending product to order: 
+Polowski Tactical Flashlight 
+Appending product to order: 
+L XPS 15 Content Creator's Laptop 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+19/04/2020 19:38:51 
+Appending product to order: 
+Hewlett-Packard Essential's Student's Laptop (Chromebook) 
+Appending product to order: 
+L XPS 15 Content Creator's Laptop 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 PRO 
+Total amount billed for: 
+565444.2
+--------------------------------------- 
+  
+Date and time: 19/04/2020 19:38:51 
+New customer registered:  custname: Sepha custemail: test@delta.com
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 19/04/2020 19:38:51 
+New customer registered:  custname: Ely custemail: test@delta.com
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 19/04/2020 19:38:51 
+Customer registry accessed! 
+--------------------------------------- 
+  
+Date and time: 19/04/2020 19:38:51 
+Log file access attempt - Oauth complete 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
