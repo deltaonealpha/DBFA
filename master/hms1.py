@@ -1,13 +1,10 @@
-# This revision throws MySQL in the bin, and adopts SQLalchemy instead. MySQL is shit.
-# Don't mess by removing those damn delays. I didn't write them for crap's sake.
-# Boot-flash and advert options have been added for you moni-bags.
-# Looking into using a custom Authenication API for log-in/out ops instead of the fuckingly easily hackable in-built eww.
-# Full changelog on https://deltaonealpha.github.io/deltaBillingFramework
+# MySQL is ewww...
+# New gui login script instead of built-in eww..
+# Full changelog on github
 # Code-copiers will be punished. Def. Period. Gimme more words.
-global namebar
-import getpass, time
+
+import getpass, time, pathlib, os, Path
 import os #library used to open the notepad application to display the sales records
-from pathlib import Path
 if os.path.exists(r'userblock.zconf'):
     print("Decrypting authenication blobs...")
     print(" ")
@@ -36,6 +33,7 @@ def floodscreen():
     cv2.waitKey(3000)
     cv2.destroyAllWindows()
 
+
 print(" Licensed under the GNU PUBLIC LICENSE")
 print("<DBFA>  Copyright (C) 2020 Pranav Balaji")
 print(" ")
@@ -45,7 +43,6 @@ command = "cls"
 os.system(command)
  
 def mainmenu(): #defining a function for the main menu
-    global namebar
     from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
     init(convert = True)
     print(Fore.RED) #red-line to indicate program start
@@ -66,24 +63,26 @@ def mainmenu(): #defining a function for the main menu
     print()
     print()
  
+
 #void-setup phase
-from datetime import datetime #for reporting the billing time and date
+from datetime import datetime  #for reporting the billing time and date
 now = datetime.now()
-dt_string = now.strftime("%d/%m/%Y %H:%M:%S") #datetime object containing current date and time
-logger = open(r"registry.txt","a+") #Opening / creating (if it doesn't exist already) the .txt record file
+dt_string = now.strftime("%d/%m/%Y %H:%M:%S")  #datetime object containing current date and time
+logger = open(r"registry.txt", "a+")  #Opening / creating (if it doesn't exist already) the .txt record file
 logger.write("----------------------------------------- \n")
 logger.write("DBFA Billing Framework by Pranav Balaji\n")
 logger.write("Licensed under the GNU PUBLIC LICENSE\n")
-logger.write( 'ed')
+logger.write('ed')
 logger.write("\n")
-logger.write("Automated Store Registry:\n") 
-import mysql.connector #to connect to the SQL database (local)
-import time #to provide delays to make the system run seamlessly
-conn = mysql.connector.connect(host='localhost', database='delta', user='root', password='shieldlogmein') #sql connection parameters
+logger.write("Automated Store Registry:\n")
+import mysql.connector  #to connect to the SQL database (local)
+import time  #to provide delays to make the system run seamlessly
+conn = mysql.connector.connect(host='localhost', database='delta', user='root', password='shieldlogmein')  #sql connection parameters
 cursor = conn.cursor()
 cursor.execute("select * from cust")
 row = cursor.fetchone()
-def inserter(custid, custname, email): #defining a function to input data into the SQL database's table
+
+def inserter(custid, custname, email):  #defining a function to input data into the SQL database's table
     conn = mysql.connector.connect(host='localhost', database='delta', user='root', password='shieldlogmein')
     cursor = conn.cursor(buffered=True)
     str = "insert into cust(custid, custname, email) values('%s', '%s', '%s')"
@@ -92,11 +91,12 @@ def inserter(custid, custname, email): #defining a function to input data into t
     conn.commit()
     print("Customer", custname, "registered in store directory")
  
+ 
 #void-loop phase
 floodscreen()
 
-import win32api #small one-time pop-up for adverts; # Windows API by Microsoft Corporation
-win32api.MessageBox(0, 'Please review licensing terms before usage', 'Licensing!') # '0' or '1' for on/off, first str for text, second str for windows heading
+import win32api  #small one-time pop-up for adverts; # Windows API by Microsoft
+win32api.MessageBox(0, 'Please review licensing terms before usage', 'Licensing!')  # '0' or '1' for on/off, first str for text, second str for windows heading
 print("Heyy there!",  'ed')
 time.sleep(1.34)
 if valfn == 1:
@@ -116,7 +116,7 @@ if valfn == 1:
  
 while(1): #while (always) true
     mainmenu() #mainmenu
-    time.sleep(0.3) #for a seamless experience
+    time.sleep(0.3)  #for a seamless experience
     decfac = int(input("Select option: "))
     #Bill Mode
     if decfac == 1:
@@ -145,7 +145,7 @@ while(1): #while (always) true
                 billiemaster+=data[item]
                 print("Product purchased: ", namie[item], " costing: ", data[item])
                 print("---")
-                logger.write("Appending product to order: \n") #writing to file
+                logger.write("Appending product to order: \n")  #writing to file
                 logger.write(namie[item])
                 logger.write(" \n")
 
@@ -153,12 +153,12 @@ while(1): #while (always) true
                 print("Invalid entry! Retry: ")
                 print("---")
             afac+=1
-        #tax = int(input("Enter the net tax %: ")) #comment and uncomment tkinter lines to use GUI-based input
+        #tax = int(input("Enter the net tax %: "))  #comment and uncomment tkinter lines to use GUI-based input
         print("18% standard GST - Incoicing!")
-        time.sleep(0.4) #for a seamless experience
+        time.sleep(0.4)  #for a seamless experience
         #discount = int(simpledialog.askstring(title="deltaSTOREMANAGER",prompt="Enter the discount percentage: "))
         discount = int(input("Enter discount % (if any): ")) #comment and uncomment tkinter lines to use GUI-based input
-        print(discount,"% net discount - Invoicing!")
+        print(discount, "% net discount - Invoicing!")
         time.sleep(0.2) #for a seamless experience
         print("Invoicing... DBFA")
         time.sleep(0.4) #for a seamless experience
@@ -175,8 +175,8 @@ while(1): #while (always) true
         print()
     #Register Customer
     elif decfac == 2:
-        print("Loading server connection....") #SQL connection prompt
-        time.sleep(0.4) #for a seamless experience
+        print("Loading server connection....")  #SQL connection prompt
+        time.sleep(0.4)  #for a seamless experience
         conn = mysql.connector.connect(host='localhost', database='delta', user='root', password='shieldlogmein')
         cursor = conn.cursor()
         cursor.execute("select * from cust")
@@ -202,7 +202,7 @@ while(1): #while (always) true
         x = " custname: " + custname + " custemail: " + email + "\n"
         logger.write(x)
         logger.write("--------------------------------------- \n")
-        print("Customer ID", incfac, "registered om directory.")
+        print("Customer ID", incfac, "registered in directory.")
         print("---------------------------------------")
         print(" ")
         print(" ")
@@ -210,7 +210,7 @@ while(1): #while (always) true
     #VIEW ALL CUSTOMERS
     elif decfac == 3:
         print()
-        print("Loading server connection....") #SQL connection prompt
+        print("Loading server connection....")  #SQL connection prompt
         time.sleep(0.7) #for a seamless experience
         print("The registered customers are: ")
         #Re-writing to refresh connection
@@ -252,7 +252,7 @@ while(1): #while (always) true
                 time.sleep(0.2) #for a seamless experience 
                 logger.write("Log file access attempt - Oauth complete \n")
                 logger.close() #to change file access modes 
-                logger = open("registry.txt","r+")  
+                logger = open("registry.txt", "r+")
                 # Uncomment the below lines if the program has to be modified to show the records in the shell itself and not externally
                 # print(logger.read())
                 # print()
@@ -261,7 +261,7 @@ while(1): #while (always) true
                 os.startfile('registry.txt') #to open the external notepad application
         else:
             logger.write("  \n")
-            logger.write("Date and time: ") #including the date and time of billing (as taken from the system)
+            logger.write("Date and time: ")  #including the date and time of billing (as taken from the system)
             logger.write(dt_string)
             logger.write(" \n")
             time.sleep(1) #for a seamless experience
@@ -313,10 +313,15 @@ while(1): #while (always) true
         print("Exiting system now:: ")
         print(" ")
         print("      []         [] []               ")
+        time.sleep(0.3)
         print("      []         [] []]]]]] software ")
+        time.sleep(0.3)
         print("[======] [=====] [] [] [======]  CLI ")
+        time.sleep(0.3)
         print("[]====[] []---[] [] [] []====[]      ")
+        time.sleep(0.3)
         print("[======] []____  [] [] [======]]]]   ")
+        time.sleep(0.3)
         print(" ")
         print(" ")
         time.sleep(2)
@@ -329,9 +334,13 @@ while(1): #while (always) true
         print(" ")
         time.sleep(1.5)
         print("      []         [] []               ")
+        time.sleep(0.3)
         print("      []         [] []]]]]] software ")
+        time.sleep(0.3)
         print("[======] [=====] [] [] [======]  CLI ")
+        time.sleep(0.3)
         print("[]====[] []---[] [] [] []====[]      ")
+        time.sleep(0.3)
         print("[======] []____  [] [] [======]]]]   ")
         time.sleep(1.5)
         print(" ")
@@ -357,7 +366,7 @@ while(1): #while (always) true
             os.startfile("LICENSE")
             print(" ")
             print(" ")
-            print("-----------------------------------------------------------------------")
+            print("--------------------------------------------------")
         else:
             continue
 # Program ENDS here
@@ -365,4 +374,5 @@ while(1): #while (always) true
 # IF YOU WANT AN UNREADABLE BYTE CODE FILE TO ENCRYPT AT BASICS THEN USE THIS:
 # Use python -OO -m py_compile hms1.py with Anaconda and - 
 # - rename the file in the py_cache folder by changing the extension to .py from .pyc, ultimately renaming it to hms1c.py
-
+#
+#
