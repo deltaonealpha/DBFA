@@ -166,3 +166,16 @@ DBFA Billing Framework by Pranav Balaji
 Licensed under the GNU PUBLIC LICENSE
 ed
 Automated Store Registry:
+----------------------------------------- 
+User identified from login: ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 24/04/2020 08:53:08 
+New customer registered:  custname: hahah custemail: test@test.in
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 24/04/2020 08:53:08 
+Customer registry accessed! 
+--------------------------------------- 
