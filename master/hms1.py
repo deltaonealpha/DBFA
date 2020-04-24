@@ -1,4 +1,20 @@
-# MySQL is ewww...
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+pdfmetrics.registerFont(TTFont('MiLanProVF', r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\MiLanProVF.ttf'))
+
+
+from reportlab.pdfgen import canvas
+pdf_file = 'invoice.pdf'
+can = canvas.Canvas(pdf_file)
+can.setFont("MiLanProVF", 24)
+can.drawString(20, 800, "Hello World!")
+can.showPage()
+can.save()
+
+print("FHJ")
+
+
+'''# MySQL is ewww...
 # New gui login script instead of built-in eww..
 # Full changelog on github
 # Code-copiers will be punished. Def. Period. Gimme more words.
@@ -376,3 +392,4 @@ while(1): #while (always) true
 # - rename the file in the py_cache folder by changing the extension to .py from .pyc, ultimately renaming it to hms1c.py
 #
 #
+'''

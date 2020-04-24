@@ -2,7 +2,7 @@
 # Full changelog on github
 # v2.1 base snippets (sample code)
 
-import getpass, time, pathlib, os 
+import getpass, time, pathlib, os, mysql.connector
 from pathlib import Path
 import os #used to execute Windows-level commands
 if os.path.exists(r'userblock.zconf'):
@@ -35,7 +35,7 @@ def floodscreen():
 '''
 
 
-print("Welcome to the new generalized billing framework!")
+print("Billing Framework System")
 time.sleep(1.3)
 command = "cls"
 os.system(command) #sys command cls
@@ -49,7 +49,6 @@ def mainmenu():
     print(Fore.WHITE)
     print('A word from our partner: ' + Fore.BLACK + Back.CYAN + 'HOTEL? Trivago!') #Text over here #Custom advert
     print(Style.RESET_ALL) 
-    print("-------DBFA standardised billing framework-------")
     print("Enter: ") 
     print("'1' to GENERATE INVOICE")
     print("'2' to REGISTER CUSTOMER,")
@@ -72,7 +71,6 @@ logger.write("----------------------------------------- \n")
 logger.write('User identified from login: ed')
 logger.write("\n")
 logger.write("Automated Store Registry:\n")
-import mysql.connector  #sql connector
 import time  #to provide delays to make the system run seamlessly
 conn = mysql.connector.connect(host='localhost', database='delta', user='root', password='shieldlogmein')  #sql connection parameters
 cursor = conn.cursor()
