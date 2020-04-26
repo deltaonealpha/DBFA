@@ -2,7 +2,8 @@
 # Full changelog on github
 # v2.1 base snippets (sample code)
 
-import getpass, time, pathlib, os, mysql.connector
+
+import getpass, time, pathlib, os, sqlite3
 from pathlib import Path
 import os #used to execute Windows-level commands
 if os.path.exists(r'userblock.zconf'):

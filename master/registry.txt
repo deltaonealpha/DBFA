@@ -187,3 +187,136 @@ Automated Store Registry:
 Date and time: 24/04/2020 13:30:17 
 Customer registry accessed! 
 --------------------------------------- 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+26/04/2020 22:46:45 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+L XPS 15 Content Creator's Laptop 
+Total amount billed for: 
+1190.6199999999953
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+26/04/2020 23:08:58 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+90624.0
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+26/04/2020 23:45:25 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+40355.99999999999
+-----------------  Cust. ID: 
+7  
+Date and time: 
+26/04/2020 23:45:38 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+105539.20000000001
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+27/04/2020 00:06:40 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+57761.0
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+27/04/2020 00:18:03 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+46728.0
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+27/04/2020 00:25:17 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+46728.0
+-----------------  Cust. ID: 
+1  
+Date and time: 
+27/04/2020 00:25:26 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+46728.0
