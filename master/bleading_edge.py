@@ -368,7 +368,7 @@ while(1): #while (always) true
         for row in rows:
             print(row)
             print(" ")
-        toaster.show_toast("DFBA Superfetch Service'", "Superfetch: Database acessed!", duration = 2)
+        toaster.show_toast("DFBA Superfetch Service", "Superfetch: Database acessed!", duration = 2)
         #takes values from the SQL database
         '''
         while row is not None:

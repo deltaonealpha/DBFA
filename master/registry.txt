@@ -320,3 +320,168 @@ Appending product to order:
 TV 4K OLED 50 
 Total amount billed for: 
 46728.0
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+22  
+Date and time: 
+27/04/2020 19:21:02 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi Note 8 PRO 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+Noise-Cancelling Wireless Headphones 
+Appending product to order: 
+Essentials Headphones 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+Truly-Wireless Eadphones 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Appending product to order: 
+Essentials Earphones 
+Appending product to order: 
+Gaming Earphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Appending product to order: 
+10W Bluetooth Speakers 
+Appending product to order: 
+Essentials Bluetooth Speaker 
+Appending product to order: 
+ULTRA Home Theatre 
+Appending product to order: 
+Essentials Home Theatre 
+Appending product to order: 
+  Wired Speaker - 5.1 
+Appending product to order: 
+  Essentials Wired Speaker - STEREO 
+Appending product to order: 
+Tactical Power Bank 30000mah 
+Appending product to order: 
+Essentials Power Bank 10000mah 
+Appending product to order: 
+Essentials Mouse 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+Appending product to order: 
+Tactical Essentials Keyboard 
+Appending product to order: 
+Mechanical Cherry MX (Red) RGB Gaming Keyboard 
+Appending product to order: 
+Polowski Tactical Flashlight 
+Appending product to order: 
+OneFiber Wi-Fi Router AX17 
+Appending product to order: 
+Mijia Mesh Wi-Fi Router 
+Appending product to order: 
+lapcare 120W Laptop Adapter 
+Appending product to order: 
+lapcare 60W Laptop Adapter 
+Appending product to order: 
+Spigen Phone Case(s) 
+Appending product to order: 
+Essentials Phone Charger 10W 
+Appending product to order: 
+HyperPower Type-C Gallium-Nitride Charger 100W 
+Appending product to order: 
+ASUS Zephyrus G14 Gaming Laptop 
+Appending product to order: 
+L XPS 15 Content Creator's Laptop 
+Appending product to order: 
+Hewlett-Packard Essential's Student's Laptop (Chromebook) 
+Total amount billed for: 
+8867.688199999975
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+47  
+Date and time: 
+27/04/2020 19:49:18 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+186912.0
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+27/04/2020 19:52:58 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi Note 8 PRO 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+334488.7
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+27/04/2020 19:55:23 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+51566.0
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 01/05/2020 00:27:45 
+New customer registered:  custname: Test 3 custemail: test3@admin.com
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 01/05/2020 00:27:45 
+Customer registry accessed! 
+--------------------------------------- 
