@@ -152,6 +152,7 @@ if valfn == 1:
 while(1): #while (always) true
     mainmenu() #mainmenu
     writer = ""
+    telethon = ""
     #if os.path.exists(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Generated_invoices\regin.txt'):
     #    os.remove(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Generated_invoices\regin.txt')
     #regin = open(r"C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Generated_invoices\regin.txt", "a+")  #Opening / creating (if it doesn't exist already) the .txt record file
@@ -172,6 +173,7 @@ while(1): #while (always) true
         logger.write(" \n")
         abcd1 = 1
         time.sleep(0.3) #for a seamless experience
+        telethon = "DBFA Billing System" + "\n" + dt_string + "\n" + "Customer: " + custt + "\n"
         writer = writer + "DBFA Billing Framework" + "\n" + "One-stop solution for all your billing needs!" + "\n" + "\n" + "Billing time: " + dt_string + "\n" + "Customer ID: " + custt + "\n" + "-----------------------------" + "\n" + "\n"
         '''regin.write("DBFA Billing Framework")
         regin.write("\n")
@@ -198,7 +200,7 @@ while(1): #while (always) true
                 billiemaster+=data[item]
                 print("Product purchased: ", namie[item], " costing: ", data[item])
                 print("---")
-                priceprod = "₹06" + '%d' % data[item]
+                priceprod = "₹" + '%d' % data[item]
                 logger.write("Appending product to order: \n")  #writing to file
                 logger.write(namie[item])
                 logger.write(" \n")
@@ -226,7 +228,9 @@ while(1): #while (always) true
         time.sleep(0.4) #for a seamless experience
         tota = (((18/100)*billiemaster)+billiemaster)
         total = tota-((discount/100)*tota)
-        writer = writer + "\n" + "\n" + "-----------------------------" + "\n" + "Tax amount: 18%" + "\n"  + "\n" 
+        discountx = '%d' % discount
+        telethon = telethon + "\n" + "Tax amount: 18%" + "\n"  + "Discount: " + discountx + "\n" + "\n"
+        writer = writer + "\n" + "\n" + "-----------------------------" + "\n" + "Tax amount: 18%"  + "\n"  + discountx + "\n"  + "\n" 
         '''
         regin.write("\n")
         regin.write("Discount applied: ")
@@ -236,10 +240,12 @@ while(1): #while (always) true
         regin.write("\n")
         regin.write("\n")
         '''
+        rupeesymbol = "\u20B9".encode("utf-8")
         print("Invoice ID: ", abcd1, "; Total: ", total)
         toaster.show_toast("DFBA Framework Runtime Broker:      Total billed for-",str(total), duration = 1)
         logger.write("Total amount billed for: \n") #writing to file
         #regin.write("NET TOTAL: \n") #writing to file
+        telethon = telethon + "NET TOTAL: \n" + "\u20B9" + str(total) + "\n" 
         writer = writer + "NET TOTAL: \n" + str(total) + "\n" 
         logger.write(str(total))
         logger.write("\n")
@@ -322,8 +328,33 @@ while(1): #while (always) true
         else:
             pass
         '''
-        print()
+        import os, sys
+        class HiddenPrints:
+            def __enter__(self):
+                self._original_stdout = sys.stdout
+                sys.stdout = open(os.devnull, 'w')
+            def __exit__(self, exc_type, exc_val, exc_tb):
+                sys.stdout.close()
+                sys.stdout = self._original_stdout
+                print()
         #regin.close()
+        telefac = int(input("Enter *1* to send this invoice to Telegram, else *2*:  "))
+        if telefac == 1:
+            import requests
+            def telegram_bot_sendtext(bot_message):
+                with HiddenPrints():
+                    bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
+                    bot_chatID = '680917769'
+                    send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+                    response = requests.get(send_text)
+                    return response.json()
+            with HiddenPrints():
+                try:
+                    sender = telegram_bot_sendtext(telethon)
+                    print(sender)
+                except Exception:
+                    pass
+                
         print()
     #Register Customer
     elif decfac == 2:
@@ -461,17 +492,23 @@ while(1): #while (always) true
             userblock.close()
             os.remove(r'userblock.zconf')
         toaster.show_toast("DFBA Framework Runtime Broker", "Obsufcating program...", duration = 2)
-        print(" ")
-        print("      []         [] []               ")
+        print("        ___ ______ ___   _____________    ____________     _______")
         time.sleep(0.3)
-        print("      []         [] []]]]]] software ")
+        print("       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /")
         time.sleep(0.3)
-        print("[======] [=====] [] [] [======]  CLI ")
+        print("      /  /       /  /  /  /       /  /  /  /             /  /  / /")
         time.sleep(0.3)
-        print("[]====[] []---[] [] [] []====[]      ")
+        print("     /  /       /  /  /  /_______/  /  /  /  CLI        /  /   / /")
         time.sleep(0.3)
-        print("[======] []____  [] [] [======]]]]   ")
+        print("    /  /       /  /  / // // // // /  /  /_________    /  /____/ /")
         time.sleep(0.3)
+        print("   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ /")
+        time.sleep(0.3)
+        print("  /  /       /  /  /  /       /  /  /  /             /  /      / /")
+        time.sleep(0.3)
+        print(" /  /_______/  /  /  /______ /  /  /  /             /  /       / /")
+        time.sleep(0.3)
+        print("/__/_______/__/  /__/_______/__/  /__/             /__/        /__/")
         print(" ")
         print(" ")
         time.sleep(2)
@@ -482,16 +519,25 @@ while(1): #while (always) true
         print("Fetching latest licensing information.......")
         print(" ")
         print(" ")
-        time.sleep(1.5)
-        print("      []         [] []               ")
+        print("        ___ ______ ___   _____________    ____________     _______")
         time.sleep(0.3)
-        print("      []         [] []]]]]] software ")
+        print("       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /")
         time.sleep(0.3)
-        print("[======] [=====] [] [] [======]  CLI ")
+        print("      /  /       /  /  /  /       /  /  /  /             /  /  / /")
         time.sleep(0.3)
-        print("[]====[] []---[] [] [] []====[]      ")
+        print("     /  /       /  /  /  /_______/  /  /  /  CLI        /  /   / /")
         time.sleep(0.3)
-        print("[======] []____  [] [] [======]]]]   ")
+        print("    /  /       /  /  / // // // // /  /  /_________    /  /____/ /")
+        time.sleep(0.3)
+        print("   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ /")
+        time.sleep(0.3)
+        print("  /  /       /  /  /  /       /  /  /  /             /  /      / /")
+        time.sleep(0.3)
+        print(" /  /_______/  /  /  /______ /  /  /  /             /  /       / /")
+        time.sleep(0.3)
+        print("/__/_______/__/  /__/_______/__/  /__/             /__/        /__/")
+        print(" ")
+        print(" ")
         time.sleep(1.5)
         print(" ")
         print(" ")

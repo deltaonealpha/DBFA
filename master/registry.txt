@@ -485,3 +485,82 @@ New customer registered:  custname: Test 3 custemail: test3@admin.com
 Date and time: 01/05/2020 00:27:45 
 Customer registry accessed! 
 --------------------------------------- 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+27446465  
+Date and time: 
+11/05/2020 23:36:31 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+11/05/2020 23:36:51 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+19486512  
+Date and time: 
+11/05/2020 23:41:52 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+8826.399999999994
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+7896451320235648  
+Date and time: 
+11/05/2020 23:47:17 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+0.0
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+11  
+Date and time: 
+11/05/2020 23:54:53 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+5192.0
