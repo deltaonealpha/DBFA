@@ -4,7 +4,7 @@
 OSSRTDS
       
       The DSMSAPL program introduced a robust and dependable system for integrating billing and store management. This was much-appreciated, but as all great things must be made greater, on March 14, 2020, delta officially dropped support for the DSMSAPL program.
-<h1 align="center">deltaBillingFramework</h1>
+<h1 align="center">DBFA Billing Framework</h1>
 <h3 align="center">Builds on DSMSAPL's base with SQLalchemy and a generalised system framework</h3>
 <h4 align="center">Uses modifs and complete revisions to be even more fast</h4>
 <h4 align="center">Made by Pranav Balaji (t.me/DeltaOneAlpha)</h4>
@@ -18,9 +18,10 @@ This changelog-registry will be regularly updates as changes are made. This upda
 
 
 <h2 align="center">Changelog:</h2>
-<h5 align="center">UPDATE 0.1 MARCH 14, 2020 (19:37 IST): The development may be haltered and face a staggered roll-out due to the current situation with COVID-19.</h5>
+<h5 align="center">UPDATE 2.227: Upgraded with auto PDF invoicing and Telethon-based communicator</h5>
+<h4 align="center">Full changelog soon in master branch of the repo</h4>
 <p align="center">&nbsp;</p>
-<h2 align="center">Credits:</h2>
+<h2 align="center">Creator:</h2>
 <p align="center">Pranav Balaji (t.me/DeltaOneAlpha)</p>
 <p align="center">&nbsp;</p>
 <h2 align="center">License</h2>
