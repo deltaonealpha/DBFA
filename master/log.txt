@@ -1,12 +1,10 @@
---------------------------------------------- 
-deltaStoreManager 
-delta
-SALES RECORD: 
---------------------------------------------- 
-deltaStoreManager 
-delta
-SALES RECORD: 
---------------------------------------------- 
+  
+Date and time: 12/05/2020 21:44:50 
+  
+Date and time: 12/05/2020 21:44:50 
+Log file access attempt - Oauth failiure!!! 
+(MULTIPLE ATTEMPTS!): Log file access attempt - AUTHORIZATION FAILED!!! 
+------------------------- 
 deltaStoreManager 
 delta
 SALES RECORD: 

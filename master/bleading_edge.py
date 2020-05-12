@@ -10,6 +10,14 @@ from reportlab.lib.units import cm
 
 print("FHJ")
 
+def telegram_bot_sendtext(bot_message):
+    import requests
+    with HiddenPrints():
+        bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
+        bot_chatID = '680917769'
+        send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+        response = requests.get(send_text)
+        return response.json()
 
 # MySQL is ewww...
 # New gui login script instead of built-in eww..
@@ -229,7 +237,7 @@ while(1): #while (always) true
         tota = (((18/100)*billiemaster)+billiemaster)
         total = tota-((discount/100)*tota)
         discountx = '%d' % discount
-        telethon = telethon + "\n" + "Tax amount: 18%" + "\n"  + "Discount: " + discountx + "\n" + "\n"
+        telethon = telethon + "\n" + "Tax amount: 18%" + "\n"  + "Discount: " + discountx + "%" + "\n" + "\n"
         writer = writer + "\n" + "\n" + "-----------------------------" + "\n" + "Tax amount: 18%"  + "\n"  + discountx + "\n"  + "\n" 
         '''
         regin.write("\n")
@@ -338,22 +346,12 @@ while(1): #while (always) true
                 sys.stdout = self._original_stdout
                 print()
         #regin.close()
-        telefac = int(input("Enter *1* to send this invoice to Telegram, else *2*:  "))
-        if telefac == 1:
-            import requests
-            def telegram_bot_sendtext(bot_message):
-                with HiddenPrints():
-                    bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
-                    bot_chatID = '680917769'
-                    send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
-                    response = requests.get(send_text)
-                    return response.json()
-            with HiddenPrints():
-                try:
-                    sender = telegram_bot_sendtext(telethon)
-                    print(sender)
-                except Exception:
-                    pass
+        with HiddenPrints():
+            try:
+                sender = telegram_bot_sendtext(telethon)
+                print(sender)
+            except Exception:
+                pass
                 
         print()
     #Register Customer
@@ -430,6 +428,12 @@ while(1): #while (always) true
         if passw == "root":
                 time.sleep(1) #for a seamless experience
                 print("Hold on, moneybags.")
+                with HiddenPrints():
+                    try:
+                        sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files accessed - DBFA SECURITY")
+                        print(sender)
+                    except Exception:
+                        pass
                 time.sleep(0.4)
                 print("There ya go:: ")
                 time.sleep(0.2) #for a seamless experience 
@@ -456,6 +460,12 @@ while(1): #while (always) true
             if passw == "root":
                     time.sleep(1) #for a seamless experience
                     print("Hold on, moneybags.")
+                    with HiddenPrints():
+                        try:
+                            sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files accessed - DBFA SECURITY: ATTEMPT 02")
+                            print(sender)
+                        except Exception:
+                            pass
                     print("There ya go:: ")
                     time.sleep(0.6) #for a seamless experience
                     logger.write("  \n")
@@ -471,6 +481,12 @@ while(1): #while (always) true
                     time.sleep(1.4) #for a seamless experience
                     os.startfile('log.txt')
             else:
+                with HiddenPrints():
+                    try:
+                        sender = telegram_bot_sendtext(dt_string + "\n" + "[ACCESS DENIED!!] - Registry file  - DBFA SECURITY [ACCESS DENIED!!]")
+                        print(sender)
+                    except Exception:
+                        pass
                 print("Multiple Unsuccesfull Attempts Detected. Re-run the program to login now. ")
                 logger.write("(MULTIPLE ATTEMPTS!): Log file access attempt - AUTHORIZATION FAILED!!! \n")
                 time.sleep(1.4) #for a seamless experience
@@ -555,7 +571,7 @@ while(1): #while (always) true
         print("Visit: www.github.com/deltaonealpha/deltaBillingFramework for complete licensing terms. ")
         print(" ")
         print(" ")
-        aacsbcfac = int(input("Enter '1' to view complete licensing stuff or '2' to return."))
+        aacsbcfac = int(input("Enter '1' to view complete licensing stuff or '2' to return: "))
         if aacsbcfac == 1:
             print(" ")
             print("Please select to open with your prefered text viewer/ edittor.")

@@ -1,10 +1,13 @@
------------------------------------------ 
-DBFA Billing Framework by Pranav Balaji
-Licensed under the GNU PUBLIC LICENSE
-ed
-Automated Store Registry:
------------------------------------------ 
-DBFA Billing Framework by Pranav Balaji
+  
+Date and time: 12/05/2020 21:44:50 
+  
+Date and time: 12/05/2020 21:44:50 
+Log file access attempt - Oauth failiure!!! 
+  
+Date and time: 
+12/05/2020 21:44:50 
+Log file access attempt - AUTHORIZATION SUCCESS 
+ by Pranav Balaji
 Licensed under the GNU PUBLIC LICENSE
 ed
 Automated Store Registry:
@@ -564,3 +567,203 @@ Appending product to order:
 TV 4K OLED 50 
 Total amount billed for: 
 5192.0
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+198651  
+Date and time: 
+12/05/2020 21:24:14 
+Appending product to order: 
+30W Bluetooth Speakers 
+Appending product to order: 
+10W Bluetooth Speakers 
+Appending product to order: 
+Essentials Bluetooth Speaker 
+Appending product to order: 
+  Wired Speaker - 5.1 
+Appending product to order: 
+Essentials Home Theatre 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+Appending product to order: 
+Essentials Power Bank 10000mah 
+Appending product to order: 
+Tactical Power Bank 30000mah 
+Appending product to order: 
+Redmi Note 8 PRO 
+Appending product to order: 
+  Essentials Wired Speaker - STEREO 
+Appending product to order: 
+  Wired Speaker - 5.1 
+Appending product to order: 
+Essentials Home Theatre 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Total amount billed for: 
+38692.73099999997
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1792  
+Date and time: 
+12/05/2020 21:37:44 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+L XPS 15 Content Creator's Laptop 
+Total amount billed for: 
+146394.34
+  
+Date and time: 12/05/2020 21:38:08 
+  
+Date and time: 12/05/2020 21:38:08 
+Log file access attempt - Oauth failiure!!! 
+  
+Date and time: 
+12/05/2020 21:38:08 
+Log file access attempt - AUTHORIZATION SUCCESS 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+127  
+Date and time: 
+12/05/2020 21:40:12 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi Note 8 PRO 
+Appending product to order: 
+Mi MIX ALPHA 
+Total amount billed for: 
+604543.5
+-----------------  Cust. ID: 
+22  
+Date and time: 
+12/05/2020 21:40:31 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+62540.0
+  
+Date and time: 12/05/2020 21:40:43 
+Log file access attempt - Oauth complete 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+7  
+Date and time: 
+12/05/2020 21:42:28 
+Appending product to order: 
+Hewlett-Packard Essential's Student's Laptop (Chromebook) 
+Appending product to order: 
+L XPS 15 Content Creator's Laptop 
+Appending product to order: 
+HyperPower Type-C Gallium-Nitride Charger 100W 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+Appending product to order: 
+Tactical Essentials Keyboard 
+Appending product to order: 
+ASUS Zephyrus G14 Gaming Laptop 
+Appending product to order: 
+30W Bluetooth Speakers 
+Appending product to order: 
+10W Bluetooth Speakers 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+254980.3
+-----------------  Cust. ID: 
+1  
+Date and time: 
+12/05/2020 21:42:57 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+41701.2
+  
+Date and time: 12/05/2020 21:43:14 
+Log file access attempt - Oauth complete 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+7  
+Date and time: 
+12/05/2020 21:44:26 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+112100.0
+-----------------  Cust. ID: 
+72  
+Date and time: 
+12/05/2020 21:44:38 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+273252.6
+  
+Date and time: 12/05/2020 21:44:50 
+  
+Date and time: 12/05/2020 21:44:50 
+Log file access attempt - Oauth failiure!!! 
+  
+Date and time: 
+12/05/2020 21:44:50 
+Log file access attempt - AUTHORIZATION SUCCESS 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
