@@ -43,7 +43,7 @@ if os.path.exists(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\userblo
     os.remove(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\userblock.zconf')
 sg.theme('DarkAmber')	# Add a touch of color
 # All the stuff inside your window.
-layout = [  [sg.Text("deltaBillingFrameworkA by Pranav Balaji")],
+layout = [  [sg.Text("DBFA")],
             [sg.Text(" ")],
             [sg.Text("Please authenicate for program elevation.")],
             [sg.Button('Proceed'), sg.Button('Exit')] ]

@@ -72,7 +72,7 @@ def floodscreen():
     cv2.destroyAllWindows()
 '''
 
-
+print("DBFA Billing Framework: Version 2.227 (alpha) ")
 print(" Licensed under the GNU PUBLIC LICENSE")
 print("<DBFA>  Copyright (C) 2020 Pranav Balaji")
 print(" ")
@@ -143,13 +143,15 @@ toaster = ToastNotifier()
 toaster.show_toast("DFBA Framework Runtime Broker","Please read operational and licensing documentation prior to use.", duration = 2)
 print("Heyy there!",  'ed')
 time.sleep(1.34)
-if valfn == 1:
+if valfn == 0:
     logger.write("Oauth bypass - registering for security")
     time.sleep(1)
     print("-------DBFA standardised billing framework-------")
-    print("Security is something to be valued primemostly, in today's digital age.")
+    print("We highly value the security of our code, and our customers.")
     toaster.show_toast("DFBA Framework Runtime Broker","Unauthenicated login detected!")
     print("It has been detected that you have bypassed the login process.")
+    time.sleep(1)
+    print("Please obtain a genuine version of this program and provide proper authenication.")
     time.sleep(1)
     print("The program shall now exit. Error code:013")
     time.sleep(2)
@@ -277,65 +279,7 @@ while(1): #while (always) true
         dest = shutil.move(source, destination)  
 
         time.sleep(1.5) #for a seamless experience
-        '''
-        printfac = int(input("Enter '1' to print or anything to NOT: "))
-        if printfac == 1:
-            pass        
-            import win32print, win32ui, win32gui
-            import win32con, pywintypes            
-            # create a dc (Device Context) object (actually a PyCDC)
-            dc = win32ui.CreateDC()
-            # convert the dc into a "printer dc"
-            # get default printer
-            printername = win32print.GetDefaultPrinter ()
-            # leave out the printername to get the default printer automatically
-            dc.CreatePrinterDC(printername)
-            # you need to set the map mode mainly so you know how
-            # to scale your output.  I do everything in points, so setting
-            # the map mode as "twips" works for me.
-            dc.SetMapMode(win32con.MM_TWIPS) # 1440 per inch
-            # here's that scaling I mentioned:
-            scale_factor = 20 # i.e. 20 twips to the point
-            # start the document.  the description variable is a string
-            # which will appear in the print queue to identify the job.
-            dc.StartDoc('DBFA invoice printing')
-            # to draw anything (other than text) you need a pen.
-            # the variables are pen style, pen width and pen color.
-            pen = win32ui.CreatePen(0, int(scale_factor), 0)
-            # SelectObject is used to apply a pen or font object to a dc.
-            dc.SelectObject(pen)
-            # how about a font?  Lucida Console 10 point.
-            # I'm unsure how to tell if this failed.
-            font = win32ui.CreateFont({
-                "name": "Lucida Console",
-                "height": int(scale_factor * 10),
-                "weight": 400,
-            })
-            # again with the SelectObject call.
-            dc.SelectObject(font)
-            # okay, now let's print something.
-            # TextOut takes x, y, and text values.
-            # the map mode determines whether y increases in an
-            # upward or downward direction; in MM_TWIPS mode, it
-            # advances up, so negative numbers are required to
-            # go down the page.  If anyone knows why this is a
-            # "good idea" please email me; as far as I'm concerned
-            # it's garbage.
-            dc.TextOut(scale_factor * 72,
-                -1 * scale_factor * 72,
-                "Testing...")
-            # for completeness, I'll draw a line.
-            # from x = 1", y = 1"
-            dc.MoveTo((scale_factor * 72, scale_factor * -72))
-            # to x = 6", y = 3"
-            dc.LineTo((scale_factor * 6 * 72, scale_factor * 3 * -72))
-            # must not forget to tell Windows we're done.
-            dc.EndDoc()
-            
-            
-        else:
-            pass
-        '''
+
         import os, sys
         class HiddenPrints:
             def __enter__(self):

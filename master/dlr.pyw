@@ -13,8 +13,9 @@ layout = [  [sg.Text('Login succesfull!')],
 window = sg.Window('Login conf.', layout)
 # Event Loop to process "events" and get the "values" of the inputs
 while True:
+    Proceed = "Proceed"
     event, values = window.read()
-    if event in ('Proceed'):
+    if event in ('proceed'):
         window.close()
         userblock = open(r"userblock.txt","a+") #Opening / creating (if it doesn't exist already) the .txt record file
         userblock.write('ed')
@@ -28,7 +29,7 @@ while True:
         p = Path('userblock.txt')
         p.rename(p.with_suffix('.zconf'))
         time.sleep(0.4)
-        os.startfile('hms1.py')
+        os.startfile('bleading_edge.py')
 
 '''while True:
     event, values = window.read()
