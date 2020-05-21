@@ -6,6 +6,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import cm
+from tabulate import tabulate
 
 
 print("FHJ")
@@ -33,9 +34,9 @@ if os.path.exists(r'userblock.zconf'):
     p.rename(p.with_suffix('.txt'))
 if os.path.exists(r'userblock.txt'):
     userblock = open(r"userblock.txt","r") #Opening / creating (if it doesn't exist already) the .txt record file
-    valfn = 0
+    valfn = 1
 else:
-    valfn = 0
+    valfn = 1
 if os.path.exists(r'userblock.txt'):
     userblock.close()  
     os.remove(r'userblock.txt')
@@ -62,6 +63,14 @@ else:
 #Values stored in two dictionaries
 data = {"1":40000, "2":55000, "3":67000, "4":25000, "5":21000, "6":14000, "7":13000, "8":220000, "9":4500, "10":17000, "11":1200, "12":3700, "13":4500, "14":2200, "15":700, "16":2750, "17":6499, "18":1499, "19":799, "20":27000, "21":6750, "22":2100, "23":1199, "24":3210, "25":989, "26":750, "27":1700, "28":600, "29":2175, "30":890, "31":2100, "32":7158, "33":597, "34":347, "35":500, "36":300, "37":1097, "38":80000, "39":87900, "40":23790}
 namie = {"1":"TV 4K OLED 50", "2":"TV FHD OLED 50", "3":"8K QLED 80", "4":"Redmi K20 PRO", "5":"Redmi K20", "6":"Redmi Note 8 PRO", "7":"POCOPHONE F1", "8":"Mi MIX ALPHA", "9":"Wireless Headphones", "10":"Noise-Cancelling Wireless Headphones", "11":"Essentials Headphones", "12":"Gaming Headphones", "13":"Truly-Wireless Eadphones", "14":"Neckband-Style Wireless Earphones", "15":"Essentials Earphones", "16":"Gaming Earphones", "17":"30W Bluetooth Speakers", "18":"10W Bluetooth Speakers", "19":"Essentials Bluetooth Speaker", "20":"ULTRA Home Theatre", "21":"Essentials Home Theatre", "22":"  Wired Speaker - 5.1", "23":"  Essentials Wired Speaker - STEREO", "24":"Tactical Power Bank 30000mah", "25":"Essentials Power Bank 10000mah", "26":"Essentials Mouse", "27":"Logitech RGB Gaming Mouse with Traction & Weight Adjustment", "28":"Tactical Essentials Keyboard", "29":"Mechanical Cherry MX (Red) RGB Gaming Keyboard", "30":"Polowski Tactical Flashlight", "31":"OneFiber Wi-Fi Router AX17", "32":"Mijia Mesh Wi-Fi Router", "33":"lapcare 120W Laptop Adapter", "34":"lapcare 60W Laptop Adapter", "35":"Spigen Phone Case(s)", "36":"Essentials Phone Charger 10W", "37":"HyperPower Type-C Gallium-Nitride Charger 100W", "38":"ASUS Zephyrus G14 Gaming Laptop", "39":"L XPS 15 Content Creator's Laptop", "40":"Hewlett-Packard Essential's Student's Laptop (Chromebook)"}
+namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "9""Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.", "Essentials Wired Speaker - STEREO", "Tactical Power Bank 30000mah", "5""Essentials Power Bank 0000mah", "Essentials Mouse", "Logitech RGB Gaming Mouse with Traction & Weight Adjustment", "Tactical Essentials Keyboard", "Mechanical Cherry MX (Red) RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 0W Laptop Adapter", "lapcare 60W Laptop Adapter", "Spigen Phone Case(s)", "Essentials Phone Charger 150W", "HyperPower Type-C Gallium-Nitride Charger 100W", "ASUS Zephyrus G4 Gaming Laptop", "L XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
+datax = [40000, 55000, 67000, 25000, 21000, 14000, 3000, 220000, 4500, 17000, 1200, 3700, 4500, 2200, 700, 2750, 6499, 1499, 799, 27000, 6750, 2100, 1199, 3210, 989, 750, 1700, 600, 2175, 890, 2100, 7158, 597, 347, 500, 300, 1097, 80000, 87900, 23790]
+dataxr = []
+for i in datax:
+    i = "₹" + '%d' % i
+    dataxr.append(i)
+tablx = zip(namiex, dataxr)
+titlex = ["Product:", "Pricing:"]
 
 '''
 def floodscreen():
@@ -144,7 +153,7 @@ toaster.show_toast("DFBA Framework Runtime Broker","Please read operational and 
 print("Heyy there!",  'ed')
 time.sleep(1.34)
 if valfn == 0:
-    logger.write("Oauth bypass - registering for security")
+    logger.write("Oauth bypass - registering for security") 
     time.sleep(1)
     print("-------DBFA standardised billing framework-------")
     print("We highly value the security of our code, and our customers.")
@@ -439,10 +448,12 @@ while(1): #while (always) true
     #View Listing Option
     elif decfac == 5:
         print("Store listing (as per updated records): ")
-        for name, age in data.items():
+        print(tabulate(tablx, headers = titlex, floatfmt = ".4f"))
+        '''for name, age in data.items():
             print('{} {}'.format(name, age))
         for name, age in namie.items():
             print('{} {}'.format(name, age))
+        '''
     #Exit System
     elif decfac == 7:
         if os.path.exists(r'userblock.txt'):
