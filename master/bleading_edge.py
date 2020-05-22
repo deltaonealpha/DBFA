@@ -103,10 +103,11 @@ def mainmenu(): #defining a function for the main menu
     print("'1' to GENERATE INVOICE")
     print("'2' to REGISTER CUSTOMER,")
     print("'3' to VIEW REGISTERED CUSTOMERS,")
-    print("'4' to VIEW GENERATED INVOICES,")
-    print("'5' to REVIEW STORE LISTING,")
-    print("'6' to REVIEW LICENSING INFORMATION,")
-    print("and '7' to exit the framework.")
+    print("'4' to VIEW CUSTOMER PURCHASE RECORDS")
+    print("'5' to VIEW GENERATED INVOICES,")
+    print("'6' to REVIEW STORE LISTING,")
+    print("'7' to REVIEW LICENSING INFORMATION,")
+    print("and '8' to exit the framework.")
     print("---------------------------------------------")
     print()
     print()
@@ -125,6 +126,24 @@ logger.write("\n")
 logger.write("Automated Store Registry:\n")
 import time  #to provide delays to make the system run seamlessly
 
+xon = sqlite3.connect(r'DBFA_CUSTCC.db')
+xbr7 = xon.cursor()
+#c.execute("DROP TABLE cust;")
+xbr7.execute("""CREATE TABLE IF NOT EXISTS custcc
+    (custt INTEGER PRIMARY KEY,
+    purchasecount INTEGER,
+    ptotalx INTEGER);""")
+xon = sqlite3.connect('DBFA_CUSTCC.db')
+xbr7 = xon.cursor()
+if os.path.exists(r'DBFA_CUSTCC.db'):
+    pass
+else:
+    xbr7.execute("""CREATE TABLE IF NOT EXISTS custcc
+        (custt INTEGER PRIMARY KEY,
+        purchasecount INTEGER,
+        ptotalx INTEGER);""")
+xon.close()    
+
 conn = sqlite3.connect('DBFA.db')
 if os.path.exists(r'DBFA.db'):
     pass
@@ -142,6 +161,38 @@ def inserter(custt, custname, email):  #defining a function to input data into t
     conn.execute(str % io)
     conn.commit()
     print("Customer", custname, "registered in store directory")
+
+
+def custcc(custt, purchasecount, ptotalx):  #defining a function to input data into the SQL database's table
+    global xon
+    xon = sqlite3.connect(r'DBFA_CUSTCC.db')
+    xbr7 = xon.cursor()
+    str = "insert into custcc(custt, purchasecount, ptotalx) values('%s', '%s', '%s')"
+    io = (custt, purchasecount, ptotalx)
+    xbr7.execute(str % io)
+    xon.commit()
+    xbr7.close()
+    print("FJHG")
+
+
+def updatescript(custt, pincrement):
+    try:
+        xon = sqlite3.connect('DBFA_CUSTCC.db')
+        xbr7 = xon.cursor()
+        # hidden prints here ig
+        updatexr = """UPDATE custcc SET purchasecount = purchasecount + 1 WHERE custt = ?"""
+        updatexxr = """UPDATE custcc SET ptotalx = ptotalx + ? WHERE custt = ?"""
+        indicator = (custt)
+        xrindicator = (pincrement, custt)
+        xbr7.execute(updatexr, indicator)
+        xbr7.execute(updatexxr, xrindicator)
+        xon.commit()
+        xbr7.close()
+    except sqlite3.Error as error:
+        pass
+
+
+
 
  
 #void-loop phase
@@ -236,6 +287,7 @@ while(1): #while (always) true
                 print("Invalid entry! Retry: ")
                 print("---")
             afac+=1
+
         #tax = int(input("Enter the net tax %: "))  #comment and uncomment tkinter lines to use GUI-based input
         print("18% standard GST - Incoicing!")
         time.sleep(0.4)  #for a seamless experience
@@ -250,6 +302,8 @@ while(1): #while (always) true
         discountx = '%d' % discount
         telethon = telethon + "\n" + "Tax amount: 18%" + "\n"  + "Discount: " + discountx + "%" + "\n" + "\n"
         writer = writer + "\n" + "\n" + "-----------------------------" + "\n" + "Tax amount: 18%"  + "\n"  + discountx + "\n"  + "\n" 
+        
+        
         '''
         regin.write("\n")
         regin.write("Discount applied: ")
@@ -270,6 +324,7 @@ while(1): #while (always) true
         logger.write("\n")
         #regin.write(str(total))
         #regin.write("\n")
+        updatescript(custt, total)
         abcd1+=1
         afac+=1
         now = datetime.now()
@@ -281,7 +336,7 @@ while(1): #while (always) true
                                 topMargin=2*cm,bottomMargin=2*cm)
         #can.setFont("MiLanProVF", 24)
         can.build([Paragraph(writer.replace("\n", "<br />"), getSampleStyleSheet()['Normal']),])
-        
+
         import shutil  
         source = namer
         destination = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Generated_invoices'
@@ -321,6 +376,8 @@ while(1): #while (always) true
         custname = input("Name: ")
         email = input("Customer's E-mail ID: ")
         inserter(idd, custname, email) #argumental function to insert values into the SQL database
+        nullvalue = 0
+        custcc(idd, nullvalue, nullvalue)
         print(" ")
         logger.write("--------------------------------------- \n")
         logger.write("  \n")
@@ -369,8 +426,23 @@ while(1): #while (always) true
         print()
         print()
         time.sleep(2) #delay for easy-table viewing
-    #View Generated Bills
+
+
+    #View Customer Purchase Records
     elif decfac == 4:
+        xon = sqlite3.connect(r'DBFA_CUSTCC.db')
+        xbr7 = xon.cursor()
+        xbr7.execute("SELECT * FROM custcc")
+        rows = xbr7.fetchall()
+        for row in rows:
+            print(row)
+            print(" ")
+        xbr7.close()
+        toaster.show_toast("DFBA Superfetch Service", "Superfetch: Database acessed!", duration = 0.5) 
+    
+    
+    #View Generated Bills
+    elif decfac == 5:
         #password verification as sales record is not to be shown to all;
         print("Password echo shall be supressed for security.")
         passw = getpass.getpass(prompt='Enter root password to view store activity registry: ', stream=None)
@@ -446,7 +518,7 @@ while(1): #while (always) true
                 print()
                 print()
     #View Listing Option
-    elif decfac == 5:
+    elif decfac == 6:
         print("Store listing (as per updated records): ")
         print(tabulate(tablx, headers = titlex, floatfmt = ".4f"))
         '''for name, age in data.items():
@@ -455,7 +527,7 @@ while(1): #while (always) true
             print('{} {}'.format(name, age))
         '''
     #Exit System
-    elif decfac == 7:
+    elif decfac == 8:
         if os.path.exists(r'userblock.txt'):
             userblock.close()
             os.remove(r'userblock.txt')
@@ -464,21 +536,21 @@ while(1): #while (always) true
             os.remove(r'userblock.zconf')
         toaster.show_toast("DFBA Framework Runtime Broker", "Obsufcating program...", duration = 2)
         print("        ___ ______ ___   _____________    ____________     _______")
-        time.sleep(0.3)
+        time.sleep(0.15)
         print("       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /")
-        time.sleep(0.3)
+        time.sleep(0.15)
         print("      /  /       /  /  /  /       /  /  /  /             /  /  / /")
-        time.sleep(0.3)
+        time.sleep(0.15)
         print("     /  /       /  /  /  /_______/  /  /  /  CLI        /  /   / /")
-        time.sleep(0.3)
+        time.sleep(0.15)
         print("    /  /       /  /  / // // // // /  /  /_________    /  /____/ /")
-        time.sleep(0.3)
+        time.sleep(0.15)
         print("   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ /")
-        time.sleep(0.3)
+        time.sleep(0.15)
         print("  /  /       /  /  /  /       /  /  /  /             /  /      / /")
-        time.sleep(0.3)
+        time.sleep(0.15)
         print(" /  /_______/  /  /  /______ /  /  /  /             /  /       / /")
-        time.sleep(0.3)
+        time.sleep(0.15)
         print("/__/_______/__/  /__/_______/__/  /__/             /__/        /__/")
         print(" ")
         print(" ")
@@ -486,7 +558,7 @@ while(1): #while (always) true
         break
         exit()
         os.close('securepack.pyw')
-    elif decfac == 6:
+    elif decfac == 7:
         print("Fetching latest licensing information.......")
         print(" ")
         print(" ")
