@@ -24,10 +24,10 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h4 align="center">New faster and lighter data structure</h4>
 <h4 align="center">PDF invoicing and automated store-owner reports</h4>
 <h4 align="center">The much awaited GUI-based login implementation!</h4>
-<h4 align="center">View the full changelog on the master repository</h3>
-<h4 align="center">github.com/deltaonealpha/DBFA/</h3>
+<h3 align="center">View the full changelog on the master repository</h3>
+<h3 align="center">github.com/deltaonealpha/DBFA/</h3>
 <p align="center">&nbsp;</p>
-<h2 align="center">Creator:</h2>
+<h2 align="center">Developer:</h2>
 <p align="center">Pranav Balaji (t.me/DeltaOneAlpha)</p>
 <p align="center">&nbsp;</p>
 <h2 align="center">License</h2>
