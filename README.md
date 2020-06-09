@@ -24,11 +24,12 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h4 align="center">New faster and lighter data structure</h4>
 <h4 align="center">PDF invoicing and automated store-owner reports</h4>
 <h4 align="center">The much awaited GUI-based login implementation!</h4>
-<h3 align="center">View the full changelog on the master repository <a href="https://github.com/deltaonealpha/DBFA/"></h3>
+<h3 align="center">View the full changelog on the master repository</h3>
+<h3 align="center"><a href="https://github.com/deltaonealpha/DBFA/">-Master Repository-</h3>
 <p align="center">&nbsp;</p>
 <h2 align="center">Developer:</h2>
 <p align="center">Pranav Balaji</p>
 <p align="center"><a href="https://t.me/DeltaOneAlpha">-Telegram-</p>
-<p align="center">&nbsp;</p>
-<h2 align="center">License</h2>
+<h2 align="center">License</h2>-Master Repository-</p>
+
 <p align="center"><a href="https://github.com/deltaonealpha/deltaBillingFramework/blob/master/LICENSE">GNU General Public License</a> - Version 1.c, April 2020</p <a href="https://t.me/DeltaOneAlpha">
