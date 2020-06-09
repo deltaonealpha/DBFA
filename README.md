@@ -25,7 +25,7 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h4 align="center">PDF invoicing and automated store-owner reports</h4>
 <h4 align="center">The much awaited GUI-based login implementation!</h4>
 <h3 align="center">View the full changelog on the master repository</h3>
-<h3 align="center"><a href="https://github.com/deltaonealpha/DBFA/">-Master Repository-</h3>
+<h4 align="center"><a href="https://github.com/deltaonealpha/DBFA/">-Master Repository-</h4>
 <p align="center">&nbsp;</p>
 <h2 align="center">Developer:</h2>
 <p align="center">Pranav Balaji</p>
