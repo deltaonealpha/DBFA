@@ -30,6 +30,6 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h2 align="center">Developer:</h2>
 <p align="center">Pranav Balaji</p>
 <p align="center"><a href="https://t.me/DeltaOneAlpha">-Telegram-</p>
-<h2 align="center">License</h2>-Master Repository-</p>
+<h2 align="center">License</h2></p>
 
 <p align="center"><a href="https://github.com/deltaonealpha/deltaBillingFramework/blob/master/LICENSE">GNU General Public License</a> - Version 1.c, April 2020</p <a href="https://t.me/DeltaOneAlpha">
