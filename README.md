@@ -3,7 +3,7 @@
 
 OSSRTDS
       
-      A revamped second version of DSMSAPL with brand-new features and security measures.
+      A revamped second version of DSMSAPL with brand-new features and security measures, with GUI login!
 <h1 align="center">DBFA Billing Framework</h1>
 <h3 align="center">Builds on DSMSAPL's base with SQLite and a generalised system framework</h3>
 <h4 align="center">Provides unprecedented security upgrades and faster performance</h4>
@@ -23,7 +23,9 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h4 align="center">Stabilized operations</h4>
 <h4 align="center">New faster and lighter data structure</h4>
 <h4 align="center">PDF invoicing and automated store-owner reports</h4>
-<h4 align="center">View the full changelog on the master repository</h4>
+<h4 align="center">The much awaited GUI-based login implementation!</h4>
+<h4 align="center">View the full changelog on the master repository</h3>
+<h4 align="center">github.com/deltaonealpha/DBFA/</h3>
 <p align="center">&nbsp;</p>
 <h2 align="center">Creator:</h2>
 <p align="center">Pranav Balaji (t.me/DeltaOneAlpha)</p>
