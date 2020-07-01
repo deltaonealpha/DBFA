@@ -22,6 +22,11 @@ This changelog will be regularly updated as changes are made. This updation is c
 
 Changelog:
 
+		*[v4.2s BLACKTHUNDER]*
+		
+		[ Introducing the first major stable build! ]
+		[ The code has been made completely bug-free and stable.  ]
+		[ Completed documentation updated in the master repository. ]
 
 Developed by Pranav Balaji 
 (t.me/DeltaOneAlpha)
