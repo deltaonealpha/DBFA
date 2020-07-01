@@ -3,7 +3,7 @@
 
 OSSRTDS
       
-      A revamped second version of DSMSAPL with brand-new features and security measures, with GUI login!
+      The second version of DSMSAPL with brand-new features and security measures, with GUI login!
 <h1 align="center">DBFA Billing Framework</h1>
 <h3 align="center">Builds on DSMSAPL's base with SQLite and a generalised system framework</h3>
 <h4 align="center">Provides unprecedented security upgrades and faster performance</h4>
