@@ -1,0 +1,37 @@
+------------------------------------------------------------- deltaStoreManager -------------------------------------------------------------
+-------------------------------------------------------------   DOCUMENTATION   -------------------------------------------------------------
+
+Please read through carefully.
+Copying of ANY part of this program shall not be considered ethical.
+The developer is NOT responsible in any said way for any unpleasent occurences due to this program.
+_____________________________________________________________________________________________________________________________________________
+The project is focussed on being an all-rounder solution for shops to handle their billing, customers and record-keeping needs.
+The project asks the user to select from 5 options, namely:
+-	BILLING MODE
+-	NEW CUSTOMER REGISTRATION MODE
+-	VIEW ALL REGISTERED CUSTOMERS MODE
+-	VIEW ALL SALES RECORDS MODE
+-	EXIT PROGRAM OPTION
+In the billing mode, the user is asked to enter the customer’s I.D. (if registered), and then asks for the number of items being purchased.
+Then it asks the user to enter each product’s code, followed by the tax and discount amount (can be zero) to be applied.
+The total amount is subsequently printed.
+
+In the customer registration mode, the user is asked to enter the customer’s new I.D., full-name and email contact.
+The same is inserted into the SQL database.
+
+In the view all registered customers mode, the program contacts the SQL database and displays the complete table of registered customers.
+
+In the view all sales records mode, the program first asks the user to authorize the event by asking for a password (default = “root”).
+Upon successful authenication, the program opens the sales log externally, with the NotePad application 
+(whichever app the system has installed to open .txt files by default would be used).
+
+Upon selecting the fifth – exit option, the program exits.
+
+Please run the file: "hms1.py" for starting the main program.
+Please run the file: "splashscreen_test.py" for testing the script-boot-time flash-screen.
+_____________________________________________________________________________________________________________________________________________
+
+Thanks for using the program!
+Pranav Balaji
+Contact me on Telegram: @deltaonealpha
+GitHub repo for this program (deltaStoreManager): deltaonealpha.github.io/dsmsapl/
