@@ -5,7 +5,7 @@ OSSRTDS
       
       A revamped second version of DSMSAPL with brand-new features and security measures, with GUI login!
 <h1 align="center">DBFA Billing Framework</h1>
-<h3 align="center">Builds on DSMSAPL's base with SQLite and a generalised system framework</h3>
++<h3 align="center">Builds on DSMSAPL's base with SQLite and a generalised system framework</h3>
 <h4 align="center">Provides unprecedented security upgrades and faster performance</h4>
 <h4 align="center">Developed by Pranav Balaji (t.me/DeltaOneAlpha)</h4>
 <p align="center">&nbsp;</p>
@@ -17,13 +17,13 @@ This registry shall be regularly updated as changes are made. This updation is c
 
 
 
-<h5 align="center">MARK 3.35 (stable): Presenting a completely new DBFA! More features, more stability, more security. Try it right away!</h5>
+<h5 align="center">MARK 4.2s BLACKTHUNDER: Presenting a completely new DBFA! More features, more stability, more security. Try it right away!</h5>
+<h3 align="center">4.2s BLACKTHUNDER (stable) </h3>
+<h4> </h4>
 <h2 align="center">Changelog:</h2>
-<h4 align="center">Upgraded communications</h4>
-<h4 align="center">Stabilized operations</h4>
+<h4 align="center">Merged communications upstream</h4>
 <h4 align="center">New faster and lighter data structure</h4>
-<h4 align="center">PDF invoicing and automated store-owner reports</h4>
-<h4 align="center">The much awaited GUI-based login implementation!</h4>
+<h4 align="center">Introducing a GUI-based login implementation (Report bugs pl0xx</h4>
 <h3 align="center">View the full changelog on the master repository</h3>
 <h4 align="center"><a href="https://github.com/deltaonealpha/DBFA/">-Master Repository-</h4>
 <p align="center">&nbsp;</p>
