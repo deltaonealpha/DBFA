@@ -1,0 +1,794 @@
+  
+Date and time: 29/05/2020 13:25:43 
+  
+Date and time: 29/05/2020 13:25:43 
+Log file access attempt - Oauth failiure!!! 
+  
+Date and time: 
+29/05/2020 13:25:43 
+Log file access attempt - AUTHORIZATION SUCCESS 
+/2020 22:26:32 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 27/05/2020 22:51:31 
+New customer registered:  custname: Pranav Balaji custemail: test@dbfa.com
+--------------------------------------- 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 27/05/2020 22:52:34 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 27/05/2020 22:53:02 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 28/05/2020 00:05:37 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 28/05/2020 10:01:44 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+k  
+Date and time: 
+28/05/2020 10:40:52 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+nk  
+Date and time: 
+28/05/2020 10:41:09 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 28/05/2020 10:41:37 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:35:05 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:40:17 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:40:49 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:41:27 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:42:11 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:42:43 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:43:35 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+28/05/2020 22:43:46 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:43:57 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:45:38 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:47:19 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:48:13 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:51:49 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:53:36 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 22:54:55 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 23:02:17 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 23:20:39 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 23:21:15 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 23:21:59 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 23:23:11 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+28/05/2020 23:24:28 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 23:25:06 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 23:26:06 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 23:26:34 
+Appending product to order: 
+TV 4K OLED 50----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 23:27:15 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+5664.0
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 23:30:55 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+7788.0
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 23:49:46 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/05/2020 23:50:34 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+26432.0
+--------------------------------------- 
+  
+Date and time: 28/05/2020 23:51:29 
+New customer registered:  custname: Pranav Balaji custemail: test3@dbfa.com
+--------------------------------------- 
+-----------------  Cust. ID: 
+3  
+Date and time: 
+28/05/2020 23:51:29 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+46728.0
+-----------------  Cust. ID: 
+3  
+Date and time: 
+28/05/2020 23:52:06 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:13:28 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+8K QLED 80 
+Total amount billed for: 
+449385.3
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:14:18 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:14:37 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:14:59 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:15:46 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:16:25 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:19:29 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:20:54 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:21:33 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+3221.3999999999996
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:22:44 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+1840.7999999999993
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:23:01 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:24:13 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+15186.6
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:24:28 
+Appending product to order: 
+ASUS Zephyrus G14 Gaming Laptop----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/05/2020 13:25:17 
+Appending product to order: 
+L XPS 15 Content Creator's Laptop 
+Total amount billed for: 
+103722.0
+  
+Date and time: 29/05/2020 13:25:43 
+  
+Date and time: 29/05/2020 13:25:43 
+Log file access attempt - Oauth failiure!!! 
+(MULTIPLE ATTEMPTS!): Log file access attempt - AUTHORIZATION FAILED!!! 
+  
+Date and time: 29/05/2020 13:25:43 
+Log file access attempt - Oauth complete 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+Oauth bypass - registering for security----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+Oauth bypass - registering for security----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 09/06/2020 00:07:42 
+New customer registered:  custname: Test 4 custemail: test4@dbfa.com
+--------------------------------------- 
+-----------------  Cust. ID: 
+1  
+Date and time: 
+09/06/2020 00:07:42 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Total amount billed for: 
+140290.19999999998
+-----------------  Cust. ID: 
+1  
+Date and time: 
+09/06/2020 00:08:41 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+4  
+Date and time: 
+09/06/2020 00:09:10 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+59708.0
+-----------------  Cust. ID: 
+1  
+Date and time: 
+09/06/2020 00:09:28 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+290232.8
+--------------------------------------- 
+  
+Date and time: 09/06/2020 00:10:12 
+Customer registry accessed! 
+--------------------------------------- 
+  
+Date and time: 09/06/2020 00:10:12 
+  
+Date and time: 09/06/2020 00:10:12 
+Log file access attempt - Oauth failiure!!! 
+  
+Date and time: 
+09/06/2020 00:10:12 
+Log file access attempt - AUTHORIZATION SUCCESS 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:

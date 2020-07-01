@@ -15,10 +15,10 @@ def Login():
         # All the stuff inside your window.
         layout = [  [sgx.Text('INVALID LOGIN. Please retry:')],
                     [sgx.Text('Username: '), sgx.InputText()],
-                    [sgx.Text('Password (shh... secret): '), sgx.InputText()],
-                    [sgx.Button('Send data to Russia'), sgx.Button('Cancel')] ]
+                    [sgx.Text('Password: '), sgx.InputText()],
+                    [sgx.Button('Authenicate'), sgx.Button('Cancel')] ]
         # Create the Window
-        window = sgx.Window('pl0x gib password', layout)
+        window = sgx.Window('deltaAuthenication Service', layout)
         # Event Loop to process "events" and get the "values" of the inputs
     while True:
         event, values = window.read()

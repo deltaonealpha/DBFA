@@ -15,7 +15,8 @@ window = sg.Window('Login conf.', layout)
 while True:
     Proceed = "Proceed"
     event, values = window.read()
-    if event in ('proceed'):
+    if event in ('Proceed'):
+        os.startfile('bleading_edge.py')
         window.close()
         userblock = open(r"userblock.txt","a+") #Opening / creating (if it doesn't exist already) the .txt record file
         userblock.write('ed')
@@ -29,7 +30,6 @@ while True:
         p = Path('userblock.txt')
         p.rename(p.with_suffix('.zconf'))
         time.sleep(0.4)
-        os.startfile('bleading_edge.py')
 
 '''while True:
     event, values = window.read()

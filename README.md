@@ -1,28 +1,39 @@
+### OSSRTDS
 ### deltaBillingFramework
 
+		██████╗░██████╗░███████╗░█████╗░    █▄▄ █ █░░ █░░ █ █▄░█ █▀▀  
+		██╔══██╗██╔══██╗██╔════╝██╔══██╗    █▄█ █ █▄▄ █▄▄ █ █░▀█ █▄█
+		██║░░██║██████╦╝█████╗░░███████║    
+		██║░░██║██╔══██╗██╔══╝░░██╔══██║    █▀▀ █▀█ ▄▀█ █▀▄▀█ █▀▀ █░█░█ █▀█ █▀█ █▄▀
+		██████╔╝██████╦╝██║░░░░░██║░░██║    █▀░ █▀▄ █▀█ █░▀░█ ██▄ ▀▄▀▄▀ █▄█ █▀▄ █░█
+		╚═════╝░╚═════╝░╚═╝░░░░░╚═╝░░╚═╝
 
-OSSRTDS
-      
-      The DSMSAPL program introduced a robust and dependable system for integrating billing and store management. This was much-appreciated, but as all great things must be made greater, on March 14, 2020, delta officially dropped support for the DSMSAPL program.
-<h1 align="center">DBFA Billing Framework</h1>
-<h3 align="center">Builds on DSMSAPL's base with SQLalchemy and a generalised system framework</h3>
-<h4 align="center">Uses modifs and complete revisions to be even more fast</h4>
-<h4 align="center">Made by Pranav Balaji (t.me/DeltaOneAlpha)</h4>
-<p align="center">&nbsp;</p>
-
-
-A big force behind the dropping of support and development of DSMSAPL was the annoucement of the deltaBillingFramework.
-The deltaBillingFramework builds upon the stable and robust base that DSMSAPL left. The integraTion of SQLalchemy along with more modifications, towards the creation of a generalized framework system. What we have in plan for the deltaBillingFramework is to make a kind of one-suits-all solution. Ranging from physical stores, to online ones, libraries, and even DIY-hobbyists who'd like to pull off parts of code from here (UNDER LICENSE, ALWAYS). This wide-audience cattering feature of the deltaBillingFramework is what makes it truly worthy of the title "framework".
-DSMSAPL shall still be supported slightly, and bug and security patches shall be provided, till the deltaBillingFramework becomes complete, and able to completely replace DSMSAPL.
-This changelog-registry will be regularly updates as changes are made. This updation in completely manual.
+                    █▀▄ █▀█ █▀▀ █░█ █▀▄▀█ █▀▀ █▄░█ ▀█▀ ▄▀█ ▀█▀ █ █▀█ █▄░█
+                    █▄▀ █▄█ █▄▄ █▄█ █░▀░█ ██▄ █░▀█ ░█░ █▀█ ░█░ █ █▄█ █░▀█
 
 
-<h2 align="center">Changelog:</h2>
-<h5 align="center">UPDATE 2.227: Upgraded with auto PDF invoicing and Telethon-based communicator</h5>
-<h4 align="center">Full changelog soon in master branch of the repo</h4>
-<p align="center">&nbsp;</p>
-<h2 align="center">Creator:</h2>
-<p align="center">Pranav Balaji (t.me/DeltaOneAlpha)</p>
-<p align="center">&nbsp;</p>
-<h2 align="center">License</h2>
-<p align="center"><a href="https://github.com/deltaonealpha/deltaBillingFramework/blob/master/LICENSE">GNU General Public License</a> - Version 1.c, April 2020</p>
+      The DSMSAPL program introduced a robust and dependable system for integrating billing and store management. On March 14, 2020, delta dropped development for the DSMSAPL program in favour of a generalised, revamped approach.
+
+DBFA builds on DSMSAPL code with SQLite3 and a generalised system framework alongside a completely revamped code for faster performance.
+Introducing a completely-new file-system for more stable performance.
+
+This changelog will be regularly updated as changes are made. This updation is completely manual, so kindly refer to the GitHub repository for the complete changelog.
+
+
+Changelog:
+
+
+Developed by Pranav Balaji 
+(t.me/DeltaOneAlpha)
+
+License: GNU General Public License - Version 1.c, April 2020
+	 https://github.com/deltaonealpha/deltaBillingFramework/blob/master/LICENSE
+        ___ ______ ___   _____________    ____________     _______
+       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /
+      /  /       /  /  /  /       /  /  /  /             /  /  / /
+     /  /       /  /  /  /_______/  /  /  /             /  /   / /
+    /  /       /  /  / // // // // /  /  /_________    /  /____/ / BILLING 
+   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ / FRAMEWORK
+  /  /       /  /  /  /       /  /  /  /             /  /      / /
+ /  /_______/  /  /  /______ /  /  /  /             /  /       / /
+/__/_______/__/  /__/_______/__/  /__/             /__/        /_/
