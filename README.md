@@ -17,7 +17,7 @@ This registry shall be regularly updated as changes are made. This updation is c
 
 
 
-<h5 align="center">MARK 4.2s BLACKTHUNDER: Presenting a completely new DBFA! More features, more stability, more security. Try it right away!</h5
+<h5 align="center">MARK 4.2s BLACKTHUNDER: Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
 <h4> </h4>
 <h2 align="center">Changelog:</h2>
 <h3 align="center">MARK 4.2s BLACKTHUNDER (stable) </h3>
