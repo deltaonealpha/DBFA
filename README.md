@@ -28,7 +28,7 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h5 align="center">[DNSS VOUCHER ENGINE ALPHA BUILD]</h4>
 <h5 align="center">Merged communications upstream</h4>
 <h5 align="center">New faster and lighter data structure</h4>
-<h4 align="center">(Report bugs pl0xx</h4>
+<h4 align="center">Bug reports are appreciated!</h4>
 <h3 align="center">View the full changelog on the master repository</h3>
 <h4 align="center"><a href="https://github.com/deltaonealpha/DBFA/">-Master Repository-</h4>
 <p align="center">&nbsp;</p>
