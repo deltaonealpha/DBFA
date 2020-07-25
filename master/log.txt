@@ -1,25 +1,26 @@
-  
-Date and time: 12/05/2020 21:44:50 
-  
-Date and time: 12/05/2020 21:44:50 
-Log file access attempt - Oauth failiure!!! 
-(MULTIPLE ATTEMPTS!): Log file access attempt - AUTHORIZATION FAILED!!! 
-------------------------- 
-deltaStoreManager 
-delta
-SALES RECORD: 
---------------------------------------------- 
-deltaStoreManager 
-delta
-SALES RECORD: 
---------------------------------------------- 
-deltaStoreManager 
-ed
-SALES RECORD: 
---------------------------------------------- 
-deltaStoreManager 
-ed
-SALES RECORD: 
+-----------------  Cust. ID: 
+12  
+Date and time: 
+14/07/2020 00:56:17 
+Appending product to order: 
+  Wired Speaker - 5.1 
+Appending product to order: 
+  Essentials Wired Speaker - STEREO 
+Total amount billed for: 
+38.92819999999983
+-----------------  Cust. ID: 
+12  
+Date and time: 
+14/07/2020 00:58:41 
+Appending product to order: 
+  Wired Speaker - 5.1 
+Appending product to order: 
+  Wired Speaker - 5.1 
+Appending product to order: 
+  Essentials Wired Speaker - STEREO 
+Total amount billed for: 
+6370.82
+CORD: 
 --------------------------------------------- 
 deltaStoreManager 
 ed

@@ -792,3 +792,195 @@ DBFA Billing Framework by Pranav Balaji
 Licensed under the GNU PUBLIC LICENSE
 ed
 Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+Oauth bypass - registering for security----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+14/07/2020 00:52:09 
+Appending product to order: 
+  Wired Speaker - 5.1 
+Total amount billed for: 
+24.7800000000002
+--------------------------------------- 
+  
+Date and time: 14/07/2020 00:52:54 
+New customer registered:  custname: Sushant Gupta custemail: sushant@everyonesuckcxxzz.com
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 14/07/2020 00:52:54 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+  
+Date and time: 14/07/2020 00:56:17 
+  
+Date and time: 14/07/2020 00:56:17 
+Log file access attempt - Oauth failiure!!! 
+  
+Date and time: 
+14/07/2020 00:56:17 
+Log file access attempt - AUTHORIZATION SUCCESS 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+26/07/2020 01:14:07 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+26/07/2020 01:15:17 
+Appending product to order: 
+Tactical Power Bank 30000mah 
+Appending product to order: 
+  Essentials Wired Speaker - STEREO 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+26/07/2020 01:17:22 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+26/07/2020 01:18:37 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+26/07/2020 01:23:04 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+26/07/2020 01:23:51 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+26/07/2020 01:25:25 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+26/07/2020 01:26:13 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+62953.0
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+26/07/2020 01:29:44 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+26/07/2020 01:33:36 
+Appending product to order: 
+Redmi K20 PRO 
+Total amount billed for: 
+29205.0
+-----------------  Cust. ID: 
+1  
+Date and time: 
+26/07/2020 01:33:58 
+Appending product to order: 
+Neckband-Style Wireless Earphones 

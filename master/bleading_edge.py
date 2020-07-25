@@ -53,19 +53,13 @@ import os #library used to open the notepad application to display the sales rec
 if os.path.exists(r'userblock.zconf'):
     print("Decrypting authenication blobs...")
     print(" ")
-    p = Path('userblock.zconf')
-    p.rename(p.with_suffix('.txt'))
 if os.path.exists(r'userblock.txt'):
     userblock = open(r"userblock.txt","r") #Opening / creating (if it doesn't exist already) the .txt record file
     valfn = 1
 else:
     valfn = 0
-if os.path.exists(r'userblock.txt'):
-    userblock.close()  
-    os.remove(r'userblock.txt')
-elif os.path.exists(r'userblock.zconf'):
-    userblock.close()
-    os.remove(r'userblock.zconf')
+
+
 
 if os.path.exists(r'DBFA.zconf'):
     pass
@@ -188,6 +182,95 @@ def ssxstockmaster(prodid):
     time.sleep(1)
     toaster.show_toast("DBFA QuickVend Service - Background Sync", duration = 0.3427)
 
+
+import os, time, sqlite3
+global isol, isolx
+isol = sqlite3.connect(r'cponmgmtsys.db')
+isolx = isol.cursor()
+isolx.execute("""CREATE TABLE IF NOT EXISTS cponmaster
+    (cponid CHAR,
+    cponlim INTEGER,
+    cponvalue INTEGER);""")
+
+isol = sqlite3.connect('cponmgmtsys.db')
+isolx = isol.cursor()
+if os.path.exists(r'cponmgmtsys.db'):
+    pass
+else:
+    isolx.execute("""CREATE TABLE IF NOT EXISTS cponmaster
+        (cponid CHAR,
+        cponlim INTEGER
+        cponvalue INTEGER);""")
+
+
+
+def cponissuer(cponid, cponlim, cponvalue):
+    isol = sqlite3.connect('cponmgmtsys.db')
+    str = "insert into cponmaster(cponid, cponlim, cponvalue) values('%s', '%s', '%s')"
+    iox = (cponid, cponlim, cponvalue)
+    isolx.execute(str % iox)
+    isol.commit()
+    print("DSNN: Coupon", cponid, "having discount %", cponvalue, "created for", cponlim, "times of usage.")
+
+
+def cponuse(cponid):
+    isol = sqlite3.connect('cponmgmtsys.db')
+    isolx = isol.cursor()
+    mod = """UPDATE cponmaster SET cponlim = cponlim - 1 WHERE cponid = ?"""
+    idler = (cponid, )
+    isolx.execute(mod, idler)
+    isol.commit()
+
+
+def cpon_singlefetch(cponid): 
+    isol = sqlite3.connect('cponmgmtsys.db')
+    isolx = isol.cursor()
+    isol.row_factory = lambda cursor, row: row[0]
+    csrr = ("SELECT cponid, cponlim, cponvalue FROM cponmaster WHERE cponid = (?);")
+    csrrxt = (cponid, )
+    isolx.execute(csrr, csrrxt)
+    rows = isolx.fetchall()
+    values = ','.join(str(v) for v in rows)
+    print("DNSS Coupon ", values)
+
+def cpon_valfetch(cponid): 
+    isol = sqlite3.connect('cponmgmtsys.db')
+    isolx = isol.cursor()
+    isol.row_factory = lambda cursor, row: row[0]
+    csrr = ("SELECT cponvalue FROM cponmaster WHERE cponid = (?);")
+    csrrxt = (cponid, )
+    isolx.execute(csrr, csrrxt)
+    rows = isolx.fetchall()
+    values = ''.join(str(v) for v in rows)
+    print(values[1:-2])
+    
+
+def cpon_limfetch(cponid): 
+    isol = sqlite3.connect('cponmgmtsys.db')
+    isolx = isol.cursor()
+    isol.row_factory = lambda cursor, row: row[0]
+    csrr = ("SELECT cponlim FROM cponmaster WHERE cponid = (?);")
+    csrrxt = (cponid, )
+    isolx.execute(csrr, csrrxt)
+    rows = isolx.fetchall()
+    values = ''.join(str(v) for v in rows)
+    limx = values[1:-2]
+    if limx == 0:
+        print("DNSSexemption: Coupon no longer valid. ")
+    else:
+        pass
+
+def cpon_masterfetch():
+    isol = sqlite3.connect(r'cponmgmtsys.db')
+    isolx = isol.cursor()
+    isolx.execute("SELECT DISTINCT cponid, cponlim FROM cponmaster")
+    rows = isolx.fetchall()
+    for row in rows:
+        print(row)
+        #print(" ")
+
+
+
 #Values stored in two dictionaries
 data = {"1":40000, "2":55000, "3":67000, "4":25000, "5":21000, "6":14000, "7":13000, "8":220000, "9":4500, "10":17000, "11":1200, "12":3700, "13":4500, "14":2200, "15":700, "16":2750, "17":6499, "18":1499, "19":799, "20":27000, "21":6750, "22":2100, "23":1199, "24":3210, "25":989, "26":750, "27":1700, "28":600, "29":2175, "30":890, "31":2100, "32":7158, "33":597, "34":347, "35":500, "36":300, "37":1097, "38":80000, "39":87900, "40":23790}
 namie = {"1":"TV 4K OLED 50", "2":"TV FHD OLED 50", "3":"8K QLED 80", "4":"Redmi K20 PRO", "5":"Redmi K20", "6":"Redmi Note 8 PRO", "7":"POCOPHONE F1", "8":"Mi MIX ALPHA", "9":"Wireless Headphones", "10":"Noise-Cancelling Wireless Headphones", "11":"Essentials Headphones", "12":"Gaming Headphones", "13":"Truly-Wireless Eadphones", "14":"Neckband-Style Wireless Earphones", "15":"Essentials Earphones", "16":"Gaming Earphones", "17":"30W Bluetooth Speakers", "18":"10W Bluetooth Speakers", "19":"Essentials Bluetooth Speaker", "20":"ULTRA Home Theatre", "21":"Essentials Home Theatre", "22":"  Wired Speaker - 5.1", "23":"  Essentials Wired Speaker - STEREO", "24":"Tactical Power Bank 30000mah", "25":"Essentials Power Bank 10000mah", "26":"Essentials Mouse", "27":"Logitech RGB Gaming Mouse with Traction & Weight Adjustment", "28":"Tactical Essentials Keyboard", "29":"Mechanical Cherry MX (Red) RGB Gaming Keyboard", "30":"Polowski Tactical Flashlight", "31":"OneFiber Wi-Fi Router AX17", "32":"Mijia Mesh Wi-Fi Router", "33":"lapcare 120W Laptop Adapter", "34":"lapcare 60W Laptop Adapter", "35":"Spigen Phone Case(s)", "36":"Essentials Phone Charger 10W", "37":"HyperPower Type-C Gallium-Nitride Charger 100W", "38":"ASUS Zephyrus G14 Gaming Laptop", "39":"L XPS 15 Content Creator's Laptop", "40":"Hewlett-Packard Essential's Student's Laptop (Chromebook)"}
@@ -236,7 +319,8 @@ def mainmenu(): #defining a function for the main menu
     print("'6' to REVIEW STORE LISTING,")
     print("'7' to REVIEW LICENSING INFORMATION,")
     print("'8' to VIEW OR UPDATE STOCK,")
-    print("and '9' to exit the framework.")
+    print("'9' to ISSUE COUPONS,")
+    print("and '10' to exit the framework.")
     print("~ input TPM code to enter testing mode ~")
     print("---------------------------------------------")
     print()
@@ -401,14 +485,28 @@ while(1): #while (always) true
         #tax = int(input("Enter the net tax %: "))  #comment and uncomment tkinter lines to use GUI-based input
         print("18% standard GST - Incoicing!")
         time.sleep(0.4)  #for a seamless experience
-        #discount = int(simpledialog.askstring(title="deltaSTOREMANAGER",prompt="Enter the discount percentage: "))
-        discount = int(input("Enter discount % (if any): ")) #comment and uncomment tkinter lines to use GUI-based input
+        try:
+            cponid = str(input("Enter voucher code (if any): "))
+        except EOFError:
+            pass                   #When no input is given by the user, control moves to this section as "EOFError or End Of File Error is detected"
+        if cponid != "":
+            cpon_limfetch(cponid)
+            print("")
+            print("----")
+            cpon_valfetch(cponid)
+            print("----")
+            decx = int(input("Verify voucher application by entering the above-mentioned code: "))
+            #discount = int(simpledialog.askstring(title="deltaSTOREMANAGER",prompt="Enter the discount percentage: "))
+            discount = int(input("Enter discount % (if any): ")) #comment and uncomment tkinter lines to use GUI-based input
+            discount = discount + decx
+        else:
+            discount = int(input("Enter discount % (if any): ")) #comment and uncomment tkinter lines to use GUI-based input
         print(discount, "% net discount - Invoicing!")
         time.sleep(0.2) #for a seamless experience
         print("Invoicing... DBFA")
         time.sleep(0.4) #for a seamless experience
         tota = (((18/100)*billiemaster)+billiemaster)
-        total = tota-((discount/100)*tota)
+        total = tota-(((discount)/100)*tota)
         discountx = '%d' % discount
         telethon = telethon + "\n" + "Tax amount: 18%" + "\n"  + "Discount: " + discountx + "%" + "\n" + "\n"
         writer = writer + "\n" + "\n" + "-----------------------------" + "\n" + "Tax amount: 18%"  + "\n"  + discountx + "\n"  + "\n" 
@@ -611,6 +709,7 @@ while(1): #while (always) true
         print("Store listing (as per updated records): ")
         print(tabulate(tablx, headers = titlex, floatfmt = ".4f"))
 
+    #Stock Master
     elif decfac == 8:
         decsfacter = str(input("Enter 'a' to VIEW STOCK, 'b' to ADD STOCK and 'c' to ENFORCE MASS STOCK: "))
         if decsfacter == "a":
@@ -624,8 +723,16 @@ while(1): #while (always) true
             ggrtrr = int(input("Enter stock to universally enforce: "))
             massmaintainer(ggrtrr)
 
-    #Exit System
+    #Coupon Master
     elif decfac == 9:
+        print("DNSS CouponMaster: Issuer")
+        cponid = input("Coupon ID: ")
+        cponlim = input("Number of times to allow coupon usage: ")
+        cponvalue = input("Coupon discount percentage: ")
+        cponissuer(cponid, cponlim, cponvalue)
+
+    #Exit System
+    elif decfac == 10:
         if os.path.exists(r'userblock.txt'):
             userblock.close()
             os.remove(r'userblock.txt')
@@ -690,7 +797,7 @@ while(1): #while (always) true
             print("--------------------------------------------------")
         
     #CIT
-    elif decfac == 10:
+    elif decfac == 11:
         print("CIT INTERNAL TESTING MODE")
         ffxfac = str(input("Enter CIT Testing Mode? (y/n):: "))
         if ffxfac == "y":
