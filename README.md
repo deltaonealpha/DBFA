@@ -23,15 +23,15 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h2 align="center">Changelog:</h2>
 <h3 align="center">MARK 5.1x battlestar (alpha) </h3>
 <h4 align="center">Introducing coupons!!</h4>
-<h5 align="center"> > Create coupons with limited use</h4>
-<h5 align="center"> > Specify discount percentage</h4>
-<h5 align="center"> > Automatic usage monitoring</h4>
-<h5 align="center">[DNSS VOUCHER ENGINE ALPHA BUILD]</h4>
-<h5 align="center">Merged communications upstream</h4>
-<h5 align="center">New faster and lighter data structure</h4>
+<h5 align="center"> > Create coupons with limited use </h5>
+<h5 align="center"> > Specify discount percentage </h5>
+<h5 align="center"> > Automatic usage monitoring </h5>
+<h5 align="center">[DNSS VOUCHER ENGINE ALPHA BUILD] </h5>
+<h5 align="center">Merged communications upstream </h5>
+<h5 align="center">New faster and lighter data structure </h5>
 <h4 align="center">Bug reports are appreciated!</h4>
-<h3 align="center">View the full changelog on the master repository</h3>
-<h4 align="center"><a href="https://github.com/deltaonealpha/DBFA/">-Master Repository-</h4>
+<h3 align="center">View the full changelog on the master repository's commits</h3>
+<h4 align="center"><a href="https://github.com/deltaonealpha/DBFA/">Repository</h4>
 <p align="center">&nbsp;</p>
 <h2 align="center">Developer:</h2>
 <p align="center">Pranav Balaji</p>
