@@ -20,10 +20,15 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h5 align="center">MARK 4.2s BLACKTHUNDER: Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
 <h4> </h4>
 <h2 align="center">Changelog:</h2>
-<h3 align="center">MARK 4.2s BLACKTHUNDER (stable) </h3>
-<h4 align="center">Merged communications upstream</h4>
-<h4 align="center">New faster and lighter data structure</h4>
-<h4 align="center">Introducing a GUI-based login implementation (Report bugs pl0xx</h4>
+<h3 align="center">MARK 5.1x battlestar (alpha) </h3>
+<h4 align="center">Introducing coupons!!</h4>
+<h5 align="center"> > Create coupons with limited use</h4>
+<h5 align="center"> > Specify discount percentage</h4>
+<h5 align="center"> > Automatic usage monitoring</h4>
+<h5 align="center">[DNSS VOUCHER ENGINE ALPHA BUILD]</h4>
+<h5 align="center">Merged communications upstream</h4>
+<h5 align="center">New faster and lighter data structure</h4>
+<h4 align="center">(Report bugs pl0xx</h4>
 <h3 align="center">View the full changelog on the master repository</h3>
 <h4 align="center"><a href="https://github.com/deltaonealpha/DBFA/">-Master Repository-</h4>
 <p align="center">&nbsp;</p>
