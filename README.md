@@ -18,16 +18,22 @@ This registry shall be regularly updated as changes are made. This updation is c
 
 
 
-<h5 align="center">MARK 4.2s BLACKTHUNDER: Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
+<h5 align="center">MARK 5.2xs Berrylium (beta): Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
 <h4> </h4>
-<h2 align="center">Changelog:</h2>
-<h3 align="center">MARK 5.1x battlestar (alpha) </h3>
-<h4 align="center">Introducing coupons!!</h4>
+<h1 align="center">Changelog:</h2>
+<h2 align="center">MARK 5.2xs berrylium (beta) </h3>
+<h3 align="center">Introducing coupons!!</h4>
+<h4 align="center">5.1x(alpha) </h4>
 <h5 align="center"> > Create coupons with limited use </h5>
 <h5 align="center"> > Specify discount percentage </h5>
 <h5 align="center"> > Automatic usage monitoring </h5>
+<h4 align="center">5.2xs(beta) </h4>
+<h5 align="center"> > Fixed coupon system language and bugs </h5>
 <h5 align="center">[DNSS VOUCHER ENGINE ALPHA BUILD] </h5>
 <h5 align="center">Merged communications upstream </h5>
+<h5 align="center"> Improved general code language </h5>
+<h5 align="center"> PDF (invoice printer) spacing bug rectified </h5>
+<h5 align="center"> Added CIT safetypack option for cponmgmtsys.db </h5>
 <h5 align="center">New faster and lighter data structure </h5>
 <h4 align="center">Bug reports are appreciated!</h4>
 <h3 align="center">View the full changelog on the master repository's commits</h3>
