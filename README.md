@@ -20,9 +20,9 @@ This registry shall be regularly updated as changes are made. This updation is c
 
 <h5 align="center">MARK 5.2xs Berrylium (beta): Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
 <h4> </h4>
-<h1 align="center">Changelog:</h2>
-<h2 align="center">MARK 5.2xs berrylium (beta) </h3>
-<h3 align="center">Introducing coupons!!</h4>
+<h1 align="center">Changelog:</h1>
+<h2 align="center">MARK 5.2xs berrylium (beta) </23>
+<h3 align="center">Introducing coupons!!</h3>
 <h4 align="center">5.1x(alpha) </h4>
 <h5 align="center"> > Create coupons with limited use </h5>
 <h5 align="center"> > Specify discount percentage </h5>
