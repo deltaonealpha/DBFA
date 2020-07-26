@@ -984,3 +984,56 @@ Date and time:
 26/07/2020 01:33:58 
 Appending product to order: 
 Neckband-Style Wireless Earphones 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+26/07/2020 14:19:39 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+Appending product to order: 
+Mechanical Cherry MX (Red) RGB Gaming Keyboard 
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:

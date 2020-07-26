@@ -188,7 +188,7 @@ global isol, isolx
 isol = sqlite3.connect(r'cponmgmtsys.db')
 isolx = isol.cursor()
 isolx.execute("""CREATE TABLE IF NOT EXISTS cponmaster
-    (cponid CHAR,
+    (cponid CHAR PRIMARY KEY,
     cponlim INTEGER,
     cponvalue INTEGER);""")
 
@@ -198,19 +198,9 @@ if os.path.exists(r'cponmgmtsys.db'):
     pass
 else:
     isolx.execute("""CREATE TABLE IF NOT EXISTS cponmaster
-        (cponid CHAR,
+        (cponid CHAR PRIMARY KEY,
         cponlim INTEGER
         cponvalue INTEGER);""")
-
-
-
-def cponissuer(cponid, cponlim, cponvalue):
-    isol = sqlite3.connect('cponmgmtsys.db')
-    str = "insert into cponmaster(cponid, cponlim, cponvalue) values('%s', '%s', '%s')"
-    iox = (cponid, cponlim, cponvalue)
-    isolx.execute(str % iox)
-    isol.commit()
-    print("DSNN: Coupon", cponid, "having discount %", cponvalue, "created for", cponlim, "times of usage.")
 
 
 def cponuse(cponid):
@@ -232,6 +222,23 @@ def cpon_singlefetch(cponid):
     rows = isolx.fetchall()
     values = ','.join(str(v) for v in rows)
     print("DNSS Coupon ", values)
+
+
+def cponissuer(cponid, cponlim, cponvalue):
+    isol = sqlite3.connect('cponmgmtsys.db')
+    isolx = isol.cursor()
+    #try:
+    str = "insert into cponmaster(cponid, cponlim, cponvalue) values('%s', '%s', '%s')"
+    iox = (cponid, cponlim, cponvalue)
+    isolx.execute(str % iox)
+    isol.commit()
+    cpon_singlefetch(cponid)
+    print("DSNN: Coupon", cponid, "having discount %", cponvalue, "created for", cponlim, "times of usage.")
+    #except sqlite3.IntegrityError:
+        #print("DNSS voucher already exists")
+        #cpon_singlefetch(cponid)
+
+
 
 def cpon_valfetch(cponid): 
     isol = sqlite3.connect('cponmgmtsys.db')
@@ -321,7 +328,7 @@ def mainmenu(): #defining a function for the main menu
     print("'8' to VIEW OR UPDATE STOCK,")
     print("'9' to ISSUE COUPONS,")
     print("and '10' to exit the framework.")
-    print("~ input TPM code to enter testing mode ~")
+    print("~ enter the administrator code to enter CIT mode ~")
     print("---------------------------------------------")
     print()
     print()
@@ -472,7 +479,7 @@ while(1): #while (always) true
                     logger.write(namie[item])
                     ssxstockmaintainer(item)
                     logger.write(" \n")
-                    writer = writer + "Purchased: " + "\n" + namie[item] + "\n" + priceprod + "\n"
+                    writer = writer + "\n Purchased: " + "\n" + namie[item] + "\n" + priceprod + "\n"
                 else:
                     print("This product is currently not in stock... The inconvenience is regretted...")
                     continue
@@ -495,12 +502,21 @@ while(1): #while (always) true
             print("----")
             cpon_valfetch(cponid)
             print("----")
-            decx = int(input("Verify voucher application by entering the above-mentioned code: "))
-            #discount = int(simpledialog.askstring(title="deltaSTOREMANAGER",prompt="Enter the discount percentage: "))
-            discount = int(input("Enter discount % (if any): ")) #comment and uncomment tkinter lines to use GUI-based input
+            strinxxdr = "Verify the application of voucher DNSS - " + cponid + " by entering the above-mentioned code: "
+            if strinxxdr == "":
+                print("DNSS voucher verification invalid! Retry:")
+                strinxxdr = "Verify the application of voucher DNSS - " + cponid + " by entering the above-mentioned code: "
+                if strinxxdr == "":
+                    print("Too many failed attempts to verify voucher. Restart billing to apply now.")
+                else:
+                    pass
+            else:
+                continue     
+            decx = int(input(strinxxdr))
+            discount = int(input("Enter discount % (if any): "))
             discount = discount + decx
         else:
-            discount = int(input("Enter discount % (if any): ")) #comment and uncomment tkinter lines to use GUI-based input
+            discount = int(input("Enter discount % (if any): ")) 
         print(discount, "% net discount - Invoicing!")
         time.sleep(0.2) #for a seamless experience
         print("Invoicing... DBFA")
@@ -725,11 +741,20 @@ while(1): #while (always) true
 
     #Coupon Master
     elif decfac == 9:
-        print("DNSS CouponMaster: Issuer")
-        cponid = input("Coupon ID: ")
-        cponlim = input("Number of times to allow coupon usage: ")
-        cponvalue = input("Coupon discount percentage: ")
-        cponissuer(cponid, cponlim, cponvalue)
+        print("Enter '1' to generate a voucher; ")
+        descx = int(input("'2' to view generated vouchers: "))
+        if descx == 1:
+            print("DNSS CouponMaster: Issuer")
+            print("NOTE: Reusing existing coupon codes may result in overwritten data.")
+            cponid = input("Coupon ID: ")
+            cponlim = input("Number of times to allow coupon usage: ")
+            cponvalue = input("Coupon discount percentage: ")
+            cponissuer(cponid, cponlim, cponvalue)
+            time.sleep(0.4)
+        elif descx == 2:
+            print("DNSS CouponMaster: Viewer")
+            cpon_masterfetch()
+            time.sleep(0.4)
 
     #Exit System
     elif decfac == 10:
@@ -797,23 +822,26 @@ while(1): #while (always) true
             print("--------------------------------------------------")
         
     #CIT
-    elif decfac == 11:
+    elif decfac == 113:
         print("CIT INTERNAL TESTING MODE")
         ffxfac = str(input("Enter CIT Testing Mode? (y/n):: "))
         if ffxfac == "y":
             ffrxfac = str(input("Entering CIT may lead to data loss. Confirm entering CIT? (y/n):: "))
             if ffrxfac == "y":
-                print("DBFA CIT MODE")
-                print("Initialising DELTA dependancies...")
+                print("DNSS CIT MODE")
                 print(" ")
                 print(" ")
-                print("CIT INPUTABLES::")
+                print("CIT Options::")
                 print("Enter '1' to CLEAR ALL CUSTOMER RECORDS")
-                print("Enter '2' to exit CIT")
+                print("Enter '2' to CLEAR ALL VOUCHERS/ COUPONS")
+                print("Enter '3' to exit CIT")
                 citfacin = int(input("Waiting for input / | \ | / | \ |:: "))
                 if citfacin == 1:
                     # window.close()
                     os.startfile(r'securepack.py')
+                if citfacin == 2:
+                    # window.close()
+                    os.startfile(r'securepackxvc.py')
                 else:
                     continue
         
@@ -829,6 +857,8 @@ while(1): #while (always) true
             time.sleep(1)
         
     else:
+        print("Critical Error! DNSS error code: ninp01279; Option doesn't exist")
+        time.sleep(5)
         continue
 
 # End of program
