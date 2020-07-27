@@ -25,9 +25,11 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
+
 from tabulate import tabulate
 
-print("FHJ")
+#print("FHJ")
+
 import sys, os
 class HiddenPrints:
             def __enter__(self):
@@ -48,10 +50,10 @@ def telegram_bot_sendtext(bot_message):
         return response.json()
 
 
-import getpass, time, pathlib, os, sqlite3
+import getpass, time, pathlib, sqlite3
 import os #library used to open the notepad application to display the sales records
 if os.path.exists(r'userblock.zconf'):
-    print("Decrypting authenication blobs...")
+    print("Verifying login...")
     print(" ")
 if os.path.exists(r'userblock.txt'):
     userblock = open(r"userblock.txt","r") #Opening / creating (if it doesn't exist already) the .txt record file
@@ -120,7 +122,7 @@ def massmaintainer(inxstock):  #defining a function to input data into the SQL d
     time.sleep(1)
 
 
-# FOR CUSTOMER RECORDS
+# FOR STOCK RECORDS
 def ssxupdatescript(inxssincremental, prodid):
     ssh = sqlite3.connect('DBFA_handler.db')
     ssh7 = ssh.cursor()
@@ -156,7 +158,7 @@ def ssxstockmaintainer(prodid):
     ssh.commit()
     ssh7.close()
     time.sleep(1)
-    toaster.show_toast("DBFA QuickVend Service - Background Sync", duration = 0.3427)
+    toaster.show_toast("DBFA QuickVend Service - Background Sync", duration = 0.4)
 
 def ssxstockmaster(prodid): 
     global ssxvarscheck
@@ -190,7 +192,8 @@ isolx = isol.cursor()
 isolx.execute("""CREATE TABLE IF NOT EXISTS cponmaster
     (cponid CHAR PRIMARY KEY,
     cponlim INTEGER,
-    cponvalue INTEGER);""")
+    cponvalue INTEGER,
+    cpondtb DATE);""")
 
 isol = sqlite3.connect('cponmgmtsys.db')
 isolx = isol.cursor()
@@ -199,9 +202,9 @@ if os.path.exists(r'cponmgmtsys.db'):
 else:
     isolx.execute("""CREATE TABLE IF NOT EXISTS cponmaster
         (cponid CHAR PRIMARY KEY,
-        cponlim INTEGER
-        cponvalue INTEGER);""")
-
+        cponlim INTEGER,
+        cponvalue INTEGER,
+        cpondtb DATE);""")
 
 def cponuse(cponid):
     isol = sqlite3.connect('cponmgmtsys.db')
@@ -241,6 +244,8 @@ def cponissuer(cponid, cponlim, cponvalue):
 
 
 def cpon_valfetch(cponid): 
+    global valdock
+    valdock = 0 #Reset
     isol = sqlite3.connect('cponmgmtsys.db')
     isolx = isol.cursor()
     isol.row_factory = lambda cursor, row: row[0]
@@ -249,7 +254,8 @@ def cpon_valfetch(cponid):
     isolx.execute(csrr, csrrxt)
     rows = isolx.fetchall()
     values = ''.join(str(v) for v in rows)
-    print(values[1:-2])
+    #print(values[1:-2])
+    valdock = values[1:-2]
     
 
 def cpon_limfetch(cponid): 
@@ -300,7 +306,7 @@ def floodscreen():
 '''
 
 print("DBFA Billing Framework: Version 2.227 (alpha) ")
-print(" Licensed under the GNU PUBLIC LICENSE")
+print("Licensed under the GNU PUBLIC LICENSE")
 print("<DBFA>  Copyright (C) 2020 Pranav Balaji and Sushant Gupta")
 print(" ")
 print("Visit: www.github.com/deltaonealpha/deltaBillingFramework for complete licensing terms. ")
@@ -340,8 +346,6 @@ now = datetime.now()
 dt_string = now.strftime("%d/%m/%Y %H:%M:%S")  #datetime object containing current date and time
 logger = open(r"registry.txt", "a+")  #Opening / creating (if it doesn't exist already) the .txt record file
 logger.write("----------------------------------------- \n")
-logger.write("DBFA Billing Framework by Pranav Balaji and Sushant Gupta\n")
-logger.write("Licensed under the GNU PUBLIC LICENSE\n")
 logger.write('ed')
 logger.write("\n")
 logger.write("Automated Store Registry:\n")
@@ -377,6 +381,8 @@ else:
          AGE            INT     NOT NULL,
          ADDRESS        CHAR(50),
          SALARY         REAL);''')
+
+
 def inserter(custt, custname, email):  #defining a function to input data into the SQL database's table
     global conn
     str = "insert into cust(custt, custname, email) values('%s', '%s', '%s')"
@@ -444,10 +450,11 @@ while(1): #while (always) true
     telethon = ""
     time.sleep(0.3)  #for a seamless experience
     decfac = int(input("Select option: "))
+    
     #Bill Mode
     if decfac == 1:
         print()
-        print("Invoicing: ")
+        print("BIlling Mode: ")
         print()
         custt = input("Enter customer ID (enter if unregistered): ")
         logger.write("-----------------  ") #writing to log file
@@ -467,7 +474,7 @@ while(1): #while (always) true
         billiemaster = 0 #variable for totalling the price
         while(afac!=numfac):
             item = input("Enter purchased product code: ")
-            time.sleep(0.3) #for a seamless experience
+            time.sleep(0.1575) #for a seamless experience
             if item in data:
                 ssxstockmaster(item)
                 if ssxvarscheck == 1:
@@ -491,7 +498,7 @@ while(1): #while (always) true
 
         #tax = int(input("Enter the net tax %: "))  #comment and uncomment tkinter lines to use GUI-based input
         print("18% standard GST - Incoicing!")
-        time.sleep(0.4)  #for a seamless experience
+        time.sleep(0.15)  #for a seamless experience
         try:
             cponid = str(input("Enter voucher code (if any): "))
         except EOFError:
@@ -501,26 +508,15 @@ while(1): #while (always) true
             print("")
             print("----")
             cpon_valfetch(cponid)
-            print("----")
-            strinxxdr = "Verify the application of voucher DNSS - " + cponid + " by entering the above-mentioned code: "
-            if strinxxdr == "":
-                print("DNSS voucher verification invalid! Retry:")
-                strinxxdr = "Verify the application of voucher DNSS - " + cponid + " by entering the above-mentioned code: "
-                if strinxxdr == "":
-                    print("Too many failed attempts to verify voucher. Restart billing to apply now.")
-                else:
-                    pass
-            else:
-                continue     
-            decx = int(input(strinxxdr))
             discount = int(input("Enter discount % (if any): "))
-            discount = discount + decx
+            discount = discount + int(valdock)
+            cponuse(cponid)
         else:
             discount = int(input("Enter discount % (if any): ")) 
         print(discount, "% net discount - Invoicing!")
-        time.sleep(0.2) #for a seamless experience
+        time.sleep(0.15)  #for a seamless experience
         print("Invoicing... DBFA")
-        time.sleep(0.4) #for a seamless experience
+        time.sleep(0.15)  #for a seamless experience
         tota = (((18/100)*billiemaster)+billiemaster)
         total = tota-(((discount)/100)*tota)
         discountx = '%d' % discount
@@ -538,7 +534,7 @@ while(1): #while (always) true
         logger.write("\n")
         #regin.write(str(total))
         #regin.write("\n")
-        updatescript(custt, total)
+        updatescript(custt, total) #adds billed amount to the customer's record
         abcd1+=1
         afac+=1
         now = datetime.now()

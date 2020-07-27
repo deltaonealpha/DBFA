@@ -3,9 +3,10 @@ global isol, isolx
 isol = sqlite3.connect(r'cponmgmtsys.db')
 isolx = isol.cursor()
 isolx.execute("""CREATE TABLE IF NOT EXISTS cponmaster
-    (cponid CHAR,
+    (cponid CHAR PRIMARY KEY,
     cponlim INTEGER,
-    cponvalue INTEGER);""")
+    cponvalue INTEGER,
+    cpondtb DATE);""")
 
 isol = sqlite3.connect('cponmgmtsys.db')
 isolx = isol.cursor()
@@ -13,19 +14,10 @@ if os.path.exists(r'cponmgmtsys.db'):
     pass
 else:
     isolx.execute("""CREATE TABLE IF NOT EXISTS cponmaster
-        (cponid CHAR,
-        cponlim INTEGER
-        cponvalue INTEGER);""")
-
-
-
-def cponissuer(cponid, cponlim, cponvalue):
-    isol = sqlite3.connect('cponmgmtsys.db')
-    str = "insert into cponmaster(cponid, cponlim, cponvalue) values('%s', '%s', '%s')"
-    iox = (cponid, cponlim, cponvalue)
-    isolx.execute(str % iox)
-    isol.commit()
-    print("DSNN: Coupon", cponid, "having discount %", cponvalue, "created for", cponlim, "times of usage.")
+        (cponid CHAR PRIMARY KEY,
+        cponlim INTEGER,
+        cponvalue INTEGER,
+        cpondtb DATE);""")
 
 
 def cponuse(cponid):
@@ -47,6 +39,47 @@ def cpon_singlefetch(cponid):
     rows = isolx.fetchall()
     values = ','.join(str(v) for v in rows)
     print("DNSS Coupon ", values)
+
+
+def cpon_dtbsinglefetch(cponid): 
+    isol = sqlite3.connect('cponmgmtsys.db')
+    isolx = isol.cursor()
+    isol.row_factory = lambda cursor, row: row[0]
+    csrr = ("SELECT cponid, cponvalue, cpondtb FROM cponmaster WHERE cponid = (?);")
+    csrrxt = (cponid, )
+    isolx.execute(csrr, csrrxt)
+    rows = isolx.fetchall()
+    values = ','.join(str(v) for v in rows)
+    print("DNSS Coupon ", values)
+
+def cponissuer(cponid, cponlim, cponvalue):
+    isol = sqlite3.connect('cponmgmtsys.db')
+    isolx = isol.cursor()
+    try:
+        str = "insert into cponmaster(cponid, cponlim, cponvalue) values('%s', '%s', '%s')"
+        iox = (cponid, cponlim, cponvalue)
+        isolx.execute(str % iox)
+        isol.commit()
+        print("DSNN: Coupon", cponid, "having discount %", cponvalue, "created for", cponlim, "times of usage.")
+    except sqlite3.IntegrityError:
+        print("DNSS voucher already exists")
+        cpon_singlefetch(cponid)
+
+
+def cpondtbissuer(cponid, cpondtb, cponvalue):
+    isol = sqlite3.connect('cponmgmtsys.db')
+    isolx = isol.cursor()
+    try:
+        str = "insert into cponmaster(cponid, cponlim, cponvalue, cpondtb) values(?, ?, ?, ?)"
+        acrt = 0
+        iox = (cponid, acrt, cponvalue, cpondtb, )
+        isolx.execute(str, iox)
+        isol.commit()
+        print("DSNN: Time-Bound Coupon", cponid, "having discount %", cponvalue, "created with validity till", cpondtb, ".")
+    except sqlite3.IntegrityError:
+        print("DNSS voucher already exists")
+        cpon_singlefetch(cponid)
+
 
 def cpon_valfetch(cponid): 
     isol = sqlite3.connect('cponmgmtsys.db')
@@ -98,4 +131,14 @@ def cpon_ischeck(cponid):
 
 cpon_ischeck("ADsssssssdadfadfeadf eaf weafsX")
 cponissuer("ADSX", 50, 5)
-cpon_ischeck("ADsSX")
+cpon_singlefetch("A12R")
+cponuse("A12R")
+cpon_singlefetch("A12R")
+cponuse("A12R")
+cpon_singlefetch("A12R")
+cponuse("A12R")
+cpon_singlefetch("A12R")
+
+cpondtbissuer("AS1297R", 2020-1-26, 5)
+cpon_dtbsinglefetch("AS1297R")
+cpon_dtbsinglefetch("AS1297R")

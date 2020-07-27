@@ -1037,3 +1037,75 @@ DBFA Billing Framework by Pranav Balaji and Sushant Gupta
 Licensed under the GNU PUBLIC LICENSE
 ed
 Automated Store Registry:
+----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+Oauth bypass - registering for security----------------------------------------- 
+DBFA Billing Framework by Pranav Balaji and Sushant Gupta
+Licensed under the GNU PUBLIC LICENSE
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+26/07/2020 20:19:37 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+27/07/2020 09:29:12 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+Appending product to order: 
+lapcare 60W Laptop Adapter 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+27/07/2020 09:29:39 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+27/07/2020 09:30:26 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+127204.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+27/07/2020 09:32:36 
+Appending product to order: 
+POCOPHONE F1 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+27/07/2020 09:33:17 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+63602.0
