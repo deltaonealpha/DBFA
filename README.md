@@ -21,7 +21,7 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h5 align="center">MARK 5.2xs Berrylium (beta): Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
 <h4> </h4>
 <h1 align="center">Changelog:</h1>
-<h2 align="center">MARK 5.2xs berrylium (beta) </23>
+<h2 align="center">MARK 5.2xs berrylium (beta) </2>
 <h3 align="center">Introducing coupons!!</h3>
 <h4 align="center">5.1x(alpha) </h4>
 <h5 align="center"> > Create coupons with limited use </h5>
@@ -29,6 +29,13 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h5 align="center"> > Automatic usage monitoring </h5>
 <h4 align="center">5.2xs(beta) </h4>
 <h5 align="center"> > Fixed coupon system language and bugs </h5>
+<h4 align="center">5.23xs(STABLE) </h4>
+<h5 align="center">Patches bugs: </h5>
+<h5 align="center"> > Voucher limit deduction bug </h5>
+<h5 align="center"> > Rmoved authenication requirement.  </h5>
+<h5 align="center">   Value is automatically handled now. </h5>
+<h5 align="center"> > Added base blobs for time-expiring coupons. </h5>
+
 <h5 align="center">[DNSS VOUCHER ENGINE ALPHA BUILD] </h5>
 <h5 align="center">Merged communications upstream </h5>
 <h5 align="center"> Improved general code language </h5>
