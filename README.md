@@ -20,8 +20,8 @@ This registry shall be regularly updated as changes are made. This updation is c
 
 
 <h4> </h4>
-<h2 align="center">Changelog:</h2>
-<h1 align="center">MARK 6.0 DONNAGER (STABLE)</h1>
+<h1 align="center">Changelog:</h2>
+<h2 align="center">MARK 6.0 DONNAGER (STABLE)</h2>
 <h5 align="center">Presenting the biggest DBFA release ever since Mark 4!</h5>
 <h6 align="center">> Unlimited billing until interrupted!</h6>
 <h6 align="center">> New floodscreen!</h6>
