@@ -1109,3 +1109,860 @@ Appending product to order:
 TV FHD OLED 50 
 Total amount billed for: 
 63602.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 00:03:03 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 00:04:12 
+Appending product to order: 
+30W Bluetooth Speakers 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 00:05:42 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 00:07:17 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 00:07:58 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 00:08:18 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 00:09:00 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Tactical Power Bank 30000mah 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 00:09:48 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 13:59:40 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 14:00:46 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+63602.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+28/07/2020 14:01:10 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+POCOPHONE F1 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 14:01:46 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 14:02:23 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 14:03:55 
+Appending product to order: 
+POCOPHONE F1 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 14:04:57 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 14:05:39 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 14:06:22 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 14:06:59 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 14:07:31 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi Note 8 PRO 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Mi MIX ALPHA 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 14:09:45 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+14573.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 14:11:49 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+Total amount billed for: 
+1905.7
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 14:12:12 
+Appending product to order: 
+Tactical Power Bank 30000mah 
+Total amount billed for: 
+3333.264
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 14:13:18 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+14419.6
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 14:14:21 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+14573.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 14:16:03 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+14573.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 15:37:56 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 15:40:02 
+Appending product to order: 
+8K QLED 80 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 15:43:16 
+Appending product to order: 
+  Essentials Wired Speaker - STEREO 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+Total amount billed for: 
+3420.8199999999997
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 15:47:27 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 15:47:49 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 15:50:11 
+Appending product to order: 
+Redmi K20 PRO 
+Total amount billed for: 
+29500.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 15:51:56 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 15:52:41 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 15:53:17 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 15:56:22 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 15:56:40 
+Appending product to order: 
+Redmi K20 PRO 
+Total amount billed for: 
+29500.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 15:58:23 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+Total amount billed for: 
+2006.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:00:12 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:00:38 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:01:32 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:02:17 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+Total amount billed for: 
+2006.0
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:02:31 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:02:53 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:05:09 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:07:05 
+Appending product to order: 
+Redmi K20 PRO 
+Total amount billed for: 
+29500.0
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:07:20 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:08:12 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:10:30 
+Appending product to order: 
+Redmi K20 PRO 
+Total amount billed for: 
+29500.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:16:36 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:16:50 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+13629.0
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:17:01 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:17:16 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+23541.0
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:17:41 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:17:53 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:19:11 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:21:21 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:22:11 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:23:09 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:25:22 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:25:35 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:25:51 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:26:31 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:27:48 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:28:12 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:29:25 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:32:44 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:34:07 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:35:05 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:36:14 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+23541.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:42:47 
+Appending product to order: 
+Redmi Note 8 PRO 
+Total amount billed for: 
+15694.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:44:32 
+Appending product to order: 
+Redmi Note 8 PRO 
+Total amount billed for: 
+15694.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 16:47:56 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+14573.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 17:38:41 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+14573.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 28/07/2020 17:49:53 
+Customer registry accessed! 
+--------------------------------------- 
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 17:49:53 
+Appending product to order: 
+Logitech RGB Gaming Mouse with Traction & Weight Adjustment 
+Total amount billed for: 
+1965.88
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 28/07/2020 17:52:13 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
+Auth bypass - registering for security----------------------------------------- 
+ed
+Automated Store Registry:
+Auth bypass - registering for security----------------------------------------- 
+ed
+Automated Store Registry:
+Auth bypass - registering for security----------------------------------------- 
+ed
+Automated Store Registry:
+Auth bypass - registering for security----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+Auth bypass - registering for security----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 28/07/2020 18:34:21 
+Customer registry accessed! 
+--------------------------------------- 
+  
+Date and time: 28/07/2020 18:34:21 
+Log file access attempt - Oauth complete 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+Auth bypass - registering for security----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 18:47:35 
+Appending product to order: 
+Redmi Note 8 PRO 
+Total amount billed for: 
+16520.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+Auth bypass - registering for security----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 18:49:10 
+Appending product to order: 
+Redmi Note 8 PRO 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+31860.0
+--------------------------------------- 
+  
+Date and time: 28/07/2020 18:50:23 
+New customer registered:  custname: test custemail: test@test.com
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 28/07/2020 18:50:23 
+Customer registry accessed! 
+--------------------------------------- 
+-----------------  Cust. ID: 
+6  
+Date and time: 
+28/07/2020 18:50:23 
+Appending product to order: 
+Redmi Note 8 PRO 
+Total amount billed for: 
+16520.0
+  
+Date and time: 28/07/2020 18:51:35 
+  
+Date and time: 28/07/2020 18:51:35 
+Log file access attempt - Oauth failiure!!! 
+  
+Date and time: 
+28/07/2020 18:51:35 
+Log file access attempt - AUTHORIZATION SUCCESS 

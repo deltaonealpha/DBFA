@@ -52,13 +52,7 @@ else:
         (custt INTEGER PRIMARY KEY,
         custname TEXT,
         email TEXT);""")
-try:
-    if os.path.exists(r'userblock.txt'):
-        os.remove(r'userblock.txt')
-    if os.path.exists(r'userblock.zconf'):
-        os.remove(r'userblock.zconf')
-except PermissionError:
-    pass
+
 
 class HiddenPrints:
             def __enter__(self):
@@ -79,28 +73,6 @@ def telegram_bot_sendtext(bot_message):
         return response.json()
 
 
-def logoprintxrt():
-            print("        ___ ______ ___   _____________    ____________     _______")
-            time.sleep(0.5)
-            print("       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /")
-            time.sleep(0.5)
-            print("      /  /       /  /  /  /       /  /  /  /             /  /  / /")
-            time.sleep(0.5)
-            print("     /  /       /  /  /  /_______/  /  /  /  CLI        /  /   / /")
-            time.sleep(0.5)
-            print("    /  /       /  /  / // // // // /  /  /_________    /  /____/ /")
-            time.sleep(0.5)
-            print("   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ /")
-            time.sleep(0.5)
-            print("  /  /       /  /  /  /       /  /  /  /             /  /      / /")
-            time.sleep(0.5)
-            print(" /  /_______/  /  /  /______ /  /  /  /             /  /       / /")
-            time.sleep(0.5)
-            print("/__/_______/__/  /__/_______/__/  /__/             /__/        /__/")
-            print(" ")
-            print(" ")
-
-
 # Database builder
 # Stock Records Master DB
 ssh = sqlite3.connect(r'DBFA_handler.db')
@@ -117,7 +89,7 @@ else:
     ssh7.execute("""CREATE TABLE IF NOT EXISTS sshandler
         (prodid INTEGER,
         ssstock INTEGER);""")
-  
+ssh.close()    
 
 # Voucher Records Master DB
 global isol, isolx
@@ -159,7 +131,7 @@ else:
         custname VARCHAR(500),
         purchasecount INTEGER,
         ptotalx INTEGER);""")
- 
+xon.close()    
 conn = sqlite3.connect('DBFA.db')
 if os.path.exists(r'DBFA.db'):
     pass
@@ -507,13 +479,6 @@ while(1): #while (always) true
     #Billing Mode
     if decfac == 1:
         print()
-        try:
-            if os.path.exists(r'userblock.txt'):
-                os.remove(r'userblock.txt')
-            if os.path.exists(r'userblock.zconf'):
-                os.remove(r'userblock.zconf')
-        except PermissionError:
-                pass
         print("--- BIlling ---")
         print()
         custt = input("Customer ID (optional)): ")
@@ -641,13 +606,6 @@ while(1): #while (always) true
         print()
     #Register Customer
     elif decfac == 2:
-        try:
-            if os.path.exists(r'userblock.txt'):
-                os.remove(r'userblock.txt')
-            if os.path.exists(r'userblock.zconf'):
-                os.remove(r'userblock.zconf')
-        except PermissionError:
-                pass
         print("Loading server connection....")  #SQL connection prompt
         time.sleep(0.4)  #for a seamless experience
         #conn.execute("select * from cust")
@@ -680,13 +638,6 @@ while(1): #while (always) true
         time.sleep(1) #for a seamless experience
     #VIEW ALL CUSTOMERS
     elif decfac == 3:
-        try:
-            if os.path.exists(r'userblock.txt'):
-                os.remove(r'userblock.txt')
-            if os.path.exists(r'userblock.zconf'):
-                os.remove(r'userblock.zconf')
-        except PermissionError:
-                pass
         print()
         print("Loading server connection....")  #SQL connection prompt
         time.sleep(0.7) #for a seamless experience
@@ -720,13 +671,6 @@ while(1): #while (always) true
 
     #View Customer Purchase Records
     elif decfac == 4:
-        try:
-            if os.path.exists(r'userblock.txt'):
-                os.remove(r'userblock.txt')
-            if os.path.exists(r'userblock.zconf'):
-                os.remove(r'userblock.zconf')
-        except PermissionError:
-                pass
         xon = sqlite3.connect(r'DBFA_CUSTCC.db')
         xbr7 = xon.cursor()
         xbr7.execute("SELECT * FROM custcc")
@@ -739,13 +683,6 @@ while(1): #while (always) true
     
     #View Generated Bills
     elif decfac == 5:
-        try:
-            if os.path.exists(r'userblock.txt'):
-                os.remove(r'userblock.txt')
-            if os.path.exists(r'userblock.zconf'):
-                os.remove(r'userblock.zconf')
-        except PermissionError:
-                pass
         #password verification as sales record is not to be shown to all;
         print("Password echo shall be supressed for security.")
         passw = getpass.getpass(prompt='Enter root password to view store activity registry: ', stream=None)
@@ -775,7 +712,6 @@ while(1): #while (always) true
                 time.sleep(1.4) #for a seamless experience
                 os.startfile('registry.txt') #to open the external notepad application
         else:
-            
             logger.write("  \n")
             logger.write("Date and time: ")  #including the date and time of billing (as taken from the system)
             logger.write(dt_string)
@@ -823,13 +759,6 @@ while(1): #while (always) true
                 print()
     #View Listing Option
     elif decfac == 6:
-        try:
-            if os.path.exists(r'userblock.txt'):
-                os.remove(r'userblock.txt')
-            if os.path.exists(r'userblock.zconf'):
-                os.remove(r'userblock.zconf')
-        except PermissionError:
-                pass
         print("Store listing (as per updated records): ")
         print(tabulate(tablx, headers = titlex, floatfmt = ".4f"))
 
@@ -873,6 +802,26 @@ while(1): #while (always) true
             userblock.close()
             os.remove(r'userblock.zconf')
         toaster.show_toast("DFBA Framework Runtime Broker", "Obsufcating program...", duration = 2)
+        def logoprintxrt():
+            print("        ___ ______ ___   _____________    ____________     _______")
+            time.sleep(0.5)
+            print("       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /")
+            time.sleep(0.5)
+            print("      /  /       /  /  /  /       /  /  /  /             /  /  / /")
+            time.sleep(0.5)
+            print("     /  /       /  /  /  /_______/  /  /  /  CLI        /  /   / /")
+            time.sleep(0.5)
+            print("    /  /       /  /  / // // // // /  /  /_________    /  /____/ /")
+            time.sleep(0.5)
+            print("   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ /")
+            time.sleep(0.5)
+            print("  /  /       /  /  /  /       /  /  /  /             /  /      / /")
+            time.sleep(0.5)
+            print(" /  /_______/  /  /  /______ /  /  /  /             /  /       / /")
+            time.sleep(0.5)
+            print("/__/_______/__/  /__/_______/__/  /__/             /__/        /__/")
+            print(" ")
+            print(" ")
         logoprintxrt()
         time.sleep(2)
         break

@@ -1,17 +1,20 @@
 -----------------  Cust. ID: 
-12  
+6  
 Date and time: 
-14/07/2020 00:56:17 
+28/07/2020 18:51:35 
 Appending product to order: 
-  Wired Speaker - 5.1 
-Appending product to order: 
-  Essentials Wired Speaker - STEREO 
+TV 4K OLED 50 
 Total amount billed for: 
-38.92819999999983
+47200.0
 -----------------  Cust. ID: 
-12  
+6  
 Date and time: 
-14/07/2020 00:58:41 
+28/07/2020 18:53:37 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+53867.0
+41 
 Appending product to order: 
   Wired Speaker - 5.1 
 Appending product to order: 

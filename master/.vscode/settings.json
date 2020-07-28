@@ -1,2 +1,12 @@
 {
+    "sqltools.connections": [
+        {
+            "database": "${workspaceFolder:master}/cponmgmtsys.db",
+            "driver": "SQLite",
+            "group": "DBFA",
+            "name": "dnss_cponmanagersys",
+            "previewLimit": 500
+        }
+    ],
+    "sqltools.useNodeRuntime": true
 }

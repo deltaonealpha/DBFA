@@ -28,9 +28,16 @@ print("Flushing record directory. . . ")
 time.sleep(0.5)
 print("Flushing record directory. . . . ")
 time.sleep(0.5)
+x = "cponmgmtsys.db"
 if os.path.exists(r'cponmgmtsys.db'):
+    file = open(x, 'rb')
+    data = file.read()
+    os.close(file)
     os.remove(os.path.normpath(r"cponmgmtsys.db"))
 if os.path.exists(r'cponmgmtsys.db'):
+    file = open(x, 'rb')
+    data = file.read()
+    os.close(file)
     os.remove(os.path.normpath(r"cponmgmtsys.db"))
 print("Database flush completed!")
 time.sleep(2)
