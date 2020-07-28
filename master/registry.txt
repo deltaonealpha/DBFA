@@ -2138,3 +2138,6 @@ Automated Store Registry:
 ----------------------------------------- 
 ed
 Automated Store Registry:
+----------------------------------------- 
+User identified from login: ed
+Automated Store Registry:

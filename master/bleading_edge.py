@@ -964,7 +964,7 @@ while(1): #while (always) true
                 print("Enter '1' to CLEAR ALL CUSTOMER RECORDS")
                 print("Enter '2' to CLEAR ALL VOUCHERS/ COUPONS")
                 print("Enter '3' to exit CIT")
-                citfacin = int(input("Waiting for input / | \ | / | \ |:: "))
+                citfacin = int(input("Waiting for input:: "))
                 if citfacin == 1:
                     # window.close()
                     os.startfile(r'securepack.py')
