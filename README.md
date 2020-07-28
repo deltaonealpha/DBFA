@@ -2,6 +2,8 @@
 
 
 OSSRTDS
+
+<h5 align="center">MARK 6.0 DONNAGER (STABLE): Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
       
       The second version of DSMSAPL with brand-new features and security measures, with GUI login!
 <h1 align="center">DBFA Billing Framework</h1>
@@ -17,24 +19,23 @@ Building off the DSMSAPL project, this official version revamp to DSMSAPL, knows
 This registry shall be regularly updated as changes are made. This updation is completely manual and hence may be delayed.
 
 
-
-<h5 align="center">MARK 5.35xs Berrylium (ULTRA STABLE): Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
 <h4> </h4>
-<h1 align="center">Changelog:</h1>
-<h5 align="center">Presenting the DNSS Voucher Engine 2.0! </h5>
+<h1 align="center">Changelog:</h2>
+<h2 align="center">MARK 6.0 DONNAGER (STABLE)</h2>
+<h5 align="center">Presenting the biggest DBFA release ever since Mark 4!</h5>
+<h6 align="center">> Unlimited billing until interrupted!</h6>
+<h6 align="center">> New floodscreen!</h6>
+<h6 align="center">> Complete GUI-login v2! (color-coded)</h6>
+<h6 align="center">> Payment modes!</h6>
+<h6 align="center">> Better on-screen language!</h6>
+<h6 align="center">> Finer UI 2.0! </h5></h6>
+<h5 align="center">DNSS Voucher Engine 1.7</h5>
 <h6 align="center">Added base blobs for time-expiring coupons. </h6>
 <h6 align="center">Removed additional discount after applying vouchers.</h6>
 <h6 align="center">Patched all bugs</h6>
 
-<h5 align="center">Improved display language and code readability</h5>
-<h5 align="center">Authenication system re-enabled!!</h5>
+
 <h5 align="center">Merged communications upstream </h5>
-<h2 align="center">MARK 5.23xs berrylium (stable) </h2>
-<h4 align="center">5.23xs(STABLE) </h4>
-<h5 align="center">  </h5>
-<h5 align="center"> PDF (invoice printer) spacing bug rectified </h5>
-<h5 align="center"> Added CIT safetypack option for cponmgmtsys.db </h5>
-<h4 align="center">Bug reports are appreciated!</h4>
 <h3 align="center">View the full changelog on the master repository's commits</h3>
 <h4 align="center"><a href="https://github.com/deltaonealpha/DBFA/">Repository</h4>
 <p align="center">&nbsp;</p>
