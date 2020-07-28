@@ -24,8 +24,8 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h5 align="center">Presenting the DNSS Voucher Engine 2.0! </h5>
 <h6 align="center">Added base blobs for time-expiring coupons. </h6>
 <h6 align="center">Removed additional discount after applying vouchers.</h6>
+<h6 align="center">Patched all bugs</h6>
 
-<h5 align="center">Patched all bugs</h5>
 <h5 align="center">Improved display language and code readability</h5>
 <h5 align="center">Authenication system re-enabled!!</h5>
 <h5 align="center">Merged communications upstream </h5>
