@@ -1,5 +1,7 @@
 version = 1
 
+exclude_patterns = ["/Current redundancies/*py"]
+
 [[analyzers]]
 name = "python"
 enabled = true
