@@ -18,19 +18,19 @@ This registry shall be regularly updated as changes are made. This updation is c
 
 
 
-<h5 align="center">MARK 5.23xs Berrylium (STABLE): Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
+<h5 align="center">MARK 5.35xs Berrylium (ULTRA STABLE): Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
 <h4> </h4>
 <h1 align="center">Changelog:</h1>
-<h5 align="center">[DNSS VOUCHER ENGINE ALPHA BUILD] </h5>
+<h5 align="center">Presenting the DNSS Voucher Engine 2.0! </h5>
+<h6 align="center">Added base blobs for time-expiring coupons. </h6>
+<h6 align="center">Removed additional discount after applying vouchers.</h6>
+
+<h5 align="center">Patched all bugs</h5>
+<h5 align="center">Improved display language and code readability</h5>
+<h5 align="center">Authenication system re-enabled!!</h5>
 <h5 align="center">Merged communications upstream </h5>
-<h5 align="center">New faster and lighter data structure </h5>
-<h2 align="center">MARK 5.23xs berrylium (stable) </2>
-<h3 align="center">Introducing coupons!!</h3>
+<h2 align="center">MARK 5.23xs berrylium (stable) </h2>
 <h4 align="center">5.23xs(STABLE) </h4>
-<h5 align="center"> > Patched voucher limit deduction bug and authenication requirement, values are automatically handled now. </h5>
-<h5 align="center"> > Added base blobs for time-expiring coupons. </h5>
-<h4 align="center">5.1x(alpha) </h4>
-<h5 align="center"> > Create coupons with limited use, specify discount percentages with automatic usage monitoring</h5>
 <h5 align="center">  </h5>
 <h5 align="center"> PDF (invoice printer) spacing bug rectified </h5>
 <h5 align="center"> Added CIT safetypack option for cponmgmtsys.db </h5>
