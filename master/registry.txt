@@ -1966,3 +1966,175 @@ Log file access attempt - Oauth failiure!!!
 Date and time: 
 28/07/2020 18:51:35 
 Log file access attempt - AUTHORIZATION SUCCESS 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 22:34:07 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 23:10:58 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 23:11:26 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+112100.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 23:13:26 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+71980.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+28/07/2020 23:14:19 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+64900.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 23:22:21 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+112100.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 23:24:14 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+89680.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 23:26:35 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+28/07/2020 23:30:25 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+28/07/2020 23:31:09 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+28/07/2020 23:31:57 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+28/07/2020 23:32:18 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/07/2020 23:32:39 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+28/07/2020 23:42:05 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+47200.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+Auth bypass - registering for security----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:

@@ -81,21 +81,21 @@ def telegram_bot_sendtext(bot_message):
 
 def logoprintxrt():
             print("        ___ ______ ___   _____________    ____________     _______")
-            time.sleep(0.5)
+            time.sleep(0.2)
             print("       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /")
-            time.sleep(0.5)
+            time.sleep(0.2)
             print("      /  /       /  /  /  /       /  /  /  /             /  /  / /")
-            time.sleep(0.5)
+            time.sleep(0.2)
             print("     /  /       /  /  /  /_______/  /  /  /  CLI        /  /   / /")
-            time.sleep(0.5)
+            time.sleep(0.2)
             print("    /  /       /  /  / // // // // /  /  /_________    /  /____/ /")
-            time.sleep(0.5)
+            time.sleep(0.2)
             print("   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ /")
-            time.sleep(0.5)
+            time.sleep(0.2)
             print("  /  /       /  /  /  /       /  /  /  /             /  /      / /")
-            time.sleep(0.5)
+            time.sleep(0.2)
             print(" /  /_______/  /  /  /______ /  /  /  /             /  /       / /")
-            time.sleep(0.5)
+            time.sleep(0.2)
             print("/__/_______/__/  /__/_______/__/  /__/             /__/        /__/")
             print(" ")
             print(" ")
@@ -241,8 +241,8 @@ def ssxstockmaintainer(prodid):
     ssh7.execute(updatetrtt, xrindicatortt)
     ssh.commit()
     ssh7.close()
-    time.sleep(1)
-    toaster.show_toast("DBFA QuickVend Service - Background Sync", duration = 0.4)
+    #time.sleep(1)
+    #toaster.show_toast("DBFA QuickVend Service - Background Sync", duration = 0.4)
 
 # Induvidual Stock Fetcher
 def ssxstockmaster(prodid): 
@@ -267,7 +267,7 @@ def ssxstockmaster(prodid):
     elif values != "0":
         ssxvarscheck = 1
     time.sleep(1)
-    toaster.show_toast("DBFA QuickVend Service - Background Sync", duration = 0.3427)
+    #toaster.show_toast("DBFA QuickVend Service - Background Sync", duration = 0.3427)
 
 
 # Voucher System
@@ -403,6 +403,15 @@ def updatescript(custt, pincrement):
     except sqlite3.Error as error:
         pass
 
+
+def floodscreen():
+    import cv2 
+    image = cv2.imread("imagepx.png")
+    cv2.imshow("Initializing... ", image)
+    cv2.waitKey(1500)
+    cv2.destroyAllWindows()
+
+
 # Main Menu
 def mainmenu(): #defining a function for the main menu
     from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
@@ -413,9 +422,9 @@ def mainmenu(): #defining a function for the main menu
     print('A word from our partner: ' + Fore.BLACK + Back.CYAN + 'HOTEL? Trivago!') #Text over here #Custom advert
     print(Style.RESET_ALL) 
     print("DBFA Store Listing:")
-    print("Input: ") 
-    print("'1' to GENERATE INVOICE")
-    print("'2' to REGISTER CUSTOMER,")
+    print("Enter: ") 
+    print("'1' for INVOICING")
+    print("'2' for REGISTERING NEW CUSTOMERS,")
     print("'3' to VIEW REGISTERED CUSTOMERS,")
     print("'4' to VIEW CUSTOMER PURCHASE RECORDS")
     print("'5' to VIEW GENERATED INVOICES,")
@@ -430,14 +439,6 @@ def mainmenu(): #defining a function for the main menu
     print()
  
 
-''' #uncomment to enable boot-flash screen
-def floodscreen():
-    import cv2 
-    image = cv2.imread("imagepx.png")
-    cv2.imshow("Initializing... ", image)
-    cv2.waitKey(3000)
-    cv2.destroyAllWindows()
-'''
 
 
 # Store listing::
@@ -473,7 +474,7 @@ logger.write("\n")
 logger.write("Automated Store Registry:\n")
 
 
-#floodscreen() #enable this too to enable the boot flash screen
+floodscreen() #comment to disable boot-flash screen
 from win10toast import ToastNotifier
 toaster = ToastNotifier()
 toaster.show_toast("DFBA Runtime Manager","Read documentation prior to use.", duration = 2)
@@ -528,14 +529,14 @@ while(1): #while (always) true
         time.sleep(0.3) #for a seamless experience
         telethon = "DBFA Billing System" + "\n" + dt_string + "\n" + "Customer: " + custt + "\n"
         writer = writer + "DBFA Billing Framework" + "\n" + "One-stop solution for all your billing needs!" + "\n" + "\n" + "Billing time: " + dt_string + "\n" + "Customer ID: " + custt + "\n" + "-----------------------------" + "\n" + "\n"
-        numfac = int(input("Number of items to bill: "))
+        billiemaster = 0 #variable for totalling the price
         time.sleep(0.2) #for a seamless experience
         afac = 0
-        billiemaster = 0 #variable for totalling the price
-        while(afac!=numfac):
+        while(1):
             item = input("Enter product code: ")
-            time.sleep(0.1575) #for a seamless experience
-            if item in data:
+            if item == "0":
+                break
+            elif item in data:
                 ssxstockmaster(item)
                 if ssxvarscheck == 1:
                     billiemaster+=data[item]
@@ -547,14 +548,13 @@ while(1): #while (always) true
                     ssxstockmaintainer(item)
                     logger.write(" \n")
                     writer = writer + "\n Purchased: " + "\n" + namie[item] + "\n" + priceprod + "\n"
+                    afac+=1
                 else:
                     print("Product currently out-of-stock. The inconvenience is regretted..")
                     continue
-
             else:
                 print("Product not found. Please retry ")
                 print("---")
-            afac+=1
 
         #tax = int(input("Enter the net tax %: "))  #comment and uncomment tkinter lines to use GUI-based input
         time.sleep(0.15)  #for a seamless experience
@@ -578,29 +578,55 @@ while(1): #while (always) true
                 discount = int(input("Enter discount % (if any): "))
             except:
                 discount = 0
-        print(discount, "% net discount - Invoicing!")
+        print(discount, "% net discount")
         time.sleep(0.15)  #for a seamless experience
-        print("Please wait..")
+        print("-----------------")
         time.sleep(0.15)  #for a seamless experience
         tota = (((18/100)*billiemaster)+billiemaster)
         total = tota-(((discount)/100)*tota)
         discountx = '%d' % discount
         telethon = telethon + "\n" + "Tax amount: 18%" + "\n"  + "Discount: " + discountx + "%" + "\n" + "\n"
         writer = writer + "\n" + "\n" + "-----------------------------" + "\n" + "Tax amount: 18%"  + "\n"  + discountx + "\n"  + "\n" 
-
+        def payboxie():
+            command = "cls"
+            os.system(command)
+            global payindic
+            from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+            print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
+            init(convert = True)
+            print("Amount to be paid: \u20B9","%.2f" % total)
+            print("Payment methods available: ")
+            print("1. Credit/ Debit Card")
+            print("2. Digital Wallet")
+            print("3. UPI")
+            print("4. Cash")
+            paycheck = input("Pay with: ")
+            print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
+            if paycheck == "1":
+                payindic = "Paid with credit/ debit Card"
+            elif paycheck == "2":
+                payindic = "Paid with a digital wallet"
+            elif paycheck == "3":
+                payindic = "Paid with UPI"
+            elif paycheck == "4":
+                payindic = "Paid with cash"
+            else:
+                payboxie()
+        payboxie()
         rupeesymbol = "\u20B9".encode("utf-8")
-        print("\n\n---------------------------------------------------------")
-        print("Invoice ID: ", abcd1, "Time: ",dt_string)
-        print("---------------------------------------------------------")
+        print("\n\n-----------------------------------------------------------------")
+        print("Invoice ID: ", abcd1, "| Time: ",dt_string, "| No. of items: ", afac)
+        print(payindic)
+        print("-----------------------------------------------------------------")
         print("Amount: \u20B9",billiemaster)
         cpon_ssinglefetch(cponid)
         print("Voucher used:",sfetch_values)
         print("Net Discount:",discount,"%")
         print("IGST        : \u20B9","%.2f" % ((9/100)*billiemaster))
         print("CGST        : \u20B9","%.2f" % ((9/100)*billiemaster))
-        print("---------------------------------------------------------")
+        print("-----------------------------------------------------------------")
         print("Amount to be paid: \u20B9","%.2f" % total)
-        print("---------------------------------------------------------")
+        print("-----------------------------------------------------------------")
         toaster.show_toast("DFBA Billing:  Total billed for-",str(total), duration = 1)
         logger.write("Total amount billed for: \n") #writing to file
         #regin.write("NET TOTAL: \n") #writing to file
@@ -648,7 +674,7 @@ while(1): #while (always) true
                 os.remove(r'userblock.zconf')
         except PermissionError:
                 pass
-        print("Loading server connection....")  #SQL connection prompt
+        print("Connecting to server..")  #SQL connection prompt
         time.sleep(0.4)  #for a seamless experience
         #conn.execute("select * from cust")
         #takes values from the SQL database
@@ -657,7 +683,7 @@ while(1): #while (always) true
         results = cursor.fetchall()
         idd = len(results)+1
         print("Registering customer with ID: ", idd)
-        custname = input("Name: ")
+        custname = input("Customer Name: ")
         email = input("Customer's E-mail ID: ")
         inserter(idd, custname, email) #argumental function to insert values into the SQL database
         nullvalue = 0
@@ -688,9 +714,9 @@ while(1): #while (always) true
         except PermissionError:
                 pass
         print()
-        print("Loading server connection....")  #SQL connection prompt
+        print("Connecting to server..")  #SQL connection prompt
         time.sleep(0.7) #for a seamless experience
-        print("The registered customers are: ")
+        print("Registered customers are: ")
         #Re-writing to refresh connection
         cur = conn.cursor()
         cur.execute("SELECT * FROM cust")
@@ -698,7 +724,7 @@ while(1): #while (always) true
         for row in rows:
             print(row)
             print(" ")
-        toaster.show_toast("DFBA Superfetch Service", "Superfetch: Database acessed!", duration = 2)
+        toaster.show_toast("DNSS QuickSync", "Database acessed", duration = 2)
         #takes values from the SQL database
         '''
         while row is not None:
@@ -730,12 +756,26 @@ while(1): #while (always) true
         xon = sqlite3.connect(r'DBFA_CUSTCC.db')
         xbr7 = xon.cursor()
         xbr7.execute("SELECT * FROM custcc")
-        rows = xbr7.fetchall()
+        l = xbr7.fetchall()
+        print("Customer Purchase Records: ")
+
+        import pandas as pd
+
+        flat_list = []
+        for sublist in l:
+            flat_list.append(sublist)
+        mydf = pd.DataFrame(flat_list, columns=['Customer ID', 'Name', 'Purchases Made', 'Total'])
+        mydf.pivot(index='Customer ID', columns='Purchases Made', values='Total').fillna(value='-')
+        print(mydf)
+        time.sleep(2)
+        
+        '''
         for row in rows:
             print(row)
             print(" ")
+        '''
         xbr7.close()
-        toaster.show_toast("DFBA Superfetch Service", "Superfetch: Database acessed!", duration = 0.5) 
+        toaster.show_toast("DFBA QuickSync", "Database acessed", duration = 0.5) 
     
     #View Generated Bills
     elif decfac == 5:
@@ -747,7 +787,7 @@ while(1): #while (always) true
         except PermissionError:
                 pass
         #password verification as sales record is not to be shown to all;
-        print("Password echo shall be supressed for security.")
+        print(" - Echo-supressed input - ")
         passw = getpass.getpass(prompt='Enter root password to view store activity registry: ', stream=None)
         logger.write("  \n")
         logger.write("Date and time: ") #including the date and time of billing (as taken from the system)
@@ -763,7 +803,7 @@ while(1): #while (always) true
                     except Exception:
                         pass
                 time.sleep(0.4)
-                print("There ya go:: ")
+                print("Here:: ")
                 time.sleep(0.2) #for a seamless experience 
                 logger.write("Log file access attempt - Oauth complete \n")
                 logger.close() #to change file access modes 
@@ -782,9 +822,9 @@ while(1): #while (always) true
             logger.write(" \n")
             time.sleep(1) #for a seamless experience
             logger.write("Log file access attempt - Oauth failiure!!! \n")
-            print("Wrong, sneaky-hat. Try again: ")
+            print("Ehh that'd be wrong, sneaky-hat. Try again: ")
             print(" ")
-            print("Password echo shall be supressed for security.")
+            print(" - Echo-supressed input - ")
             passw = getpass.getpass(prompt='Enter root password to view store activity registry: ', stream=None)
             if passw == "root":
                     time.sleep(1) #for a seamless experience
@@ -874,6 +914,7 @@ while(1): #while (always) true
             os.remove(r'userblock.zconf')
         toaster.show_toast("DFBA Framework Runtime Broker", "Obsufcating program...", duration = 2)
         logoprintxrt()
+        floodscreen()
         time.sleep(2)
         break
         exit()
