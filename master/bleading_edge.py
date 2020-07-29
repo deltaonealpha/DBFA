@@ -117,6 +117,10 @@ else:
     ssh7.execute("""CREATE TABLE IF NOT EXISTS sshandler
         (prodid INTEGER,
         ssstock INTEGER);""")
+  
+
+# Voucher Records Master DB
+global isol, isolx
 isol = sqlite3.connect(r'cponmgmtsys.db')
 isolx = isol.cursor()
 isolx.execute("""CREATE TABLE IF NOT EXISTS cponmaster
@@ -651,7 +655,6 @@ while(1): #while (always) true
         dest = shutil.move(source, destination)  
         time.sleep(1.5) #for a seamless experience
 
-        import os, sys
         #regin.close()
         with HiddenPrints():
             try:
@@ -913,7 +916,6 @@ while(1): #while (always) true
         floodscreen()
         time.sleep(2)
         break
-        exit()
         os.close('securepack.pyw')
     elif decfac == 7:
         print("Fetching latest licensing information.......")
