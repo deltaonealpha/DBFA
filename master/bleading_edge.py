@@ -120,10 +120,6 @@ else:
     ssh7.execute("""CREATE TABLE IF NOT EXISTS sshandler
         (prodid INTEGER,
         ssstock INTEGER);""")
-  
-
-# Voucher Records Master DB
-global isol, isolx
 isol = sqlite3.connect(r'cponmgmtsys.db')
 isolx = isol.cursor()
 isolx.execute("""CREATE TABLE IF NOT EXISTS cponmaster
