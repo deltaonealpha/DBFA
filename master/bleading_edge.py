@@ -60,6 +60,7 @@ try:
 except PermissionError:
     pass
 
+
 class HiddenPrints:
             def __enter__(self):
                 self._original_stdout = sys.stdout
@@ -69,6 +70,7 @@ class HiddenPrints:
                 sys.stdout = self._original_stdout
                 print()
 
+# TG Communicator
 def telegram_bot_sendtext(bot_message):
     import requests
     with HiddenPrints():
@@ -78,7 +80,7 @@ def telegram_bot_sendtext(bot_message):
         response = requests.get(send_text)
         return response.json()
 
-
+# DBFA Logo Printer
 def logoprintxrt():
             print("        ___ ______ ___   _____________    ____________     _______")
             time.sleep(0.2)
@@ -99,6 +101,7 @@ def logoprintxrt():
             print("/__/_______/__/  /__/_______/__/  /__/             /__/        /__/")
             print(" ")
             print(" ")
+
 
 
 # Database builder
@@ -439,12 +442,46 @@ def mainmenu(): #defining a function for the main menu
     print()
  
 
+# Payments Handler
+def payboxie():
+    command = "cls"
+    os.system(command)
+    global payindic, xrt
+    payindic = 0
+    from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+    print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
+    init(convert = True)
+    print("Amount to be paid: \u20B9","%.2f" % total)
+    print("Payment methods available: ")
+    print("1. Credit/ Debit Card")
+    print("2. Digital Wallet")
+    print("3. UPI")
+    print("4. Cash")
+    print("*exit* to cancel this billing cycle")
+    paycheck = input("Pay with: ")
+    print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
+    if paycheck == "1":
+        payindic = "Paid with credit/ debit Card"
+    elif paycheck == "2":
+        payindic = "Paid with a digital wallet"
+    elif paycheck == "3":
+        payindic = "Paid with UPI"
+    elif paycheck == "4":
+        payindic = "Paid with cash"
+    elif paycheck == "exit":
+        print("Cancelling this billing cycle")
+        xrt = 1
+    else:
+        payboxie()
+
+
+
 
 
 # Store listing::
 data = {"1":40000, "2":55000, "3":67000, "4":25000, "5":21000, "6":14000, "7":13000, "8":220000, "9":4500, "10":17000, "11":1200, "12":3700, "13":4500, "14":2200, "15":700, "16":2750, "17":6499, "18":1499, "19":799, "20":27000, "21":6750, "22":2100, "23":1199, "24":3210, "25":989, "26":750, "27":1700, "28":600, "29":2175, "30":890, "31":2100, "32":7158, "33":597, "34":347, "35":500, "36":300, "37":1097, "38":80000, "39":87900, "40":23790}
-namie = {"1":"TV 4K OLED 50", "2":"TV FHD OLED 50", "3":"8K QLED 80", "4":"Redmi K20 PRO", "5":"Redmi K20", "6":"Redmi Note 8 PRO", "7":"POCOPHONE F1", "8":"Mi MIX ALPHA", "9":"Wireless Headphones", "10":"Noise-Cancelling Wireless Headphones", "11":"Essentials Headphones", "12":"Gaming Headphones", "13":"Truly-Wireless Eadphones", "14":"Neckband-Style Wireless Earphones", "15":"Essentials Earphones", "16":"Gaming Earphones", "17":"30W Bluetooth Speakers", "18":"10W Bluetooth Speakers", "19":"Essentials Bluetooth Speaker", "20":"ULTRA Home Theatre", "21":"Essentials Home Theatre", "22":"  Wired Speaker - 5.1", "23":"  Essentials Wired Speaker - STEREO", "24":"Tactical Power Bank 30000mah", "25":"Essentials Power Bank 10000mah", "26":"Essentials Mouse", "27":"Logitech RGB Gaming Mouse with Traction & Weight Adjustment", "28":"Tactical Essentials Keyboard", "29":"Mechanical Cherry MX (Red) RGB Gaming Keyboard", "30":"Polowski Tactical Flashlight", "31":"OneFiber Wi-Fi Router AX17", "32":"Mijia Mesh Wi-Fi Router", "33":"lapcare 120W Laptop Adapter", "34":"lapcare 60W Laptop Adapter", "35":"Spigen Phone Case(s)", "36":"Essentials Phone Charger 10W", "37":"HyperPower Type-C Gallium-Nitride Charger 100W", "38":"ASUS Zephyrus G14 Gaming Laptop", "39":"L XPS 15 Content Creator's Laptop", "40":"Hewlett-Packard Essential's Student's Laptop (Chromebook)"}
-namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "9""Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.", "Essentials Wired Speaker - STEREO", "Tactical Power Bank 30000mah", "5""Essentials Power Bank 0000mah", "Essentials Mouse", "Logitech RGB Gaming Mouse with Traction & Weight Adjustment", "Tactical Essentials Keyboard", "Mechanical Cherry MX (Red) RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 0W Laptop Adapter", "lapcare 60W Laptop Adapter", "Spigen Phone Case(s)", "Essentials Phone Charger 150W", "HyperPower Type-C Gallium-Nitride Charger 100W", "ASUS Zephyrus G4 Gaming Laptop", "L XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
+namie = {"1":"TV 4K OLED 50", "2":"TV FHD OLED 50", "3":"8K QLED 80", "4":"Redmi K20 PRO", "5":"Redmi K20", "6":"Redmi Note 8 PRO", "7":"POCOPHONE F1", "8":"Mi MIX ALPHA", "9":"Wireless Headphones", "10":"Noise-Cancelling Wireless Headphones", "11":"Essentials Headphones", "12":"Gaming Headphones", "13":"Truly-Wireless Eadphones", "14":"Neckband-Style Wireless Earphones", "15":"Essentials Earphones", "16":"Gaming Earphones", "17":"30W Bluetooth Speakers", "18":"10W Bluetooth Speakers", "19":"Essentials Bluetooth Speaker", "20":"ULTRA Home Theatre", "21":"Essentials Home Theatre", "22":"  Wired Speaker - 5.1", "23":"  Essentials Wired Speaker - STEREO", "24":"Tactical Power Bank 30000mah", "25":"Essentials Power Bank 10000mah", "26":"Essentials Mouse", "27":"Logitech G604 LightSpeed Wireless", "28":"Tactical Essentials Keyboard", "29":"DROP GS21k RGB Gaming Keyboard", "30":"Polowski Tactical Flashlight", "31":"OneFiber Wi-Fi Router AX17", "32":"Mijia Mesh Wi-Fi Router", "33":"lapcare 120W Laptop Adapter", "34":"lapcare 60W Laptop Adapter", "35":"Spigen Phone Case(s)", "36":"Essentials Phone Charger 10W", "37":"HyperPower Type-C Gallium-Nitride Charger 100W", "38":"ASUS Zephyrus G14 Gaming Laptop", "39":"L XPS 15 Content Creator's Laptop", "40":"Hewlett-Packard Essential's Student's Laptop (Chromebook)"}
+namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "9""Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.", "Essentials Wired Speaker - STEREO", "Tactical Power Bank 30000mah", "5""Essentials Power Bank 0000mah", "Essentials Mouse", "Logitech G604 LightSpeed Wireless", "Tactical Essentials Keyboard", "DROP GS21k RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 0W Laptop Adapter", "lapcare 60W Laptop Adapter", "Spigen Phone Case(s)", "Essentials Phone Charger 150W", "HyperPower Type-C Gallium-Nitride Charger 100W", "ASUS Zephyrus G4 Gaming Laptop", "L XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
 datax = [40000, 55000, 67000, 25000, 21000, 14000, 3000, 220000, 4500, 17000, 1200, 3700, 4500, 2200, 700, 2750, 6499, 1499, 799, 27000, 6750, 2100, 1199, 3210, 989, 750, 1700, 600, 2175, 890, 2100, 7158, 597, 347, 500, 300, 1097, 80000, 87900, 23790]
 dataxr = []
 for i in datax:
@@ -526,6 +563,7 @@ while(1): #while (always) true
         logger.write(dt_string)
         logger.write(" \n")
         abcd1 = 1
+        purcheck = ""
         time.sleep(0.3) #for a seamless experience
         telethon = "DBFA Billing System" + "\n" + dt_string + "\n" + "Customer: " + custt + "\n"
         writer = writer + "DBFA Billing Framework" + "\n" + "One-stop solution for all your billing needs!" + "\n" + "\n" + "Billing time: " + dt_string + "\n" + "Customer ID: " + custt + "\n" + "-----------------------------" + "\n" + "\n"
@@ -541,6 +579,12 @@ while(1): #while (always) true
                 if ssxvarscheck == 1:
                     billiemaster+=data[item]
                     print("Purchased: ", namie[item], " for: ", data[item])
+                    lenxr = len(namie[item])
+                    costlenxr = len(str(data[item]))        
+                    cj = 10 - costlenxr
+                    pi = 50 - lenxr
+                    idlerxx = namie[item] + " "*pi + "₹"+'%d'%data[item] + " "*cj + "1 qty. ~"
+                    purcheck += idlerxx
                     print("---")
                     priceprod = "₹" + '%d' % data[item]
                     logger.write("Appending product to order: \n")  #writing to file
@@ -550,7 +594,8 @@ while(1): #while (always) true
                     writer = writer + "\n Purchased: " + "\n" + namie[item] + "\n" + priceprod + "\n"
                     afac+=1
                 else:
-                    print("Product currently out-of-stock. The inconvenience is regretted..")
+                    print("Product currently out-of-stock. The inconvenience is regretted..\n")
+                    print("---")
                     continue
             else:
                 print("Product not found. Please retry ")
@@ -560,7 +605,7 @@ while(1): #while (always) true
         time.sleep(0.15)  #for a seamless experience
         try:
             cponid = str(input("Enter voucher code (if any): "))
-        except EOFError:
+        except (EOFError, ValueError):
             pass                   #When no input is given by the user, control moves to this section as "EOFError or End Of File Error is detected"
         if cponid != "":
             cpon_limfetch(cponid)
@@ -582,88 +627,71 @@ while(1): #while (always) true
         time.sleep(0.15)  #for a seamless experience
         print("-----------------")
         time.sleep(0.15)  #for a seamless experience
-        tota = (((18/100)*billiemaster)+billiemaster)
-        total = tota-(((discount)/100)*tota)
+        tota = ((billiemaster)-(((discount)/100)*billiemaster))
+        total = (tota + ((tota/100)*18))
         discountx = '%d' % discount
         telethon = telethon + "\n" + "Tax amount: 18%" + "\n"  + "Discount: " + discountx + "%" + "\n" + "\n"
         writer = writer + "\n" + "\n" + "-----------------------------" + "\n" + "Tax amount: 18%"  + "\n"  + discountx + "\n"  + "\n" 
-        def payboxie():
-            command = "cls"
-            os.system(command)
-            global payindic
-            from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
-            print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
-            init(convert = True)
-            print("Amount to be paid: \u20B9","%.2f" % total)
-            print("Payment methods available: ")
-            print("1. Credit/ Debit Card")
-            print("2. Digital Wallet")
-            print("3. UPI")
-            print("4. Cash")
-            paycheck = input("Pay with: ")
-            print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
-            if paycheck == "1":
-                payindic = "Paid with credit/ debit Card"
-            elif paycheck == "2":
-                payindic = "Paid with a digital wallet"
-            elif paycheck == "3":
-                payindic = "Paid with UPI"
-            elif paycheck == "4":
-                payindic = "Paid with cash"
-            else:
-                payboxie()
         payboxie()
-        rupeesymbol = "\u20B9".encode("utf-8")
-        print("\n\n-----------------------------------------------------------------")
-        print("Invoice ID: ", abcd1, "| Time: ",dt_string, "| No. of items: ", afac)
-        print(payindic)
-        print("-----------------------------------------------------------------")
-        print("Amount: \u20B9",billiemaster)
-        cpon_ssinglefetch(cponid)
-        print("Voucher used:",sfetch_values)
-        print("Net Discount:",discount,"%")
-        print("IGST        : \u20B9","%.2f" % ((9/100)*billiemaster))
-        print("CGST        : \u20B9","%.2f" % ((9/100)*billiemaster))
-        print("-----------------------------------------------------------------")
-        print("Amount to be paid: \u20B9","%.2f" % total)
-        print("-----------------------------------------------------------------")
-        toaster.show_toast("DFBA Billing:  Total billed for-",str(total), duration = 1)
-        logger.write("Total amount billed for: \n") #writing to file
-        #regin.write("NET TOTAL: \n") #writing to file
-        telethon = telethon + "NET TOTAL: \n" + "\u20B9" + str(total) + "\n" 
-        writer = writer + "NET TOTAL: \n" + str(total) + "\n" 
-        logger.write(str(total))
-        logger.write("\n")
-        #regin.write(str(total))
-        #regin.write("\n")
-        updatescript(custt, total) #adds billed amount to the customer's record
-        abcd1+=1
-        afac+=1
-        now = datetime.now()
-        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")  #datetime object containing current date and time
-        daterey = (dt_string.replace("/","")).replace(":", "")
-        namer = 'invoice'+ daterey+'.pdf'
-        can = SimpleDocTemplate(namer, pagesize=A4,
-                                rightMargin=2*cm,leftMargin=2*cm,
-                                topMargin=2*cm,bottomMargin=2*cm)
-        #can.setFont("MiLanProVF", 24)
-        can.build([Paragraph(writer.replace("\n", "<br />"), getSampleStyleSheet()['Normal']),])
+        if xrt == 1:
+            writer = writer + "----------------- BILLING CYCLE CANCELLED -------------------"    
+        else:
+            rupeesymbol = "\u20B9".encode("utf-8")
+            print("\n\n-------------------------------------------------------------------------")
+            print("Invoice ID: ", abcd1, "| Time: ",dt_string, "| No. of items: ", afac)
+            print(payindic)
+            print("-------------------------------------------------------------------------")
+            printobj = purcheck.split("~")
+            for i in printobj:
+                print(i)
+            print("-------------------------------------------------------------------------")
+            print("Amount           : \u20B9",billiemaster)
+            cpon_ssinglefetch(cponid)
+            print("Voucher used     :",sfetch_values)
+            discountstr = "Discount "+"("+'%d'%discount+"%)    :"
+            print(discountstr, "\u20B9","%.2f" % (((discount)/100)*billiemaster))
+            print("IGST             : \u20B9","%.2f" % ((9/100)*billiemaster))
+            print("CGST             : \u20B9","%.2f" % ((9/100)*billiemaster))
+            print("-------------------------------------------------------------------------")
+            print("Amount to be paid: \u20B9","%.2f" % total)
+            print("-------------------------------------------------------------------------")
+            toaster.show_toast("DFBA Billing:  Total billed for-",str(total), duration = 1)
+            logger.write("Total amount billed for: \n") #writing to file
+            #regin.write("NET TOTAL: \n") #writing to file
+            telethon = telethon + "NET TOTAL: \n" + "\u20B9" + str(total) + "\n" 
+            writer = writer + "NET TOTAL: \n" + str(total) + "\n" 
+            logger.write(str(total))
+            logger.write("\n")
+            #regin.write(str(total))
+            #regin.write("\n")
+            updatescript(custt, total) #adds billed amount to the customer's record
+            abcd1+=1
+            afac+=1
+            now = datetime.now()
+            dt_string = now.strftime("%d/%m/%Y %H:%M:%S")  #datetime object containing current date and time
+            daterey = (dt_string.replace("/","")).replace(":", "")
+            namer = 'invoice'+ daterey+'.pdf'
+            can = SimpleDocTemplate(namer, pagesize=A4,
+                                    rightMargin=2*cm,leftMargin=2*cm,
+                                    topMargin=2*cm,bottomMargin=2*cm)
+            #can.setFont("MiLanProVF", 24)
+            can.build([Paragraph(writer.replace("\n", "<br />"), getSampleStyleSheet()['Normal']),])
 
-        import shutil  
-        source = namer
-        destination = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Generated_invoices'
-        dest = shutil.move(source, destination)  
-        time.sleep(1.5) #for a seamless experience
+            import shutil  
+            source = namer
+            destination = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Generated_invoices'
+            dest = shutil.move(source, destination)  
+            time.sleep(1.5) #for a seamless experience
 
-        #regin.close()
-        with HiddenPrints():
-            try:
-                sender = telegram_bot_sendtext(telethon)
-                print(sender)
-            except Exception:
-                pass
-                
-        print()
+            #regin.close()
+            with HiddenPrints():
+                try:
+                    sender = telegram_bot_sendtext(telethon)
+                    print(sender)
+                except Exception:
+                    pass
+                    
+            print()
     #Register Customer
     elif decfac == 2:
         try:

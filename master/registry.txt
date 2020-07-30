@@ -2141,3 +2141,415 @@ Automated Store Registry:
 ----------------------------------------- 
 User identified from login: ed
 Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 12:36:09 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+29/07/2020 12:36:29 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 12:37:03 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/07/2020 12:37:18 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 12:37:52 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 12:38:51 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 12:39:12 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 12:41:07 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+8K QLED 80 
+Total amount billed for: 
+208860.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 12:50:25 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+29/07/2020 12:50:47 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/07/2020 12:51:44 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+8K QLED 80 
+Total amount billed for: 
+143960.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/07/2020 12:52:50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+29/07/2020 12:53:42 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+112100.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 12:57:22 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+64900.0
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 12:57:37 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+POCOPHONE F1 
+Total amount billed for: 
+139830.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/07/2020 12:58:52 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 12:59:39 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 13:00:56 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 13:02:32 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 13:04:50 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/07/2020 13:05:25 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+29/07/2020 13:12:41 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+Essentials Headphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Total amount billed for: 
+99944.82
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 13:16:33 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 13:18:14 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+112100.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+29/07/2020 13:19:46 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 12:13:50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 12:14:40 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 12:15:57 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi Note 8 PRO 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+POCOPHONE F1 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+30/07/2020 12:17:07 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 12:20:07 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 12:27:54 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+30/07/2020 12:29:08 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 12:30:39 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 12:31:36 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Total amount billed for: 
+264910.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+5  
+Date and time: 
+30/07/2020 12:32:54 
+Appending product to order: 
+Redmi Note 8 PRO 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi Note 8 PRO 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi Note 8 PRO 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+POCOPHONE F1 
