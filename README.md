@@ -3,7 +3,7 @@
 
 OSSRTDS
 
-<h5 align="center">MARK 6.1 DONNAGER (STABLE): Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
+<h5 align="center">MARK 6.14 DONNAGER (STABLE): Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
       
       The second version of DSMSAPL with brand-new features and security measures, with GUI login!
 <h1 align="center">DBFA Billing Framework</h1>
@@ -19,22 +19,17 @@ This registry shall be regularly updated as changes are made. This updation is c
 
 <h4> </h4>
 <h1 align="center">Changelog:</h2>
-<h2 align="center">MARK 6.1 DONNAGER (STABLE) (PATCH - II</h2>
-<h6 align="center">[Patch - II : patches most security, performance, and anti-pattern buggs]</h6>
 <h5 align="center">Presenting the biggest DBFA release ever since Mark 4!</h5>
+<h2 align="center">MARK 6.14 DONNAGER (STABLE) (PATCH - II)</h2>
+<h6 align="center">> Payment modes now have QR for UPI</h6>
 <h6 align="center">> Purchased products now print alongside the total amount.</h6>
-<h6 align="center">> Billing can now be cancelled when selecting the payment method.</h6>
-<h6 align="center">> Unlimited billing until interrupted!</h6>
-<h6 align="center">> New floodscreen!</h6>
+<h6 align="center">> Unlimited (and now cancelable) billing until interrupted!</h6>
+<h6 align="center">> New floodscreen and a much fine UI!</h6>
 <h6 align="center">> Complete GUI-login v2! (color-coded)</h6>
-<h6 align="center">> Payment modes!</h6>
-<h6 align="center">> Better on-screen language!</h6>
-<h6 align="center">> Finer UI 2.0! </h5></h6>
+<h6 align="center">[Patch - II : patches most security, performance, and anti-pattern buggs]</h6>
 <h5 align="center">DNSS Voucher Engine 1.7</h5>
 <h6 align="center">Added base blobs for time-expiring coupons. </h6>
 <h6 align="center">Removed additional discount after applying vouchers.</h6>
-<h6 align="center">Patched all bugs</h6>
-
 
 <h5 align="center">Merged communications upstream </h5>
 <h3 align="center">View the full changelog on the master repository's commits</h3>
