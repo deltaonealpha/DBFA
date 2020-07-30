@@ -3,7 +3,7 @@
 
 OSSRTDS
 
-<h5 align="center">MARK 6.0 DONNAGER (STABLE): Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
+<h5 align="center">MARK 6.1 DONNAGER (STABLE): Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
       
       The second version of DSMSAPL with brand-new features and security measures, with GUI login!
 <h1 align="center">DBFA Billing Framework</h1>
@@ -19,9 +19,11 @@ This registry shall be regularly updated as changes are made. This updation is c
 
 <h4> </h4>
 <h1 align="center">Changelog:</h2>
-<h2 align="center">MARK 6.0 DONNAGER (STABLE) (Patch - I)</h2>
-<h6 align="center">[Patch - I patches most security, performance, and anti-pattern buggs]</h6>
+<h2 align="center">MARK 6.1 DONNAGER (STABLE) (PATCH - II</h2>
+<h6 align="center">[Patch - II : patches most security, performance, and anti-pattern buggs]</h6>
 <h5 align="center">Presenting the biggest DBFA release ever since Mark 4!</h5>
+<h6 align="center">> Purchased products now print alongside the total amount.</h6>
+<h6 align="center">> Billing can now be cancelled when selecting the payment method.</h6>
 <h6 align="center">> Unlimited billing until interrupted!</h6>
 <h6 align="center">> New floodscreen!</h6>
 <h6 align="center">> Complete GUI-login v2! (color-coded)</h6>
