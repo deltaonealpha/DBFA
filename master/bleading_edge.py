@@ -445,7 +445,7 @@ def floodscreen():
     import cv2 
     image = cv2.imread("imagepx.png")
     cv2.imshow("Initializing... ", image)
-    cv2.waitKey(1500)
+    cv2.waitKey(5000)
     cv2.destroyAllWindows()
 
 
@@ -476,11 +476,19 @@ def mainmenu(): #defining a function for the main menu
     print()
  
 
+def floodpay():
+    import cv2 
+    image = cv2.imread("qr-code.png")
+    cv2.imshow("Pay With UPI", image)
+    cv2.waitKey(150000)
+    cv2.destroyAllWindows()
+
 # Payments Handler
 def payboxie():
     command = "cls"
     os.system(command)
-    global payindic, xrt
+    global payindic
+    global xrt
     xrt = 0
     payindic = 0
     from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
@@ -493,6 +501,7 @@ def payboxie():
     print("3. UPI")
     print("4. Cash")
     print("*exit* to cancel this billing cycle")
+    time.sleep(0.5)
     paycheck = input("Pay with: ")
     print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
     if paycheck == "1":
@@ -501,6 +510,7 @@ def payboxie():
         payindic = "Paid with a digital wallet"
     elif paycheck == "3":
         payindic = "Paid with UPI"
+        floodpay()
     elif paycheck == "4":
         payindic = "Paid with cash"
     elif paycheck == "exit":
@@ -663,6 +673,7 @@ while(1): #while (always) true
         print("-----------------")
         time.sleep(0.15)  #for a seamless experience
         tota = ((billiemaster)-(((discount)/100)*billiemaster))
+        global total
         total = (tota + ((tota/100)*18))
         discountx = '%d' % discount
         telethon = telethon + "\n" + "Tax amount: 18%" + "\n"  + "Discount: " + discountx + "%" + "\n" + "\n"
@@ -670,6 +681,7 @@ while(1): #while (always) true
         payboxie()
         if xrt == 1:
             writer = writer + "----------------- BILLING CYCLE CANCELLED -------------------"    
+            break
         else:
             rupeesymbol = "\u20B9".encode("utf-8")
             inmaintainer()

@@ -2631,3 +2631,49 @@ Appending product to order:
 Gaming Headphones 
 Total amount billed for: 
 18808.138
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 17:01:59 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+85196.0
+--------------------------------------- 
+  
+Date and time: 30/07/2020 17:04:49 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 17:05:29 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+30/07/2020 17:06:15 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 17:07:05 
