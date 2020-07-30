@@ -43,7 +43,7 @@ if os.path.exists(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\userblo
     os.remove(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\userblock.zconf')
 sg.theme('DarkTeal9')	# Add a touch of color
 # All the stuff inside your window.
-layout = [  [sg.Text("DNSS Security")],
+layout = [  [sg.Text("DBFA Security")],
             [sg.Text("This program requires you to login.")],
             [sg.Button('Login'), sg.Button('Exit')] ]
 # Create the Window

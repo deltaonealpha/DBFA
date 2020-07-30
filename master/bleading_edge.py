@@ -120,6 +120,24 @@ else:
     ssh7.execute("""CREATE TABLE IF NOT EXISTS sshandler
         (prodid INTEGER,
         ssstock INTEGER);""")
+
+
+# Invoice Master DB
+inmas = sqlite3.connect(r'invoicemaster.db')
+inmascur = inmas.cursor()
+#c.execute("DROP TABLE cust;")
+inmascur.execute("""CREATE TABLE IF NOT EXISTS inmas
+    (indid INTEGER);""")
+inmas = sqlite3.connect('invoicemaster.db')
+inmascur = inmas.cursor()
+if os.path.exists(r'invoicemaster.db'):
+    pass
+else:
+    inmascur.execute("""CREATE TABLE IF NOT EXISTS inmas
+    (indid INTEGER);""")
+
+
+# Voucher Records Master DB
 isol = sqlite3.connect(r'cponmgmtsys.db')
 isolx = isol.cursor()
 isolx.execute("""CREATE TABLE IF NOT EXISTS cponmaster
@@ -174,6 +192,26 @@ else:
 
 
 # Functions::
+
+
+# Invoice Master Record Maintainer
+def inmaintainer():
+    inmas = sqlite3.connect('invoicemaster.db')
+    inmascur = inmas.cursor()
+    updatetrtt = """UPDATE inmas SET indid = indid + 1"""
+    inmascur.execute(updatetrtt)
+    inmas.commit()
+    inmascur.close()
+    #time.sleep(1)
+    #toaster.show_toast+("DBFA QuickVend Service - Background Sync", duration = 0.4)
+
+def infetch():
+    global inval
+    inmas = sqlite3.connect('invoicemaster.db')
+    inmascur = inmas.cursor()
+    inmascur.execute("SELECT DISTINCT indid FROM inmas")
+    rows = ssh7.fetchall()
+    inval = rows
 
 
 # Stock System
@@ -634,8 +672,10 @@ while(1): #while (always) true
             writer = writer + "----------------- BILLING CYCLE CANCELLED -------------------"    
         else:
             rupeesymbol = "\u20B9".encode("utf-8")
+            inmaintainer()
+            infetch()
             print("\n\n-------------------------------------------------------------------------")
-            print("Invoice ID: ", abcd1, "| Time: ",dt_string, "| No. of items: ", afac)
+            print("Invoice ID: ", inval, "| Time: ",dt_string, "| No. of items: ", afac)
             print(payindic)
             print("-------------------------------------------------------------------------")
             printobj = purcheck.split("~")

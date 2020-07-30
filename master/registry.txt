@@ -2610,3 +2610,24 @@ Appending product to order:
 TV 4K OLED 50 
 Total amount billed for: 
 44840.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+6  
+Date and time: 
+30/07/2020 13:51:06 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+Essentials Power Bank 10000mah 
+Appending product to order: 
+Essentials Power Bank 10000mah 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+Gaming Headphones 
+Total amount billed for: 
+18808.138
