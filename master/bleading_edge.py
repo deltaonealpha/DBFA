@@ -443,6 +443,7 @@ def payboxie():
     command = "cls"
     os.system(command)
     global payindic, xrt
+    xrt = 0
     payindic = 0
     from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
     print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)

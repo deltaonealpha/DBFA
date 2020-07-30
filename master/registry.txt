@@ -2553,3 +2553,60 @@ Appending product to order:
 Wireless Headphones 
 Appending product to order: 
 POCOPHONE F1 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 12:51:52 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 12:53:23 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+4  
+Date and time: 
+30/07/2020 12:55:10 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 12:55:47 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+8  
+Date and time: 
+30/07/2020 12:56:25 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+30/07/2020 12:57:44 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+44840.0
