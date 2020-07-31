@@ -3,7 +3,7 @@
 
 OSSRTDS
 
-<h5 align="center">MARK 6.14 DONNAGER (STABLE): Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
+<h5 align="center">MARK 6.4 DONNAGER (STABLE): Presenting a completely new DBFA! More features, more stability, more security. Try it right away! </h5>
       
       The second version of DSMSAPL with brand-new features and security measures, with GUI login!
 <h1 align="center">DBFA Billing Framework</h1>
@@ -20,7 +20,10 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h4> </h4>
 <h1 align="center">Changelog:</h2>
 <h5 align="center">Presenting the biggest DBFA release ever since Mark 4!</h5>
-<h2 align="center">MARK 6.14 DONNAGER (STABLE) (PATCH - II)</h2>
+<h2 align="center">MARK 6.4 DONNAGER (STABLE)</h2>
+<h5 align="center">Introducing auto-generated store profit reports!</h5>
+<h6>Creates a PDF with all profit details and highlights the most sold and most profit making products</h6>
+<h4 align="center">Mark 6.14 DONNAGER (STABLE)</h4>
 <h6 align="center">> Payment modes now have QR for UPI</h6>
 <h6 align="center">> Purchased products now print alongside the total amount.</h6>
 <h6 align="center">> Unlimited (and now cancelable) billing until interrupted!</h6>

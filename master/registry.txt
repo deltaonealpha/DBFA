@@ -2677,3 +2677,101 @@ Automated Store Registry:
 12  
 Date and time: 
 30/07/2020 17:07:05 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 18:12:03 
+Appending product to order: 
+Essentials Home Theatre 
+Total amount billed for: 
+7965.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+30/07/2020 21:26:03 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Wireless Headphones 
+Total amount billed for: 
+369930.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+Auth bypass - registering for security----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+31/07/2020 13:22:48 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+31/07/2020 13:45:32 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+89680.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+31/07/2020 20:01:52 
+Appending product to order: 
+Essentials Headphones 
+Appending product to order: 
+Essentials Headphones 
+Appending product to order: 
+Essentials Headphones 
+Appending product to order: 
+Essentials Headphones 
+Appending product to order: 
+Essentials Headphones 
+Appending product to order: 
+Essentials Headphones 
+Appending product to order: 
+Essentials Headphones 
+Total amount billed for: 
+9912.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+31/07/2020 20:07:01 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+Essentials Headphones 
+Total amount billed for: 
+5782.0
+----------------------------------------- 
+ed
+Automated Store Registry:

@@ -14,6 +14,7 @@
 #vs
 
 import getpass, time, pathlib, sqlite3, sys, os #sys, os for system-level ops
+from tabularprint import table
 
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -29,6 +30,10 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from tabulate import tabulate
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+
 
 #auth verification
 if os.path.exists(r'userblock.zconf'):
@@ -83,21 +88,21 @@ def telegram_bot_sendtext(bot_message):
 # DBFA Logo Printer
 def logoprintxrt():
             print("        ___ ______ ___   _____________    ____________     _______")
-            time.sleep(0.2)
+            time.sleep(0.1)
             print("       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /")
-            time.sleep(0.2)
+            time.sleep(0.1)
             print("      /  /       /  /  /  /       /  /  /  /             /  /  / /")
-            time.sleep(0.2)
+            time.sleep(0.1)
             print("     /  /       /  /  /  /_______/  /  /  /  CLI        /  /   / /")
-            time.sleep(0.2)
+            time.sleep(0.1)
             print("    /  /       /  /  / // // // // /  /  /_________    /  /____/ /")
-            time.sleep(0.2)
+            time.sleep(0.1)
             print("   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ /")
-            time.sleep(0.2)
+            time.sleep(0.1)
             print("  /  /       /  /  /  /       /  /  /  /             /  /      / /")
-            time.sleep(0.2)
+            time.sleep(0.1)
             print(" /  /_______/  /  /  /______ /  /  /  /             /  /       / /")
-            time.sleep(0.2)
+            time.sleep(0.1)
             print("/__/_______/__/  /__/_______/__/  /__/             /__/        /__/")
             print(" ")
             print(" ")
@@ -189,9 +194,96 @@ else:
          SALARY         REAL);''')
 
 
+# Report Record Master
+rec = sqlite3.connect(r'recmaster.db')
+recx = rec.cursor()
+recx.execute("""CREATE TABLE IF NOT EXISTS recmasterx
+    (prodid INTEGER PRIMARY KEY,
+    prodname CHAR,
+    prodprofit INTEGER,
+    prodsales INTEGER,
+    netprof INTEGER);""")
+rec = sqlite3.connect('recmaster.db')
+recx = rec.cursor()
+if os.path.exists(r'recmaster.db'):
+    pass
+else:
+    recx.execute("""CREATE TABLE IF NOT EXISTS recmasterx
+    (prodid INTEGER PRIMARY KEY,
+    prodname CHAR,
+    prodprofit INTEGER,
+    prodsales INTEGER,
+    netprof INTEGER);""")
+    namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "9""Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.", "Essentials Wired Speaker - STEREO", "Tactical Power Bank 30000mah", "5""Essentials Power Bank 0000mah", "Essentials Mouse", "Logitech G604 LightSpeed Wireless", "Tactical Essentials Keyboard", "DROP GS21k RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 0W Laptop Adapter", "lapcare 60W Laptop Adapter", "Spigen Phone Case(s)", "Essentials Phone Charger 150W", "HyperPower Type-C Gallium-Nitride Charger 100W", "ASUS Zephyrus G4 Gaming Laptop", "L XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
+    profitx = [2000, 4500, 5700, 2000, 2100, 1470, 300, 11000, 400, 2000, 100, 370, 450, 120, 50, 275, 649, 140, 50, 1050, 978, 150, 100, 320, 98, 75, 170, 60, 275, 90, 210, 780, 50, 35, 50, 30, 100, 8000, 9000, 1790]
+    profitmarker = 0
+    for crrt in namiex:
+        profvalue = profitx[profitmarker]
+        gg = (namiex.index(crrt)) + 1
+        strx = "insert into recmasterx(prodid, prodname, prodprofit, prodsales, netprof) values(?, ?, ?, ?, ?)"
+        io = (gg, crrt, profvalue, 0, 0)
+        profitmarker += 1
+        recx.execute(strx, io)
+        rec.commit()
+        print("Added record: ", crrt)
+
+
+
+
+
+
+
 
 
 # Functions::
+
+# Record Master
+
+
+def repproffetch():
+    global rowsx
+    rec = sqlite3.connect(r'recmaster.db')
+    recx = rec.cursor()
+    recx.execute("SELECT DISTINCT prodprofit FROM recmasterx")
+    rowsx = recx.fetchall()
+    print(rowsx)
+
+
+
+
+
+def repdatafetch():
+    global charter, rows
+    charter = ""
+    charter += "DBFA STORE REPORT\n"
+    rec = sqlite3.connect(r'recmaster.db')
+    recx = rec.cursor()
+    charter += "\nSales data:: \n\n"
+    time.sleep(1)
+    recx.execute("SELECT DISTINCT prodid, prodname, prodprofit, prodsales, netprof FROM recmasterx")
+    rows = recx.fetchall()
+    '''
+    for row in rows:
+        print(row)
+    '''
+    ll = [("P.ID","Prod. Name","Profit P.U.","Qty. Sold","Net Profit")]
+    rows = ll + rows
+    time.sleep(0.1)
+    #print(" ") 
+    
+
+def repupdate(prodid):
+    rec = sqlite3.connect(r'recmaster.db')
+    recx = rec.cursor()
+    # hidden prints here ig
+    updatexr = ("UPDATE recmasterx SET prodsales = prodsales + 1 WHERE prodid = ?")
+    updatexxr = ("UPDATE recmasterx SET netprof = prodsales*prodprofit WHERE prodid = ?")
+    indicator = (prodid, )
+    recx.execute(updatexr, indicator)
+    recx.execute(updatexxr, indicator)
+    rec.commit()
+    recx.close()
+
 
 
 # Invoice Master Record Maintainer
@@ -265,9 +357,9 @@ def ssxsuperfetch():
     ssh7 = ssh.cursor()
     ssh7.execute("SELECT DISTINCT prodid, ssstock FROM sshandler")
     rows = ssh7.fetchall()
-    for row in rows:
-        print(row)
-        #print(" ")
+    col_labels = ("Product ID", "Product Stock")
+    table(col_labels, rows)
+    
 
 # Purchase-time Stock Handler
 def ssxstockmaintainer(prodid):
@@ -395,9 +487,9 @@ def cpon_masterfetch():
     isolx = isol.cursor()
     isolx.execute("SELECT DISTINCT cponid, cponlim FROM cponmaster")
     rows = isolx.fetchall()
-    for row in rows:
-        print(row)
-        #print(" ")
+    col_labels = ("Coupon ID: ", "Usage Limit Left")
+    table(col_labels, rows)
+
 
 
 
@@ -469,7 +561,8 @@ def mainmenu(): #defining a function for the main menu
     print("'7' to REVIEW LICENSING INFORMATION,")
     print("'8' to VIEW OR UPDATE STOCK,")
     print("'9' to ISSUE COUPONS,")
-    print("and '10' to exit the framework.")
+    print("'10' to VIEW THE STORE REPORT,")
+    print("and '11' to exit the framework.")
     print("~ enter the administrator code to enter CIT mode ~")
     print("---------------------------------------------")
     print()
@@ -540,6 +633,9 @@ print("Licensed under the GNU PUBLIC LICENSE")
 print("<DBFA>  Copyright (C) 2020 Pranav Balaji and Sushant Gupta")
 print(" ")
 print("Visit: www.github.com/deltaonealpha/deltaBillingFramework for complete licensing terms. ")
+print(" ")
+print(" ")
+logoprintxrt()
 time.sleep(1.3)
 command = "cls"
 os.system(command)
@@ -624,6 +720,7 @@ while(1): #while (always) true
                 if ssxvarscheck == 1:
                     billiemaster+=data[item]
                     print("Purchased: ", namie[item], " for: ", data[item])
+                    repupdate(item)
                     lenxr = len(namie[item])
                     costlenxr = len(str(data[item]))        
                     cj = 10 - costlenxr
@@ -726,7 +823,7 @@ while(1): #while (always) true
             #can.setFont("MiLanProVF", 24)
             can.build([Paragraph(writer.replace("\n", "<br />"), getSampleStyleSheet()['Normal']),])
 
-            import shutil  
+            import shutil
             source = namer
             destination = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Generated_invoices'
             dest = shutil.move(source, destination)  
@@ -797,9 +894,8 @@ while(1): #while (always) true
         cur = conn.cursor()
         cur.execute("SELECT * FROM cust")
         rows = cur.fetchall()
-        for row in rows:
-            print(row)
-            print(" ")
+        col_labels = ("ID", "Customer NAME", "EMAIL")
+        table(col_labels, rows)
         toaster.show_toast("DNSS QuickSync", "Database acessed", duration = 2)
         #takes values from the SQL database
         '''
@@ -980,8 +1076,125 @@ while(1): #while (always) true
             cpon_masterfetch()
             time.sleep(0.4)
 
-    #Exit System
+    #Reports
     elif decfac == 10:
+        command = "cls"
+        os.system(command)
+        print("-- Generating store report --")
+        print("Please wait...")
+        repdatafetch()
+        findMaximum = "select max(prodsales) from recmasterx"
+        recx.execute(findMaximum)
+        # Print the maximum score
+        netr = recx.fetchone()[0]
+        findin = "select prodid, prodname, prodprofit, prodsales, netprof from recmasterx WHERE prodsales = ?"
+        arterx = str(int(netr))
+        recx.execute(findin, arterx)
+        arterxout = recx.fetchall()
+
+        findMaximumProf = "select max(netprof) from recmasterx"
+        recx.execute(findMaximumProf)
+        xnetr = recx.fetchone()[0]
+        findin = "select prodid, prodname, prodprofit, prodsales, netprof from recmasterx WHERE netprof = ?"
+        xarterx = str(int(xnetr))
+        xxarterx = (xarterx,)
+        recx.execute(findin, xxarterx)
+        xarterxout = recx.fetchall()
+
+        def add_page_number(canvas, doc):
+            canvas.saveState()
+            canvas.setFont('Times-Roman', 10)
+            page_number_text = "%d" % (doc.page)
+            canvas.drawCentredString(
+                0.75 * inch,
+                0.75 * inch,
+                page_number_text
+            )
+            canvas.restoreState()
+
+        doc = SimpleDocTemplate("dbfastorerep.pdf", pagesize=A4,
+                                            rightMargin=2*cm,leftMargin=1.5*cm,
+                                            topMargin=1*cm,bottomMargin=2*cm)
+        # container for the 'Flowable' objects
+        elements = []
+        t1dot = "<b>DBFA Automatic Store Report: </b> <br />This report has been automatically generated. This lists profits earned per listing.<br /><br />"
+        t2dot = "DBFA uses synchronous database updation alongwith algorithmic data interpretation to deliver these reports. <br /><br />"
+        t3dot = "<br /><br /><b>Product most sold: </b><br />"
+        t4dot = "<br /><br /><b>Total profit per product: </b><br /><br />"
+        t5dot = "<br /><br /><b>Most profit making product: </b><br /><br />"
+        colas = (30, 300, 60, 50, 50)
+        rowheights = (20, 20, 20, 20, 20,  20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,20,20,20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 )
+        x=Table(rows, colas, rowheights)
+        text1=Paragraph(t1dot)
+        text2=Paragraph(t2dot)
+        text3=Paragraph(t3dot)
+        text4=Paragraph(t4dot)
+        text5=Paragraph(t5dot)
+        t=Table(arterxout)
+        t2=Table(xarterxout)
+        tblStyle = TableStyle([('TEXTCOLOR',(0,0),(-1,-1),colors.black),
+                            ('VALIGN',(0,0),(-1,-1),'TOP'),
+                            ('LINEBELOW',(0,0),(-1,-1),1,colors.black),
+                            ('BOX',(0,0),(-1,-1),1,colors.black),
+                            ('BOX',(0,0),(0,-1),1,colors.black)])
+        tblStyle.add('BACKGROUND',(0,0),(1,0),colors.lightblue)
+        tblStyle.add('BACKGROUND',(0,1),(-1,-1),colors.white)
+        GRID_STYLE = TableStyle(
+            [('GRID', (0,0), (-1,-1), 0.25, colors.black),
+            ('ALIGN', (1,1), (-1,-1), 'RIGHT')]
+            )
+        t.setStyle(GRID_STYLE)
+        t2.setStyle(GRID_STYLE)
+        x.setStyle(GRID_STYLE)
+        elements.append(text1)
+        elements.append(text2)
+        elements.append(text3)
+        elements.append(t)
+        elements.append(text5)
+        elements.append(t2)
+        elements.append(text4)
+        elements.append(x)
+        # write the document to disk
+        doc.build(elements,
+            onFirstPage=add_page_number,
+            onLaterPages=add_page_number,)
+        print("Moved. ")
+        time.sleep(1)
+        print("Opening store report now")
+        os.startfile('dbfastorerep.pdf')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #Exit System
+    elif decfac == 11:
         if os.path.exists(r'userblock.txt'):
             userblock.close()
             os.remove(r'userblock.txt')
