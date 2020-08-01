@@ -1,12 +1,13 @@
 {
     "sqltools.connections": [
         {
-            "database": "${workspaceFolder:master}/cponmgmtsys.db",
+            "database": "${workspaceFolder:master}/DBFA.db",
             "driver": "SQLite",
-            "group": "DBFA",
-            "name": "dnss_cponmanagersys",
-            "previewLimit": 500
+            "group": "delta",
+            "name": "main_sys",
+            "previewLimit": 50
         }
     ],
-    "sqltools.useNodeRuntime": true
+    "sqltools.useNodeRuntime": true,
+    "python.pythonPath": "C:\\Program Files\\Python37\\python.exe"
 }

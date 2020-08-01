@@ -238,8 +238,6 @@ else:
 # Functions::
 
 # Record Master
-
-
 def repproffetch():
     global rowsx
     rec = sqlite3.connect(r'recmaster.db')
@@ -248,9 +246,21 @@ def repproffetch():
     rowsx = recx.fetchall()
     print(rowsx)
 
-
-
-
+# Report Stock Fetcher
+namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "9""Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.", "Essentials Wired Speaker - STEREO", "Tactical Power Bank 30000mah", "5""Essentials Power Bank 0000mah", "Essentials Mouse", "Logitech RGB Gaming Mouse with Traction & Weight Adjustment", "Tactical Essentials Keyboard", "Mechanical Cherry MX (Red) RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 0W Laptop Adapter", "lapcare 60W Laptop Adapter", "Spigen Phone Case(s)", "Essentials Phone Charger 150W", "HyperPower Type-C Gallium-Nitride Charger 100W", "ASUS Zephyrus G4 Gaming Laptop", "L XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
+def repstockfetch(): 
+    global tabarter
+    ssh = sqlite3.connect('DBFA_handler.db')
+    ssh.row_factory = lambda cursor, row: row[0]
+    ssh7 = ssh.cursor()
+    ssh7.execute("SELECT DISTINCT prodid FROM sshandler WHERE ssstock < 5;")
+    axrows = ssh7.fetchall()
+    tabarter = []
+    for i in axrows:
+        ssh7.execute("SELECT DISTINCT ssstock FROM sshandler WHERE prodid = ?;", (i,))
+        a = [('%s'%(i)), namiex[i], "Stock Remaining: ", '%s'%(ssh7.fetchall()[0])]
+        tabarter.append(a)
+repstockfetch()
 
 def repdatafetch():
     global charter, rows
@@ -1081,6 +1091,7 @@ while(1): #while (always) true
         command = "cls"
         os.system(command)
         print("-- Generating store report --")
+        repstockfetch()
         print("Please wait...")
         repdatafetch()
         findMaximum = "select max(prodsales) from recmasterx"
@@ -1112,16 +1123,19 @@ while(1): #while (always) true
             )
             canvas.restoreState()
 
+
         doc = SimpleDocTemplate("dbfastorerep.pdf", pagesize=A4,
                                             rightMargin=2*cm,leftMargin=1.5*cm,
                                             topMargin=1*cm,bottomMargin=2*cm)
         # container for the 'Flowable' objects
         elements = []
-        t1dot = "<b>DBFA Automatic Store Report: </b> <br />This report has been automatically generated. This lists profits earned per listing.<br /><br />"
-        t2dot = "DBFA uses synchronous database updation alongwith algorithmic data interpretation to deliver these reports. <br /><br />"
-        t3dot = "<br /><br /><b>Product most sold: </b><br />"
-        t4dot = "<br /><br /><b>Total profit per product: </b><br /><br />"
-        t5dot = "<br /><br /><b>Most profit making product: </b><br /><br />"
+        t1dot = ("<b>DBFA Automatic Store Report: </b> <br />This report has been automatically generated. This lists profit and stock analytics as logged by DBFA.<br /><br />")
+        t2dot = ("DBFA synchronously updates its database alongwith algorithmic data interpretation to deliver these reports. <br />This report contains information from the start of using DBFA on this system.<br /><br />")
+        t6dot = ("Report generated on: " + dt_string)
+        t3dot = ("<br /><br /><b>Most sold listing: </b><br />")
+        t4dot = ("<br /><br /><b>Total profit per listing: </b><br /><br />")
+        t5dot = ("<br /><br /><b>Most profit making listing: </b><br /><br />")
+        t7dot = ("<br /><br /><b>Products running low on stock: </b><br /><br />")
         colas = (30, 300, 60, 50, 50)
         rowheights = (20, 20, 20, 20, 20,  20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,20,20,20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 )
         x=Table(rows, colas, rowheights)
@@ -1130,28 +1144,35 @@ while(1): #while (always) true
         text3=Paragraph(t3dot)
         text4=Paragraph(t4dot)
         text5=Paragraph(t5dot)
+        text6=Paragraph(t6dot)
+        text7=Paragraph(t7dot)
         t=Table(arterxout)
         t2=Table(xarterxout)
+        t3=Table(tabarter)
         tblStyle = TableStyle([('TEXTCOLOR',(0,0),(-1,-1),colors.black),
                             ('VALIGN',(0,0),(-1,-1),'TOP'),
                             ('LINEBELOW',(0,0),(-1,-1),1,colors.black),
                             ('BOX',(0,0),(-1,-1),1,colors.black),
                             ('BOX',(0,0),(0,-1),1,colors.black)])
         tblStyle.add('BACKGROUND',(0,0),(1,0),colors.lightblue)
-        tblStyle.add('BACKGROUND',(0,1),(-1,-1),colors.white)
+        tblStyle.add('BACKGROUND',(0,1),(-1,-1),colors.lightblue)
         GRID_STYLE = TableStyle(
             [('GRID', (0,0), (-1,-1), 0.25, colors.black),
             ('ALIGN', (1,1), (-1,-1), 'RIGHT')]
             )
         t.setStyle(GRID_STYLE)
         t2.setStyle(GRID_STYLE)
+        t3.setStyle(GRID_STYLE)
         x.setStyle(GRID_STYLE)
         elements.append(text1)
         elements.append(text2)
+        elements.append(text6)
         elements.append(text3)
         elements.append(t)
         elements.append(text5)
         elements.append(t2)
+        elements.append(text7)
+        elements.append(t3)
         elements.append(text4)
         elements.append(x)
         # write the document to disk

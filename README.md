@@ -20,9 +20,10 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h4> </h4>
 <h1 align="center">Changelog:</h2>
 <h5 align="center">Presenting the biggest DBFA release ever since Mark 4!</h5>
-<h2 align="center">MARK 6.4 DONNAGER (STABLE)</h2>
+<h2 align="center">MARK 6.41 DONNAGER (STABLE)</h2>
 <h5 align="center">Introducing auto-generated store profit reports!</h5>
 <h6 align="center">Creates a PDF with all profit details and highlights the most sold and most profit making products</h6>
+<h6 align="center">01/08/2020 - Added low-stock listing to report</h6>
 <h4 align="center">Mark 6.14 DONNAGER (STABLE)</h4>
 <h6 align="center">> Payment modes now have QR for UPI</h6>
 <h6 align="center">> Purchased products now print alongside the total amount.</h6>
