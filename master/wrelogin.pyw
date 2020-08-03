@@ -5,22 +5,13 @@ if os.path.exists(r'userblock.txt'):
 if os.path.exists(r'userblock.zconf'):
     os.remove(r'userblock.zconf')
 def Login():
-    creds = 'tempfile.temp'
-    with open(creds, 'r') as f:
-        '''data = f.readlines() # This takes the entire document we put the info into and puts it into the data variable
-        uname = data[0].rstrip() # Data[0], 0 is the first line, 1 is the second and so on.
-        pword = data[1].rstrip() # Using .rstrip() will remove the \n (new line) word from before when we input it
-        '''
-        import PySimpleGUI as sgx
-        sgx.theme('DarkRed')	# Add a touch of color
-        # All the stuff inside your window.
-        layout = [  [sgx.Text('INVALID LOGIN. Please retry:')],
-                    [sgx.Text('Username: '), sgx.InputText()],
-                    [sgx.Text('Password: '), sgx.InputText()],
-                    [sgx.Button('Authenicate'), sgx.Button('Cancel')] ]
-        # Create the Window
-        window = sgx.Window('deltaAuthenication Service', layout)
-        # Event Loop to process "events" and get the "values" of the inputs
+    import PySimpleGUI as sgx
+    sgx.theme('DarkRed')
+    layout = [  [sgx.Text('INVALID LOGIN. Please retry:')],
+                [sgx.Text('Username: '), sgx.InputText()],
+                [sgx.Text('Password: '), sgx.InputText()],
+                [sgx.Button('Authenicate'), sgx.Button('Cancel')] ]
+    window = sgx.Window('deltaAuthenication Service', layout)
     while True:
         event, values = window.read()
         if event in (None, 'Cancel'):	# if user closes window or clicks cancel

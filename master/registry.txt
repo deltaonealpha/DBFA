@@ -2892,3 +2892,190 @@ Automated Store Registry:
 ----------------------------------------- 
 ed
 Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+02/08/2020 18:04:27 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Total amount billed for: 
+336890.0
+-----------------  Cust. ID: 
+2  
+Date and time: 
+02/08/2020 18:05:34 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+-----------------  Cust. ID: 
+2  
+Date and time: 
+02/08/2020 18:13:08 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+02/08/2020 18:19:45 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Redmi Note 8 PRO 
+Total amount billed for: 
+381140.0
+-----------------  Cust. ID: 
+0  
+Date and time: 
+02/08/2020 18:20:06 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+  
+Date and time: 02/08/2020 18:32:09 
+  
+Date and time: 02/08/2020 18:32:09 
+Log file access attempt - Oauth failiure!!! 
+(MULTIPLE ATTEMPTS!): Log file access attempt - AUTHORIZATION FAILED!!! 
+  
+Date and time: 02/08/2020 18:32:09 
+Log file access attempt - Oauth complete 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 02/08/2020 19:02:14 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 02/08/2020 19:02:45 
+New customer registered:  custname: Sushant custemail: sushant@test.com
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 02/08/2020 19:02:45 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 02/08/2020 19:05:11 
+Customer registry accessed! 
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 02/08/2020 19:05:11 
+New customer registered:  custname: Pranav custemail: delta@test.com
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 02/08/2020 19:05:11 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+02/08/2020 23:36:01 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+47200.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+02/08/2020 23:36:26 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+64900.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+03/08/2020 11:43:14 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+64900.0

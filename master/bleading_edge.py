@@ -33,6 +33,8 @@ from tabulate import tabulate
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+import requests
+import cv2
 
 
 #auth verification
@@ -41,9 +43,9 @@ if os.path.exists(r'userblock.zconf'):
     print(" ")
 if os.path.exists(r'userblock.txt'):
     userblock = open(r"userblock.txt","r") #Opening / creating (if it doesn't exist already) the .txt record file
-    valfn = 1
+    redflag = 1
 else:
-    valfn = 0
+    redflag = 0
 if os.path.exists(r'DBFA.zconf'):
     pass
 else:
@@ -77,7 +79,7 @@ class HiddenPrints:
 
 # TG Communicator
 def telegram_bot_sendtext(bot_message):
-    import requests
+    
     with HiddenPrints():
         bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
         bot_chatID = '680917769'
@@ -88,34 +90,35 @@ def telegram_bot_sendtext(bot_message):
 # DBFA Logo Printer
 def logoprintxrt():
             print("        ___ ______ ___   _____________    ____________     _______")
-            time.sleep(0.1)
+            time.sleep(0.05)
             print("       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /")
-            time.sleep(0.1)
+            time.sleep(0.05)
             print("      /  /       /  /  /  /       /  /  /  /             /  /  / /")
-            time.sleep(0.1)
+            time.sleep(0.05)
             print("     /  /       /  /  /  /_______/  /  /  /  CLI        /  /   / /")
-            time.sleep(0.1)
+            time.sleep(0.05)
             print("    /  /       /  /  / // // // // /  /  /_________    /  /____/ /")
-            time.sleep(0.1)
+            time.sleep(0.05)
             print("   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ /")
-            time.sleep(0.1)
+            time.sleep(0.05)
             print("  /  /       /  /  /  /       /  /  /  /             /  /      / /")
-            time.sleep(0.1)
+            time.sleep(0.05)
             print(" /  /_______/  /  /  /______ /  /  /  /             /  /       / /")
-            time.sleep(0.1)
+            time.sleep(0.05)
             print("/__/_______/__/  /__/_______/__/  /__/             /__/        /__/")
             print(" ")
             print(" ")
 
 
 
-# Database builder
+# Database section
 # Stock Records Master DB
 ssh = sqlite3.connect(r'DBFA_handler.db')
 ssh7 = ssh.cursor()
 #c.execute("DROP TABLE cust;")
 ssh7.execute("""CREATE TABLE IF NOT EXISTS sshandler
     (prodid INTEGER,
+    prodname CHAR,
     ssstock INTEGER);""")
 ssh = sqlite3.connect('DBFA_handler.db')
 ssh7 = ssh.cursor()
@@ -124,6 +127,7 @@ if os.path.exists(r'DBFA_handler.db'):
 else:
     ssh7.execute("""CREATE TABLE IF NOT EXISTS sshandler
         (prodid INTEGER,
+        prodname CHAR,
         ssstock INTEGER);""")
 
 
@@ -186,12 +190,12 @@ conn = sqlite3.connect('DBFA.db')
 if os.path.exists(r'DBFA.db'):
     pass
 else:
-    conn.execute('''CREATE TABLE COMPANY
-         (ID INT PRIMARY KEY     NOT NULL,
-         NAME           TEXT    NOT NULL,
-         AGE            INT     NOT NULL,
-         ADDRESS        CHAR(50),
-         SALARY         REAL);''')
+    xbr7.execute("""CREATE TABLE IF NOT EXISTS custcc
+        (custt INTEGER PRIMARY KEY,
+        custname VARCHAR(500),
+        purchasecount INTEGER,
+        ptotalx INTEGER);""")
+
 
 
 # Report Record Master
@@ -237,17 +241,8 @@ else:
 
 # Functions::
 
-# Record Master
-def repproffetch():
-    global rowsx
-    rec = sqlite3.connect(r'recmaster.db')
-    recx = rec.cursor()
-    recx.execute("SELECT DISTINCT prodprofit FROM recmasterx")
-    rowsx = recx.fetchall()
-    print(rowsx)
-
 # Report Stock Fetcher
-namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "9""Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.", "Essentials Wired Speaker - STEREO", "Tactical Power Bank 30000mah", "5""Essentials Power Bank 0000mah", "Essentials Mouse", "Logitech RGB Gaming Mouse with Traction & Weight Adjustment", "Tactical Essentials Keyboard", "Mechanical Cherry MX (Red) RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 0W Laptop Adapter", "lapcare 60W Laptop Adapter", "Spigen Phone Case(s)", "Essentials Phone Charger 150W", "HyperPower Type-C Gallium-Nitride Charger 100W", "ASUS Zephyrus G4 Gaming Laptop", "L XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
+namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F1", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.1", "Essentials Wired Speaker - STEREO", "Tactical Series Power Bank 30000mah", "Essentials Power Bank 10000mah", "Essentials Mouse", "Logitech G604 LightSpeed Wireless", "Tactical Essentials Keyboard", "DROP GS21k RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 45W Laptop Adapter", "lapcare 60W Laptop Adapter","Spigen Phone Case(s)", "Essentials Phone Charger 15W", "HyperPower Type-C Gallium-Nitride Charger 120W", "ASUS Zephyrus G4 Gaming Laptop", "DELL XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
 def repstockfetch(): 
     global tabarter
     ssh = sqlite3.connect('DBFA_handler.db')
@@ -295,7 +290,7 @@ def repupdate(prodid):
     recx.close()
 
 
-
+# Feature not released
 # Invoice Master Record Maintainer
 def inmaintainer():
     inmas = sqlite3.connect('invoicemaster.db')
@@ -331,12 +326,12 @@ def massmaintainer(inxstock):  #defining a function to input data into the SQL d
     
     ssh = sqlite3.connect(r'DBFA_handler.db')
     ssh7 = ssh.cursor()
-    namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "9""Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.", "Essentials Wired Speaker - STEREO", "Tactical Power Bank 30000mah", "5""Essentials Power Bank 0000mah", "Essentials Mouse", "Logitech RGB Gaming Mouse with Traction & Weight Adjustment", "Tactical Essentials Keyboard", "Mechanical Cherry MX (Red) RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 0W Laptop Adapter", "lapcare 60W Laptop Adapter", "Spigen Phone Case(s)", "Essentials Phone Charger 150W", "HyperPower Type-C Gallium-Nitride Charger 100W", "ASUS Zephyrus G4 Gaming Laptop", "L XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
+    namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F1", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.1", "Essentials Wired Speaker - STEREO", "Tactical Series Power Bank 30000mah", "Essentials Power Bank 10000mah", "Essentials Mouse", "Logitech G604 LightSpeed Wireless", "Tactical Essentials Keyboard", "DROP GS21k RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 45W Laptop Adapter", "lapcare 60W Laptop Adapter","Spigen Phone Case(s)", "Essentials Phone Charger 15W", "HyperPower Type-C Gallium-Nitride Charger 120W", "ASUS Zephyrus G4 Gaming Laptop", "DELL XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
     for crrt in namiex:
         gg = (namiex.index(crrt)) + 1
-        str = "insert into sshandler(prodid, ssstock) values({}, {})"
-        # io = (gg)
-        ssh7.execute(str.format(gg, inxstock))
+        str = "insert into sshandler(prodid, prodname, ssstock) values(?, ?, ?)"
+        strxx = (gg, crrt, inxstock,)
+        ssh7.execute(str, strxx)
         ssh.commit()
     ssh7.close()
     time.sleep(1)
@@ -365,9 +360,9 @@ def ssxsuperfetch():
     time.sleep(1.5) 
     #Re-writing to refresh connection
     ssh7 = ssh.cursor()
-    ssh7.execute("SELECT DISTINCT prodid, ssstock FROM sshandler")
+    ssh7.execute("SELECT DISTINCT prodid, prodname, ssstock FROM sshandler")
     rows = ssh7.fetchall()
-    col_labels = ("Product ID", "Product Stock")
+    col_labels = ("Product ID", "Product Name", "Product Stock")
     table(col_labels, rows)
     
 
@@ -544,10 +539,17 @@ def updatescript(custt, pincrement):
 
 
 def floodscreen():
-    import cv2 
     image = cv2.imread("imagepx.png")
-    cv2.imshow("Initializing... ", image)
+    cv2.imshow("Loading.... ", image)
     cv2.waitKey(5000)
+    cv2.destroyAllWindows()
+
+
+def floodpay():
+    import cv2 
+    image = cv2.imread("qr-code.png")
+    cv2.imshow("Pay With UPI", image)
+    cv2.waitKey(150000)
     cv2.destroyAllWindows()
 
 
@@ -572,19 +574,15 @@ def mainmenu(): #defining a function for the main menu
     print("'8' to VIEW OR UPDATE STOCK,")
     print("'9' to ISSUE COUPONS,")
     print("'10' to VIEW THE STORE REPORT,")
-    print("and '11' to exit the framework.")
+    print("'11' to star the DBFA BACKUP & SWITCH process,")
+    print("and '12' to exit the framework.")
     print("~ enter the administrator code to enter CIT mode ~")
     print("---------------------------------------------")
     print()
     print()
  
 
-def floodpay():
-    import cv2 
-    image = cv2.imread("qr-code.png")
-    cv2.imshow("Pay With UPI", image)
-    cv2.waitKey(150000)
-    cv2.destroyAllWindows()
+
 
 # Payments Handler
 def payboxie():
@@ -631,6 +629,8 @@ data = {"1":40000, "2":55000, "3":67000, "4":25000, "5":21000, "6":14000, "7":13
 namie = {"1":"TV 4K OLED 50", "2":"TV FHD OLED 50", "3":"8K QLED 80", "4":"Redmi K20 PRO", "5":"Redmi K20", "6":"Redmi Note 8 PRO", "7":"POCOPHONE F1", "8":"Mi MIX ALPHA", "9":"Wireless Headphones", "10":"Noise-Cancelling Wireless Headphones", "11":"Essentials Headphones", "12":"Gaming Headphones", "13":"Truly-Wireless Eadphones", "14":"Neckband-Style Wireless Earphones", "15":"Essentials Earphones", "16":"Gaming Earphones", "17":"30W Bluetooth Speakers", "18":"10W Bluetooth Speakers", "19":"Essentials Bluetooth Speaker", "20":"ULTRA Home Theatre", "21":"Essentials Home Theatre", "22":"  Wired Speaker - 5.1", "23":"  Essentials Wired Speaker - STEREO", "24":"Tactical Power Bank 30000mah", "25":"Essentials Power Bank 10000mah", "26":"Essentials Mouse", "27":"Logitech G604 LightSpeed Wireless", "28":"Tactical Essentials Keyboard", "29":"DROP GS21k RGB Gaming Keyboard", "30":"Polowski Tactical Flashlight", "31":"OneFiber Wi-Fi Router AX17", "32":"Mijia Mesh Wi-Fi Router", "33":"lapcare 120W Laptop Adapter", "34":"lapcare 60W Laptop Adapter", "35":"Spigen Phone Case(s)", "36":"Essentials Phone Charger 10W", "37":"HyperPower Type-C Gallium-Nitride Charger 100W", "38":"ASUS Zephyrus G14 Gaming Laptop", "39":"L XPS 15 Content Creator's Laptop", "40":"Hewlett-Packard Essential's Student's Laptop (Chromebook)"}
 namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F1", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.1", "Essentials Wired Speaker - STEREO", "Tactical Series Power Bank 30000mah", "Essentials Power Bank 10000mah", "Essentials Mouse", "Logitech G604 LightSpeed Wireless", "Tactical Essentials Keyboard", "DROP GS21k RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 45W Laptop Adapter", "lapcare 60W Laptop Adapter","Spigen Phone Case(s)", "Essentials Phone Charger 15W", "HyperPower Type-C Gallium-Nitride Charger 120W", "ASUS Zephyrus G4 Gaming Laptop", "DELL XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
 datax = [40000, 55000, 67000, 25000, 21000, 14000, 3000, 220000, 4500, 17000, 1200, 3700, 4500, 2200, 700, 2750, 6499, 1499, 799, 27000, 6750, 2100, 1199, 3210, 989, 750, 1700, 600, 2175, 890, 2100, 7158, 597, 347, 500, 300, 1097, 80000, 87900, 23790]
+
+# dataxr is currently redundant
 dataxr = []
 for i in datax:
     i = "₹" + '%d' % i
@@ -638,7 +638,7 @@ for i in datax:
 tablx = zip(namiex, dataxr)
 titlex = ["Product:", "Pricing:"]
 
-print("DBFA Billing Framework: Version 2.227 (alpha) ")
+print("DBFA Billing Framework: Version 6.42 (stable) ")
 print("Licensed under the GNU PUBLIC LICENSE")
 print("<DBFA>  Copyright (C) 2020 Pranav Balaji and Sushant Gupta")
 print(" ")
@@ -665,10 +665,10 @@ logger.write("Automated Store Registry:\n")
 floodscreen() #comment to disable boot-flash screen
 from win10toast import ToastNotifier
 toaster = ToastNotifier()
-toaster.show_toast("DFBA Runtime Manager","Read documentation prior to use.", duration = 2)
+toaster.show_toast("DFBA System","Read documentation prior to use.", duration = 2)
 print("Heyy there!",  'ed') #enable parts in the auth script to enable user detection
 time.sleep(1.34)
-if valfn == 0:
+if redflag == 0:
     logger.write("Auth bypass - registering for security") 
     time.sleep(1)
     print("------- !!!!!!! -------")
@@ -826,7 +826,7 @@ while(1): #while (always) true
             now = datetime.now()
             dt_string = now.strftime("%d/%m/%Y %H:%M:%S")  #datetime object containing current date and time
             daterey = (dt_string.replace("/","")).replace(":", "")
-            namer = 'invoice'+ daterey+'.pdf'
+            namer = 'DBFAinvoice '+ daterey+'.pdf'
             can = SimpleDocTemplate(namer, pagesize=A4,
                                     rightMargin=2*cm,leftMargin=2*cm,
                                     topMargin=2*cm,bottomMargin=2*cm)
@@ -861,6 +861,7 @@ while(1): #while (always) true
         time.sleep(0.4)  #for a seamless experience
         #conn.execute("select * from cust")
         #takes values from the SQL database
+        conn = sqlite3.connect('DBFA.db')
         cursor = conn.cursor()
         cursor.execute("select * from cust")
         results = cursor.fetchall()
@@ -901,6 +902,7 @@ while(1): #while (always) true
         time.sleep(0.7) #for a seamless experience
         print("Registered customers are: ")
         #Re-writing to refresh connection
+        conn = sqlite3.connect('DBFA.db')
         cur = conn.cursor()
         cur.execute("SELECT * FROM cust")
         rows = cur.fetchall()
@@ -1138,7 +1140,6 @@ while(1): #while (always) true
         t7dot = ("<br /><br /><b>Products running low on stock: </b><br /><br />")
         colas = (30, 300, 60, 50, 50)
         rowheights = (20, 20, 20, 20, 20,  20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,20,20,20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 )
-        x=Table(rows, colas, rowheights)
         text1=Paragraph(t1dot)
         text2=Paragraph(t2dot)
         text3=Paragraph(t3dot)
@@ -1146,6 +1147,7 @@ while(1): #while (always) true
         text5=Paragraph(t5dot)
         text6=Paragraph(t6dot)
         text7=Paragraph(t7dot)
+        x=Table(rows, colas, rowheights)
         t=Table(arterxout)
         t2=Table(xarterxout)
         t3=Table(tabarter)
@@ -1158,12 +1160,13 @@ while(1): #while (always) true
         tblStyle.add('BACKGROUND',(0,1),(-1,-1),colors.lightblue)
         GRID_STYLE = TableStyle(
             [('GRID', (0,0), (-1,-1), 0.25, colors.black),
-            ('ALIGN', (1,1), (-1,-1), 'RIGHT')]
+            ('ALIGN', (1,1), (-1,-1), 'LEFT')]
             )
         t.setStyle(GRID_STYLE)
         t2.setStyle(GRID_STYLE)
         t3.setStyle(GRID_STYLE)
         x.setStyle(GRID_STYLE)
+
         elements.append(text1)
         elements.append(text2)
         elements.append(text6)
@@ -1179,43 +1182,17 @@ while(1): #while (always) true
         doc.build(elements,
             onFirstPage=add_page_number,
             onLaterPages=add_page_number,)
-        print("Moved. ")
+        print("Report Created. ")
         time.sleep(1)
         print("Opening store report now")
         os.startfile('dbfastorerep.pdf')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    #DBFA Backup&Switch
+    elif decfac == 11:
+        os.startfile(r'delauth.py')
 
     #Exit System
-    elif decfac == 11:
+    elif decfac == 12:
         if os.path.exists(r'userblock.txt'):
             userblock.close()
             os.remove(r'userblock.txt')
@@ -1225,9 +1202,9 @@ while(1): #while (always) true
         toaster.show_toast("DFBA Framework Runtime Broker", "Obsufcating program...", duration = 2)
         logoprintxrt()
         floodscreen()
-        time.sleep(2)
-        break
         os.close('securepack.pyw')
+        os._exit()
+        
     elif decfac == 7:
         print("Fetching latest licensing information.......")
         print(" ")
@@ -1261,7 +1238,7 @@ while(1): #while (always) true
         
     #CIT
     elif decfac == 113:
-        print("CIT INTERNAL TESTING MODE")
+        print("INTERNAL TESTING MODE")
         ffxfac = str(input("Enter CIT Testing Mode? (y/n):: "))
         if ffxfac == "y":
             ffrxfac = str(input("Entering CIT may lead to data loss. Confirm entering CIT? (y/n):: "))
@@ -1269,6 +1246,7 @@ while(1): #while (always) true
                 print("DNSS CIT MODE")
                 print(" ")
                 print(" ")
+                print("NOTE: DBFA will restart to execute CIT options. ")
                 print("CIT Options::")
                 print("Enter '1' to CLEAR ALL CUSTOMER RECORDS")
                 print("Enter '2' to CLEAR ALL VOUCHERS/ COUPONS")
@@ -1277,16 +1255,20 @@ while(1): #while (always) true
                 if citfacin == 1:
                     # window.close()
                     os.startfile(r'securepack.py')
+                    time.sleep(1)
+                    os._exit()
                 if citfacin == 2:
                     # window.close()
                     os.startfile(r'securepackxvc.py')
+                    time.sleep(1)
+                    os._exit()
                 else:
                     continue
         
             else:
                 continue
         
-        elif ffxfac == "n":
+        elif ffxfac == "3":
             print("Exiting CIT")
             time.sleep(1)
             continue
@@ -1295,8 +1277,8 @@ while(1): #while (always) true
             time.sleep(1)
         
     else:
-        print("Critical Error! DNSS error code: ninp01279; Option doesn't exist")
-        time.sleep(5)
+        print("Critical Error! DNSS error code: *optnotfound01*; Option doesn't exist")
+        time.sleep(2)
         continue
 
 # End of program

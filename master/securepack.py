@@ -1,4 +1,4 @@
-print("Removing ALL registered vouchers now...")
+print("Removing ALL registered customer records now...")
 import os, time
 print("        ___ ______ ___   _____________    ____________     _______")
 time.sleep(0.1)
@@ -28,21 +28,16 @@ print("Flushing record directory. . . ")
 time.sleep(0.5)
 
 x = "cponmgmtsys.db"
-
-try:
-    if os.path.exists(r'cponmgmtsys.db'):
-        os.remove(os.path.normpath(r"cponmgmtsys.db"))
-    if os.path.exists(r'cponmgmtsys.db'):
-        os.remove(os.path.normpath(r"cponmgmtsys.db"))
-    print("Database flush completed!")
-    time.sleep(1)
-    print("Restarting DBFA")
-    time.sleep(1)
-    os.startfile(r"bleading_edge.py")
-except:
-    print("Critical error while operating on file.")
-    time.sleep(0.5)
-    print("Manually delete file - cponmgmtsys.db from your DBFA installation directory")
-    time.sleep(1)
-    os.startfile(r"bleading_edge.py")
-    time.sleep(19)
+if os.path.exists(r'DBFA.db'):
+    file = open(x, 'rb')
+    data = file.read()
+    os.remove(os.path.normpath(r"DBFA.db"))
+if os.path.exists(r'DBFA.db'):
+    file = open(x, 'rb')
+    data = file.read()
+    os.remove(os.path.normpath(r"DBFA.db"))
+print("Database flush completed!")
+time.sleep(1)
+print("Restarting DBFA")
+time.sleep(1)
+os.startfile(r"bleading_edge.py")
