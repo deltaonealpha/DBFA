@@ -29,21 +29,22 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h5 align="center">Presenting DBFA Backup & Switch!</h5>
 <h6 align="center">Now backup all your data for when you want to switch devices!</h6>
 <h6 align="center">Added progress bar for report generation.</h6>
+<h6 align="center">Billing skips payment when net = 0.</h6>
 <h4> </h4>
 <h6 align="center">01/08/2020 - Added low-stock listing to report</h6>
 <h6 align="center">Introducing auto-generated store profit reports!</h6>
-<h7 align="center">Creates a PDF with all profit details and highlights the most sold and most profit making products</h7>
-<h7 align="center">Added low-stock listing to report</h7>
-<h6 align="center">25/07/2020 - Mark 6.14 DONNAGER (STABLE)</h7>
-<h7 align="center">> Payment modes now have QR for UPI</h7>
-<h7 align="center">> Purchased products now print alongside the total amount.</h7>
-<h7 align="center">> Unlimited (and now cancelable) billing until interrupted!</h7>
-<h7 align="center">> New floodscreen and a much fine UI!</h7>
-<h7 align="center">> Complete GUI-login v2! (color-coded)</h7>
-<h7 align="center">[Patch - II : patches most security, performance, and anti-pattern buggs]</h7>
-<h7 align="center">DNSS Voucher Engine 1.7</h7>
-<h7 align="center">Added base blobs for time-expiring coupons. </h7>
-<h7 align="center">Removed additional discount after applying vouchers.</h7>
+<h6 align="center">Creates a PDF with all profit details and highlights the most sold and most profit making products</h7>
+<h6 align="center">Added low-stock listing to report</h7>
+<h6 align="center">25/07/2020 - Mark 6.14 DONNAGER (STABLE)</h5>
+<h6 align="center">> Payment modes now have QR for UPI</h6>
+<h6 align="center">> Purchased products now print alongside the total amount.</h6>
+<h6 align="center">> Unlimited (and now cancelable) billing until interrupted!</h6>
+<h6 align="center">> New floodscreen and a much fine UI!</h6>
+<h6 align="center">> Complete GUI-login v2! (color-coded)</h6>
+<h6 align="center">[Patch - II : patches most security, performance, and anti-pattern buggs]</h6>
+<h6 align="center">DNSS Voucher Engine 1.7</h6>
+<h6 align="center">Added base blobs for time-expiring coupons. </h6>
+<h6 align="center">Removed additional discount after applying vouchers.</h6>
 
 <h5 align="center">Merged communications upstream </h5>
 <h3 align="center">View the full changelog on the master repository's commits</h3>
