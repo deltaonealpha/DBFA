@@ -257,7 +257,7 @@ def repstockfetch():
         a = [('%s'%(i)), namiex[i], "Stock Remaining: ", '%s'%(ssh7.fetchall()[0])]
         tabarter.append(a)
     if tabarter == []:
-        tabarter.append("All products in stock.")
+        tabarter.append("--")
 
 def repdatafetch():
     global charter, rows
@@ -784,62 +784,92 @@ while(1): #while (always) true
         tota = ((billiemaster)-(((discount)/100)*billiemaster))
         global total
         total = (tota + ((tota/100)*18))
-        discountx = '%d' % discount
-        telethon = telethon + "\n" + "Tax amount: 18%" + "\n"  + "Discount: " + discountx + "%" + "\n" + "\n"
-        writer = writer + "\n" + "\n" + "-----------------------------" + "\n" + "Tax amount: 18%"  + "\n"  + discountx + "\n"  + "\n" 
-        payboxie()
-        if xrt == 1:
-            writer = writer + "----------------- BILLING CYCLE CANCELLED -------------------"    
-            break
+        if total != 0:
+            discountx = '%d' % discount
+            telethon = telethon + "\n" + "Tax amount: 18%" + "\n"  + "Discount: " + discountx + "%" + "\n" + "\n"
+            writer = writer + "\n" + "\n" + "-----------------------------" + "\n" + "Tax amount: 18%"  + "\n"  + discountx + "\n"  + "\n" 
+            payboxie()
+            if xrt == 1:
+                writer = writer + "----------------- BILLING CYCLE CANCELLED -------------------"    
+                break
+            else:
+                rupeesymbol = "\u20B9".encode("utf-8")
+                inmaintainer()
+                infetch()
+                print("\n\n-------------------------------------------------------------------------")
+                print("Invoice ID: ", inval, "| Time: ",dt_string, "| No. of items: ", afac)
+                print(payindic)
+                print("-------------------------------------------------------------------------")
+                printobj = purcheck.split("~")
+                for i in printobj:
+                    print(i)
+                print("-------------------------------------------------------------------------")
+                print("Amount           : \u20B9",billiemaster)
+                cpon_ssinglefetch(cponid)
+                print("Voucher used     :",sfetch_values)
+                discountstr = "Discount "+"("+'%d'%discount+"%)    :"
+                print(discountstr, "\u20B9","%.2f" % (((discount)/100)*billiemaster))
+                print("IGST             : \u20B9","%.2f" % ((9/100)*billiemaster))
+                print("CGST             : \u20B9","%.2f" % ((9/100)*billiemaster))
+                print("-------------------------------------------------------------------------")
+                print("Amount to be paid: \u20B9","%.2f" % total)
+                print("-------------------------------------------------------------------------")
+                toaster.show_toast("DFBA Billing:  Total billed for-",str(total), duration = 1)
+                logger.write("Total amount billed for: \n") #writing to file
+                #regin.write("NET TOTAL: \n") #writing to file
+                telethon = telethon + "NET TOTAL: \n" + "\u20B9" + str(total) + "\n" 
+                writer = writer + "NET TOTAL: \n" + str(total) + "\n" 
+                logger.write(str(total))
+                logger.write("\n")
+                #regin.write(str(total))
+                #regin.write("\n")
+                updatescript(custt, total) #adds billed amount to the customer's record
+                abcd1+=1
+                afac+=1
+                now = datetime.now()
+                dt_string = now.strftime("%d/%m/%Y %H:%M:%S")  #datetime object containing current date and time
+                daterey = (dt_string.replace("/","")).replace(":", "")
+                namer = 'DBFAinvoice '+ daterey+'.pdf'
+                can = SimpleDocTemplate(namer, pagesize=A4,
+                                        rightMargin=2*cm,leftMargin=2*cm,
+                                        topMargin=2*cm,bottomMargin=2*cm)
+                #can.setFont("MiLanProVF", 24)
+                can.build([Paragraph(writer.replace("\n", "<br />"), getSampleStyleSheet()['Normal']),])
+
+                import shutil
+                source = namer
+                destination = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Generated_invoices'
+                dest = shutil.move(source, destination)  
+                time.sleep(1.5) #for a seamless experience
+
+                #regin.close()
+                with HiddenPrints():
+                    try:
+                        sender = telegram_bot_sendtext(telethon)
+                        print(sender)
+                    except Exception:
+                        pass
+                        
+                print()
+
         else:
-            rupeesymbol = "\u20B9".encode("utf-8")
-            inmaintainer()
-            infetch()
             print("\n\n-------------------------------------------------------------------------")
-            print("Invoice ID: ", inval, "| Time: ",dt_string, "| No. of items: ", afac)
-            print(payindic)
-            print("-------------------------------------------------------------------------")
-            printobj = purcheck.split("~")
-            for i in printobj:
-                print(i)
+            print("No purchase made.")
             print("-------------------------------------------------------------------------")
             print("Amount           : \u20B9",billiemaster)
-            cpon_ssinglefetch(cponid)
-            print("Voucher used     :",sfetch_values)
-            discountstr = "Discount "+"("+'%d'%discount+"%)    :"
-            print(discountstr, "\u20B9","%.2f" % (((discount)/100)*billiemaster))
-            print("IGST             : \u20B9","%.2f" % ((9/100)*billiemaster))
-            print("CGST             : \u20B9","%.2f" % ((9/100)*billiemaster))
             print("-------------------------------------------------------------------------")
             print("Amount to be paid: \u20B9","%.2f" % total)
             print("-------------------------------------------------------------------------")
-            toaster.show_toast("DFBA Billing:  Total billed for-",str(total), duration = 1)
-            logger.write("Total amount billed for: \n") #writing to file
+            toaster.show_toast("DBFA: No purchase made  ",str(total), duration = 1)
+            logger.write("Billing cancelled: Reason: Net amount null\n") #writing to file
             #regin.write("NET TOTAL: \n") #writing to file
-            telethon = telethon + "NET TOTAL: \n" + "\u20B9" + str(total) + "\n" 
-            writer = writer + "NET TOTAL: \n" + str(total) + "\n" 
+            telethon = telethon + "Billing cancelled. Net amount null." + "\n" 
+            writer = writer + "BILLING CALCELLED. No purchase made." + "\n" 
             logger.write(str(total))
             logger.write("\n")
-            #regin.write(str(total))
-            #regin.write("\n")
-            updatescript(custt, total) #adds billed amount to the customer's record
             abcd1+=1
             afac+=1
             now = datetime.now()
-            dt_string = now.strftime("%d/%m/%Y %H:%M:%S")  #datetime object containing current date and time
-            daterey = (dt_string.replace("/","")).replace(":", "")
-            namer = 'DBFAinvoice '+ daterey+'.pdf'
-            can = SimpleDocTemplate(namer, pagesize=A4,
-                                    rightMargin=2*cm,leftMargin=2*cm,
-                                    topMargin=2*cm,bottomMargin=2*cm)
-            #can.setFont("MiLanProVF", 24)
-            can.build([Paragraph(writer.replace("\n", "<br />"), getSampleStyleSheet()['Normal']),])
-
-            import shutil
-            source = namer
-            destination = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Generated_invoices'
-            dest = shutil.move(source, destination)  
-            time.sleep(1.5) #for a seamless experience
 
             #regin.close()
             with HiddenPrints():
@@ -848,8 +878,8 @@ while(1): #while (always) true
                     print(sender)
                 except Exception:
                     pass
-                    
-            print()
+
+
     #Register Customer
     elif decfac == 2:
         try:
@@ -1150,7 +1180,7 @@ while(1): #while (always) true
         x=Table(rows, colas, rowheights)
         t=Table(arterxout)
         t2=Table(xarterxout)
-        if tabarter == ['All products in stock.']:
+        if tabarter == ['--']:
             t7dot = ("<br /><br /><b>All listings currently in stock!</b><br /><br />")
         else:
             t7dot = ("<br /><br /><b>Products running low on stock: </b><br /><br />")
