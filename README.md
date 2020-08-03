@@ -17,8 +17,9 @@ Building off the DSMSAPL project, this official version revamp to DSMSAPL, knows
 
 This registry shall be regularly updated as changes are made. This updation is completely manual and hence may be delayed.
 
-<h3 align="center">Presenting DBFA Backup & Switch!!</h3>
-<h3 align="center">Presenting delta Authenication System v2!!</h3>
+<h3 align="center">New additions: </h3>
+<h4 align="center">Presenting DBFA Backup & Switch!</h4>
+<h4 align="center">Presenting delta Authenication System v2!</h4>
 
 <h4> </h4>
 <h1 align="center">Changelog:</h2>
