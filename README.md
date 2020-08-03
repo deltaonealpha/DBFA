@@ -30,6 +30,7 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h6 align="center">Now backup all your data for when you want to switch devices!</h6>
 <h6 align="center">Added progress bar for report generation.</h6>
 <h6 align="center">Billing skips payment when net = 0.</h6>
+<h6 align="center">Updated delta upstream.</h6>
 <h4> </h4>
 <h6 align="center">01/08/2020 - Added low-stock listing to report</h6>
 <h6 align="center">Introducing auto-generated store profit reports!</h6>
