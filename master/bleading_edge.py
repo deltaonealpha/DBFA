@@ -15,6 +15,7 @@
 
 import getpass, time, pathlib, sqlite3, sys, os #sys, os for system-level ops
 from tabularprint import table
+from tqdm import tqdm 
 
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -255,7 +256,8 @@ def repstockfetch():
         ssh7.execute("SELECT DISTINCT ssstock FROM sshandler WHERE prodid = ?;", (i,))
         a = [('%s'%(i)), namiex[i], "Stock Remaining: ", '%s'%(ssh7.fetchall()[0])]
         tabarter.append(a)
-repstockfetch()
+    if tabarter == []:
+        tabarter.append("All products in stock.")
 
 def repdatafetch():
     global charter, rows
@@ -574,7 +576,7 @@ def mainmenu(): #defining a function for the main menu
     print("'8' to VIEW OR UPDATE STOCK,")
     print("'9' to ISSUE COUPONS,")
     print("'10' to VIEW THE STORE REPORT,")
-    print("'11' to star the DBFA BACKUP & SWITCH process,")
+    print("'11' to start the DBFA BACKUP & SWITCH process,")
     print("and '12' to exit the framework.")
     print("~ enter the administrator code to enter CIT mode ~")
     print("---------------------------------------------")
@@ -1125,7 +1127,7 @@ while(1): #while (always) true
             )
             canvas.restoreState()
 
-
+        
         doc = SimpleDocTemplate("dbfastorerep.pdf", pagesize=A4,
                                             rightMargin=2*cm,leftMargin=1.5*cm,
                                             topMargin=1*cm,bottomMargin=2*cm)
@@ -1137,7 +1139,6 @@ while(1): #while (always) true
         t3dot = ("<br /><br /><b>Most sold listing: </b><br />")
         t4dot = ("<br /><br /><b>Total profit per listing: </b><br /><br />")
         t5dot = ("<br /><br /><b>Most profit making listing: </b><br /><br />")
-        t7dot = ("<br /><br /><b>Products running low on stock: </b><br /><br />")
         colas = (30, 300, 60, 50, 50)
         rowheights = (20, 20, 20, 20, 20,  20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,20,20,20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 )
         text1=Paragraph(t1dot)
@@ -1146,10 +1147,14 @@ while(1): #while (always) true
         text4=Paragraph(t4dot)
         text5=Paragraph(t5dot)
         text6=Paragraph(t6dot)
-        text7=Paragraph(t7dot)
         x=Table(rows, colas, rowheights)
         t=Table(arterxout)
         t2=Table(xarterxout)
+        if tabarter == ['All products in stock.']:
+            t7dot = ("<br /><br /><b>All listings currently in stock!</b><br /><br />")
+        else:
+            t7dot = ("<br /><br /><b>Products running low on stock: </b><br /><br />")
+        text7=Paragraph(t7dot)
         t3=Table(tabarter)
         tblStyle = TableStyle([('TEXTCOLOR',(0,0),(-1,-1),colors.black),
                             ('VALIGN',(0,0),(-1,-1),'TOP'),
@@ -1183,9 +1188,11 @@ while(1): #while (always) true
             onFirstPage=add_page_number,
             onLaterPages=add_page_number,)
         print("Report Created. ")
-        time.sleep(1)
+        for i in tqdm (range (100), desc="Publishing Report: "):
+            time.sleep(0.00001)
         print("Opening store report now")
         os.startfile('dbfastorerep.pdf')
+        time.sleep(2)
 
     #DBFA Backup&Switch
     elif decfac == 11:

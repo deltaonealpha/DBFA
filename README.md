@@ -28,6 +28,8 @@ This registry shall be regularly updated as changes are made. This updation is c
 <h6 align="center">Currently live for the backup system.</h6>
 <h5 align="center">Presenting DBFA Backup & Switch!</h5>
 <h6 align="center">Now backup all your data for when you want to switch devices!</h6>
+<h6 align="center">Added progress bar for report generation.</h6>
+<h4> </h4>
 <h6 align="center">01/08/2020 - Added low-stock listing to report</h6>
 <h6 align="center">Introducing auto-generated store profit reports!</h6>
 <h7 align="center">Creates a PDF with all profit details and highlights the most sold and most profit making products</h7>

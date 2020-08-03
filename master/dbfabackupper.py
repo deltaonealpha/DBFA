@@ -43,6 +43,8 @@ try:
         if os.path.exists(r'userblock.txt'):
             master = r'cponmgmtsys.db'
             shutil.copy(master, slave)
+            master = r'lastupdateid.txt'
+            shutil.copy(master, slave)
             time.sleep(0.0000000001)
             master = r'DBFA.db'
             shutil.copy(master, slave)
