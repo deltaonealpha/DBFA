@@ -83,15 +83,14 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 <h4>Changelog: MARK 6.7 DONNAGER (STABLE)</h4>
 
 <h5>Presenting a new ultra secure login system provisioning Telegram-based authenication!</h5>
-      <h6>Currently live for the backup system.</h6>
-      <h6></h6>
+<h6>    Currently live for the backup system.</h6>
+<h6>    </h6>
 <h5>Presenting DBFA Backup & Switch!</h5>
-
-<h5>More miscellaneous changes!</h5>
-      <h6>Now backup all your data for when you want to switch devices!</h6>
-      <h6></h6>
-      <h6>Merged communications upstream </h6>
-      <h6>Merged delta upstream.</h6>
-      <h6>Added progress bar for report generation.</h6>
-      <h6>Billing now skips payment when net = 0.</h6>
+<h6>    Now backup all your data for when you want to switch devices!</h6>
+<h6>    </h6>
+<h5>Other miscellaneous changes: </h5>
+<h6>    Merged communications upstream </h6>
+<h6>    Merged delta upstream.</h6>
+<h6>    Added progress bar for report generation.</h6>
+<h6>    Billing now skips payment when net = 0.</h6>
 <h4> </h4>
