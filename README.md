@@ -6,8 +6,8 @@ DBFA is a store management system like none other. From billing to inventory-man
 <h5 align="center">MARK 6.7 DONNAGER (STABLE): Presenting a completely new DBFA! More features, more stability, more security.</h5>
 
 ### Latest Additions:
-<h4>Presenting DBFA Backup & Switch!</h4>
-<h4>Presenting delta Authenication System v2!</h4>
+<h6>Presenting DBFA Backup & Switch!</h6>
+<h6>Presenting delta Authenication System v2!</h6>
 
 ## Getting Started
 
@@ -52,9 +52,9 @@ DBFA was natively-coded to run on Windows. Use modules compatible with your oper
 * [Sqlite](https://www.sqlite.org/index.html) - Data handled by Sqlite
 
 
-## Authors
+## Developer
 
-* **Pranav Balaji**
+**Pranav Balaji**
 <p align="center"><a href="https://t.me/DeltaOneAlpha">Contact Me!</p>
 
 List of [contributors](https://github.com/deltaonealpha/DBFA/contributors) who participated in this project.
@@ -64,9 +64,10 @@ List of [contributors](https://github.com/deltaonealpha/DBFA/contributors) who p
 This project is licensed under the GNU General Public License - Version 1.c, April 2020 - see the [LICENSE.md](LICENSE.md) file for more details.
 
 ## Changelog
+
 <h5>Presenting the biggest DBFA release ever since Mark 4!</h5>
 
-<h1>Changelog: MARK 6.7 DONNAGER (STABLE)</h2>
+<h4>Changelog: MARK 6.7 DONNAGER (STABLE)</h4>
 
 <h5>Presenting a new ultra secure login system provisioning Telegram-based authenication!</h5>
 <h6>Currently live for the backup system.</h6>
