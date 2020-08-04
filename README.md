@@ -6,8 +6,8 @@ DBFA is a store management system like none other. From billing to inventory-man
 <h5 align="center">MARK 6.7 DONNAGER (STABLE): Presenting a completely new DBFA! More features, more stability, more security.</h5>
 
 ### Latest Additions:
-<h6>Presenting DBFA Backup & Switch!</h6>
-<h6>Presenting delta Authenication System v2!</h6>
+<h5>Presenting DBFA Backup & Switch!</h5>
+<h5>Presenting delta Authenication System v2!</h5>
 
 ## Getting Started
 
@@ -16,8 +16,21 @@ See deployment for notes on how to deploy the project on a live system.
 ### Prerequisites
 
 ```
-getpass, time, pathlib, sqlite3, sys, os, requests, datetime, shutil, pandas
-opencv-python (cv2), win10toast, tabularprint, tqdm, colorama, reportlab
+getpass
+time
+pathlib
+sqlite3
+sys and os
+requests
+datetime
+shutil
+pandas
+opencv-python (cv2)
+win10toast
+tabularprint
+tqdm
+colorama
+reportlab
 ```
 
 ### Installing
@@ -55,7 +68,7 @@ DBFA was natively-coded to run on Windows. Use modules compatible with your oper
 ## Developer
 
 **Pranav Balaji**
-<p align="center"><a href="https://t.me/DeltaOneAlpha">Contact Me!</p>
+<p><a href="https://t.me/DeltaOneAlpha">Contact Me!</p>
 
 List of [contributors](https://github.com/deltaonealpha/DBFA/contributors) who participated in this project.
 
@@ -70,13 +83,15 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 <h4>Changelog: MARK 6.7 DONNAGER (STABLE)</h4>
 
 <h5>Presenting a new ultra secure login system provisioning Telegram-based authenication!</h5>
-<h6>Currently live for the backup system.</h6>
-<h6></h6>
+      <h6>Currently live for the backup system.</h6>
+      <h6></h6>
 <h5>Presenting DBFA Backup & Switch!</h5>
-<h6>Now backup all your data for when you want to switch devices!</h6>
-<h6></h6>
-<h6>Merged communications upstream </h6>
-<h6>Merged delta upstream.</h6>
-<h6>Added progress bar for report generation.</h6>
-<h6>Billing now skips payment when net = 0.</h6>
+
+<h5>More miscellaneous changes!</h5>
+      <h6>Now backup all your data for when you want to switch devices!</h6>
+      <h6></h6>
+      <h6>Merged communications upstream </h6>
+      <h6>Merged delta upstream.</h6>
+      <h6>Added progress bar for report generation.</h6>
+      <h6>Billing now skips payment when net = 0.</h6>
 <h4> </h4>
