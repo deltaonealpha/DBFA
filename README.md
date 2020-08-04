@@ -9,6 +9,12 @@ DBFA is a store management system like none other. From billing to inventory-man
 <h5>> Presenting DBFA Backup & Switch!</h5>
 <h5>> Presenting delta Authenication System v2!</h5>
 
+## Roadmap
+- [x] improve menu [NOT YET PUBLISHED]
+- [ ] points system
+- [ ] email invoices
+- [x] authenication system v2 
+
 ## Getting Started:
 
 See deployment for notes on how to deploy the project on a live system.
@@ -68,7 +74,7 @@ DBFA was natively-coded to run on Windows. Use modules compatible with your oper
 
 ## Developer:
 
-<p><a href="https://t.me/DeltaOneAlpha">**Pranav Balaji**</p>
+<p><a href="https://t.me/DeltaOneAlpha">Pranav Balaji</p>
 
 List of [contributors](https://github.com/deltaonealpha/DBFA/contributors) who participated in this project.
 
@@ -79,10 +85,11 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 ## Changelog:
 (yeah I write a shit ton here)
 
-<h5>Presenting the biggest DBFA release ever since Mark 4!</h5>
 
-<h4>Changelog: MARK 6.7 DONNAGER (STABLE)</h4>
-
+<h4>MARK 6.7 DONNAGER (STABLE)</h4>
+<h6>Presenting the biggest DBFA release ever since Mark 4!</h6>
+<h6>    </h6>
+<h6>    </h6>
 <h5>Presenting a new ultra secure login system provisioning Telegram-based authenication!</h5>
 <h6>    > Currently live for the backup system.</h6>
 <h6>    </h6>
