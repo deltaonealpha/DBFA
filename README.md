@@ -11,9 +11,10 @@ DBFA is a store management system like none other. From billing to inventory-man
 ## Latest Additions:
 <h5>> A radically new menu UI!</h5>
 <h5>> Presenting loyalty points!</h5>
-<h5>> OTP-based loyalty points usage!</h5>
-<h5>> DBFA now validates the entered customer ID</h5>
+<h5>> OTP-based loyalty points redemption!</h5>
+<h5>> DBFA now validates the entered customer ID.</h5>
 <h5>> DBFA now emails the invoice to registered customers!</h5>
+(off too many exclamations)
 
 
 ## Roadmap
