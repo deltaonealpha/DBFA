@@ -10,8 +10,9 @@ DBFA is a store management system like none other. From billing to inventory-man
 <h5>> Presenting delta Authenication System v2!</h5>
 
 ## Roadmap
-- [x] improve menu [NOT YET PUBLISHED]
+- [ ] improve menu
 - [ ] points system
+- [ ] otp-based points redemption system
 - [ ] email invoices
 - [x] authenication system v2 
 
