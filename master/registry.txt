@@ -3634,4 +3634,6 @@ Automated Store Registry:
 ----------------------------------------- 
 ed
 Automated Store Registry:
-Auth bypass - registering for security
+Auth bypass - registering for security----------------------------------------- 
+ed
+Automated Store Registry:
