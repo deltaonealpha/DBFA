@@ -17,15 +17,6 @@ import getpass, time, pathlib, sqlite3, sys, os #sys, os for system-level ops
 from tabularprint import table
 from tqdm import tqdm 
 
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-import math, random
-import smtplib
-from email.mime.multipart import MIMEMultipart 
-from email.mime.text import MIMEText 
-from email.mime.base import MIMEBase 
-from email import encoders 
-
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 pdfmetrics.registerFont(TTFont('MiLanProVF', r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\MiLanProVF.ttf'))
@@ -46,12 +37,6 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 import requests
 import cv2
 
-logox = ('''
-   _____   ____    ____  ____  _____
-  / /  // / /  \\ /___  /__||  |--// 
- / /  // / /===| ///// ////||    // 
-/_/__// /_/__ / /     /    ||   // 
-    ''')
 
 #auth verification
 if os.path.exists(r'userblock.zconf'):
@@ -102,16 +87,6 @@ def telegram_bot_sendtext(bot_message):
         send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
         response = requests.get(send_text)
         return response.json()
-
-def getOTP():
-    global otp
-    digits = "0123456789"
-    otp = ""
-    otp += (digits[math.floor(random.random() * 10)])
-    otp += (digits[math.floor(random.random() * 10)])
-    otp += (digits[math.floor(random.random() * 10)])
-    otp += (digits[math.floor(random.random() * 10)])
-
 
 # DBFA Logo Printer
 def logoprintxrt():
@@ -195,26 +170,22 @@ else:
 # Customer Records Master DB
 xon = sqlite3.connect(r'DBFA_CUSTCC.db')
 xbr7 = xon.cursor()
+#c.execute("DROP TABLE cust;")
 xbr7.execute("""CREATE TABLE IF NOT EXISTS custcc
-    (custid INTEGER PRIMARY KEY,
+    (custt INTEGER PRIMARY KEY,
     custname VARCHAR(500),
     purchasecount INTEGER,
-    ptotalx INTEGER,
-    points INTEGER);""")
+    ptotalx INTEGER);""")
 xon = sqlite3.connect('DBFA_CUSTCC.db')
 xbr7 = xon.cursor()
 if os.path.exists(r'DBFA_CUSTCC.db'):
     pass
 else:
     xbr7.execute("""CREATE TABLE IF NOT EXISTS custcc
-    (custid INTEGER PRIMARY KEY,
-    custname VARCHAR(500),
-    purchasecount INTEGER,
-    ptotalx INTEGER,
-    points INTEGER);""")
-
-
-
+        (custt INTEGER PRIMARY KEY,
+        custname VARCHAR(500),
+        purchasecount INTEGER,
+        ptotalx INTEGER);""")
  
 conn = sqlite3.connect('DBFA.db')
 if os.path.exists(r'DBFA.db'):
@@ -532,105 +503,41 @@ def cpon_masterfetch():
 # Customer System
 # Customer Record Creator
 def inserter(custt, custname, email):  #defining a function to input data into the SQL database's table
-    con = sqlite3.connect(r'DBFA.db')
-    conn = con.cursor()
+    global conn
     str = "insert into cust(custt, custname, email) values('%s', '%s', '%s')"
     io = (custt, custname, email)
     conn.execute(str % io)
-    con.commit()
+    conn.commit()
     print("Customer", custname, "registered in store directory")
 
 # Customer Purchase Updater
-def custcc(custid, purchasecount, ptotalx):  #defining a function to input data into the SQL database's table
+def custcc(custt, purchasecount, ptotalx):  #defining a function to input data into the SQL database's table
     global xon
     xon = sqlite3.connect(r'DBFA_CUSTCC.db')
     xbr7 = xon.cursor()
-    str = "insert into custcc(custid, purchasecount, ptotalx, points) values('%s', '%s', '%s', 0)"
-    io = (custid, purchasecount, ptotalx)
+    str = "insert into custcc(custt, purchasecount, ptotalx) values('%s', '%s', '%s')"
+    io = (custt, purchasecount, ptotalx)
     xbr7.execute(str % io)
     xon.commit()
     xbr7.close()
     print("FJHG")
 
 # Customer Purchase Updater
-def updatescript(custid, pincrement, billiemaster):
+def updatescript(custt, pincrement):
     try:
         xon = sqlite3.connect('DBFA_CUSTCC.db')
         xbr7 = xon.cursor()
         # hidden prints here ig
-        points = (billiemaster/100)*1
-        updatexr = """UPDATE custcc SET purchasecount = purchasecount + 1 WHERE custid = ?"""
-        updatexxr = """UPDATE custcc SET ptotalx = ptotalx + ? WHERE custid = ?"""
-        updatexxxr = """UPDATE custcc SET points = points + ? WHERE custid = ?"""
-        indicator = (custid, )
-        xrindicator = (pincrement, custid)
-        pindicator = (points, custid)
+        updatexr = """UPDATE custcc SET purchasecount = purchasecount + 1 WHERE custt = ?"""
+        updatexxr = """UPDATE custcc SET ptotalx = ptotalx + ? WHERE custt = ?"""
+        indicator = (custt)
+        xrindicator = (pincrement, custt)
         xbr7.execute(updatexr, indicator)
         xbr7.execute(updatexxr, xrindicator)
-        xbr7.execute(updatexxxr, pindicator)
         xon.commit()
         xbr7.close()
     except sqlite3.Error as error:
         pass
-
-def pointfetch(custid):
-    global lylpoints
-    lylpoints = 0
-    xon = sqlite3.connect('DBFA_CUSTCC.db')
-    xbr7 = xon.cursor()
-    findinx = "select points from custcc WHERE custid = ?"
-    findinxx = (custid, )
-    xbr7.execute(findinx, findinxx)
-    arterxout = xbr7.fetchall()
-    lylpoints = int((arterxout[0])[0])
-
-
-def pointmassfetch():
-    xon = sqlite3.connect('DBFA_CUSTCC.db')
-    xbr7 = xon.cursor()
-    findinx = "select DISTINCT points from custcc"
-    xbr7.execute(findinx)
-    rows = xbr7.fetchall()
-    for row in rows:
-        print(row[0])
-
-def pointsuse(custid, deduct):
-    xon = sqlite3.connect('DBFA_CUSTCC.db')
-    xbr7 = xon.cursor()
-    updatexxxr = """UPDATE custcc SET points = points - ? WHERE custid = ?"""
-    pindicator = (deduct, custid)
-    xbr7.execute(updatexxxr, pindicator)
-    xon.commit()
-    xbr7.close()
-
-def emailfetch(custid):
-    global custmail
-    con = sqlite3.connect(r'DBFA.db')
-    conn = con.cursor()
-    findinx = "select DISTINCT email from cust WHERE custt = ?"
-    findinxx = (custid, )
-    conn.execute(findinx, findinxx)
-    rows = conn.fetchall()
-    custmail = (rows[0][0])
-
-global custcheckindic
-
-def custcheck(custt):
-    
-    custcheckindic = 0
-    con = sqlite3.connect(r'DBFA.db')
-    conn = con.cursor()
-    conn.execute("SELECT custt FROM cust WHERE custt = ?", (custt,))
-    data = conn.fetchall()
-    if len(data)==0:
-        custcheckindic = 0
-        print("Customer", custt, "NOT found. ")
-        print("- No customer selected -")
-    else:
-        ccustcheckindic = 1
-        pass
-
-
 
 
 def floodscreen():
@@ -649,38 +556,81 @@ def floodpay():
 
 
 # Main Menu
-# New Main Menu
 def mainmenu(): #defining a function for the main menu
     from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
     init(convert = True)
-    logox = (Fore.BLUE+'''       _____   ____    ____  ____   ____    Options:
-      / /  // / /  \\  /___  /__||  |--//      1: Issue a Bill                          4: Auto-Generate Store Report 
-     / /  // / /===| ///// ////||    //       2: Manage Customers                      
-    /_/__// /_/__ / /     /    ||   //              a: Register a Customer             5: Start DBFA Backup&Switch
-                                                    b: Customer Registry               
-    ''' + 'A word from our partner: ' + Fore.BLACK + Back.CYAN + 'HOTEL? Trivago!' + Back.BLACK + Fore.BLUE + '''        c: Customer Purchase Records       6: View Software License
-                                                    d: Find a Customer                                
-                                              3: Store Options:                        7: Quit
-                                                    a: Manage Stock
-                                                    b: Manage Vouchers                 
-                                                    c: Product Listing
-                                                    d: Sales Log
+    print(Fore.RED) #red-line to indicate program start
+    print("---------------------------------------------")
+    print(Fore.WHITE)
+    print('A word from our partner: ' + Fore.BLACK + Back.CYAN + 'HOTEL? Trivago!') #Text over here #Custom advert
+    print(Style.RESET_ALL) 
+    print("DBFA Store Manager:")
+    print("Enter: ") 
+    print("1: INVOICING")
+    print("2: REGISTER A CUSTOMER,")
+    print("3: VIEW REGISTERED CUSTOMERS,")
+    print("4: VIEW CUSTOMER PURCHASE RECORDS")
+    print("5: OPEN THE STORE LOG,")
+    print("6: REVIEW STORE LISTING,")
+    print("7: LICENSING INFORMATION,")
+    print("8: STOCK MANAGER,")
+    print("9: VOUCHER MANAGER,")
+    print("10: DBFA STORE REPORT,")
+    print("11: DBFA BACKUP & SWITCH process,")
+    print("and '12' to exit.")
+    print("~ enter the administrator code to enter CIT mode ~")
+    print("---------------------------------------------")
+    print()
+    print()
+ 
 
-                                              - enter CIT code to view more options -
-    ''' + Fore.WHITE)                                                                       
-    print(logox)
+# New Main Menu under construction
+def xmainmenu(): #defining a function for the main menu
+    from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+    init(convert = True)
+    print("DBFA Store Manager:")
+    print("Options: ") 
+    print("1: Issue a Bill")
+    print("2: Manage Customers")
+    print("    a: Register a Customer")
+    print("    b: Customer Registry")
+    print("    b: Customer Purchase Records")
+    print("-----")
+    print("3: Store Options:")
+    print("    a: Manage Stock")
+    print("    b: Manage Vouchers")
+    print("    c: Product Listing")
+    print("    d: Sales Log")
+    print("-----")
+    print("4: Auto-Generate Store Report")
+    print("5: Start DBFA Backup&Switch")
+    print("6: View Software License,")
+    print("7: Quit")
+    print("- enter CIT code to view more options -")
+    print(Fore.RED) #red-line to indicate program start
+    print("---------------------------------------------")
+    print(Fore.WHITE)
+    print('A word from our partner: ' + Fore.BLACK + Back.CYAN + 'HOTEL? Trivago!') #Text over here #Custom advert
+    print(Fore.RED) #red-line to indicate program start
+    print("---------------------------------------------")
+    print(Style.RESET_ALL) 
     print()
     print()
 
 
 
-def xpayboxie():
+# Payments Handler
+def payboxie():
     command = "cls"
     os.system(command)
-    global xrt, payindic
+    global payindic
+    global xrt
     xrt = 0
+    payindic = 0
     from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
-    print("Amount to pay: ", netpay)
+    print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
+    init(convert = True)
+    print("Amount to be paid: ₹","%.2f" % total)
     print("Payment methods available: ")
     print("1. Credit/ Debit Card")
     print("2. Digital Wallet")
@@ -705,111 +655,6 @@ def xpayboxie():
     else:
         payboxie()
 
-
-# Payments Handler
-def payboxie(custid, total):
-    global custcheckindic
-    if custt not in ("", " ", None):
-        command = "cls"
-        os.system(command)
-        global payindic, netpay, redeemindic
-        xrt = 0
-        redeemindic = 0
-        payindic = 0
-        from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
-        print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
-        init(convert = True)
-        print("Amount to be paid: ₹","%.2f" % total)
-        print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
-        pointfetch(custid)
-        if lylpoints != 0:
-            print("You have loyalty points: ", lylpoints, "worth: ", lylpoints)
-            time.sleep(0.5)
-            pointscheck = input("Use points (y/n)? ")
-            print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
-            if pointscheck == "y":
-                getOTP()
-                emailfetch(custid)
-                print("Please wait..")
-                email = 'billing.dbfa@gmail.com'
-                password = 'dbfaidlepass'
-                send_to_email = custmail
-                subject = 'Redeem your DBFA loyalty points'
-                messageHTML = ('''
-                <h1><span style="color: #496dd0">Redeem your DBFA loyalty points?</span></h1>
-                <h6> </h6>
-                <h5>Points to be redeemed: ''' + "%s"%lylpoints + '''</h5>
-                <h4>One-time password: <span style="color: #496dd0">''' + "%s"%otp + '''</span></h5>
-                <h6> </h6>
-                <h6> </h6>
-                <h4>When you share this OTP with a DBFA-store, you authorize us to use your loyalty points to discount your purchase.</h4>
-                <h6> </h6>
-                <h6> </h6>
-                <h5>Do not share this OTP with any third party.</h5>
-                <h5>DBFA or any of its affiliates will not be resposible in anyway for any implications this OTP or any part of it might have on anyone in any way.</h5>
-                ''')
-                messagePlain = 'DBFA Security'
-                msg = MIMEMultipart('alternative')
-                msg['From'] = email
-                msg['To'] = send_to_email
-                msg['Subject'] = subject
-                # Attach both plain and HTML versions
-                msg.attach(MIMEText(messagePlain, 'plain'))
-                msg.attach(MIMEText(messageHTML, 'html'))
-                server = smtplib.SMTP('smtp.gmail.com', 587)
-                server.starttls()
-                server.login(email, password)
-                text = msg.as_string()
-                server.sendmail(email, send_to_email, text)
-                server.quit()
-                otpverif = input("Enter the OTP recieved on " + "%s"%custmail + ": ")
-                if otpverif == otp:
-                    if total > lylpoints:
-                        total = total - lylpoints
-                        pointsuse(custid, lylpoints)
-                        print("New total: ", total)
-                        time.sleep(2)
-                        redeemindic = 1
-                        netpay = total
-                    else:
-                        total = 0
-                        netpay = 0
-                        pointsuse(custid, total)
-                    time.sleep(0.3)
-                    print("Points redeemed worth: ", lylpoints)
-                else:
-                    print("Wrong OTP. (1) attempt(s) remaining")
-                    time.sleep(0.2)
-                    otpverif = input("Enter the OTP recieved on ", ": ")
-                    if otpverif == otp:
-                        if total > lylpoints:
-                            total = total - lylpoints
-                            pointsuse(custid, lylpoints)
-                            print("New total: ", total)
-                            time.sleep(2)
-                            redeemindic = 1
-                            netpay = total
-                        else:
-                            total = 0
-                            netpay = 0
-                            pointsuse(custid, total)
-                            time.sleep(0.3)
-                            print("Points redeemed worth: ", lylpoints)
-                    else:
-                        print("Wrong OTP. (0) attempt(s) remaining")
-                        time.sleep(0.2)
-            elif pointscheck == "n":
-                redeemindic = 0
-                netpay = total
-            else:
-                pass
-            time.sleep(1)
-            os.system(command)
-        else:
-            netpay = total
-    else:
-        redeemindic = 0
-        netpay = total
 
 
 
@@ -896,10 +741,6 @@ while(1): #while (always) true
         print("--- BIlling ---")
         print()
         custt = input("Customer ID (optional)): ")
-        if custt == "":
-            pass
-        else:
-            custcheck(custt)
         logger.write("-----------------  ") #writing to log file
         logger.write("Cust. ID: \n")
         logger.write(custt)
@@ -912,7 +753,6 @@ while(1): #while (always) true
         time.sleep(0.3) #for a seamless experience
         telethon = "DBFA Billing System" + "\n" + dt_string + "\n" + "Customer: " + custt + "\n"
         writer = writer + "DBFA Billing Framework" + "\n" + "One-stop solution for all your billing needs!" + "\n" + "\n" + "Billing time: " + dt_string + "\n" + "Customer ID: " + custt + "\n" + "-----------------------------" + "\n" + "\n"
-        global billiemaster
         billiemaster = 0 #variable for totalling the price
         time.sleep(0.2) #for a seamless experience
         afac = 0
@@ -981,8 +821,7 @@ while(1): #while (always) true
             discountx = '%d' % discount
             telethon = telethon + "\n" + "Tax amount: 18%" + "\n"  + "Discount: " + discountx + "%" + "\n" + "\n"
             writer = writer + "\n" + "\n" + "-----------------------------" + "\n" + "Tax amount: 18%"  + "\n"  + discountx + "\n"  + "\n" 
-            payboxie(custt, total)
-            xpayboxie()
+            payboxie()
             if xrt == 1:
                 writer = writer + "----------------- BILLING CYCLE CANCELLED -------------------"    
                 break
@@ -1005,10 +844,8 @@ while(1): #while (always) true
                 print(discountstr, "₹","%.2f" % (((discount)/100)*billiemaster))
                 print("IGST             : ₹","%.2f" % ((9/100)*billiemaster))
                 print("CGST             : ₹","%.2f" % ((9/100)*billiemaster))
-                if redeemindic == 1:
-                    print("Redeemed loyalty points worth: ₹",lylpoints)
                 print("-------------------------------------------------------------------------")
-                print("Amount to be paid: ₹","%.2f" % netpay)
+                print("Amount to be paid: ₹","%.2f" % total)
                 print("-------------------------------------------------------------------------")
                 toaster.show_toast("DFBA Billing:  Total billed for-",str(total), duration = 1)
                 logger.write("Total amount billed for: \n") #writing to file
@@ -1019,7 +856,7 @@ while(1): #while (always) true
                 logger.write("\n")
                 #regin.write(str(total))
                 #regin.write("\n")
-                updatescript(custt, total, billiemaster) #adds billed amount to the customer's record
+                updatescript(custt, total) #adds billed amount to the customer's record
                 abcd1+=1
                 afac+=1
                 now = datetime.now()
@@ -1037,32 +874,6 @@ while(1): #while (always) true
                 destination = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Generated_invoices'
                 dest = shutil.move(source, destination)  
                 time.sleep(1.5) #for a seamless experience
-
-
-                if custt != "":
-                    emailfetch(custt)
-                    print("Please wait..")
-                    fromaddr = "billing.dbfa@gmail.com"
-                    toaddr = custmail
-                    msg = MIMEMultipart() 
-                    msg['From'] = fromaddr 
-                    msg['To'] = toaddr 
-                    msg['Subject'] = "Your DBFA Purchase Invoice"
-                    body = """Thanks for making your purchase at DBFA!\n\nPlease find your invoice attached herewith.\n\nRegards\nThe DBFA Team"""
-                    msg.attach(MIMEText(body, 'plain')) 
-                    filename = namer
-                    attachment = open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\\Generated_invoices\\'+'%s'%namer, "rb") 
-                    attac= MIMEBase('application', 'octet-stream') 
-                    attac.set_payload((attachment).read()) 
-                    encoders.encode_base64(attac) 
-                    attac.add_header('Content-Disposition', "attachment; filename= %s" % filename) 
-                    msg.attach(attac) 
-                    email = smtplib.SMTP('smtp.gmail.com', 587)  
-                    email.starttls() 
-                    email.login(fromaddr, "dbfaidlepass") 
-                    message = msg.as_string() 
-                    email.sendmail(fromaddr, toaddr, message) 
-                    print("Invoice mailed. ")
 
                 #regin.close()
                 with HiddenPrints():
@@ -1102,275 +913,248 @@ while(1): #while (always) true
                     pass
 
 
-    #Manage Customers
+    #Register Customer
     elif decfac == 2:
-        print("Select: ")
-        print("    a: Register a Customer ")
-        print("    b: Customer Registry ")
-        print("    c: Customer Purchase Records ")    
-        selected = input("    d: Find a Customer: ")
-        if selected in ("a", "A"):
-            try:
-                if os.path.exists(r'userblock.txt'):
-                    os.remove(r'userblock.txt')
-                if os.path.exists(r'userblock.zconf'):
-                    os.remove(r'userblock.zconf')
-            except PermissionError:
-                    pass
-            print("Connecting to server..")  #SQL connection prompt
-            time.sleep(0.4)  #for a seamless experience
-            #conn.execute("select * from cust")
-            #takes values from the SQL database
-            conn = sqlite3.connect('DBFA.db')
-            cursor = conn.cursor()
-            cursor.execute("select * from cust")
-            results = cursor.fetchall()
-            idd = len(results)+1
-            print("Registering customer with ID: ", idd)
-            custname = input("Customer Name: ")
-            email = input("Customer's E-mail ID: ")
-            inserter(idd, custname, email) #argumental function to insert values into the SQL database
-            nullvalue = 0
-            custcc(idd, nullvalue, nullvalue)
-            print(" ")
-            logger.write("--------------------------------------- \n")
-            logger.write("  \n")
-            logger.write("Date and time: ") #including the date and time of billing (as taken from the system)
-            logger.write(dt_string)
-            logger.write(" \n")
-            logger.write("New customer registered: ")
-            x = " custname: " + custname + " custemail: " + email + "\n"
-            logger.write(x)
-            logger.write("--------------------------------------- \n")
-            print("Customer ID", idd, "registered in directory.")
-            print("---------------------------------------")
-            print(" ")
-            print(" ")
-            #conn.close()
-            time.sleep(1) #for a seamless experience
-
-        if selected in ("b", "B"):
-            try:
-                if os.path.exists(r'userblock.txt'):
-                    os.remove(r'userblock.txt')
-                if os.path.exists(r'userblock.zconf'):
-                    os.remove(r'userblock.zconf')
-            except PermissionError:
-                    pass
-            print()
-            print("Connecting to server..")  #SQL connection prompt
-            time.sleep(0.7) #for a seamless experience
-            print("Registered customers are: ")
-            #Re-writing to refresh connection
-            conn = sqlite3.connect('DBFA.db')
-            cur = conn.cursor()
-            cur.execute("SELECT * FROM cust")
-            rows = cur.fetchall()
-            col_labels = ("ID", "Customer NAME", "EMAIL")
-            table(col_labels, rows)
-            toaster.show_toast("DNSS QuickSync", "Database acessed", duration = 2)
-            #takes values from the SQL database
-            '''
-            while row is not None:
-                print(row)
-                #row = conn.fetchone()
-            '''
-            logger.write("--------------------------------------- \n")
-            logger.write("  \n")
-            logger.write("Date and time: ") #including the date and time of billing (as taken from the system)
-            logger.write(dt_string)
-            logger.write(" \n")
-            logger.write("Customer registry accessed! \n")
-            logger.write("--------------------------------------- \n")
-            conn.close()
-            conn.close()
-            print()
-            print()
-            time.sleep(2) #delay for easy-table viewing
-
-
-        if selected in ("c", "C"):
-            try:
-                if os.path.exists(r'userblock.txt'):
-                    os.remove(r'userblock.txt')
-                if os.path.exists(r'userblock.zconf'):
-                    os.remove(r'userblock.zconf')
-            except PermissionError:
-                    pass
-            xon = sqlite3.connect(r'DBFA_CUSTCC.db')
-            xbr7 = xon.cursor()
-            xbr7.execute("SELECT * FROM custcc")
-            l = xbr7.fetchall()
-            print("Customer Purchase Records: ")
-
-            import pandas as pd
-
-            flat_list = []
-            for sublist in l:
-                flat_list.append(sublist)
-            mydf = pd.DataFrame(flat_list, columns=['Customer ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points'])
-            mydf.pivot(index='Customer ID', columns='Purchases Made', values='Total').fillna(value='-')
-            print(mydf)
-            time.sleep(2)
-            
-            '''
-            for row in rows:
-                print(row)
-                print(" ")
-            '''
-            xbr7.close()
-            toaster.show_toast("DFBA QuickSync", "Database acessed", duration = 0.5) 
-
-        elif selected in ("d", "D"):
-            print("Option coming soon! ")
-
-        elif selected not in ("a", "b", "c", "d", "A", "B", "C", "D"):
-            print("Please chose a valid option!")
-            time.sleep(1)
-        
-
-    #Store Options:
+        try:
+            if os.path.exists(r'userblock.txt'):
+                os.remove(r'userblock.txt')
+            if os.path.exists(r'userblock.zconf'):
+                os.remove(r'userblock.zconf')
+        except PermissionError:
+                pass
+        print("Connecting to server..")  #SQL connection prompt
+        time.sleep(0.4)  #for a seamless experience
+        #conn.execute("select * from cust")
+        #takes values from the SQL database
+        conn = sqlite3.connect('DBFA.db')
+        cursor = conn.cursor()
+        cursor.execute("select * from cust")
+        results = cursor.fetchall()
+        idd = len(results)+1
+        print("Registering customer with ID: ", idd)
+        custname = input("Customer Name: ")
+        email = input("Customer's E-mail ID: ")
+        inserter(idd, custname, email) #argumental function to insert values into the SQL database
+        nullvalue = 0
+        custcc(idd, nullvalue, nullvalue)
+        print(" ")
+        logger.write("--------------------------------------- \n")
+        logger.write("  \n")
+        logger.write("Date and time: ") #including the date and time of billing (as taken from the system)
+        logger.write(dt_string)
+        logger.write(" \n")
+        logger.write("New customer registered: ")
+        x = " custname: " + custname + " custemail: " + email + "\n"
+        logger.write(x)
+        logger.write("--------------------------------------- \n")
+        print("Customer ID", idd, "registered in directory.")
+        print("---------------------------------------")
+        print(" ")
+        print(" ")
+        #conn.close()
+        time.sleep(1) #for a seamless experience
+    #VIEW ALL CUSTOMERS
     elif decfac == 3:
-        print("Select: ")
-        print("    a: Manage Stock ")
-        print("    b: Manage Vouchers ")
-        print("    c: Product Listing ")
-        storeselected = input("    d: Sales Log: ")
+        try:
+            if os.path.exists(r'userblock.txt'):
+                os.remove(r'userblock.txt')
+            if os.path.exists(r'userblock.zconf'):
+                os.remove(r'userblock.zconf')
+        except PermissionError:
+                pass
+        print()
+        print("Connecting to server..")  #SQL connection prompt
+        time.sleep(0.7) #for a seamless experience
+        print("Registered customers are: ")
+        #Re-writing to refresh connection
+        conn = sqlite3.connect('DBFA.db')
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM cust")
+        rows = cur.fetchall()
+        col_labels = ("ID", "Customer NAME", "EMAIL")
+        table(col_labels, rows)
+        toaster.show_toast("DNSS QuickSync", "Database acessed", duration = 2)
+        #takes values from the SQL database
+        '''
+        while row is not None:
+            print(row)
+            #row = conn.fetchone()
+        '''
+        logger.write("--------------------------------------- \n")
+        logger.write("  \n")
+        logger.write("Date and time: ") #including the date and time of billing (as taken from the system)
+        logger.write(dt_string)
+        logger.write(" \n")
+        logger.write("Customer registry accessed! \n")
+        logger.write("--------------------------------------- \n")
+        conn.close()
+        conn.close()
+        print()
+        print()
+        time.sleep(2) #delay for easy-table viewing
 
-        if storeselected in ("a", "A"):
-            decsfacter = str(input("Enter 'a' to VIEW STOCK, 'b' to ADD STOCK and 'c' to ENFORCE MASS STOCK: "))
-            if decsfacter == "a":
-                ssxsuperfetch()
-            elif decsfacter == "b":
-                objid = int(input("Enter the product ID to add stock for: "))
-                stockincrement = int(input("Enter the amount of stock to be added: "))
-                ssxupdatescript(stockincrement, objid)
-                print("Stock updated by", stockincrement, "for product ID:", objid)
-            elif decsfacter == "c":
-                ggrtrr = int(input("Enter stock to universally enforce: "))
-                massmaintainer(ggrtrr)
-            
+    #View Customer Purchase Records
+    elif decfac == 4:
+        try:
+            if os.path.exists(r'userblock.txt'):
+                os.remove(r'userblock.txt')
+            if os.path.exists(r'userblock.zconf'):
+                os.remove(r'userblock.zconf')
+        except PermissionError:
+                pass
+        xon = sqlite3.connect(r'DBFA_CUSTCC.db')
+        xbr7 = xon.cursor()
+        xbr7.execute("SELECT * FROM custcc")
+        l = xbr7.fetchall()
+        print("Customer Purchase Records: ")
+
+        import pandas as pd
+
+        flat_list = []
+        for sublist in l:
+            flat_list.append(sublist)
+        mydf = pd.DataFrame(flat_list, columns=['Customer ID', 'Name', 'Purchases Made', 'Total'])
+        mydf.pivot(index='Customer ID', columns='Purchases Made', values='Total').fillna(value='-')
+        print(mydf)
+        time.sleep(2)
         
-        if storeselected in ("b", "B"):
-            print("Enter '1' to generate a voucher; ")
-            descx = int(input("'2' to view generated vouchers: "))
-            if descx == 1:
-                print("DNSS CouponMaster: Issuer")
-                print("NOTE: Reusing existing coupon codes may result in overwritten data.")
-                cponid = input("Coupon ID: ")
-                cponlim = input("Number of times to allow coupon usage: ")
-                cponvalue = input("Coupon discount percentage: ")
-                cponissuer(cponid, cponlim, cponvalue)
+        '''
+        for row in rows:
+            print(row)
+            print(" ")
+        '''
+        xbr7.close()
+        toaster.show_toast("DFBA QuickSync", "Database acessed", duration = 0.5) 
+    
+    #View Generated Bills
+    elif decfac == 5:
+        try:
+            if os.path.exists(r'userblock.txt'):
+                os.remove(r'userblock.txt')
+            if os.path.exists(r'userblock.zconf'):
+                os.remove(r'userblock.zconf')
+        except PermissionError:
+                pass
+        #password verification as sales record is not to be shown to all;
+        print(" - Echo-supressed input - ")
+        passw = getpass.getpass(prompt='Enter root password to view store activity registry: ', stream=None)
+        logger.write("  \n")
+        logger.write("Date and time: ") #including the date and time of billing (as taken from the system)
+        logger.write(dt_string)
+        logger.write(" \n")
+        if passw == "root":
+                time.sleep(1) #for a seamless experience
+                print("Hold on, moneybags.")
+                with HiddenPrints():
+                    try:
+                        sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files accessed - DBFA SECURITY")
+                        print(sender)
+                    except Exception:
+                        pass
                 time.sleep(0.4)
-            elif descx == 2:
-                print("DNSS CouponMaster: Viewer")
-                cpon_masterfetch()
-                time.sleep(0.4)
-
-        if storeselected in ("c", "C"):
-            try:
-                if os.path.exists(r'userblock.txt'):
-                    os.remove(r'userblock.txt')
-                if os.path.exists(r'userblock.zconf'):
-                    os.remove(r'userblock.zconf')
-            except PermissionError:
-                    pass
-            print("Store listing (as per updated records): ")
-            print(tabulate(tablx, headers = titlex, floatfmt = ".4f"))
-
-        if storeselected in ("d", "D"):
-            try:
-                if os.path.exists(r'userblock.txt'):
-                    os.remove(r'userblock.txt')
-                if os.path.exists(r'userblock.zconf'):
-                    os.remove(r'userblock.zconf')
-            except PermissionError:
-                    pass
-            #password verification as sales record is not to be shown to all;
+                print("Here:: ")
+                time.sleep(0.2) #for a seamless experience 
+                logger.write("Log file access attempt - Oauth complete \n")
+                logger.close() #to change file access modes 
+                logger = open("registry.txt", "r+")
+                # Uncomment the below lines if the program has to be modified to show the records in the shell itself and not externally
+                # print(logger.read())
+                # print()
+                # print("Opening sales log externally now. ")
+                time.sleep(1.4) #for a seamless experience
+                os.startfile('registry.txt') #to open the external notepad application
+        else:
+            
+            logger.write("  \n")
+            logger.write("Date and time: ")  #including the date and time of billing (as taken from the system)
+            logger.write(dt_string)
+            logger.write(" \n")
+            time.sleep(1) #for a seamless experience
+            logger.write("Log file access attempt - Oauth failiure!!! \n")
+            print("Ehh that'd be wrong, sneaky-hat. Try again: ")
+            print(" ")
             print(" - Echo-supressed input - ")
             passw = getpass.getpass(prompt='Enter root password to view store activity registry: ', stream=None)
-            logger.write("  \n")
-            logger.write("Date and time: ") #including the date and time of billing (as taken from the system)
-            logger.write(dt_string)
-            logger.write(" \n")
             if passw == "root":
                     time.sleep(1) #for a seamless experience
                     print("Hold on, moneybags.")
                     with HiddenPrints():
                         try:
-                            sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files accessed - DBFA SECURITY")
+                            sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files accessed - DBFA SECURITY: ATTEMPT 02")
                             print(sender)
                         except Exception:
                             pass
-                    time.sleep(0.4)
-                    print("Here:: ")
-                    time.sleep(0.2) #for a seamless experience 
-                    logger.write("Log file access attempt - Oauth complete \n")
+                    print("There ya go:: ")
+                    time.sleep(0.6) #for a seamless experience
+                    logger.write("  \n")
+                    logger.write("Date and time: \n") #including the date and time of billing (as taken from the system)
+                    logger.write(dt_string)
+                    logger.write(" \n")
+                    logger.write("Log file access attempt - AUTHORIZATION SUCCESS \n")
                     logger.close() #to change file access modes 
-                    logger = open("registry.txt", "r+")
-                    # Uncomment the below lines if the program has to be modified to show the records in the shell itself and not externally
+                    logger = open("log.txt","r+")  
                     # print(logger.read())
                     # print()
                     # print("Opening sales log externally now. ")
                     time.sleep(1.4) #for a seamless experience
-                    os.startfile('registry.txt') #to open the external notepad application
+                    os.startfile('log.txt')
             else:
-                
-                logger.write("  \n")
-                logger.write("Date and time: ")  #including the date and time of billing (as taken from the system)
-                logger.write(dt_string)
-                logger.write(" \n")
-                time.sleep(1) #for a seamless experience
-                logger.write("Log file access attempt - Oauth failiure!!! \n")
-                print("Ehh that'd be wrong, sneaky-hat. Try again: ")
-                print(" ")
-                print(" - Echo-supressed input - ")
-                passw = getpass.getpass(prompt='Enter root password to view store activity registry: ', stream=None)
-                if passw == "root":
-                        time.sleep(1) #for a seamless experience
-                        print("Hold on, moneybags.")
-                        with HiddenPrints():
-                            try:
-                                sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files accessed - DBFA SECURITY: ATTEMPT 02")
-                                print(sender)
-                            except Exception:
-                                pass
-                        print("There ya go:: ")
-                        time.sleep(0.6) #for a seamless experience
-                        logger.write("  \n")
-                        logger.write("Date and time: \n") #including the date and time of billing (as taken from the system)
-                        logger.write(dt_string)
-                        logger.write(" \n")
-                        logger.write("Log file access attempt - AUTHORIZATION SUCCESS \n")
-                        logger.close() #to change file access modes 
-                        logger = open("log.txt","r+")  
-                        # print(logger.read())
-                        # print()
-                        # print("Opening sales log externally now. ")
-                        time.sleep(1.4) #for a seamless experience
-                        os.startfile('log.txt')
-                else:
-                    with HiddenPrints():
-                        try:
-                            sender = telegram_bot_sendtext(dt_string + "\n" + "[ACCESS DENIED!!] - Registry file  - DBFA SECURITY [ACCESS DENIED!!]")
-                            print(sender)
-                        except Exception:
-                            pass
-                    print("Multiple Unsuccesfull Attempts Detected. Re-run the program to login now. ")
-                    logger.write("(MULTIPLE ATTEMPTS!): Log file access attempt - AUTHORIZATION FAILED!!! \n")
-                    time.sleep(1.4) #for a seamless experience
-                    print()
-                    print()
+                with HiddenPrints():
+                    try:
+                        sender = telegram_bot_sendtext(dt_string + "\n" + "[ACCESS DENIED!!] - Registry file  - DBFA SECURITY [ACCESS DENIED!!]")
+                        print(sender)
+                    except Exception:
+                        pass
+                print("Multiple Unsuccesfull Attempts Detected. Re-run the program to login now. ")
+                logger.write("(MULTIPLE ATTEMPTS!): Log file access attempt - AUTHORIZATION FAILED!!! \n")
+                time.sleep(1.4) #for a seamless experience
+                print()
+                print()
+    #View Listing Option
+    elif decfac == 6:
+        try:
+            if os.path.exists(r'userblock.txt'):
+                os.remove(r'userblock.txt')
+            if os.path.exists(r'userblock.zconf'):
+                os.remove(r'userblock.zconf')
+        except PermissionError:
+                pass
+        print("Store listing (as per updated records): ")
+        print(tabulate(tablx, headers = titlex, floatfmt = ".4f"))
 
-        elif storeselected not in ("a", "b", "c", "d", "A", "B", "C", "D"):
-            print("Please select a valid option! ")
-            time.sleep(1)
-            mainmenu()
+    #Stock Master
+    elif decfac == 8:
+        decsfacter = str(input("Enter 'a' to VIEW STOCK, 'b' to ADD STOCK and 'c' to ENFORCE MASS STOCK: "))
+        if decsfacter == "a":
+            ssxsuperfetch()
+        elif decsfacter == "b":
+            objid = int(input("Enter the product ID to add stock for: "))
+            stockincrement = int(input("Enter the amount of stock to be added: "))
+            ssxupdatescript(stockincrement, objid)
+            print("Stock updated by", stockincrement, "for product ID:", objid)
+        elif decsfacter == "c":
+            ggrtrr = int(input("Enter stock to universally enforce: "))
+            massmaintainer(ggrtrr)
 
-
+    #Coupon Master
+    elif decfac == 9:
+        print("Enter '1' to generate a voucher; ")
+        descx = int(input("'2' to view generated vouchers: "))
+        if descx == 1:
+            print("DNSS CouponMaster: Issuer")
+            print("NOTE: Reusing existing coupon codes may result in overwritten data.")
+            cponid = input("Coupon ID: ")
+            cponlim = input("Number of times to allow coupon usage: ")
+            cponvalue = input("Coupon discount percentage: ")
+            cponissuer(cponid, cponlim, cponvalue)
+            time.sleep(0.4)
+        elif descx == 2:
+            print("DNSS CouponMaster: Viewer")
+            cpon_masterfetch()
+            time.sleep(0.4)
 
     #Reports
-    elif decfac == 4:
+    elif decfac == 10:
         command = "cls"
         os.system(command)
         print("-- Generating store report --")
@@ -1382,7 +1166,7 @@ while(1): #while (always) true
         # Print the maximum score
         netr = recx.fetchone()[0]
         findin = "select prodid, prodname, prodprofit, prodsales, netprof from recmasterx WHERE prodsales = ?"
-        arterx = (str(int(netr)),)
+        arterx = str(int(netr))
         recx.execute(findin, arterx)
         arterxout = recx.fetchall()
 
@@ -1473,14 +1257,12 @@ while(1): #while (always) true
         os.startfile('dbfastorerep.pdf')
         time.sleep(2)
 
-
-
     #DBFA Backup&Switch
-    elif decfac == 5:
+    elif decfac == 11:
         os.startfile(r'delauth.py')
 
     #Exit System
-    elif decfac == 7:
+    elif decfac == 12:
         if os.path.exists(r'userblock.txt'):
             userblock.close()
             os.remove(r'userblock.txt')
@@ -1490,10 +1272,10 @@ while(1): #while (always) true
         toaster.show_toast("DFBA Framework Runtime Broker", "Obsufcating program...", duration = 2)
         logoprintxrt()
         floodscreen()
-        #os.close('securepack.pyw')
+        os.close('securepack.pyw')
         os._exit()
         
-    elif decfac == 6:
+    elif decfac == 7:
         print("Fetching latest licensing information.......")
         print(" ")
         print(" ")

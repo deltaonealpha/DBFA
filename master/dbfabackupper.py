@@ -25,22 +25,10 @@ print("")
 time.sleep(0.5)
 
 
-try:
-    for i in tqdm (range (100), desc="Creating File Structure:  "): 
-        if os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp'):
-            shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp', ignore_errors=True)
-        if os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch'):
-            shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch', ignore_errors=True)
-        if not os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp'):
-            os.mkdir(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp', mode = 0o777, dir_fd = None)
-        if not os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch'):
-            os.mkdir(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch', mode = 0o777, dir_fd = None)
-        time.sleep(0.000001)
-
-    
-    for i in tqdm (range (100), desc="Processing:               "): 
+def copier():
+    for i in tqdm (range (100), desc="Processing:                       "): 
         slave = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFATemp'
-        if os.path.exists(r'userblock.txt'):
+        if os.path.exists(r'delauth.txt'):
             master = r'cponmgmtsys.db'
             shutil.copy(master, slave)
             master = r'lastupdateid.txt'
@@ -68,8 +56,24 @@ try:
             time.sleep(0.0000000001)
             master = r'log.txt'
             shutil.copy(master, slave)
+            os.remove(r'delauth.txt')
             
+            
+try:
+    for i in tqdm (range (100), desc="Creating File Structure:          "): 
+        if os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp'):
+            shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp', ignore_errors=True)
+        if os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch'):
+            shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch', ignore_errors=True)
+        if not os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp'):
+            os.mkdir(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp', mode = 0o777, dir_fd = None)
+        if not os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch'):
+            os.mkdir(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch', mode = 0o777, dir_fd = None)
+        time.sleep(0.000001)
+    copier()
 
+    
+    
 
 
     def get_all_file_paths(directory): 
@@ -91,24 +95,61 @@ try:
         
 
     if __name__ == "__main__": 
-        for i in tqdm (range (100), desc="Zipping Files:            "): 
+        for i in tqdm (range (100), desc="Zipping Files:                    "): 
             main()
             time.sleep(0.000001)
     time.sleep(1)
 
     shutil.move('DBFABackup.zip', 'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch')  
 
-    for i in tqdm (range (100), desc="Cleaning up:              "): 
+    for i in tqdm (range (100), desc="Cleaning up:                      "): 
         shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp', ignore_errors=True)
+        time.sleep(0.000001)
+    for i in tqdm (range (100), desc="Writing Restoration Instructions: "): 
+        slave = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp'
+        master = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\Assets\\instructions.txt'
+        shutil.copy(master, slave)
         time.sleep(0.000001)
     print("")
     print("Backup created succesfully.")
-
-    time.sleep(1)
-    ins = open(r"instructions.txt", "a+")  #Opening / creating (if it doesn't exist already) the .txt record file
-    ins.write("----------------------------------------- \n")
     time.sleep(2)
 
+    drivefac = (input("Enter *1* to further backup the same to your Google Drive. To cancel, press *enter*"))
+    if drivefac == "1":
+        time.sleep(1)
+        from pydrive.auth import GoogleAuth
+        from pydrive.drive import GoogleDrive
+        import os
+
+        g_login = GoogleAuth()
+        g_login.LocalWebserverAuth()
+        drive = GoogleDrive(g_login)
+
+        folderName = 'DBFA_Backup&Switch'  # Please set the folder name.
+
+
+        drive_folder = drive.CreateFile({
+            'title': "DBFA_Backup&Switch",
+            "mimeType": "application/vnd.google-apps.folder"
+        })
+        drive_folder.Upload()
+
+        directory = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch'
+
+        folders = drive.ListFile(
+            {'q': "title='" + folderName + "' and mimeType='application/vnd.google-apps.folder' and trashed=false"}).GetList()
+        for folder in folders:
+            if folder['title'] == folderName:
+                file2 = drive.CreateFile({'parents': [{'id': folder['id']}]})
+                file2.SetContentFile(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch\\DBFABackup.zip')
+                file2.Upload()
+    else:
+        time.sleep(2)
+        os._exit(0)
+
+
+
+        print("Directory: {} backed up successfully".format(directory))
 except:
     time.sleep(1)
     print("PERMISSION ERROR: We couldn't get access to DBFA directories.")

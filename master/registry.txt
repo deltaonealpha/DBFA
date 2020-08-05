@@ -3097,3 +3097,541 @@ Automated Store Registry:
 ----------------------------------------- 
 ed
 Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+04/08/2020 14:16:03 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+112100.0
+  
+Date and time: 04/08/2020 14:16:24 
+Log file access attempt - Oauth complete 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+05/08/2020 13:48:59 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+05/08/2020 13:49:49 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Mi MIX ALPHA 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 13:51:28 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 13:57:30 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+Tactical Power Bank 30000mah 
+Total amount billed for: 
+8153.8
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 13:59:27 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+89680.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 14:01:21 
+Appending product to order: 
+Gaming Headphones 
+Total amount billed for: 
+4366.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 14:05:12 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+HyperPower Type-C Gallium-Nitride Charger 100W 
+Total amount billed for: 
+5660.46
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 14:08:00 
+Appending product to order: 
+Gaming Headphones 
+Total amount billed for: 
+4366.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 14:10:06 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 14:11:02 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+47200.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+05/08/2020 14:12:32 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 18:52:37 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+10W Bluetooth Speakers 
+Appending product to order: 
+DROP GS21k RGB Gaming Keyboard 
+Appending product to order: 
+Logitech G604 LightSpeed Wireless 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 18:53:24 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+Essentials Home Theatre 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 18:54:10 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 18:54:36 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 18:55:09 
+Appending product to order: 
+Gaming Headphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 18:56:06 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Appending product to order: 
+Essentials Bluetooth Speaker 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 18:57:08 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 18:57:40 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 19:00:01 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 19:01:07 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 19:02:12 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+Tactical Essentials Keyboard 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 19:03:04 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+Logitech G604 LightSpeed Wireless 
+Appending product to order: 
+Tactical Essentials Keyboard 
+Appending product to order: 
+DROP GS21k RGB Gaming Keyboard 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 19:04:53 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 19:05:38 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+05/08/2020 19:32:05 
+Billing cancelled: Reason: Net amount null
+0.0
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 19:32:05 
+Appending product to order: 
+Gaming Headphones 
+Total amount billed for: 
+4366.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+05/08/2020 19:33:53 
+Appending product to order: 
+Gaming Headphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+05/08/2020 19:37:17 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+05/08/2020 19:37:54 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+05/08/2020 19:39:34 
+Appending product to order: 
+TV FHD OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+05/08/2020 19:40:51 
+Appending product to order: 
+POCOPHONE F1 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+05/08/2020 19:41:39 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+05/08/2020 19:42:12 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+05/08/2020 19:42:56 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+05/08/2020 19:44:06 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+05/08/2020 19:44:54 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+05/08/2020 19:45:31 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+  
+Date and time: 
+05/08/2020 19:46:24 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+64900.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 19:54:04 
+Appending product to order: 
+Gaming Headphones 
+Total amount billed for: 
+4366.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 20:00:15 
+Appending product to order: 
+Gaming Headphones 
+Total amount billed for: 
+4366.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 20:02:37 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Total amount billed for: 
+12034.82
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 20:28:23 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+64900.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 05/08/2020 20:35:06 
+New customer registered:  custname: Atharv custemail: test@testdbfa.com
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 05/08/2020 20:35:06 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 05/08/2020 20:38:37 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 05/08/2020 20:42:55 
+New customer registered:  custname: Pulkit custemail: bot@testdbfa.com
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 05/08/2020 20:42:55 
+Customer registry accessed! 
+--------------------------------------- 
+  
+Date and time: 05/08/2020 20:42:55 
+Log file access attempt - Oauth complete 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+Auth bypass - registering for security

@@ -45,9 +45,10 @@ def Login():
         event, values = window.read()
         if event in (None, 'Cancel'):	# if user closes window or clicks cancel
             window.close
-            break
-        window.close()
-        window.close()
+            os._exit(0)
+            window.close()
+            window.close()
+            os._exit(1)
         if values[0] == 'ed' and values[1] == 'edd':
             window.close()
             window.close()
