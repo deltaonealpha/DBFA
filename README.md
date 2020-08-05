@@ -1,16 +1,8 @@
 # delta Store Manager 7 #RadicallyNew
 
 ### Announcing DBFA 7! A radically new DBFA.
-   _____   ____    ____  ____   ____ 
   
-  / /  // / /  \\  /___  /__||  |--//
- 
- / /  // / /===| ///// ////||     // 
-
-/_/__// /_/__ / /     /    ||    //  
-    
-    
-
+   
 DBFA is a store management system like none other. From billing to inventory-management, literally anything a store could need. Ultra-light data structures, ultimate integrations, DBFA is all one could wish for, but open source! ;)
 
 
