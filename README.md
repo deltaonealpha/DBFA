@@ -1,19 +1,31 @@
-# DBFA Store Manager
+# delta Store Manager 7 #RadicallyNew
+
+### Announcing DBFA 7! A radically new DBFA.
+####   _____   ____    ____  ____   ____ 
+####  / /  // / /  \\  /___  /__||  |--//
+#### / /  // / /===| ///// ////||     // 
+####/_/__// /_/__ / /     /    ||    //  
+    
+    
 
 DBFA is a store management system like none other. From billing to inventory-management, literally anything a store could need. Ultra-light data structures, ultimate integrations, DBFA is all one could wish for, but open source! ;)
 
 
-<h5 align="center">MARK 6.7 DONNAGER (STABLE): Presenting a completely new DBFA! More features, more stability, more security.</h5>
+<h5 align="center">MARK 7 BELLAIRE (stable): #RadicallyNew </h5>
 
 ## Latest Additions:
-<h5>> Presenting DBFA Backup & Switch!</h5>
-<h5>> Presenting delta Authenication System v2!</h5>
+<h5>> A radically new menu UI!</h5>
+<h5>> Presenting loyalty points!</h5>
+<h5>> OTP-based loyalty points usage!</h5>
+<h5>> DBFA now validates the entered customer ID</h5>
+<h5>> DBFA now emails the invoice to registered customers!</h5>
+
 
 ## Roadmap
-- [ ] improve menu
-- [ ] points system
-- [ ] otp-based points redemption system
-- [ ] email invoices
+- [X] improve menu
+- [X] points system
+- [X] otp-based points redemption system
+- [X] email invoices
 - [x] authenication system v2 
 
 ## Getting Started:
@@ -87,19 +99,25 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 (yeah I write a shit ton here)
 
 
-<h4>MARK 6.7 DONNAGER (STABLE)</h4>
+<h4>DBFA 7 Bellaire (stable)</h4>
 <h6>Presenting the biggest DBFA release ever since Mark 4!</h6>
 <h6>    </h6>
+<h5>A radically new menu UI! #RadicallyNew</h5>
+<h6>    > Better design, lighter on the eye. Allows for more information to be read than before.</h6>
+<h6>    </h6>
+<h5>Introducing loyalty points with OTP-based redemption!</h5>
+<h6>    > DBFA lets you chose whether to redeem or not.</h6>
+<h6>    > DBFA instantly delivers a secure OTP on your email.</h6>
+<h6>    </h6>
+<h5>Guess who now emails registered customers their invoice? Yeah..</h5>
 <h6>    </h6>
 <h5>Presenting a new ultra secure login system provisioning Telegram-based authenication!</h5>
-<h6>    > Currently live for the backup system.</h6>
-<h6>    </h6>
-<h5>Presenting DBFA Backup & Switch!</h5>
+<h6>    </h6><h5>Presenting DBFA Backup & Switch!</h5>
 <h6>    > Now backup all your data for when you want to switch devices!</h6>
+<h6>    </h6>
+<h5>DBFA now validates the entered customer ID.</h5>
 <h6>    </h6>
 <h5>Other miscellaneous changes: </h5>
 <h6>    > Merged communications upstream </h6>
 <h6>    > Merged delta upstream.</h6>
-<h6>    > Added progress bar for report generation.</h6>
-<h6>    > Billing now skips payment when net = 0.</h6>
 <h4> </h4>
