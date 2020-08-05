@@ -102,8 +102,8 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 <h6>    > Better design, lighter on the eye. Allows for more information to be read than before.</h6>
 <h6>    </h6>
 
-![new menu](https://github.com/deltaonealpha/DBFA/blob/master/newmenu.jpg?raw=true)
-![new menu](https://github.com/deltaonealpha/DBFA/blob/master/oldmenu.jpg?raw=true)
+![new menu](https://github.com/deltaonealpha/DBFA/blob/master/master/newmenu.png?raw=true)
+![new menu](https://github.com/deltaonealpha/DBFA/blob/master/master/oldmenu.png?raw=true)
 <h4>Introducing loyalty points with OTP-based redemption!</h4>
 <h6>    > DBFA lets you chose whether to redeem or not.</h6>
 <h6>    > DBFA instantly delivers a secure OTP on your email.</h6>
