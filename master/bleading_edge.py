@@ -615,8 +615,11 @@ def emailfetch(custid):
 
 global custcheckindic
 
+global custt
+
 def custcheck(custt):
-    
+    global cccheck
+    cccheck = 0
     custcheckindic = 0
     con = sqlite3.connect(r'DBFA.db')
     conn = con.cursor()
@@ -626,6 +629,8 @@ def custcheck(custt):
         custcheckindic = 0
         print("Customer", custt, "NOT found. ")
         print("- No customer selected -")
+        custt = ""
+        cccheck = 1
     else:
         ccustcheckindic = 1
         pass
@@ -653,12 +658,12 @@ def floodpay():
 def mainmenu(): #defining a function for the main menu
     from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
     init(convert = True)
-    logox = (Fore.BLUE+'''       _____   ____    ____  ____   ____    Options:
+    logox = (Fore.CYAN+'''       _____   ____    ____  ____   ____    Options:
       / /  // / /  \\  /___  /__||  |--//      1: Issue a Bill                          4: Auto-Generate Store Report 
      / /  // / /===| ///// ////||    //       2: Manage Customers                      
     /_/__// /_/__ / /     /    ||   //              a: Register a Customer             5: Start DBFA Backup&Switch
                                                     b: Customer Registry               
-    ''' + 'A word from our partner: ' + Fore.BLACK + Back.CYAN + 'HOTEL? Trivago!' + Back.BLACK + Fore.BLUE + '''        c: Customer Purchase Records       6: View Software License
+    ''' + 'A word from our partner: ' + Fore.BLACK + Back.CYAN + 'HOTEL? Trivago!' + Back.BLACK + Fore.CYAN + '''        c: Customer Purchase Records       6: View Software License
                                                     d: Find a Customer                                
                                               3: Store Options:                        7: Quit
                                                     a: Manage Stock
@@ -709,7 +714,7 @@ def xpayboxie():
 # Payments Handler
 def payboxie(custid, total):
     global custcheckindic
-    if custt not in ("", " ", None):
+    if custt not in ("", " ", None) and cccheck == 0:
         command = "cls"
         os.system(command)
         global payindic, netpay, redeemindic
@@ -807,6 +812,10 @@ def payboxie(custid, total):
             os.system(command)
         else:
             netpay = total
+    elif cccheck == 1:
+        redeemindic = 0
+        netpay = total
+
     else:
         redeemindic = 0
         netpay = total
@@ -900,6 +909,7 @@ while(1): #while (always) true
             pass
         else:
             custcheck(custt)
+        #print(cccheck)
         logger.write("-----------------  ") #writing to log file
         logger.write("Cust. ID: \n")
         logger.write(custt)
@@ -1039,7 +1049,7 @@ while(1): #while (always) true
                 time.sleep(1.5) #for a seamless experience
 
 
-                if custt != "":
+                if custt != "" and cccheck == 0:
                     emailfetch(custt)
                     print("Please wait..")
                     fromaddr = "billing.dbfa@gmail.com"
@@ -1491,7 +1501,7 @@ while(1): #while (always) true
         logoprintxrt()
         floodscreen()
         #os.close('securepack.pyw')
-        os._exit()
+        os._exit(0)
         
     elif decfac == 6:
         print("Fetching latest licensing information.......")
@@ -1544,12 +1554,12 @@ while(1): #while (always) true
                     # window.close()
                     os.startfile(r'securepack.py')
                     time.sleep(1)
-                    os._exit()
+                    os._exit(0)
                 if citfacin == 2:
                     # window.close()
                     os.startfile(r'securepackxvc.py')
                     time.sleep(1)
-                    os._exit()
+                    os._exit(0)
                 else:
                     continue
         
