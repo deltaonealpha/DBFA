@@ -1,4 +1,4 @@
-# delta Store Manager 7 #RadicallyNew
+# delta Store Manager 7 <span style="color: #496dd0">#RadicallyNew</span>
 
 ### Announcing DBFA 7! A radically new DBFA.
   
