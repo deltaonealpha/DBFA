@@ -3,13 +3,10 @@
       /  /       /  /  /  /       /  /  /  /             /  /  / /
      /  /       /  /  /  /_______/  /  /  /             /  /   / /
     /  /       /  /  / // // // // /  /  /_________    /  /____/ / BILLING 
-   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ / FRAMEWORK
+   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ / FRAMEWORK 
   /  /       /  /  /  /       /  /  /  /             /  /      / /
  /  /_______/  /  /  /______ /  /  /  /             /  /       / /
 /__/_______/__/  /__/_______/__/  /__/             /__/        /_/
-
-    www.github.com/deltaonealpha/
-    Program repo: https://deltaonealpha.github.io/DBFA/
 '''
 #vs
 
@@ -66,7 +63,7 @@ if os.path.exists(r'DBFA.zconf'):
     pass
 else:
     print("Getting the database online.......")
-    time.sleep(0.5)
+    time.sleep(0.2)
     con = sqlite3.connect(r'DBFA.db')
     print("Rebuilding database..")
     c = con.cursor()
@@ -641,7 +638,7 @@ def custcheck(custt):
 def floodscreen():
     image = cv2.imread("imagepx.png")
     cv2.imshow("Loading.... ", image)
-    cv2.waitKey(5000)
+    cv2.waitKey(2000)
     cv2.destroyAllWindows()
 
 
@@ -658,20 +655,20 @@ def floodpay():
 def mainmenu(): #defining a function for the main menu
     from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
     init(convert = True)
-    logox = (Fore.CYAN+'''       _____   ____    ____  ____   ____    Options:
+    logox = (Fore.CYAN+'''\n       _____   ____    ____  ____   ____    Options:
       / /  // / /  \\  /___  /__||  |--//      1: Issue a Bill                          4: Auto-Generate Store Report 
      / /  // / /===| ///// ////||    //       2: Manage Customers                      
     /_/__// /_/__ / /     /    ||   //              a: Register a Customer             5: Start DBFA Backup&Switch
-                                                    b: Customer Registry               
+            '''+Fore.MAGENTA+'''The OG Store Manager'''+Fore.CYAN+'''                    b: Customer Registry                         
     ''' + 'A word from our partner: ' + Fore.BLACK + Back.CYAN + 'HOTEL? Trivago!' + Back.BLACK + Fore.CYAN + '''        c: Customer Purchase Records       6: View Software License
                                                     d: Find a Customer                                
                                               3: Store Options:                        7: Quit
                                                     a: Manage Stock
-                                                    b: Manage Vouchers                 
+    - enter CIT code to view more options -         b: Manage Vouchers                 
                                                     c: Product Listing
                                                     d: Sales Log
 
-                                              - enter CIT code to view more options -
+                                              
     ''' + Fore.WHITE)                                                                       
     print(logox)
     print()
@@ -733,6 +730,10 @@ def payboxie(custid, total):
             pointscheck = input("Use points (y/n)? ")
             print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
             if pointscheck == "y":
+                if total > lylpoints:
+                    redeemam = lylpoints
+                else:
+                    redeemam = total
                 getOTP()
                 emailfetch(custid)
                 print("Please wait..")
@@ -743,15 +744,23 @@ def payboxie(custid, total):
                 messageHTML = ('''
                 <h1><span style="color: #496dd0">Redeem your DBFA loyalty points?</span></h1>
                 <h6> </h6>
-                <h5>Points to be redeemed: ''' + "%s"%lylpoints + '''</h5>
-                <h4>One-time password: <span style="color: #496dd0">''' + "%s"%otp + '''</span></h5>
+                <h4>You are recieving this mail as we've recieved a request to use the loyalty points on your account for a purchase with DBFA. If this isn't you, contact support at the earrliest.</h4>
+                <h6> </h6>
+                <h4>One-time password: <span style="color: #496dd0">''' + "%s"%otp + '''</span></h4>
+                <h6> </h6>
+                <h6>Points in your account: ''' + "%s"%lylpoints + '''</h6>
+                <h6>Points that will be redeemed: ''' + "%s"%redeemam + '''</h6>
+                <h6>Each DBFA point is worth ₹1</h6>
+                <h6>This purchase will give you: ''' + "%s"%((billiemaster/100)*1) + ''' points</h6>
+                <h6></h6>
+                <h6></h6>
                 <h6> </h6>
                 <h6> </h6>
-                <h4>When you share this OTP with a DBFA-store, you authorize us to use your loyalty points to discount your purchase.</h4>
                 <h6> </h6>
-                <h6> </h6>
-                <h5>Do not share this OTP with any third party.</h5>
-                <h5>DBFA or any of its affiliates will not be resposible in anyway for any implications this OTP or any part of it might have on anyone in any way.</h5>
+                <h5>When you share this OTP with a DBFA-store, you authorize us to use your loyalty points to discount your purchase.</h5>
+                <h6>Do not share this OTP with any third party.</h6>
+                <h6>DBFA or any of its affiliates will not be resposible in anyway for any implications this OTP or any part of it might have on anyone in any way.</h6>
+                <h6>Offering these reward points does not benefit DBFA in any immediate manner.</h6>
                 ''')
                 messagePlain = 'DBFA Security'
                 msg = MIMEMultipart('alternative')
@@ -776,16 +785,21 @@ def payboxie(custid, total):
                         time.sleep(2)
                         redeemindic = 1
                         netpay = total
+                        print("Points redeemed worth: ", lylpoints)
+
                     else:
-                        total = 0
-                        netpay = 0
+                        redeemindic = 1
+                        netpay = total
                         pointsuse(custid, total)
+                        time.sleep(0.3)
+                        total = 0
+                        print("Points redeemed worth: ", lylpoints)
                     time.sleep(0.3)
-                    print("Points redeemed worth: ", lylpoints)
+                    
                 else:
                     print("Wrong OTP. (1) attempt(s) remaining")
                     time.sleep(0.2)
-                    otpverif = input("Enter the OTP recieved on ", ": ")
+                    otpverif = input("Enter the OTP recieved on " + "%s"%custmail + ": ")
                     if otpverif == otp:
                         if total > lylpoints:
                             total = total - lylpoints
@@ -794,11 +808,12 @@ def payboxie(custid, total):
                             time.sleep(2)
                             redeemindic = 1
                             netpay = total
+                            print("Points redeemed worth: ", lylpoints)
                         else:
-                            total = 0
                             netpay = 0
                             pointsuse(custid, total)
                             time.sleep(0.3)
+                            total = 0
                             print("Points redeemed worth: ", lylpoints)
                     else:
                         print("Wrong OTP. (0) attempt(s) remaining")
@@ -821,7 +836,7 @@ def payboxie(custid, total):
         netpay = total
 
 
-
+print("-----------------------------------------------------------------------------------------------------")
 
 # Store listing::
 data = {"1":40000, "2":55000, "3":67000, "4":25000, "5":21000, "6":14000, "7":13000, "8":220000, "9":4500, "10":17000, "11":1200, "12":3700, "13":4500, "14":2200, "15":700, "16":2750, "17":6499, "18":1499, "19":799, "20":27000, "21":6750, "22":2100, "23":1199, "24":3210, "25":989, "26":750, "27":1700, "28":600, "29":2175, "30":890, "31":2100, "32":7158, "33":597, "34":347, "35":500, "36":300, "37":1097, "38":80000, "39":87900, "40":23790}
@@ -837,15 +852,15 @@ for i in datax:
 tablx = zip(namiex, dataxr)
 titlex = ["Product:", "Pricing:"]
 
-print("DBFA Billing Framework: Version 6.42 (stable) ")
-print("Licensed under the GNU PUBLIC LICENSE")
-print("<DBFA>  Copyright (C) 2020 Pranav Balaji and Sushant Gupta")
-print(" ")
-print("Visit: www.github.com/deltaonealpha/deltaBillingFramework for complete licensing terms. ")
-print(" ")
-print(" ")
+print('''
+DBFA Billing Framework 7 [Bellaire] (stable)
+<GNU Public License> Copyright (C) 2020 Pranav Balaji and Sushant Gupta
+View the license file in the installation dir for more info.
+\n
+\n''')
+
 logoprintxrt()
-time.sleep(1.3)
+time.sleep(0.3)
 command = "cls"
 os.system(command)
  
@@ -864,9 +879,9 @@ logger.write("Automated Store Registry:\n")
 floodscreen() #comment to disable boot-flash screen
 from win10toast import ToastNotifier
 toaster = ToastNotifier()
-toaster.show_toast("DFBA System","Read documentation prior to use.", duration = 2)
-print("Heyy there!",  'ed') #enable parts in the auth script to enable user detection
-time.sleep(1.34)
+toaster.show_toast("DFBA System","Read documentation prior to use.", duration = 1)
+print("Heyy there,",  'Binod!') #enable parts in the auth script to enable user detection
+time.sleep(0.5)
 if redflag == 0:
     logger.write("Auth bypass - registering for security") 
     time.sleep(1)
@@ -904,7 +919,7 @@ while(1): #while (always) true
                 pass
         print("--- BIlling ---")
         print()
-        custt = input("Customer ID (optional)): ")
+        custt = input("Customer ID (optional): ")
         if custt == "":
             pass
         else:
@@ -1008,9 +1023,10 @@ while(1): #while (always) true
                 for i in printobj:
                     print(i)
                 print("-------------------------------------------------------------------------")
-                print("Amount           : ₹",billiemaster)
+                print("Sub total        : ₹",billiemaster)
                 cpon_ssinglefetch(cponid)
-                print("Voucher used     :",sfetch_values)
+                if sfetch_values not in (None, " ", ""):
+                    print("Voucher used     :",sfetch_values)
                 discountstr = "Discount "+"("+'%d'%discount+"%)    :"
                 print(discountstr, "₹","%.2f" % (((discount)/100)*billiemaster))
                 print("IGST             : ₹","%.2f" % ((9/100)*billiemaster))
@@ -1022,6 +1038,8 @@ while(1): #while (always) true
                 print("-------------------------------------------------------------------------")
                 toaster.show_toast("DFBA Billing:  Total billed for-",str(total), duration = 1)
                 logger.write("Total amount billed for: \n") #writing to file
+                if custt != "" and cccheck == 0:
+                    writer += "Used DBFA loyalty points worth: " + '%s'%lylpoints + "\n"
                 #regin.write("NET TOTAL: \n") #writing to file
                 telethon = telethon + "NET TOTAL: \n" + "₹" + str(total) + "\n" 
                 writer = writer + "NET TOTAL: \n" + str(total) + "\n" 
@@ -1073,7 +1091,7 @@ while(1): #while (always) true
                     message = msg.as_string() 
                     email.sendmail(fromaddr, toaddr, message) 
                     print("Invoice mailed. ")
-
+                    print("-------------------------------------------------------------------------\n\n")
                 #regin.close()
                 with HiddenPrints():
                     try:
@@ -1118,7 +1136,9 @@ while(1): #while (always) true
         print("    a: Register a Customer ")
         print("    b: Customer Registry ")
         print("    c: Customer Purchase Records ")    
-        selected = input("    d: Find a Customer: ")
+        print("    d: Find a Customer \n")
+        selected = input("Choose your option: ")
+        print("\n")
         if selected in ("a", "A"):
             try:
                 if os.path.exists(r'userblock.txt'):
@@ -1211,16 +1231,18 @@ while(1): #while (always) true
             xbr7 = xon.cursor()
             xbr7.execute("SELECT * FROM custcc")
             l = xbr7.fetchall()
-            print("Customer Purchase Records: ")
+            print("\nCustomer Purchase Records: ")
 
             import pandas as pd
 
             flat_list = []
+            print("---------------------------------------------------------------")
             for sublist in l:
                 flat_list.append(sublist)
             mydf = pd.DataFrame(flat_list, columns=['Customer ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points'])
             mydf.pivot(index='Customer ID', columns='Purchases Made', values='Total').fillna(value='-')
             print(mydf)
+            print("---------------------------------------------------------------")
             time.sleep(2)
             
             '''
@@ -1245,7 +1267,9 @@ while(1): #while (always) true
         print("    a: Manage Stock ")
         print("    b: Manage Vouchers ")
         print("    c: Product Listing ")
-        storeselected = input("    d: Sales Log: ")
+        print("    d: Sales Log: \n")
+        storeselected = input("Choose your option: ")
+        print("\n")
 
         if storeselected in ("a", "A"):
             decsfacter = str(input("Enter 'a' to VIEW STOCK, 'b' to ADD STOCK and 'c' to ENFORCE MASS STOCK: "))
@@ -1353,12 +1377,11 @@ while(1): #while (always) true
                         logger.write(" \n")
                         logger.write("Log file access attempt - AUTHORIZATION SUCCESS \n")
                         logger.close() #to change file access modes 
-                        logger = open("log.txt","r+")  
                         # print(logger.read())
                         # print()
                         # print("Opening sales log externally now. ")
                         time.sleep(1.4) #for a seamless experience
-                        os.startfile('log.txt')
+                        os.startfile('registry.txt')
                 else:
                     with HiddenPrints():
                         try:
@@ -1484,10 +1507,11 @@ while(1): #while (always) true
         time.sleep(2)
 
 
-
     #DBFA Backup&Switch
     elif decfac == 5:
         os.startfile(r'delauth.py')
+        time.sleep(0.3)
+        os._exit(0)
 
     #Exit System
     elif decfac == 7:
@@ -1497,7 +1521,7 @@ while(1): #while (always) true
         if os.path.exists(r'userblock.zconf'):
             userblock.close()
             os.remove(r'userblock.zconf')
-        toaster.show_toast("DFBA Framework Runtime Broker", "Obsufcating program...", duration = 2)
+        toaster.show_toast("DFBA Framework Runtime Broker", "Obsufcating program...", duration = 1)
         logoprintxrt()
         floodscreen()
         #os.close('securepack.pyw')
@@ -1573,9 +1597,10 @@ while(1): #while (always) true
         else:
             print("Invalid input. . . . ")
             time.sleep(1)
-        
+
+
     else:
-        print("Critical Error! DNSS error code: *optnotfound01*; Option doesn't exist")
+        print("Please select a valid main-menu option. erc101\n\n")
         time.sleep(2)
         continue
 

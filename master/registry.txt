@@ -1,11 +1,11 @@
   
-Date and time: 29/05/2020 13:25:43 
+Date and time: 09/08/2020 19:52:28 
   
-Date and time: 29/05/2020 13:25:43 
+Date and time: 09/08/2020 19:52:28 
 Log file access attempt - Oauth failiure!!! 
   
 Date and time: 
-29/05/2020 13:25:43 
+09/08/2020 19:52:28 
 Log file access attempt - AUTHORIZATION SUCCESS 
 /2020 22:26:32 
 Customer registry accessed! 
@@ -3793,3 +3793,462 @@ Appending product to order:
 Redmi K20 
 Total amount billed for: 
 24780.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+12  
+Date and time: 
+05/08/2020 22:51:51 
+Billing cancelled: Reason: Net amount null
+0.0
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 22:51:51 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+05/08/2020 22:53:39 
+Appending product to order: 
+Tactical Power Bank 30000mah 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+06/08/2020 10:43:32 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Total amount billed for: 
+10264.82
+----------------------------------------- 
+ed
+Automated Store Registry:
+  
+Date and time: 06/08/2020 10:49:14 
+Log file access attempt - Oauth complete 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 22:26:10 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+64900.0
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 22:26:27 
+Appending product to order: 
+Essentials Power Bank 10000mah 
+Appending product to order: 
+Tactical Essentials Keyboard 
+Appending product to order: 
+Logitech G604 LightSpeed Wireless 
+Appending product to order: 
+DROP GS21k RGB Gaming Keyboard 
+Appending product to order: 
+lapcare 60W Laptop Adapter 
+Appending product to order: 
+HyperPower Type-C Gallium-Nitride Charger 100W 
+Appending product to order: 
+ASUS Zephyrus G14 Gaming Laptop 
+Appending product to order: 
+L XPS 15 Content Creator's Laptop 
+Appending product to order: 
+Hewlett-Packard Essential's Student's Laptop (Chromebook) 
+Appending product to order: 
+OneFiber Wi-Fi Router AX17 
+Appending product to order: 
+Mijia Mesh Wi-Fi Router 
+Appending product to order: 
+lapcare 120W Laptop Adapter 
+Appending product to order: 
+lapcare 60W Laptop Adapter 
+Appending product to order: 
+Spigen Phone Case(s) 
+Appending product to order: 
+Essentials Phone Charger 10W 
+Appending product to order: 
+ULTRA Home Theatre 
+Appending product to order: 
+Essentials Home Theatre 
+Appending product to order: 
+  Wired Speaker - 5.1 
+Appending product to order: 
+  Essentials Wired Speaker - STEREO 
+Appending product to order: 
+Tactical Power Bank 30000mah 
+Appending product to order: 
+Essentials Power Bank 10000mah 
+Appending product to order: 
+Essentials Mouse 
+Appending product to order: 
+Logitech G604 LightSpeed Wireless 
+Appending product to order: 
+Tactical Essentials Keyboard 
+Appending product to order: 
+DROP GS21k RGB Gaming Keyboard 
+Appending product to order: 
+Polowski Tactical Flashlight 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+11  
+Date and time: 
+07/08/2020 22:56:13 
+Billing cancelled: Reason: Net amount null
+0.0
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 22:56:13 
+Appending product to order: 
+Essentials Earphones 
+Total amount billed for: 
+826.0
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 22:57:11 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 22:58:15 
+Appending product to order: 
+Tactical Essentials Keyboard 
+Appending product to order: 
+Logitech G604 LightSpeed Wireless 
+Appending product to order: 
+DROP GS21k RGB Gaming Keyboard 
+Appending product to order: 
+Essentials Power Bank 10000mah 
+Appending product to order: 
+Tactical Power Bank 30000mah 
+Total amount billed for: 
+10235.32
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 22:58:44 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 22:59:28 
+Appending product to order: 
+10W Bluetooth Speakers 
+Appending product to order: 
+10W Bluetooth Speakers 
+Appending product to order: 
+10W Bluetooth Speakers 
+Appending product to order: 
+10W Bluetooth Speakers 
+Appending product to order: 
+10W Bluetooth Speakers 
+Appending product to order: 
+Logitech G604 LightSpeed Wireless 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 PRO 
+Total amount billed for: 
+335350.1
+-----------------  Cust. ID: 
+14  
+Date and time: 
+07/08/2020 23:00:20 
+Billing cancelled: Reason: Net amount null
+0.0
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 23:00:20 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Total amount billed for: 
+2596.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 23:03:07 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Total amount billed for: 
+2596.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 23:04:45 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Total amount billed for: 
+2596.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 23:06:00 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Total amount billed for: 
+2596.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 23:07:50 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 23:09:23 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Total amount billed for: 
+2596.0
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 23:10:14 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+8K QLED 80 
+Total amount billed for: 
+899160.0
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 23:10:49 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Total amount billed for: 
+2596.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 23:15:12 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 23:15:38 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+07/08/2020 23:16:22 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+Auth bypass - registering for security----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+09/08/2020 14:47:38 
+Appending product to order: 
+30W Bluetooth Speakers 
+Total amount billed for: 
+7668.82
+----------------------------------------- 
+ed
+Automated Store Registry:
+Auth bypass - registering for security----------------------------------------- 
+ed
+Automated Store Registry:
+Auth bypass - registering for security----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 09/08/2020 19:52:28 
+Customer registry accessed! 
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 09/08/2020 19:52:28 
+New customer registered:  custname: Binod custemail: binod@binod.binod
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 09/08/2020 19:52:28 
+Customer registry accessed! 
+--------------------------------------- 
+  
+Date and time: 09/08/2020 19:52:28 
+Log file access attempt - Oauth complete 
+----------------------------------------- 
+ed
+Automated Store Registry:
+  
+Date and time: 09/08/2020 20:00:07 
+Log file access attempt - Oauth complete 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+2  
+Date and time: 
+10/08/2020 11:00:07 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Wireless Headphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 10/08/2020 14:18:54 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:

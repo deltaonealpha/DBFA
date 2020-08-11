@@ -52,7 +52,15 @@ def Login():
         if values[0] == 'ed' and values[1] == 'edd':
             window.close()
             window.close()
-            pass
+            print("As you're accessing sensitive information, we'll require you to authenicate this request.")
+            time.sleep(2)
+            print("")
+            print("Please open your Telegram application and authenicate the request from the *DBFA Communicator* bot by following the instructions there.")
+            time.sleep(0.5)
+            for i in tqdm (range (10), desc="Waiting to detect authenication:  "):     
+                texter = "This is an authenication request for DBFA Backup and Reset." + "\n\n" + "Please send the passcode to authenicate this request." + "\n\n" + "DBFA Security"
+                sender = telegram_bot_sendtext(texter)
+                main()
         else:
             sgx.theme('DarkRed')
             Login()
@@ -148,16 +156,4 @@ def main():
         time.sleep(0.5)
 
 
-
-
-if __name__ == '__main__':
-    Login()
-    print("As you're accessing sensitive information, we'll require you to authenicate this request.")
-    time.sleep(2)
-    print("")
-    print("Please open your Telegram application and authenicate the request from the *DBFA Communicator* bot by following the instructions there.")
-    time.sleep(0.5)
-    for i in tqdm (range (10), desc="Waiting to detect authenication:  "):     
-        texter = "This is an authenication request for DBFA Backup and Reset." + "\n\n" + "Please send the passcode to authenicate this request." + "\n\n" + "DBFA Security"
-        sender = telegram_bot_sendtext(texter)
-        main()
+Login()

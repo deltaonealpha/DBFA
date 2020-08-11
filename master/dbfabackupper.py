@@ -27,7 +27,7 @@ time.sleep(0.5)
 
 def copier():
     for i in tqdm (range (100), desc="Processing:                       "): 
-        slave = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFATemp'
+        slave = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFATempc'
         if os.path.exists(r'delauth.txt'):
             master = r'cponmgmtsys.db'
             shutil.copy(master, slave)
@@ -61,14 +61,14 @@ def copier():
             
 try:
     for i in tqdm (range (100), desc="Creating File Structure:          "): 
-        if os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp'):
-            shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp', ignore_errors=True)
-        if os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch'):
-            shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch', ignore_errors=True)
-        if not os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp'):
-            os.mkdir(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp', mode = 0o777, dir_fd = None)
-        if not os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch'):
-            os.mkdir(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch', mode = 0o777, dir_fd = None)
+        if os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc'):
+            shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc', ignore_errors=True)
+        if os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc'):
+            shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc', ignore_errors=True)
+        if not os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc'):
+            os.mkdir(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc', mode = 0o777, dir_fd = None)
+        if not os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc'):
+            os.mkdir(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc', mode = 0o777, dir_fd = None)
         time.sleep(0.000001)
     copier()
 
@@ -85,7 +85,7 @@ try:
         return file_paths		 
 
     def main(): 
-        directory = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp'
+        directory = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc'
         file_paths = get_all_file_paths(directory) 
 
         with ZipFile('DBFABackup.zip','w') as zip: 
@@ -100,13 +100,13 @@ try:
             time.sleep(0.000001)
     time.sleep(1)
 
-    shutil.move('DBFABackup.zip', 'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch')  
+    shutil.move('DBFABackup.zip', 'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc')  
 
     for i in tqdm (range (100), desc="Cleaning up:                      "): 
-        shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp', ignore_errors=True)
+        shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc', ignore_errors=True)
         time.sleep(0.000001)
     for i in tqdm (range (100), desc="Writing Restoration Instructions: "): 
-        slave = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATemp'
+        slave = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc'
         master = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\Assets\\instructions.txt'
         shutil.copy(master, slave)
         time.sleep(0.000001)
@@ -125,26 +125,28 @@ try:
         g_login.LocalWebserverAuth()
         drive = GoogleDrive(g_login)
 
-        folderName = 'DBFA_Backup&Switch'  # Please set the folder name.
+        folderName = 'DBFA_Backup&Switchc'  # Please set the folder name.
 
 
         drive_folder = drive.CreateFile({
-            'title': "DBFA_Backup&Switch",
+            'title': "DBFA_Backup&Switchc",
             "mimeType": "application/vnd.google-apps.folder"
         })
         drive_folder.Upload()
 
-        directory = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch'
+        directory = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc'
 
         folders = drive.ListFile(
             {'q': "title='" + folderName + "' and mimeType='application/vnd.google-apps.folder' and trashed=false"}).GetList()
         for folder in folders:
             if folder['title'] == folderName:
                 file2 = drive.CreateFile({'parents': [{'id': folder['id']}]})
-                file2.SetContentFile(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switch\\DBFABackup.zip')
+                file2.SetContentFile(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc\\DBFABackup.zip')
                 file2.Upload()
+        os.startfile(r'delauth.py')
     else:
         time.sleep(2)
+        os.startfile(r'delauth.py')
         os._exit(0)
 
 
