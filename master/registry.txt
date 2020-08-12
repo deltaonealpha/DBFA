@@ -4419,3 +4419,217 @@ Customer registry accessed!
 ----------------------------------------- 
 ed
 Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 21:39:09 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+47200.0
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 22:18:52 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+12/08/2020 22:21:53 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Total amount billed for: 
+10264.82
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+12/08/2020 22:24:17 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Total amount billed for: 
+2596.0
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 22:24:33 
+Appending product to order: 
+Redmi K20 PRO 
+Total amount billed for: 
+29500.0
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 22:24:52 
+Appending product to order: 
+Redmi K20 PRO 
+Total amount billed for: 
+29500.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 22:28:29 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Total amount billed for: 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 22:29:06 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Total amount billed for: 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 22:29:28 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Total amount billed for: 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 22:30:43 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Total amount billed for: 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 22:31:11 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+POCOPHONE F1 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 22:31:32 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Total amount billed for: 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 22:32:19 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Total amount billed for: 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 22:33:36 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Total amount billed for: 
+10264.82
+-----------------  Cust. ID: 
+1  
+Date and time: 
+12/08/2020 22:33:51 
+Appending product to order: 
+30W Bluetooth Speakers 
+Appending product to order: 
+Essentials Home Theatre 
+Appending product to order: 
+  Wired Speaker - 5.1 
+Appending product to order: 
+Logitech G604 LightSpeed Wireless 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+DROP GS21k RGB Gaming Keyboard 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+12/08/2020 22:35:12 
+Appending product to order: 
+Essentials Earphones 
+Appending product to order: 
+Mi MIX ALPHA 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+12/08/2020 22:35:55 
+Appending product to order: 
+Mi MIX ALPHA 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+12/08/2020 22:36:25 
+Appending product to order: 
+POCOPHONE F1 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+12/08/2020 22:37:26 
+Appending product to order: 
+TV FHD OLED 50 

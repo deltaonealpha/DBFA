@@ -570,6 +570,7 @@ def updatescript(custid, pincrement, billiemaster):
     except sqlite3.Error as error:
         pass
 
+
 def pointfetch(custid):
     global lylpoints
     lylpoints = 0
@@ -628,10 +629,10 @@ def custcheck(custt):
         print("- No customer selected -")
         custt = 0
         print("Using unregistered customer account")
-        cccheck = 1
+        cccheck = 0
     else:
         ccustcheckindic = 1
-        cccheck = 1
+        cccheck = 0
         pass
 
 
@@ -716,7 +717,7 @@ def payboxie(custid, total):
     if custt not in (0, "0", "", " ", None) and cccheck == 0:
         command = "cls"
         os.system(command)
-        global payindic, netpay, redeemindic
+        global payindic, netpay, redeemindic, lylpoints
         xrt = 0
         redeemindic = 0
         payindic = 0
@@ -831,6 +832,7 @@ def payboxie(custid, total):
             netpay = total
     elif cccheck == 1:
         redeemindic = 0
+        lylpoints = 0
         netpay = total
 
     else:
@@ -922,7 +924,7 @@ while(1): #while (always) true
         print("--- BIlling ---")
         print()
         custt = input("Customer ID (optional): ")
-        if custt == "" or "0" or 0:
+        if custt in ("0", 0, "", " "):
             print("Unregistered Customer")
             custt = "0"
             custcheck(custt)
@@ -1042,7 +1044,7 @@ while(1): #while (always) true
                 print("-------------------------------------------------------------------------")
                 toaster.show_toast("DFBA Billing:  Total billed for-",str(total), duration = 1)
                 logger.write("Total amount billed for: \n") #writing to file
-                if custt != "" and cccheck == 0:
+                if custt not in ("", " ", 0) and cccheck == 0:
                     writer += "Used DBFA loyalty points worth: " + '%s'%lylpoints + "\n"
                 #regin.write("NET TOTAL: \n") #writing to file
                 telethon = telethon + "NET TOTAL: \n" + "₹" + str(total) + "\n" 
@@ -1671,10 +1673,14 @@ while(1): #while (always) true
             print("Invalid input. . . . ")
             time.sleep(1)
 
+    elif decfac in (None, "", " "):
+        print("Please select a valid main-menu option. erc101\n\n")
+        time.sleep(0.8)
+        continue
 
     else:
         print("Please select a valid main-menu option. erc101\n\n")
-        time.sleep(2)
+        time.sleep(0.8)
         continue
 
 # End of program
