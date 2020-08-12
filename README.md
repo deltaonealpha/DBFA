@@ -1,4 +1,4 @@
-# delta Store Manager 7 Bellaire <span style="color: #496dd0">#RadicallyNew</span>
+# delta Store Manager 7.1 Bellaire <span style="color: #496dd0">#RadicallyNew</span>
 
 ### Announcing DBFA 7! A radically new DBFA.
   
@@ -6,9 +6,10 @@
 DBFA is a store management system like none other. From billing to inventory-management, literally anything a store could need. Ultra-light data structures, ultimate integrations, DBFA is all one could wish for, but open source! ;)
 
 
-<h5 align="center">MARK 7 BELLAIRE (stable): #RadicallyNew </h5>
+<h5 align="center">MARK 7.1 BELLAIRE (HYPER stable): #RadicallyNew </h5>
 
 ## Latest Additions:
+<h5>> Presenting DBFA search engine v1: Unlocks the "Find Customer" option</h5>
 <h5>> A radically new menu UI!</h5>
 <h5>> Presenting loyalty points!</h5>
 <h5>> OTP-based loyalty points redemption!</h5>
@@ -19,6 +20,8 @@ DBFA is a store management system like none other. From billing to inventory-man
 
 ## Roadmap
 - [X] improve menu
+- [X] search engine
+- [X] enable the find customer option
 - [X] points system
 - [X] otp-based points redemption system
 - [X] email invoices
@@ -95,15 +98,22 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 (yeah I write a shit ton here)
 
 
-<h2>DBFA 7 Bellaire (stable)</h2>
+<h2>DBFA 7.1 Bellaire (HYPER stable)</h2>
 <h6>Presenting the biggest DBFA release ever since Mark 4!</h6>
+<h6>    </h6>
+<h4>Presenting DBFA Search Engine v1</h4>
+<h6>    > "Find Customer" option rolled out with a super-thorough search, yeah!</h6>
 <h6>    </h6>
 <h4>A radically new menu UI! #RadicallyNew</h4>
 <h6>    > Better design, lighter on the eye. Allows for more information to be read than before.</h6>
 <h6>    </h6>
-
 ![new menu](https://github.com/deltaonealpha/DBFA/blob/master/master/newmenu.png?raw=true)
 ![new menu](https://github.com/deltaonealpha/DBFA/blob/master/master/oldmenu.png?raw=true)
+<h6>    </h6>
+<h4>Added unregistered customer account</h4>
+<h6>    > Customer 0 for unregistered.</h6>
+<h6>    > Enter or invalid customer redirects to ID 0.</h6>
+<h6>    </h6>
 <h4>Introducing loyalty points with OTP-based redemption!</h4>
 <h6>    > DBFA lets you chose whether to redeem or not.</h6>
 <h6>    > DBFA instantly delivers a secure OTP on your email.</h6>

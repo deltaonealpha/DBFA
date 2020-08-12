@@ -538,13 +538,13 @@ def inserter(custt, custname, email):  #defining a function to input data into t
     print("Customer", custname, "registered in store directory")
 
 # Customer Purchase Updater
-def custcc(custid, purchasecount, ptotalx):  #defining a function to input data into the SQL database's table
+def custcc(custid, custname, purchasecount, ptotalx):  #defining a function to input data into the SQL database's table
     global xon
     xon = sqlite3.connect(r'DBFA_CUSTCC.db')
     xbr7 = xon.cursor()
-    str = "insert into custcc(custid, purchasecount, ptotalx, points) values('%s', '%s', '%s', 0)"
-    io = (custid, purchasecount, ptotalx)
-    xbr7.execute(str % io)
+    str = "insert into custcc(custid, custname, purchasecount, ptotalx, points) values(?, ?, ?, ?, 0)"
+    io = (custid, custname, purchasecount, ptotalx)
+    xbr7.execute(str, io)
     xon.commit()
     xbr7.close()
     print("FJHG")
@@ -626,10 +626,12 @@ def custcheck(custt):
         custcheckindic = 0
         print("Customer", custt, "NOT found. ")
         print("- No customer selected -")
-        custt = ""
+        custt = 0
+        print("Using unregistered customer account")
         cccheck = 1
     else:
         ccustcheckindic = 1
+        cccheck = 1
         pass
 
 
@@ -711,7 +713,7 @@ def xpayboxie():
 # Payments Handler
 def payboxie(custid, total):
     global custcheckindic
-    if custt not in ("", " ", None) and cccheck == 0:
+    if custt not in (0, "0", "", " ", None) and cccheck == 0:
         command = "cls"
         os.system(command)
         global payindic, netpay, redeemindic
@@ -920,8 +922,10 @@ while(1): #while (always) true
         print("--- BIlling ---")
         print()
         custt = input("Customer ID (optional): ")
-        if custt == "":
-            pass
+        if custt == "" or "0" or 0:
+            print("Unregistered Customer")
+            custt = "0"
+            custcheck(custt)
         else:
             custcheck(custt)
         #print(cccheck)
@@ -1067,7 +1071,7 @@ while(1): #while (always) true
                 time.sleep(1.5) #for a seamless experience
 
 
-                if custt != "" and cccheck == 0:
+                if custt not in ("", " ", 0, "0") and cccheck == 0:
                     emailfetch(custt)
                     print("Please wait..")
                     fromaddr = "billing.dbfa@gmail.com"
@@ -1161,7 +1165,7 @@ while(1): #while (always) true
             email = input("Customer's E-mail ID: ")
             inserter(idd, custname, email) #argumental function to insert values into the SQL database
             nullvalue = 0
-            custcc(idd, nullvalue, nullvalue)
+            custcc(idd, custname, nullvalue, nullvalue)
             print(" ")
             logger.write("--------------------------------------- \n")
             logger.write("  \n")
@@ -1254,7 +1258,76 @@ while(1): #while (always) true
             toaster.show_toast("DFBA QuickSync", "Database acessed", duration = 0.5) 
 
         elif selected in ("d", "D"):
-            print("Option coming soon! ")
+            try:
+                con = sqlite3.connect(r'DBFA.db')
+                conn = con.cursor()
+
+                conx = sqlite3.connect(r'DBFA_CUSTCC.db')
+                connx = conx.cursor()
+
+                searchcon = str(input("Customer Name: "))
+                if " " in searchcon:  
+                    for i in searchcon:
+                        sconsplit = searchcon.split(" ")
+                        for j in sconsplit:
+                            conn.execute("SELECT custt FROM cust WHERE custname LIKE ?", (("%"+searchcon+"%"), ))
+                            searchdata = conn.fetchall()
+                        else:
+                            searchcon = searchcon.replace(" ", "")
+                            conn.execute("SELECT custt FROM cust WHERE custname LIKE ?", (("%"+searchcon+"%"), ))
+                            searchdata = conn.fetchall()
+                            if len(searchdata) != 0:
+                                pass
+                            else:
+                                searchdata = "No such customer found."
+                else:      
+                    conn.execute("SELECT custt FROM cust WHERE custname LIKE ?", (("%"+searchcon+"%"), ))
+                    searchdata = conn.fetchall()
+
+                if len(searchdata) != 0:
+                    if len(searchdata) > 1:
+                        for i in searchdata:
+                            conn.execute("SELECT * FROM cust WHERE custt = ?", (i[0], ))
+                            custdata = conn.fetchall()
+                            #col_labels = ("ID", "Customer NAME", "EMAIL")
+                            #table(col_labels, custdata)
+
+                            connx.execute("SELECT * FROM custcc WHERE custid = ?", (i[0], ))
+                            custdatax = connx.fetchall()
+                            ccrt = []            
+                            for jk in custdata:
+                                for jkx in jk:
+                                    ccrt.append(str(jkx))
+                            for jk in custdatax:
+                                for jkx in jk:
+                                    ccrt.append(str(jkx))
+
+                            col_labels = ('ID', 'Customer NAME', 'EMAIL', 'ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points')
+                            print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f"))
+
+                            print(" ")
+                    else:
+                        conn.execute("SELECT * FROM cust WHERE custt = ?", (searchdata[0][0], ))
+                        custdata = conn.fetchall()
+
+                        connx.execute("SELECT * FROM custcc WHERE custid = ?", (searchdata[0][0], ))
+                        custdatax = connx.fetchall()
+                        ccrt = []            
+                        for jk in custdata:
+                            for jkx in jk:
+                                ccrt.append(str(jkx))
+                        for jk in custdatax:
+                            for jkx in jk:
+                                ccrt.append(str(jkx))
+
+                        col_labels = ('ID', 'Customer NAME', 'EMAIL', 'ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points')
+                        print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f"))
+                else:
+                    print("Customer not found.")
+            except:
+                print("Error encountered.  ")
+
+
 
         elif selected not in ("a", "b", "c", "d", "A", "B", "C", "D"):
             print("Please chose a valid option!")

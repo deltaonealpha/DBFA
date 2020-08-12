@@ -1,0 +1,28 @@
+        ___ ______ ___   _____________    ____________     _______
+       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /
+      /  /       /  /  /  /       /  /  /  /             /  /  / /
+     /  /       /  /  /  /_______/  /  /  /  7 CLI      /  /   / /
+    /  /       /  /  / // // // // /  /  /_________    /  /____/ /
+   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ /
+  /  /       /  /  /  /       /  /  /  /             /  /      / /
+ /  /_______/  /  /  /______ /  /  /  /             /  /       / /
+/__/_______/__/  /__/_______/__/  /__/             /__/        /_/
+
+-------------------------------------------------------------------
+         D B F A BACKUP&SWITCH RESTORATION INSTRUCTIONS
+-------------------------------------------------------------------
+
+Backup is stored in \DBFA_Backup&Switch folder.
+Unzip DBFABackup.zip
+Copy-paste all contents to the main installation directory.
+	(Replace files if prompted to do so.)
+
+
+-------------------------------------------------------------------
+                 D B F A LICENSING INFORMATION
+-------------------------------------------------------------------
+DBFA, it's developers or any affiliates will NOT BE RESPONSIBLE for anything happening to your data in any form.
+Copying DBFA or parts of it is a punishable offence.
+DBFA is licensed under the GNU PUBLIC LICENSE for open-use.
+
+Full licensing terms in the master reporsitory on GitHub/ in your main installation directory.

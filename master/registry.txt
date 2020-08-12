@@ -4252,3 +4252,170 @@ Automated Store Registry:
 ----------------------------------------- 
 ed
 Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+12/08/2020 09:42:55 
+Appending product to order: 
+Hewlett-Packard Essential's Student's Laptop (Chromebook) 
+Appending product to order: 
+Hewlett-Packard Essential's Student's Laptop (Chromebook) 
+Appending product to order: 
+Hewlett-Packard Essential's Student's Laptop (Chromebook) 
+Total amount billed for: 
+80005.77
+-----------------  Cust. ID: 
+  
+Date and time: 
+12/08/2020 09:45:29 
+Appending product to order: 
+Hewlett-Packard Essential's Student's Laptop (Chromebook) 
+Total amount billed for: 
+27510.756
+  
+Date and time: 12/08/2020 09:51:26 
+  
+Date and time: 12/08/2020 09:51:26 
+Log file access attempt - Oauth failiure!!! 
+  
+Date and time: 
+12/08/2020 09:51:26 
+Log file access attempt - AUTHORIZATION SUCCESS 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 12/08/2020 18:47:12 
+New customer registered:  custname: delta custemail: delta@dbfa.com
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 12/08/2020 18:50:07 
+Customer registry accessed! 
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 12/08/2020 18:50:07 
+Customer registry accessed! 
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 12/08/2020 18:50:07 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 19:04:44 
+Appending product to order: 
+TV 4K OLED 50 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 19:05:54 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 19:07:03 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 19:08:58 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+24780.0
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+12/08/2020 19:09:59 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+6513.6
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 12/08/2020 19:12:43 
+New customer registered:  custname: delta custemail: delta@dbfa.com
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 12/08/2020 19:12:43 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 12/08/2020 19:14:56 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 12/08/2020 19:17:05 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
