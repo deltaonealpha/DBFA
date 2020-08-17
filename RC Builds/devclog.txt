@@ -1,0 +1,73 @@
+-------------------------------------------------------------
+Development Changelog for DBFA 8 Release Candidate - 1
+-------------------------------------------------------------
+ROADMAP TO DBFA 8:
+	[x] Stock ordering with addition when marked as delivered
+	[x] Order stock option with per-vendor email
+	[x] Per-product low-stock bar
+	[x] Home delivery????? (very doubtful if I'd do this though)
+-------------------------------------------------------------
+
+17-08-20
+> Presenting DBFA Deliveries v1 (beta)!!!
+	-- Mainmenu display shows pending delivery count everytime!
+	-- Place deliveries while invoicing itself!
+	-- Asks for and stores the address
+	-- View orders to be delivered
+	-- Mark an order as delivered
+
+
+17-08-20
+> Per-item low-stock bar enabled!
+
+17-08-20
+> Nuked useless variables
+> Presenting the DBFA Stock Master v1!
+	-- Place orders for new stock!
+	-- Update product quantity recieved!
+	-- Fetch delivery status (induvidually)
+	-- Fetch delivery status (for the mass)
+	-- Change the low-stock warning bar
+		> Option added and alters the db;
+		but not activated for main billing rn
+	-- View details for product vendor
+	-- Contact product vendor via email!
+
+17-08-20
+> Added stock delivery report to store pdf reporter
+> Created base blobs for stock ordering system
+> Added base blobs for product vendor info and contact vendor option
+
+16-08-20
+> Presenting search engine 2.0
+    -- Random capitalisations and whitespaces
+	   too return valid results now!
+	-- Improved accuracy
+> Store report now includes customer records
+	-- ID, name, purchase count, net amount, lyl pts etc.
+
+16-08-20
+> Added export sales data to CSV option
+> Added export customer data to CSV option
+	-- Picks data from both customer databases
+> Updated menu
+
+16-08-20
+> Nuked useless variables
+> Added websupport for changelog
+> Nuked "licensing - open markdown" option
+> Added websupport for licensing stuff
+
+16-08-20
+> Login password is now masked
+> Added "Development Changelog" option in main
+> Updated menu
+
+15-08-20
+> Nuked lylpoints on csid 0 bug
+
+-------------------------------------------------------------
+RC Builds are internal builds, not yet ready for public release
+-------------------------------------------------------------
+DBFA-8-RC-1 by deltaone
+-------------------------------------------------------------

@@ -1,0 +1,60 @@
+-------------------------------------------------------------------------------------------------
+                                DBFA 8.0 RC-2 Highlights
+-------------------------------------------------------------------------------------------------
+                    ROADMAP TO DBFA 8:
+                        [x] Stock ordering with addition when marked as delivered
+                        [x] Order stock option with per-vendor email
+                        [x] Per-product low-stock bar
+                        [x] Home delivery????? (will release DBFA 8 once this is done)
+                        All done :)
+-------------------------------------------------------------------------------------------------
+
+
+========= Removals =========
+#OperationNukeBugs
+> Nuked lylpoints on csid 0 bug and other bugs
+> Nuked useless variables
+> Nuked "licensing - open markdown" option in favour of webview for a telegra.ph site
+
+========= Improvements =========
+> Login password is now masked
+> Added "Development Changelog" option in main
+> Added stock delivery report and customer records to store pdf reporter
+> Presenting search engine 2.0
+            -- Random capitalisations and whitespaces
+            too return valid results now!
+            -- Improved accuracy
+> Updated menu to reflect RC-2 changes
+
+========= New Features =========
+> Presenting DBFA Deliveries v1 (beta)!!!
+            -- Mainmenu display shows pending delivery count everytime!
+            -- Place deliveries while invoicing itself!
+            -- Asks for and stores the address
+            -- View orders to be delivered
+            -- Mark an order as delivered
+
+> Enabled product-specific low-stock warning support
+> Added "Export Sales Data to CSV" option
+> Added "Export Customer Data to CSV" option
+        	-- Picks data from both customer databases
+    
+> Added a "View licensing" option with (by default) websupport    
+> Added websupport for licensing stuff
+
+> Presenting the DBFA Stock Master v1!
+            -- Place orders for new stock!
+            -- Update product quantity recieved!
+            -- Fetch delivery status (induvidually)
+            -- Fetch delivery status (for the mass)
+            -- Change the low-stock warning bar
+                > Option added and alters the db
+            -- View details for product vendor
+            -- Contact product vendor via email!
+
+
+-------------------------------------------------------------------------------
+RC Builds are internal builds, not yet ready for public release
+-------------------------------------------------------------------------------
+DBFA-8-RC-2 by deltaone
+-------------------------------------------------------------------------------

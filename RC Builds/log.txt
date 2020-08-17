@@ -1,0 +1,78 @@
+-----------------  Cust. ID: 
+6  
+Date and time: 
+28/07/2020 18:51:35 
+Appending product to order: 
+TV 4K OLED 50 
+Total amount billed for: 
+47200.0
+-----------------  Cust. ID: 
+6  
+Date and time: 
+28/07/2020 18:53:37 
+Appending product to order: 
+TV FHD OLED 50 
+Total amount billed for: 
+53867.0
+41 
+Appending product to order: 
+  Wired Speaker - 5.1 
+Appending product to order: 
+  Wired Speaker - 5.1 
+Appending product to order: 
+  Essentials Wired Speaker - STEREO 
+Total amount billed for: 
+6370.82
+CORD: 
+--------------------------------------------- 
+deltaStoreManager 
+ed
+SALES RECORD: 
+--------------------------------------------- 
+deltaStoreManager 
+ed
+SALES RECORD: 
+--------------------------------------------- 
+deltaStoreManager 
+ed
+SALES RECORD: 
+--------------------------------------------- 
+deltaStoreManager 
+ed
+SALES RECORD: 
+--------------------------------------------- 
+deltaStoreManager 
+ed
+SALES RECORD: 
+--------------------------------------------- 
+deltaStoreManager 
+ed
+SALES RECORD: 
+--------------------------------------------- 
+deltaStoreManager 
+ed
+SALES RECORD: 
+--------------------------------------------- 
+deltaStoreManager 
+ed
+SALES RECORD: 
+--------------------------------------------- 
+deltaStoreManager 
+ed
+SALES RECORD: 
+--------------------------------------------- 
+deltaStoreManager 
+ed
+SALES RECORD: 
+--------------------------------------------- 
+deltaStoreManager 
+ed
+SALES RECORD: 
+--------------------------------------------- 
+deltaStoreManager 
+ed
+SALES RECORD: 
+--------------------------------------------- 
+deltaStoreManager 
+ed
+SALES RECORD: 
