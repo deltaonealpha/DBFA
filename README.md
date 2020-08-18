@@ -5,6 +5,7 @@
    
 DBFA is a store management system like none other. From billing to inventory-management, literally anything a store could need. Ultra-light data structures, ultimate integrations, DBFA is all one could wish for, but open source! ;)
 
+[![Run on Repl.it](https://repl.it/badge/github/deltaonealpha/DBFA)](https://repl.it/github/deltaonealpha/DBFA)
 
 <h5 align="center">MARK 7.1 BELLAIRE (HYPER stable): #RadicallyNew </h5>
 
