@@ -15,6 +15,12 @@ from tabularprint import table
 from tqdm import tqdm 
 import webbrowser
 
+# HUGE credits to XanderMJ (https://github.com/XanderMJ/spotilib)
+import spotilib
+
+from SwSpotify import spotify
+
+
 filedel = open('./DBFAdeliveries.txt', 'a+')
 filedel.close()
 
@@ -887,10 +893,13 @@ def mainmenu(): #defining a function for the main menu
         delcount+=1
     filedel.close()
     if delcount != 0:
-        print(Fore.BLACK + Back.CYAN + "Number of pending deliveries: " + str(delcount) + Back.BLACK + Fore.CYAN)
+        print("-------------------------------------------------------------------------------------------------------------------------")
+        print("DBFA 8 RC-2 (Internal Build)")
+        print(Back.BLACK + Fore.MAGENTA+ "Number of pending deliveries:   " + str(delcount) + " "  + "          DBFA User: " + os.getlogin() + "                          "+ dt_string + Fore.CYAN)
+        print("-------------------------------------------------------------------------------------------------------------------------")
     else:
         print(Fore.BLACK + Back.CYAN + "No deliveries pending! " + Back.BLACK + Fore.CYAN)
-    logox = (Fore.CYAN+'''\n       _____   ____    ____  ____   ____    Options:
+    logox = (Fore.CYAN+'''       _____   ____    ____  ____   ____    Options:
       / /  // / /  \\  /___  /__||  |--//      1: Issue a Bill                          4: Auto-Generate Store Report 
      / /  // / /===| ///// ////||    //       2: Manage Customers                      
     /_/__// /_/__ / /     /    ||   //              a: Register a Customer             5: Start DBFA Backup&Switch
@@ -905,11 +914,30 @@ def mainmenu(): #defining a function for the main menu
                                                     d: Product Listing
                                                     e: Sales Log                       9: Quit
                                                     f: Export Sales Data as CSV     
-                                                                                    
-                                              
-    ''' + Fore.WHITE)                                                                       
+    ''')
+    # To underline What would you like to do?::                                                                            
     print(logox)
-    print()
+    print("-------------------------------------------------------------------------------------------------------------------------")
+    print("DBFA Music Controls: ")
+    time.sleep(0.2)
+    try:
+        if spotify.current() not in ("", " ", [], (), None):
+            print(Fore.CYAN, "Currently playing:", Fore.MAGENTA , spotify.current()[0], Fore.CYAN, "by ", Fore.MAGENTA, spotify.current()[1], Fore.CYAN)
+        else:
+            print(Fore.MAGENTA, "No music playing. Use Spotify to play your favourite music and control it via DBFA", Fore.CYAN)
+    except Exception as e:
+        print(Fore.MAGENTA, "No music playing. Use Spotify to play your favourite music and control it via DBFA", Fore.CYAN)
+
+    print("|   *prev* - <<< previous track   |   *pause* - <|> pause/ play music   |   *next* - >>> next track   |   ")
+    print("-------------------------------------------------------------------------------------------------------------------------")
+    underline_byte = b'\xcc\xb2'
+    underline = str(underline_byte,'utf-8')
+    for x in ("What would you like to do?"):
+        if x.isspace() == False:
+            print(Fore.MAGENTA, x+underline,end='')
+        else:
+            print(x,end='')     
+    print(Fore.WHITE)
     print()
 
 
@@ -1075,6 +1103,435 @@ def payboxie(custid, total):
         netpay = total
 
 
+
+
+def del2a():
+    try:
+        if os.path.exists(r'userblock.txt'):
+            os.remove(r'userblock.txt')
+        if os.path.exists(r'userblock.zconf'):
+            os.remove(r'userblock.zconf')
+    except PermissionError:
+            pass
+    print("Connecting to server..")  #SQL connection prompt
+    time.sleep(0.4)  #for a seamless experience
+    #conn.execute("select * from cust")
+    #takes values from the SQL database
+    conn = sqlite3.connect('DBFA.db')
+    cursor = conn.cursor()
+    cursor.execute("select * from cust")
+    results = cursor.fetchall()
+    idd = len(results)+1
+    print("Registering customer with ID: ", idd)
+    custname = input("Customer Name: ")
+    email = input("Customer's E-mail ID: ")
+    inserter(idd, custname, email) #argumental function to insert values into the SQL database
+    nullvalue = 0
+    custcc(idd, custname, nullvalue, nullvalue)
+    print(" ")
+    
+    print("Customer ID", idd, "registered in directory.")
+    print("---------------------------------------")
+    print(" ")
+    print(" ")
+    #conn.close()
+    time.sleep(1) #for a seamless experience
+
+
+def del2b():
+    try:
+        if os.path.exists(r'userblock.txt'):
+            os.remove(r'userblock.txt')
+        if os.path.exists(r'userblock.zconf'):
+            os.remove(r'userblock.zconf')
+    except PermissionError:
+            pass
+    print()
+    print("Connecting to server..")  #SQL connection prompt
+    time.sleep(0.7) #for a seamless experience
+    print("Registered customers are: ")
+    #Re-writing to refresh connection
+    conn = sqlite3.connect('DBFA.db')
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM cust")
+    rows = cur.fetchall()
+    col_labels = ("ID", "Customer NAME", "EMAIL")
+    table(col_labels, rows)
+    toaster.show_toast("DNSS QuickSync", "Database acessed", duration = 2)
+    #takes values from the SQL database
+    '''
+    while row is not None:
+        print(row)
+        #row = conn.fetchone()
+    '''
+    
+    conn.close()
+    conn.close()
+    print()
+    print()
+    time.sleep(2) #delay for easy-table viewing
+    
+
+def del2c():
+    try:
+        if os.path.exists(r'userblock.txt'):
+            os.remove(r'userblock.txt')
+        if os.path.exists(r'userblock.zconf'):
+            os.remove(r'userblock.zconf')
+    except PermissionError:
+            pass
+    xon = sqlite3.connect(r'DBFA_CUSTCC.db')
+    xbr7 = xon.cursor()
+    xbr7.execute("SELECT * FROM custcc")
+    l = xbr7.fetchall()
+    print("\nCustomer Purchase Records: ")
+
+    import pandas as pd
+
+    flat_list = []
+    print("---------------------------------------------------------------")
+    for sublist in l:
+        flat_list.append(sublist)
+    mydf = pd.DataFrame(flat_list, columns=['Customer ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points'])
+    mydf.pivot(index='Customer ID', columns='Purchases Made', values='Total').fillna(value='-')
+    print(mydf)
+    print("---------------------------------------------------------------")
+    time.sleep(2)
+    
+    '''
+    for row in rows:
+        print(row)
+        print(" ")
+    '''
+    xbr7.close()
+    toaster.show_toast("DFBA QuickSync", "Database acessed", duration = 0.5) 
+
+
+
+def del2d():
+    try:
+        con = sqlite3.connect(r'DBFA.db')
+        conn = con.cursor()
+
+        conx = sqlite3.connect(r'DBFA_CUSTCC.db')
+        connx = conx.cursor()
+
+        searchcon = str(input("Customer Name: "))
+        if " " in searchcon:  
+            for i in searchcon:
+                sconsplit = searchcon.split(" ")
+                for j in sconsplit:
+                    conn.execute("SELECT custt FROM cust WHERE custname LIKE ?", (("%"+searchcon+"%"), ))
+                    searchdata = conn.fetchall()
+                else:
+                    searchcon = searchcon.replace(" ", "")
+                    conn.execute("SELECT custt FROM cust WHERE custname LIKE ?", (("%"+searchcon+"%"), ))
+                    searchdata = conn.fetchall()
+                    if len(searchdata) != 0:
+                        pass
+                    else:
+                        searchdata = "No such customer found."
+        else:      
+            conn.execute("SELECT custt FROM cust WHERE custname LIKE ?", (("%"+searchcon+"%"), ))
+            searchdata = conn.fetchall()
+
+        if len(searchdata) != 0:
+            if len(searchdata) > 1:
+                for i in searchdata:
+                    conn.execute("SELECT * FROM cust WHERE custt = ?", (i[0], ))
+                    custdata = conn.fetchall()
+                    #col_labels = ("ID", "Customer NAME", "EMAIL")
+                    #table(col_labels, custdata)
+
+                    connx.execute("SELECT * FROM custcc WHERE custid = ?", (i[0], ))
+                    custdatax = connx.fetchall()
+                    ccrt = []            
+                    for jk in custdata:
+                        for jkx in jk:
+                            ccrt.append(str(jkx))
+                    for jk in custdatax:
+                        for jkx in jk:
+                            ccrt.append(str(jkx))
+
+                    col_labels = ('ID', 'Customer NAME', 'EMAIL', 'ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points')
+                    print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f"))
+
+                    print(" ")
+            else:
+                conn.execute("SELECT * FROM cust WHERE custt = ?", (searchdata[0][0], ))
+                custdata = conn.fetchall()
+
+                connx.execute("SELECT * FROM custcc WHERE custid = ?", (searchdata[0][0], ))
+                custdatax = connx.fetchall()
+                ccrt = []            
+                for jk in custdata:
+                    for jkx in jk:
+                        ccrt.append(str(jkx))
+                for jk in custdatax:
+                    for jkx in jk:
+                        ccrt.append(str(jkx))
+
+                col_labels = ('ID', 'Customer NAME', 'EMAIL', 'ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points')
+                print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f"))
+        else:
+            srtx = "%"
+            for i in searchcon:
+                srtx += '%s'%i+"%"
+            conn.execute("SELECT custt FROM cust WHERE custname LIKE ?", ((srtx), ))
+            searchdata = conn.fetchall()
+            if len(searchdata) != 0:
+                conn.execute("SELECT * FROM cust WHERE custt = ?", (i[0], ))
+                custdata = conn.fetchall()
+                #col_labels = ("ID", "Customer NAME", "EMAIL")
+                #table(col_labels, custdata)
+
+                connx.execute("SELECT * FROM custcc WHERE custid = ?", (i[0], ))
+                custdatax = connx.fetchall()
+                ccrt = []            
+                for jk in custdata:
+                    for jkx in jk:
+                        ccrt.append(str(jkx))
+                for jk in custdatax:
+                    for jkx in jk:
+                        ccrt.append(str(jkx))
+
+                col_labels = ('ID', 'Customer NAME', 'EMAIL', 'ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points')
+                print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f"))
+            else:
+                print("Customer not found.")
+    except:
+        print("Error encountered.  ")
+
+
+
+
+def del2e():
+    import sqlite3 as sql
+    import os
+    import csv
+    from sqlite3 import Error
+
+    try:
+        csvex=sql.connect(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA.db')
+        cursor = csvex.cursor()
+        cursor.execute("select * from cust")
+        print("Fetching data from database - I...")
+        with open("DBFAcustrec.csv", "w") as csv_file:
+            csv_writer = csv.writer(csv_file, delimiter="\t")
+            csv_writer.writerow([i[0] for i in cursor.description])
+            csv_writer.writerows(cursor)
+            csvexx=sql.connect(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_CUSTCC.db')
+            print("Fetching data from database - II...")
+            cursorx = csvexx.cursor()
+            cursorx.execute("select * from custcc")
+            csv_writer = csv.writer(csv_file, delimiter="\t")
+            csv_writer.writerow([i[0] for i in cursorx.description])
+            csv_writer.writerows(cursorx)    
+        dirpath = os.getcwd() + "/DBFAcustrec.csv"
+        print("Data exported Successfully into {}".format(dirpath))
+        time.sleep(2)
+        os.startfile(r"DBFAcustrec.csv")
+
+    except Error as e:
+        print(e)
+
+    finally:
+        csvex.close()
+
+
+
+def del3a():
+    decsfacter = str(input("Enter 'a' to VIEW STOCK, 'b' to ADD STOCK and 'c' to ENFORCE MASS STOCK: "))
+    if decsfacter == "a":
+        ssxsuperfetch()
+    elif decsfacter == "b":
+        objid = int(input("Enter the product ID to add stock for: "))
+        stockincrement = int(input("Enter the amount of stock to be added: "))
+        ssxupdatescript(stockincrement, objid)
+        print("Stock updated by", stockincrement, "for product ID:", objid)
+    elif decsfacter == "c":
+        ggrtrr = int(input("Enter stock to universally enforce: "))
+        massmaintainer(ggrtrr)
+
+
+def del3b():
+    print("-------- DBFA Stock Master v1 ---------")
+    print(" ")
+    time.sleep(1)
+    print("a: Order New Stock")
+    print("b: Update Delivery Status")
+    print("c: MASS - Fetch Current Status")
+    print("d: INDVL - Fetch Current Status")
+    print("e: View Vendor Details")
+    print("f: Contact Vendor")
+    print("g: Modify Low-Stock Warning Bar")
+    stkmaster = input("Select:: ")
+    if stkmaster in ("a", "A"):
+        idquery = int(input("Enter the product ID: "))
+        qtyquery = int(input("Enter the amount to order: "))
+        orderstock(idquery, qtyquery)
+        print("\n--------------------------------------------------------")
+    elif stkmaster in ("b", "B"):
+        idquery = int(input("Product ID of the product recieved: "))
+        qtyquery = int(input("Quantity recieved: "))
+        delivered(qtyquery, idquery)
+        ssxupdatescript(qtyquery, idquery)
+        print("\nChanges made in all related databases. \n")
+        print("\n--------------------------------------------------------")
+    elif stkmaster in ("c", "C"):
+        delstatmass()
+        print("\n--------------------------------------------------------")
+    elif stkmaster in ("d", "D"):
+        idquery = int(input("Product ID to locate: "))
+        delstatindvl(idquery)
+        print("\n--------------------------------------------------------")
+    elif stkmaster in ("e", "E"):
+        idquery = int(input("Product ID to get vendor details for: "))
+        vendorfetch(idquery)
+        print("\n--------------------------------------------------------")
+    elif stkmaster in ("f", "F"):
+        idquery = int(input("Product ID to contact vendor for: "))
+        vendorcontact(idquery)
+        print("\n--------------------------------------------------------")
+    elif stkmaster in ("g", "G"):
+        idquery = int(input("Product ID to alter bar for: "))
+        lowbarmodif(idquery)
+        print("\n--------------------------------------------------------")
+    else:
+        print("Please select a valid option! ")
+        print("\n--------------------------------------------------------")
+        time.sleep(1)
+        mainmenu()
+
+
+
+def del3c():
+    print("Enter '1' to generate a voucher; ")
+    descx = int(input("'2' to view generated vouchers: "))
+    if descx == 1:
+        print("DNSS CouponMaster: Issuer")
+        print("NOTE: Reusing existing coupon codes may result in overwritten data.")
+        cponid = input("Coupon ID: ")
+        cponlim = input("Number of times to allow coupon usage: ")
+        cponvalue = input("Coupon discount percentage: ")
+        cponissuer(cponid, cponlim, cponvalue)
+        time.sleep(0.4)
+    elif descx == 2:
+        print("DNSS CouponMaster: Viewer")
+        cpon_masterfetch()
+        time.sleep(0.4)
+
+
+
+def del3d():
+    try:
+        if os.path.exists(r'userblock.txt'):
+            os.remove(r'userblock.txt')
+        if os.path.exists(r'userblock.zconf'):
+            os.remove(r'userblock.zconf')
+    except PermissionError:
+            pass
+    print("Store listing (as per updated records): ")
+    print(tabulate(tablx, headers = titlex, floatfmt = ".4f"))
+
+
+
+def del3e():
+    try:
+        if os.path.exists(r'userblock.txt'):
+            os.remove(r'userblock.txt')
+        if os.path.exists(r'userblock.zconf'):
+            os.remove(r'userblock.zconf')
+    except PermissionError:
+            pass
+    #password verification as sales record is not to be shown to all;
+    print(" - Echo-supressed input - ")
+    passw = getpass.getpass(prompt='Enter root password to view store activity registry: ', stream=None)
+    if passw == "root":
+            time.sleep(1) #for a seamless experience
+            print("Hold on, moneybags.")
+            with HiddenPrints():
+                try:
+                    sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files accessed - DBFA SECURITY")
+                    print(sender)
+                except Exception:
+                    pass
+            time.sleep(0.4)
+            print("Here:: ")
+            time.sleep(0.2) #for a seamless experience 
+            # Uncomment the below lines if the program has to be modified to show the records in the shell itself and not externally
+            # print(logger.read())
+            # print()
+            # print("Opening sales log externally now. ")
+            time.sleep(1.4) #for a seamless experience
+            os.startfile('registry.txt') #to open the external notepad application
+    else:
+        print("Ehh that'd be wrong, sneaky-hat. Try again: ")
+        print(" ")
+        print(" - Echo-supressed input - ")
+        passw = getpass.getpass(prompt='Enter root password to view store activity registry: ', stream=None)
+        if passw == "root":
+                time.sleep(1) #for a seamless experience
+                print("Hold on, moneybags.")
+                with HiddenPrints():
+                    try:
+                        sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files accessed - DBFA SECURITY: ATTEMPT 02")
+                        print(sender)
+                    except Exception:
+                        pass
+                print("There ya go:: ")
+                time.sleep(0.6) #for a seamless experience
+                # print(logger.read())
+                # print()
+                # print("Opening sales log externally now. ")
+                time.sleep(1.4) #for a seamless experience
+                os.startfile('registry.txt')
+        else:
+            with HiddenPrints():
+                try:
+                    sender = telegram_bot_sendtext(dt_string + "\n" + "[ACCESS DENIED!!] - Registry file  - DBFA SECURITY [ACCESS DENIED!!]")
+                    print(sender)
+                except Exception:
+                    pass
+            print("Multiple Unsuccesfull Attempts Detected. Re-run the program to login now. ")
+            logger.write("(MULTIPLE ATTEMPTS!): Log file access attempt - AUTHORIZATION FAILED!!! \n")
+            time.sleep(1.4) #for a seamless experience
+            print()
+            print()
+
+
+
+
+def del3f():
+    import sqlite3 as sql
+    import os
+    import csv
+    from sqlite3 import Error
+
+    try:
+        csvex=sql.connect(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\recmaster.db')
+        print("Exporting sales data to CSV....")
+        cursor = csvex.cursor()
+        cursor.execute("select * from recmasterx")
+        with open("DBFAstorerec.csv", "w") as csv_file:
+            csv_writer = csv.writer(csv_file, delimiter="\t")
+            csv_writer.writerow([i[0] for i in cursor.description])
+            csv_writer.writerows(cursor)
+
+        dirpath = os.getcwd() + "/DBFAcustrec.csv"
+        print("Data exported Successfully into {}".format(dirpath))
+        time.sleep(2)
+        os.startfile(r"DBFAcustrec.csv")
+
+    except Error as e:
+        print(e)
+
+    finally:
+        pass
+
+
+
+
 print("-----------------------------------------------------------------------------------------------------")
 
 # Store listing::
@@ -1095,7 +1552,9 @@ print('''
 DBFA Billing Framework 7 [Bellaire] (stable)
 <GNU Public License> Copyright (C) 2020 Pranav Balaji and Sushant Gupta
 View the license file in the installation dir for more info.
-\n
+\n\n
+Fetching Windows login details..
+Fetching Windows login details....
 \n''')
 
 logoprintxrt()
@@ -1119,7 +1578,7 @@ floodscreen() #comment to disable boot-flash screen
 from win10toast import ToastNotifier
 toaster = ToastNotifier()
 toaster.show_toast("DFBA System","Read documentation prior to use.", duration = 1)
-print("Heyy there,",  'Binod!') #enable parts in the auth script to enable user detection
+print("Heyy there,", os.getlogin()) #enable parts in the auth script to enable user detection
 time.sleep(0.5)
 if redflag == 0:
     logger.write("Auth bypass - registering for security") 
@@ -1140,15 +1599,32 @@ if redflag == 0:
 
 # Main Program Starts Here
 while(1): #while (always) true
-    
     mainmenu() #mainmenu
     writer = ""
     telethon = ""
     time.sleep(0.037)  #for a seamless experience
-    decfac = int(input("Select option: "))
+    decfac = input("Select option: ")
+
+    #All possible case-combinations; found using recursion
+    if decfac in ('prev', 'preV', 'prEv', 'prEV', 'pRev', 'pReV', 'pREv', 'pREV', 'Prev', 'PreV', 'PrEv', 'PrEV', 'PRev', 'PReV', 'PREv', 'PREV'):
+        try:
+            spotilib.previous()
+        except Exception as e:
+            pass
+    elif decfac in ('pause', 'pausE', 'pauSe', 'pauSE', 'paUse', 'paUsE', 'paUSe', 'paUSE', 'pAuse', 'pAusE', 'pAuSe', 'pAuSE', 'pAUse', 'pAUsE', 'pAUSe', 'pAUSE', 'Pause', 'PausE', 'PauSe', 'PauSE', 'PaUse', 'PaUsE', 'PaUSe', 'PaUSE', 'PAuse', 'PAusE', 'PAuSe', 'PAuSE', 'PAUse', 'PAUsE', 'PAUSe', 'PAUSE'):
+        try:
+            spotilib.pause()
+        except Exception as e:
+            pass
+
+    elif decfac in ('next', 'nexT', 'neXt', 'neXT', 'nExt', 'nExT', 'nEXt', 'nEXT', 'Next', 'NexT', 'NeXt', 'NeXT', 'NExt', 'NExT', 'NEXt', 'NEXT'):
+        try:
+            spotilib.next()
+        except Exception as e:
+            pass
 
     #Billing Mode
-    if decfac == 1:
+    elif decfac == "1":
         print()
         try:
             if os.path.exists(r'userblock.txt'):
@@ -1196,7 +1672,7 @@ while(1): #while (always) true
                     lenxr = len(namie[item])
                     costlenxr = len(str(data[item]))        
                     cj = 10 - costlenxr
-                    pi = 50 - lenxr
+                    pi = 60 - lenxr
                     idlerxx = namie[item] + " "*pi + "₹"+'%d'%data[item] + " "*cj + "1 qty. ~"
                     purcheck += idlerxx
                     print("---")
@@ -1307,14 +1783,14 @@ while(1): #while (always) true
                 rupeesymbol = "₹".encode("utf-8")
                 inmaintainer()
                 infetch()
-                print("\n\n-------------------------------------------------------------------------")
+                print("\n\n--------------------------------------------------------------------------------")
                 print("Invoice ID: ", inval, "| Time: ",dt_string, "| No. of items: ", afac)
                 print(payindic)
-                print("-------------------------------------------------------------------------")
+                print("--------------------------------------------------------------------------------")
                 printobj = purcheck.split("~")
                 for i in printobj:
                     print(i)
-                print("-------------------------------------------------------------------------")
+                print("--------------------------------------------------------------------------------")
                 print("Sub total        : ₹",billiemaster)
                 cpon_ssinglefetch(cponid)
                 if sfetch_values not in (None, " ", ""):
@@ -1325,9 +1801,9 @@ while(1): #while (always) true
                 print("CGST             : ₹","%.2f" % ((9/100)*billiemaster))
                 if redeemindic == 1:
                     print("Redeemed loyalty points worth: ₹",lylpoints)
-                print("-------------------------------------------------------------------------")
+                print("--------------------------------------------------------------------------------")
                 print("Amount to be paid: ₹","%.2f" % netpay)
-                print("-------------------------------------------------------------------------")
+                print("--------------------------------------------------------------------------------")
                 toaster.show_toast("DFBA Billing:  Total billed for-",str(total), duration = 1)
                 logger.write("Total amount billed for: \n") #writing to file
                 if custt in ("", " ", 0, None) and cccheck == 0:
@@ -1425,7 +1901,7 @@ while(1): #while (always) true
 
 
     #Manage Customers
-    elif decfac == 2:
+    elif decfac == "2":
         print("Select: ")
         print("    a: Register a Customer ")
         print("    b: Customer Registry ")
@@ -1435,29 +1911,7 @@ while(1): #while (always) true
         selected = input("Choose your option: ")
         print("\n")
         if selected in ("a", "A"):
-            try:
-                if os.path.exists(r'userblock.txt'):
-                    os.remove(r'userblock.txt')
-                if os.path.exists(r'userblock.zconf'):
-                    os.remove(r'userblock.zconf')
-            except PermissionError:
-                    pass
-            print("Connecting to server..")  #SQL connection prompt
-            time.sleep(0.4)  #for a seamless experience
-            #conn.execute("select * from cust")
-            #takes values from the SQL database
-            conn = sqlite3.connect('DBFA.db')
-            cursor = conn.cursor()
-            cursor.execute("select * from cust")
-            results = cursor.fetchall()
-            idd = len(results)+1
-            print("Registering customer with ID: ", idd)
-            custname = input("Customer Name: ")
-            email = input("Customer's E-mail ID: ")
-            inserter(idd, custname, email) #argumental function to insert values into the SQL database
-            nullvalue = 0
-            custcc(idd, custname, nullvalue, nullvalue)
-            print(" ")
+            del2a()
             logger.write("--------------------------------------- \n")
             logger.write("  \n")
             logger.write("Date and time: ") #including the date and time of billing (as taken from the system)
@@ -1467,39 +1921,9 @@ while(1): #while (always) true
             x = " custname: " + custname + " custemail: " + email + "\n"
             logger.write(x)
             logger.write("--------------------------------------- \n")
-            print("Customer ID", idd, "registered in directory.")
-            print("---------------------------------------")
-            print(" ")
-            print(" ")
-            #conn.close()
-            time.sleep(1) #for a seamless experience
 
         if selected in ("b", "B"):
-            try:
-                if os.path.exists(r'userblock.txt'):
-                    os.remove(r'userblock.txt')
-                if os.path.exists(r'userblock.zconf'):
-                    os.remove(r'userblock.zconf')
-            except PermissionError:
-                    pass
-            print()
-            print("Connecting to server..")  #SQL connection prompt
-            time.sleep(0.7) #for a seamless experience
-            print("Registered customers are: ")
-            #Re-writing to refresh connection
-            conn = sqlite3.connect('DBFA.db')
-            cur = conn.cursor()
-            cur.execute("SELECT * FROM cust")
-            rows = cur.fetchall()
-            col_labels = ("ID", "Customer NAME", "EMAIL")
-            table(col_labels, rows)
-            toaster.show_toast("DNSS QuickSync", "Database acessed", duration = 2)
-            #takes values from the SQL database
-            '''
-            while row is not None:
-                print(row)
-                #row = conn.fetchone()
-            '''
+            del2b()
             logger.write("--------------------------------------- \n")
             logger.write("  \n")
             logger.write("Date and time: ") #including the date and time of billing (as taken from the system)
@@ -1507,182 +1931,37 @@ while(1): #while (always) true
             logger.write(" \n")
             logger.write("Customer registry accessed! \n")
             logger.write("--------------------------------------- \n")
-            conn.close()
-            conn.close()
-            print()
-            print()
-            time.sleep(2) #delay for easy-table viewing
-
 
         if selected in ("c", "C"):
-            try:
-                if os.path.exists(r'userblock.txt'):
-                    os.remove(r'userblock.txt')
-                if os.path.exists(r'userblock.zconf'):
-                    os.remove(r'userblock.zconf')
-            except PermissionError:
-                    pass
-            xon = sqlite3.connect(r'DBFA_CUSTCC.db')
-            xbr7 = xon.cursor()
-            xbr7.execute("SELECT * FROM custcc")
-            l = xbr7.fetchall()
-            print("\nCustomer Purchase Records: ")
-
-            import pandas as pd
-
-            flat_list = []
-            print("---------------------------------------------------------------")
-            for sublist in l:
-                flat_list.append(sublist)
-            mydf = pd.DataFrame(flat_list, columns=['Customer ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points'])
-            mydf.pivot(index='Customer ID', columns='Purchases Made', values='Total').fillna(value='-')
-            print(mydf)
-            print("---------------------------------------------------------------")
-            time.sleep(2)
-            
-            '''
-            for row in rows:
-                print(row)
-                print(" ")
-            '''
-            xbr7.close()
-            toaster.show_toast("DFBA QuickSync", "Database acessed", duration = 0.5) 
+            del2c()
+            logger.write("--------------------------------------- \n")
+            logger.write("\nDBFA Customer Purchase Records accessed! \n")
 
         elif selected in ("d", "D"):
-            try:
-                con = sqlite3.connect(r'DBFA.db')
-                conn = con.cursor()
-
-                conx = sqlite3.connect(r'DBFA_CUSTCC.db')
-                connx = conx.cursor()
-
-                searchcon = str(input("Customer Name: "))
-                if " " in searchcon:  
-                    for i in searchcon:
-                        sconsplit = searchcon.split(" ")
-                        for j in sconsplit:
-                            conn.execute("SELECT custt FROM cust WHERE custname LIKE ?", (("%"+searchcon+"%"), ))
-                            searchdata = conn.fetchall()
-                        else:
-                            searchcon = searchcon.replace(" ", "")
-                            conn.execute("SELECT custt FROM cust WHERE custname LIKE ?", (("%"+searchcon+"%"), ))
-                            searchdata = conn.fetchall()
-                            if len(searchdata) != 0:
-                                pass
-                            else:
-                                searchdata = "No such customer found."
-                else:      
-                    conn.execute("SELECT custt FROM cust WHERE custname LIKE ?", (("%"+searchcon+"%"), ))
-                    searchdata = conn.fetchall()
-
-                if len(searchdata) != 0:
-                    if len(searchdata) > 1:
-                        for i in searchdata:
-                            conn.execute("SELECT * FROM cust WHERE custt = ?", (i[0], ))
-                            custdata = conn.fetchall()
-                            #col_labels = ("ID", "Customer NAME", "EMAIL")
-                            #table(col_labels, custdata)
-
-                            connx.execute("SELECT * FROM custcc WHERE custid = ?", (i[0], ))
-                            custdatax = connx.fetchall()
-                            ccrt = []            
-                            for jk in custdata:
-                                for jkx in jk:
-                                    ccrt.append(str(jkx))
-                            for jk in custdatax:
-                                for jkx in jk:
-                                    ccrt.append(str(jkx))
-
-                            col_labels = ('ID', 'Customer NAME', 'EMAIL', 'ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points')
-                            print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f"))
-
-                            print(" ")
-                    else:
-                        conn.execute("SELECT * FROM cust WHERE custt = ?", (searchdata[0][0], ))
-                        custdata = conn.fetchall()
-
-                        connx.execute("SELECT * FROM custcc WHERE custid = ?", (searchdata[0][0], ))
-                        custdatax = connx.fetchall()
-                        ccrt = []            
-                        for jk in custdata:
-                            for jkx in jk:
-                                ccrt.append(str(jkx))
-                        for jk in custdatax:
-                            for jkx in jk:
-                                ccrt.append(str(jkx))
-
-                        col_labels = ('ID', 'Customer NAME', 'EMAIL', 'ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points')
-                        print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f"))
-                else:
-                    srtx = "%"
-                    for i in searchcon:
-                        srtx += '%s'%i+"%"
-                    conn.execute("SELECT custt FROM cust WHERE custname LIKE ?", ((srtx), ))
-                    searchdata = conn.fetchall()
-                    if len(searchdata) != 0:
-                        conn.execute("SELECT * FROM cust WHERE custt = ?", (i[0], ))
-                        custdata = conn.fetchall()
-                        #col_labels = ("ID", "Customer NAME", "EMAIL")
-                        #table(col_labels, custdata)
-
-                        connx.execute("SELECT * FROM custcc WHERE custid = ?", (i[0], ))
-                        custdatax = connx.fetchall()
-                        ccrt = []            
-                        for jk in custdata:
-                            for jkx in jk:
-                                ccrt.append(str(jkx))
-                        for jk in custdatax:
-                            for jkx in jk:
-                                ccrt.append(str(jkx))
-
-                        col_labels = ('ID', 'Customer NAME', 'EMAIL', 'ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points')
-                        print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f"))
-                    else:
-                        print("Customer not found.")
-            except:
-                print("Error encountered.  ")
-
+            del2d()
+            logger.write("--------------------------------------- \n")
+            logger.write("\nCustomer search used. \n")
 
         elif selected in ("e", "E"):
-            import sqlite3 as sql
-            import os
-            import csv
-            from sqlite3 import Error
-
-            try:
-                csvex=sql.connect(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA.db')
-                cursor = csvex.cursor()
-                cursor.execute("select * from cust")
-                print("Fetching data from database - I...")
-                with open("DBFAcustrec.csv", "w") as csv_file:
-                    csv_writer = csv.writer(csv_file, delimiter="\t")
-                    csv_writer.writerow([i[0] for i in cursor.description])
-                    csv_writer.writerows(cursor)
-                    csvexx=sql.connect(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_CUSTCC.db')
-                    print("Fetching data from database - II...")
-                    cursorx = csvexx.cursor()
-                    cursorx.execute("select * from custcc")
-                    csv_writer = csv.writer(csv_file, delimiter="\t")
-                    csv_writer.writerow([i[0] for i in cursorx.description])
-                    csv_writer.writerows(cursorx)    
-                dirpath = os.getcwd() + "/DBFAcustrec.csv"
-                print("Data exported Successfully into {}".format(dirpath))
-                time.sleep(2)
-                os.startfile(r"DBFAcustrec.csv")
-
-            except Error as e:
-                print(e)
-
-            finally:
-                csvex.close()
+            del2e()
+            logger.write("\n\n--------------------------------------- \n")
+            logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+            logger.write("Customer data exported to CSV! ")
+            with HiddenPrints():
+                try:
+                    sender = telegram_bot_sendtext(dt_string + "\n" + "Sales data exported to CSV- REDFLAG Urgent Security Notice!")
+                    print(sender)
+                except Exception:
+                    pass
+            logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+            logger.write("--------------------------------------- \n\n\n")
 
         elif selected not in ("a", "b", "c", "d", "e", "A", "B", "C", "D", "E"):
             print("Please chose a valid option!")
             time.sleep(1)
-        
 
     #Store Options:
-    elif decfac == 3:
+    elif decfac == "3":
         print("Select: ")
         print("    a: Manage Stock ")
         print("    b: DBFA Stock Master ")
@@ -1694,204 +1973,35 @@ while(1): #while (always) true
         print("\n")
 
         if storeselected in ("a", "A"):
-            decsfacter = str(input("Enter 'a' to VIEW STOCK, 'b' to ADD STOCK and 'c' to ENFORCE MASS STOCK: "))
-            if decsfacter == "a":
-                ssxsuperfetch()
-            elif decsfacter == "b":
-                objid = int(input("Enter the product ID to add stock for: "))
-                stockincrement = int(input("Enter the amount of stock to be added: "))
-                ssxupdatescript(stockincrement, objid)
-                print("Stock updated by", stockincrement, "for product ID:", objid)
-            elif decsfacter == "c":
-                ggrtrr = int(input("Enter stock to universally enforce: "))
-                massmaintainer(ggrtrr)
+            del3a()
             
-        if storeselected in ("b", "B"):
-            print("-------- DBFA Stock Master v1 ---------")
-            print(" ")
-            time.sleep(1)
-            print("a: Order New Stock")
-            print("b: Update Delivery Status")
-            print("c: MASS - Fetch Current Status")
-            print("d: INDVL - Fetch Current Status")
-            print("e: View Vendor Details")
-            print("f: Contact Vendor")
-            print("g: Modify Low-Stock Warning Bar")
-            stkmaster = input("Select:: ")
-            if stkmaster in ("a", "A"):
-                idquery = int(input("Enter the product ID: "))
-                qtyquery = int(input("Enter the amount to order: "))
-                orderstock(idquery, qtyquery)
-                print("\n--------------------------------------------------------")
-            elif stkmaster in ("b", "B"):
-                idquery = int(input("Product ID of the product recieved: "))
-                qtyquery = int(input("Quantity recieved: "))
-                delivered(qtyquery, idquery)
-                ssxupdatescript(qtyquery, idquery)
-                print("\nChanges made in all related databases. \n")
-                print("\n--------------------------------------------------------")
-            elif stkmaster in ("c", "C"):
-                delstatmass()
-                print("\n--------------------------------------------------------")
-            elif stkmaster in ("d", "D"):
-                idquery = int(input("Product ID to locate: "))
-                delstatindvl(idquery)
-                print("\n--------------------------------------------------------")
-            elif stkmaster in ("e", "E"):
-                idquery = int(input("Product ID to get vendor details for: "))
-                vendorfetch(idquery)
-                print("\n--------------------------------------------------------")
-            elif stkmaster in ("f", "F"):
-                idquery = int(input("Product ID to contact vendor for: "))
-                vendorcontact(idquery)
-                print("\n--------------------------------------------------------")
-            elif stkmaster in ("g", "G"):
-                idquery = int(input("Product ID to alter bar for: "))
-                lowbarmodif(idquery)
-                print("\n--------------------------------------------------------")
-            else:
-                print("Please select a valid option! ")
-                print("\n--------------------------------------------------------")
-                time.sleep(1)
-                mainmenu()
+        elif storeselected in ("b", "B"):
+            del3b()
 
-        if storeselected in ("c", "C"):
-            print("Enter '1' to generate a voucher; ")
-            descx = int(input("'2' to view generated vouchers: "))
-            if descx == 1:
-                print("DNSS CouponMaster: Issuer")
-                print("NOTE: Reusing existing coupon codes may result in overwritten data.")
-                cponid = input("Coupon ID: ")
-                cponlim = input("Number of times to allow coupon usage: ")
-                cponvalue = input("Coupon discount percentage: ")
-                cponissuer(cponid, cponlim, cponvalue)
-                time.sleep(0.4)
-            elif descx == 2:
-                print("DNSS CouponMaster: Viewer")
-                cpon_masterfetch()
-                time.sleep(0.4)
+        elif storeselected in ("c", "C"):
+            del3c()
 
+        elif storeselected in ("d", "D"):
+            del3d()            
 
-        if storeselected in ("d", "D"):
-            try:
-                if os.path.exists(r'userblock.txt'):
-                    os.remove(r'userblock.txt')
-                if os.path.exists(r'userblock.zconf'):
-                    os.remove(r'userblock.zconf')
-            except PermissionError:
-                    pass
-            print("Store listing (as per updated records): ")
-            print(tabulate(tablx, headers = titlex, floatfmt = ".4f"))
-
-        if storeselected in ("e", "E"):
-            try:
-                if os.path.exists(r'userblock.txt'):
-                    os.remove(r'userblock.txt')
-                if os.path.exists(r'userblock.zconf'):
-                    os.remove(r'userblock.zconf')
-            except PermissionError:
-                    pass
-            #password verification as sales record is not to be shown to all;
-            print(" - Echo-supressed input - ")
-            passw = getpass.getpass(prompt='Enter root password to view store activity registry: ', stream=None)
-            logger.write("  \n")
-            logger.write("Date and time: ") #including the date and time of billing (as taken from the system)
-            logger.write(dt_string)
-            logger.write(" \n")
-            if passw == "root":
-                    time.sleep(1) #for a seamless experience
-                    print("Hold on, moneybags.")
-                    with HiddenPrints():
-                        try:
-                            sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files accessed - DBFA SECURITY")
-                            print(sender)
-                        except Exception:
-                            pass
-                    time.sleep(0.4)
-                    print("Here:: ")
-                    time.sleep(0.2) #for a seamless experience 
-                    logger.write("Log file access attempt - Oauth complete \n")
-                    logger.close() #to change file access modes 
-                    logger = open("registry.txt", "r+")
-                    # Uncomment the below lines if the program has to be modified to show the records in the shell itself and not externally
-                    # print(logger.read())
-                    # print()
-                    # print("Opening sales log externally now. ")
-                    time.sleep(1.4) #for a seamless experience
-                    os.startfile('registry.txt') #to open the external notepad application
-            else:
-                
-                logger.write("  \n")
-                logger.write("Date and time: ")  #including the date and time of billing (as taken from the system)
-                logger.write(dt_string)
-                logger.write(" \n")
-                time.sleep(1) #for a seamless experience
-                logger.write("Log file access attempt - Oauth failiure!!! \n")
-                print("Ehh that'd be wrong, sneaky-hat. Try again: ")
-                print(" ")
-                print(" - Echo-supressed input - ")
-                passw = getpass.getpass(prompt='Enter root password to view store activity registry: ', stream=None)
-                if passw == "root":
-                        time.sleep(1) #for a seamless experience
-                        print("Hold on, moneybags.")
-                        with HiddenPrints():
-                            try:
-                                sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files accessed - DBFA SECURITY: ATTEMPT 02")
-                                print(sender)
-                            except Exception:
-                                pass
-                        print("There ya go:: ")
-                        time.sleep(0.6) #for a seamless experience
-                        logger.write("  \n")
-                        logger.write("Date and time: \n") #including the date and time of billing (as taken from the system)
-                        logger.write(dt_string)
-                        logger.write(" \n")
-                        logger.write("Log file access attempt - AUTHORIZATION SUCCESS \n")
-                        logger.close() #to change file access modes 
-                        # print(logger.read())
-                        # print()
-                        # print("Opening sales log externally now. ")
-                        time.sleep(1.4) #for a seamless experience
-                        os.startfile('registry.txt')
-                else:
-                    with HiddenPrints():
-                        try:
-                            sender = telegram_bot_sendtext(dt_string + "\n" + "[ACCESS DENIED!!] - Registry file  - DBFA SECURITY [ACCESS DENIED!!]")
-                            print(sender)
-                        except Exception:
-                            pass
-                    print("Multiple Unsuccesfull Attempts Detected. Re-run the program to login now. ")
-                    logger.write("(MULTIPLE ATTEMPTS!): Log file access attempt - AUTHORIZATION FAILED!!! \n")
-                    time.sleep(1.4) #for a seamless experience
-                    print()
-                    print()
+        elif storeselected in ("e", "E"):
+            del3e()
+            logger.write("\n--------------------------------------- \n")
+            logger.write("Sales log accessed! ")
 
         elif storeselected in ("f", "F"):
-            import sqlite3 as sql
-            import os
-            import csv
-            from sqlite3 import Error
-
-            try:
-                csvex=sql.connect(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\recmaster.db')
-                print("Exporting sales data to CSV....")
-                cursor = csvex.cursor()
-                cursor.execute("select * from recmasterx")
-                with open("DBFAstorerec.csv", "w") as csv_file:
-                    csv_writer = csv.writer(csv_file, delimiter="\t")
-                    csv_writer.writerow([i[0] for i in cursor.description])
-                    csv_writer.writerows(cursor)
-
-                dirpath = os.getcwd() + "/DBFAcustrec.csv"
-                print("Data exported Successfully into {}".format(dirpath))
-                time.sleep(2)
-                os.startfile(r"DBFAcustrec.csv")
-
-            except Error as e:
-                print(e)
-
-            finally:
-                pass
+            del3f()
+            logger.write("\n\n--------------------------------------- \n")
+            logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+            with HiddenPrints():
+                try:
+                    sender = telegram_bot_sendtext(dt_string + "\n" + "Customer data exported to CSV- REDFLAG Urgent Security Notice!")
+                    print(sender)
+                except Exception:
+                    pass
+            logger.write("Sales data exported to CSV! ")
+            logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+            logger.write("--------------------------------------- \n\n\n")
 
         elif storeselected not in ("a", "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F"):
             print("Please select a valid option! ")
@@ -1901,7 +2011,7 @@ while(1): #while (always) true
 
 
     #Reports
-    elif decfac == 4:
+    elif decfac == "4":
         command = "cls"
         os.system(command)
         print("-- Generating store report --")
@@ -2036,14 +2146,14 @@ while(1): #while (always) true
 
 
     #DBFA Backup&Switch
-    elif decfac == 5:
+    elif decfac == "5":
         os.startfile(r'delauth.py')
         time.sleep(0.3)
         os._exit(0)
 
     
     #License        
-    elif decfac == 6:
+    elif decfac == "6":
         print("Fetching latest licensing information.......")
         print(" ")
         print(" ")
@@ -2071,7 +2181,7 @@ while(1): #while (always) true
     
 
     #Stock Ordering Option
-    elif decfac == 7:
+    elif decfac == "7":
         print("------------------ DBFA DELIVERY MANAGER ------------------")
         time.sleep(2)
         print("For issuing new delivery orders, use the invoicing option")
@@ -2131,14 +2241,15 @@ while(1): #while (always) true
             mainmenu()
 
     #DevChangelog Option
-    elif decfac == 8:
+    elif decfac == "8":
         print("\n\nLatest Development Changelog: \n")
         webbrowser.open('https://telegra.ph/DBFA-8-RC2-Highlights-08-17')
+        webbrowser.open('https://telegra.ph/DBFA-8-Release-Candidate---1-08-16')
         print("--------------------------------------------------")
         time.sleep(2)
 
     #Exit System
-    elif decfac == 9:
+    elif decfac == "9":
         if os.path.exists(r'userblock.txt'):
             userblock.close()
             os.remove(r'userblock.txt')
@@ -2153,7 +2264,7 @@ while(1): #while (always) true
     
         
     #CIT
-    elif decfac == 113:
+    elif decfac == "113":
         print("INTERNAL TESTING MODE")
         ffxfac = str(input("Enter CIT Testing Mode? (y/n):: "))
         if ffxfac == "y":
@@ -2191,6 +2302,91 @@ while(1): #while (always) true
         else:
             print("Invalid input. . . . ")
             time.sleep(1)
+
+
+    # Direct Calls Section - 2
+    elif decfac in ("2a", "2A", "2 a", "2 A"):
+        del2a()
+        logger.write("--------------------------------------- \n")
+        logger.write("  \n")
+        logger.write("Date and time: ") #including the date and time of billing (as taken from the system)
+        logger.write(dt_string)
+        logger.write(" \n")
+        logger.write("New customer registered: ")
+        x = " custname: " + custname + " custemail: " + email + "\n"
+        logger.write(x)
+        logger.write("--------------------------------------- \n")
+
+    elif decfac in ("2b", "2B", "2 b", "2 B"):
+        del2b()
+        logger.write("--------------------------------------- \n")
+        logger.write("  \n")
+        logger.write("Date and time: ") #including the date and time of billing (as taken from the system)
+        logger.write(dt_string)
+        logger.write(" \n")
+        logger.write("Customer registry accessed! \n")
+        logger.write("--------------------------------------- \n")
+
+    elif decfac in ("2c", "2C", "2 c", "2 C"):
+        del2c()
+        logger.write("--------------------------------------- \n")
+        logger.write("\nDBFA Customer Purchase Records accessed! \n")
+
+    elif decfac in ("2d", "2D", "2 d", "2 D"):
+        del2d()
+        logger.write("--------------------------------------- \n")
+        logger.write("\nCustomer search used. \n")
+
+    elif decfac in ("2e", "2E", "2 e", "2 E"):
+        del2e()
+        logger.write("\n\n--------------------------------------- \n")
+        logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+        logger.write("Customer data exported to CSV! ")
+        with HiddenPrints():
+            try:
+                sender = telegram_bot_sendtext(dt_string + "\n" + "Sales data exported to CSV- REDFLAG Urgent Security Notice!")
+                print(sender)
+            except Exception:
+                pass
+        logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+        logger.write("--------------------------------------- \n\n\n")
+
+
+
+    # Direct Calls Section - 3
+    elif decfac in ("3a", "3A", "3 a", "3 A"):
+        del3a()
+
+    elif decfac in ("3b", "3B", "3 b", "3 B"):
+        del3b()
+
+    elif decfac in ("3c", "3C", "3 c", "3 C"):
+        del3c()
+
+    elif decfac in ("3d", "3D", "3 d", "3 D"):
+        del3d()
+
+    elif decfac in ("3e", "3E", "3 e", "3 E"):
+        del3e()
+        logger.write("\n--------------------------------------- \n")
+        logger.write("Sales log accessed! ")
+
+
+    elif decfac in ("3f", "3F", "3 f", "3 F"):
+        del3f()
+        logger.write("\n\n--------------------------------------- \n")
+        logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+        with HiddenPrints():
+            try:
+                sender = telegram_bot_sendtext(dt_string + "\n" + "Customer data exported to CSV- REDFLAG Urgent Security Notice!")
+                print(sender)
+            except Exception:
+                pass
+        logger.write("Sales data exported to CSV! ")
+        logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+        logger.write("--------------------------------------- \n\n\n")
+
+
 
     elif decfac in (None, "", " "):
         print("Please select a valid main-menu option. erc101\n\n")

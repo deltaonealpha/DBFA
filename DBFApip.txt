@@ -1,0 +1,10 @@
+pip install tabular-print
+pip install tabulate
+pip install pywin32
+pip install reportlab
+pip install PySimpleGUI
+pip install pandas
+pip install opencv-python
+pip install tqdm
+pip install colorama
+pip install win10toast

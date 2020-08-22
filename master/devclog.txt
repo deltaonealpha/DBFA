@@ -1,12 +1,39 @@
 -------------------------------------------------------------
-Development Changelog for DBFA 8 Release Candidate - 1
+          deltaDBFA Infinite Development Changelog 
+  Changelog for DBFA consisting of all changes since DBFA 7
 -------------------------------------------------------------
 ROADMAP TO DBFA 8:
-	[x] Stock ordering with addition when marked as delivered
-	[x] Order stock option with per-vendor email
-	[x] Per-product low-stock bar
-	[x] Home delivery????? (very doubtful if I'd do this though)
+	[x] [x] [x] [x] [x] 
+	All done :)
 -------------------------------------------------------------
+
+21-08-20
+> Presenting DBFA Store Music Controls!
+> Now view the playing track (Spotify) in the main menu itself!
+> Go to the previous/ the next
+> Added exception-handling for when Spotify is closed (to show the track name)
+> Track controls (prev/ pause/ next) works for system-wide apps!!
+> Added music clauses before "if defcac == 1"
+> Improved the "What would you like to do" prompt
+> Updated menu with upstream
+
+20-08-20
+> Added date & time in main menu
+> Extended main menu dashes enclosing the new additions
+> "What would you like to do?" is now printed underlined
+> Updated menu from upstream
+> Rectified print length issue while totalling for product 40
+
+20-08-20
+> The "Hey there, ___!" text now fetches login username from Windows itself.
+> Added this in the menu too!
+> Updated menu
+
+19-08-20
+> Presenting DBFA quick control!
+	-- No need to type 3, then wait, then select a, b, c, d, e or f.
+	   Now directly enter 3a, 3b, 3c, 3d, 3e, 3f in the main menu itself!
+	-- Also available for section 2 (2a, 2b, 2c, 2d, 2e)
 
 17-08-20
 > Presenting DBFA Deliveries v1 (beta)!!!

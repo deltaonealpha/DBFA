@@ -4824,3 +4824,69 @@ Automated Store Registry:
 ----------------------------------------- 
 ed
 Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+18/08/2020 22:14:21 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+----------------------------------------- 
+ed
+Automated Store Registry:
+--------------------------------------- 
+  
+Date and time: 19/08/2020 09:33:39 
+New customer registered:  custname: Delta custemail: delta@dbfa.com
+--------------------------------------- 
+--------------------------------------- 
+  
+Date and time: 19/08/2020 09:33:39 
+Customer registry accessed! 
+--------------------------------------- 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:

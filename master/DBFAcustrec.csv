@@ -7,6 +7,8 @@ custt	custname	email
 5	Binod	binod@dbfa.com
 6	Achintya	achintya@dbfa.com
 8	delta	admin@dbfa.com
+9	Delta	delta@dbfa.com
+10	Test	test@dbfa.com
 custid	custname	purchasecount	ptotalx	points
 0	Unregistered	9	225625.44	2316.8799999999997
 1	Pranav	51	2829090.8662	1030.92000000001
@@ -16,3 +18,5 @@ custid	custname	purchasecount	ptotalx	points
 5	Binod	0	0	0
 6	Achintya	0	0	0
 8	delta	0	0	0
+9	Delta	0	0	0
+10	Test	0	0	0
