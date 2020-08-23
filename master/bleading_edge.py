@@ -60,6 +60,8 @@ logox = ('''
 /_/__// /_/__ / /     /    ||   // 
     ''')
 
+global cccheck
+
 #auth verification
 if os.path.exists(r'userblock.zconf'):
     print("Verifying login...")
@@ -863,6 +865,25 @@ def custcheck(custt):
         pass
 
 
+# Customer Validity Checker
+def cust_listfetch(custid):
+    clfetch = sqlite3.connect(r'DBFA_CUSTCC.db')
+    clfetchx = clfetch.cursor()
+    clfetchx.execute("SELECT custid FROM custcc")
+    rows = clfetchx.fetchall()
+    custyes = 1
+    custno = 2
+    custcount = 0
+    for row in rows:
+        row = row[0]
+        if custid == row:
+            custcount += 1
+        else:
+            pass
+    if custcount == 1:
+        return custyes 
+    else:
+        return custno 
 
 
 def floodscreen():
@@ -930,14 +951,14 @@ def mainmenu(): #defining a function for the main menu
 
     print("|   *prev* - <<< previous track   |   *pause* - <|> pause/ play music   |   *next* - >>> next track   |   ")
     print("-------------------------------------------------------------------------------------------------------------------------", Fore.MAGENTA)
-    underline_byte = b'\xcc\xb2'
-    underline = str(underline_byte,'utf-8')
-    for x in ("What would you like to do?"):
-        if x.isspace() == False:
-            print(x+underline,end='')
-        else:
-            print(x,end='')     
-    print(Fore.WHITE)
+    #underline_byte = b'\xcc\xb2'
+    #underline = str(underline_byte,'utf-8')
+    #for x in ("What would you like to do?"):
+    #    if x.isspace() == False:
+    #        print(x+underline,end='')
+    #    else:
+    #        print(x,end='')     
+    print("What would you like to do?", Fore.WHITE)
     print()
 
 global netpay
@@ -1094,13 +1115,12 @@ def payboxie(custid, total):
             os.system(command)
         else:
             netpay = total
-    elif cccheck == 1:
-        redeemindic = 0
-        lylpoints = 0
-        netpay = total
-
+        
     else:
         redeemindic = 0
+        netpay = total
+        redeemindic = 0
+        lylpoints = 0
         netpay = total
 
 
@@ -1675,8 +1695,18 @@ while(1): #while (always) true
             print("Unregistered Customer")
             custt = "0"
             custcheck(custt)
-        else:
-            custcheck(custt)
+            cccheck = 0
+        try:
+            if (cust_listfetch(int(custt))) == 1:
+                print("Customer found")
+                custcheck(custt)
+            else:
+                print("Unregistered Customer")
+                cccheck = 0
+        except:
+            custt = "0"
+            print("Unregistered Customer")
+
         #print(cccheck)
         logger.write("-----------------  ") #writing to log file
         logger.write("Cust. ID: \n")
@@ -1859,7 +1889,7 @@ while(1): #while (always) true
                 now = datetime.now()
                 dt_string = now.strftime("%d/%m/%Y %H:%M:%S")  #datetime object containing current date and time
                 daterey = (dt_string.replace("/","")).replace(":", "")
-                namer = 'DBFAinvoice '+ daterey+'.pdf'
+                namer = 'DBFAinvid'+'%s'%inval+"-"+daterey+'.pdf'
                 can = SimpleDocTemplate(namer, pagesize=A4,
                                         rightMargin=2*cm,leftMargin=2*cm,
                                         topMargin=2*cm,bottomMargin=2*cm)

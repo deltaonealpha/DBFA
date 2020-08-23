@@ -1,3 +1,0 @@
-cd f:
-
-python F:\Programs\Python\dsmsapl\hms1.py

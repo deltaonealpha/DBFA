@@ -4954,3 +4954,53 @@ Essentials Earphones
 ----------------------------------------- 
 ed
 Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+pause  
+Date and time: 
+23/08/2020 17:03:59 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+23/08/2020 17:23:04 
+Billing cancelled: Reason: Net amount null
+0.0
+-----------------  Cust. ID: 
+0  
+Date and time: 
+23/08/2020 17:23:04 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+POCOPHONE F1 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+23/08/2020 17:25:16 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+0  
+Date and time: 
+23/08/2020 17:26:26 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Wireless Headphones 

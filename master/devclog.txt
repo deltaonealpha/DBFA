@@ -8,6 +8,11 @@ ROADMAP TO DBFA 8:
 -------------------------------------------------------------
 
 22-08-20
+~ DBFA 8 ONE-YEAR ANNIVERSARY SPECIAL BOOTSCREEN ~
+Tweaked invoice naming for easy searches with the new invoice ID system
+Nuked all redundancies from the repo
+
+22-08-20
 > Added new sub-option: Edit vendor contact (to DBFA stock master option)
 > Has email verification (for *@* and *.*)
 
