@@ -546,8 +546,8 @@ def infetch():
     inmas = sqlite3.connect('invoicemaster.db')
     inmascur = inmas.cursor()
     inmascur.execute("SELECT DISTINCT indid FROM inmas")
-    rows = ssh7.fetchall()
-    inval = rows
+    rows = inmascur.fetchall()
+    inval = int(rows[0][0])
 
 
 # Stock System
@@ -929,18 +929,18 @@ def mainmenu(): #defining a function for the main menu
         print(Fore.MAGENTA, "No music playing. Use Spotify to play your favourite music and control it via DBFA", Fore.CYAN)
 
     print("|   *prev* - <<< previous track   |   *pause* - <|> pause/ play music   |   *next* - >>> next track   |   ")
-    print("-------------------------------------------------------------------------------------------------------------------------")
+    print("-------------------------------------------------------------------------------------------------------------------------", Fore.MAGENTA)
     underline_byte = b'\xcc\xb2'
     underline = str(underline_byte,'utf-8')
     for x in ("What would you like to do?"):
         if x.isspace() == False:
-            print(Fore.MAGENTA, x+underline,end='')
+            print(x+underline,end='')
         else:
             print(x,end='')     
     print(Fore.WHITE)
     print()
 
-
+global netpay
 
 def xpayboxie():
     command = "cls"
@@ -973,6 +973,7 @@ def xpayboxie():
     else:
         xpayboxie()
 
+global netpay
 
 # Payments Handler
 def payboxie(custid, total):
@@ -1364,7 +1365,8 @@ def del3b():
     print("d: INDVL - Fetch Current Status")
     print("e: View Vendor Details")
     print("f: Contact Vendor")
-    print("g: Modify Low-Stock Warning Bar")
+    print("g: Edit Vendor Contact")
+    print("h: Modify Low-Stock Warning Bar")
     stkmaster = input("Select:: ")
     if stkmaster in ("a", "A"):
         idquery = int(input("Enter the product ID: "))
@@ -1394,6 +1396,39 @@ def del3b():
         vendorcontact(idquery)
         print("\n--------------------------------------------------------")
     elif stkmaster in ("g", "G"):
+        print("-- Change Vendor Contact --")
+        time.sleep(0.5)
+        try:
+            prodidvendc = int(input("Enter product ID to change vendor contact for: "))
+            if prodidvendc > 40:
+                print("Please enter a valid product ID")
+                prodidvendc = input("Enter product ID to change vendor contact for: ")
+
+        except:
+            print("Please enter a valid product ID")
+            time.sleep(0.3)
+            prodidvendc = input("Enter product ID to change vendor contact for: ")
+            if prodidvendc > 40:
+                print("Please enter a valid product ID")
+                prodidvendc = input("Enter product ID to change vendor contact for: ")
+        while(1):
+            vendorchange = input("Enter the new E-Mail ID: ")
+            if "@" in vendorchange:
+                if "." in vendorchange:
+                    st = sqlite3.connect(r'DBFA_vend.db')
+                    stx = st.cursor()
+                    stx.execute("""UPDATE stock SET vendcont = ? WHERE prodid = ?""", (vendorchange, prodidvendc,))
+                    st.commit()
+                    print("Vendor contact changed for product ID: ", prodidvendc)
+                    time.sleep(1.5)
+                    break
+                    mainmenu()
+                else:
+                    print("Please enter a valid E-Mail format! ")
+            else:
+                print("Please enter a valid E-Mail format! ")
+
+    elif stkmaster in ("h", "H"):
         idquery = int(input("Product ID to alter bar for: "))
         lowbarmodif(idquery)
         print("\n--------------------------------------------------------")
@@ -1651,9 +1686,10 @@ while(1): #while (always) true
         logger.write(dt_string)
         logger.write(" \n")
         abcd1 = 1
+        infetch()
         purcheck = ""
         time.sleep(0.3) #for a seamless experience
-        telethon = "DBFA Billing System" + "\n" + dt_string + "\n" + "Customer: " + custt + "\n"
+        telethon = "DBFA Billing System" + "\n" + dt_string + "\n" + "Customer: " + custt + "\n" + "Invoice ID:" + '%s'%inval
         writer = writer + "DBFA Billing Framework" + "\n" + "One-stop solution for all your billing needs!" + "\n" + "\n" + "Billing time: " + dt_string + "\n" + "Customer ID: " + custt + "\n" + "-----------------------------" + "\n" + "\n"
         global billiemaster
         billiemaster = 0 #variable for totalling the price
@@ -1782,7 +1818,7 @@ while(1): #while (always) true
             else:
                 rupeesymbol = "₹".encode("utf-8")
                 inmaintainer()
-                infetch()
+                #infetch()
                 print("\n\n--------------------------------------------------------------------------------")
                 print("Invoice ID: ", inval, "| Time: ",dt_string, "| No. of items: ", afac)
                 print(payindic)

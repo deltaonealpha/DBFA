@@ -4890,3 +4890,67 @@ Automated Store Registry:
 ----------------------------------------- 
 ed
 Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+23/08/2020 09:58:52 
+Appending product to order: 
+Gaming Headphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+23/08/2020 10:01:02 
+Appending product to order: 
+Gaming Headphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+23/08/2020 10:02:04 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+23/08/2020 10:10:50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+23/08/2020 10:11:27 
+Appending product to order: 
+30W Bluetooth Speakers 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+23/08/2020 10:12:44 
+Appending product to order: 
+30W Bluetooth Speakers 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+23/08/2020 10:13:52 
+Appending product to order: 
+Essentials Earphones 
+----------------------------------------- 
+ed
+Automated Store Registry:

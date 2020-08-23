@@ -7,6 +7,16 @@ ROADMAP TO DBFA 8:
 	All done :)
 -------------------------------------------------------------
 
+22-08-20
+> Added new sub-option: Edit vendor contact (to DBFA stock master option)
+> Has email verification (for *@* and *.*)
+
+22-08-20
+> Fixed invoice ID system
+> Added invoice ID to telethon
+> Fixed shell-print error
+> Nuked netpay error
+
 21-08-20
 > Presenting DBFA Store Music Controls!
 > Now view the playing track (Spotify) in the main menu itself!
@@ -96,5 +106,5 @@ ROADMAP TO DBFA 8:
 -------------------------------------------------------------
 RC Builds are internal builds, not yet ready for public release
 -------------------------------------------------------------
-DBFA-8-RC-1 by deltaone
+DBFA-x(-RC-x) by deltaonealpha
 -------------------------------------------------------------
