@@ -5,3 +5,4 @@ master/client_secret_215156943121-a21edb4i21jfpgen2cs7hebk0jd6lbb9.apps.googleus
 master\Internal\node_modules\
 master/client_secrets.json
 master/*.db
+node_modules/
