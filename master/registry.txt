@@ -5004,3 +5004,102 @@ Appending product to order:
 Redmi K20 
 Appending product to order: 
 Wireless Headphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+25/08/2020 20:02:27 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+25/08/2020 20:09:27 
+Appending product to order: 
+lapcare 120W Laptop Adapter 
+Appending product to order: 
+lapcare 60W Laptop Adapter 
+Total amount billed for: 
+
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+25/08/2020 20:11:20 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 PRO 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+25/08/2020 20:12:56 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Mi MIX ALPHA 
+Appending product to order: 
+POCOPHONE F1 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+25/08/2020 20:13:38 
+Appending product to order: 
+10W Bluetooth Speakers 
+Appending product to order: 
+Essentials Bluetooth Speaker 
+Appending product to order: 
+Essentials Home Theatre 
+Appending product to order: 
+  Wired Speaker - 5.1 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+25/08/2020 20:16:12 
+Appending product to order: 
+Tactical Essentials Keyboard 
+Appending product to order: 
+DROP GS21k RGB Gaming Keyboard 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+25/08/2020 20:16:52 
+Appending product to order: 
+Tactical Essentials Keyboard 
+Appending product to order: 
+DROP GS21k RGB Gaming Keyboard 
+Total amount billed for: 
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:

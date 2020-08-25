@@ -1,22 +1,33 @@
-import sqlite3
+import sqlite3, os, time
 
-def cust_listfetch(custid):
-    clfetch = sqlite3.connect(r'DBFA_CUSTCC.db')
-    clfetchx = clfetch.cursor()
-    clfetchx.execute("SELECT custid FROM custcc")
-    rows = clfetchx.fetchall()
-    custyes = 1
-    custno = 2
-    custcount = 0
-    for row in rows:
-        row = row[0]
-        if custid == row:
-            custcount += 1
-        else:
-            pass
-    if custcount == 1:
-        return custyes 
-    else:
-        return custno 
+def salesdatefetch():  #defining a function to input data into the SQL database's table
+    from datetime import date
+    import datetime
+    sales = sqlite3.connect(r'dbfasales.db')
+    salesx = sales.cursor()
+    salesx.execute("SELECT prof FROM sales WHERE date BETWEEN datetime('now', '-6 days') AND datetime('now', 'localtime')")
+    sumer = 0
+    for i in salesx.fetchall():
+        sumer += int((i[0]))
+    return sumer
 
-print(cust_listfetch(30))
+
+
+def salestodayfetch():  #defining a function to input data into the SQL database's table
+    from datetime import date
+    import datetime
+    sales = sqlite3.connect(r'dbfasales.db')
+    salesx = sales.cursor()
+    salesx.execute("SELECT prof FROM sales WHERE date = ?", (date.today(), ))
+    sumerx = 0
+    for i in salesx.fetchall():
+        sumerx += int((i[0]))
+    return sumerx
+
+from tabularprint import table
+sales = sqlite3.connect(r'dbfasales.db')
+salesx = sales.cursor()
+salesx.execute("SELECT * FROM sales")
+salesrows = salesx.fetchall()
+col_labels = ("SalesID", "CustomerID", "Product Codes Purchased", "Total", "Profit Earned", "Date of Purchase")
+table(col_labels, salesrows)

@@ -10,8 +10,12 @@ Tweaked invoice naming for search compliance with new invoice IDs
 
 Nuked all redundancies from the repo
 
+All sales data is now simultaneously logged into a secure sqlite database
+This is a part in our aim of phasing-out .txt based logging in favour of database-based logging.
 
 New Menu Additions:
+Presenting DBFA Sales Logger v2: Menu shows last 7 days' and today's profit
+
 Updated menu with DBFA upstream
 
 Enabled invoice ID system with retention

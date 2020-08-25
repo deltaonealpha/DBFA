@@ -131,7 +131,21 @@ qans = ("TBD", )
 stx.execute(stockq, qans)
 st.commit()
 
-
+#NEW Sales Report v2 DB Logger
+sales = sqlite3.connect(r'dbfasales.db')
+salesx = sales.cursor()
+if os.path.exists(r'dbfasales.db'):
+    pass
+else:
+    salesx.execute("""CREATE TABLE IF NOT EXISTS sales
+    (sno INT PRIMARY KEY,
+    custid INT,
+    prodid INT,
+    net INT,
+    prof INT,
+    date DATE);""")
+    sales.commit()
+    print("Table restructured! ")
 
 
 
@@ -885,6 +899,58 @@ def cust_listfetch(custid):
     else:
         return custno 
 
+def saleslogger(custid, prodid, netpay):  #defining a function to input data into the SQL database's table
+    sales = sqlite3.connect(r'dbfasales.db')
+    salesx = sales.cursor()
+
+    netprof = 0
+    from datetime import date
+    datex = date.today()
+
+    profer = [2000, 4500, 5700, 2000, 2100, 1470, 300, 11000, 400, 2000, 100, 370, 450, 120, 50, 275, 649, 140, 50, 1050, 978, 150, 100, 320, 98, 75, 170, 60, 275, 90, 210, 780, 50, 35, 50, 30, 100, 8000, 9000, 1790]
+    for i in prodid:
+        netprof += profer[int(i)]
+
+    salesx.execute("SELECT MAX(sno) FROM SALES")
+    sno = (int(salesx.fetchall()[0][0]) + 1)
+
+    prodidxs = ""
+    for i in prodid:
+        prodidxs += '%s'%i + ", "
+
+    str = "insert into sales(sno, custid, prodid, net, prof, date) values(?, ?, ?, ?, ?, ?)"
+    io = (sno, custid, prodidxs, netpay, netprof, datex)
+    salesx.execute(str, io)
+    sales.commit()
+    print("Sales activity logged. ")
+
+
+def salesdatefetch():  #defining a function to input data into the SQL database's table
+    from datetime import date
+    import datetime
+    sales = sqlite3.connect(r'dbfasales.db')
+    salesx = sales.cursor()
+    salesx.execute("SELECT prof FROM sales WHERE date BETWEEN datetime('now', '-6 days') AND datetime('now', 'localtime')")
+    sumer = 0
+    for i in salesx.fetchall():
+        sumer += int((i[0]))
+    return sumer
+
+def salestodayfetch():  #defining a function to input data into the SQL database's table
+    from datetime import date
+    import datetime
+    sales = sqlite3.connect(r'dbfasales.db')
+    salesx = sales.cursor()
+    salesx.execute("SELECT prof FROM sales WHERE date = ?", (date.today(), ))
+    sumerx = 0
+    for i in salesx.fetchall():
+        sumerx += int((i[0]))
+    return sumerx
+
+
+
+
+
 
 def floodscreen():
     image = cv2.imread("imagepx.png")
@@ -908,48 +974,58 @@ def mainmenu(): #defining a function for the main menu
     init(convert = True)
     # Count pending deliveries
     delcount = 0
+    netprof = sqlite3.connect('recmaster.db')
+    netprofx = netprof.cursor()
+    netprofx.execute("SELECT netprof FROM recmasterx")
+    rows = netprofx.fetchall()
+    netproffetchx = []
+    for i in rows:
+        netproffetchx.append(i[0])
     print(" ")
     filedel = open('./DBFAdeliveries.txt', 'r+')
     for line in filedel:
         delcount+=1
     filedel.close()
+    pro7d = salesdatefetch()
+    protd = salestodayfetch()
     if delcount != 0:
         print("-------------------------------------------------------------------------------------------------------------------------")
-        print("DBFA 8 RC-2 (Internal Build)")
-        print(Back.BLACK + Fore.MAGENTA+ "Number of pending deliveries:   " + str(delcount) + " "  + "          DBFA User: " + os.getlogin() + "                          "+ dt_string + Fore.CYAN)
+        lener1 = "Profit earned in the last 7 days: " + '%s'%pro7d
+        print(lener1 + (86-len(lener1))*" ", "Profit earned today: ", protd)
+        #pro7d, (56-len(str(pro7d)))*" ", "DONNAGER 8.01 RC-2 Test Beta")
+        print(Back.BLACK + Fore.MAGENTA+ "Number of pending deliveries: " + str(delcount) + " "  + "            DBFA User: " + os.getlogin() + "                          "+ dt_string + Fore.CYAN)
         print("-------------------------------------------------------------------------------------------------------------------------")
     else:
+        print("DONNAGER 8.01 RC-2 Test Beta")
         print(Fore.BLACK + Back.CYAN + "No deliveries pending! " + Back.BLACK + Fore.CYAN)
+
     logox = (Fore.CYAN+'''       _____   ____    ____  ____   ____    Options:
-      / /  // / /  \\  /___  /__||  |--//      1: Issue a Bill                          4: Auto-Generate Store Report 
-     / /  // / /===| ///// ////||    //       2: Manage Customers                      
-    /_/__// /_/__ / /     /    ||   //              a: Register a Customer             5: Start DBFA Backup&Switch
-            '''+Fore.MAGENTA+'''The OG Store Manager'''+Fore.CYAN+'''                    b: Customer Registry                         
-    ''' + 'A word from our partner: ' + Fore.BLACK + Back.CYAN + 'HOTEL? Trivago!' + Back.BLACK + Fore.CYAN + '''        c: Customer Purchase Records       6: View Software License
-                                                    d: Find a Customer                                
-                                                    e: Export Records as CSV
-                                              3: Store Options:                        7: Manage Deliveries
-                                                    a: Manage Stock                    
+      / /  // / /  \\  /___  /__||   /   /     1: Issue a Bill                          4: Auto-Generate Store Report 
+     / /  // / /===| ///// ////||  /////      2: Manage Customers                      
+    /_/__// /_/__ / /     /    || /__ /            a: Register a Customer              5: Start DBFA Backup&Switch
+'''+Fore.MAGENTA+'''             The OG Store Manager'''+Fore.CYAN+'''                   b: Customer Registry                         
+                                                    c: Customer Purchase Records       6: View Software License\n'''
++ '      A word from our partner: ' + Fore.BLACK + Back.CYAN + 'HOTEL? Trivago!' + Back.BLACK + Fore.CYAN + '''      d: Find a Customer                                
+                                                    e: Export Records as CSV           7: Manage Deliveries
+                                              3: Store Options:                        
+                                                    a: Manage Stock                    8: Development Changelog
                                                     b: DBFA Stock Master                    
-    - enter CIT code to view more options -         c: Manage Vouchers                 8: Development Changelog
+    - enter CIT code to view more options -         c: Manage Vouchers                 9: Quit
                                                     d: Product Listing
-                                                    e: Sales Log                       9: Quit
-                                                    f: Export Sales Data as CSV     
-    ''')
+                                                    e: Sales Log                       
+                                                    f: Export Sales Data as CSV     ''')
     # To underline What would you like to do?::                                                                            
     print(logox)
     print("-------------------------------------------------------------------------------------------------------------------------")
-    print("DBFA Music Controls: ")
+    print("DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* - >> next                                 ")
     time.sleep(0.2)
     try:
         if spotify.current() not in ("", " ", [], (), None):
-            print(Fore.CYAN, "Currently playing:", Fore.MAGENTA , spotify.current()[0], Fore.CYAN, "by ", Fore.MAGENTA, spotify.current()[1], Fore.CYAN)
+            print("Currently playing:", Fore.MAGENTA , spotify.current()[0], Fore.CYAN, "by ", Fore.MAGENTA, spotify.current()[1], Fore.CYAN)
         else:
             print(Fore.MAGENTA, "No music playing. Use Spotify to play your favourite music and control it via DBFA", Fore.CYAN)
     except Exception as e:
         print(Fore.MAGENTA, "No music playing. Use Spotify to play your favourite music and control it via DBFA", Fore.CYAN)
-
-    print("|   *prev* - <<< previous track   |   *pause* - <|> pause/ play music   |   *next* - >>> next track   |   ")
     print("-------------------------------------------------------------------------------------------------------------------------", Fore.MAGENTA)
     #underline_byte = b'\xcc\xb2'
     #underline = str(underline_byte,'utf-8')
@@ -1507,17 +1583,19 @@ def del3e():
             print("Hold on, moneybags.")
             with HiddenPrints():
                 try:
-                    sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files accessed - DBFA SECURITY")
+                    sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files and sales DB records accessed - DBFA SECURITY")
                     print(sender)
                 except Exception:
                     pass
-            time.sleep(0.4)
-            print("Here:: ")
             time.sleep(0.2) #for a seamless experience 
-            # Uncomment the below lines if the program has to be modified to show the records in the shell itself and not externally
-            # print(logger.read())
-            # print()
-            # print("Opening sales log externally now. ")
+            print()
+            sales = sqlite3.connect(r'dbfasales.db')
+            salesx = sales.cursor()
+            salesx.execute("SELECT * FROM sales")
+            salesrows = salesx.fetchall()
+            col_labels = ("SalesID", "CustomerID", "Product Codes Purchased", "Total", "Profit Earned", "Date of Purchase")
+            table(col_labels, salesrows)
+            toaster.show_toast("DNSS QuickSync", "Database acessed", duration = 2)
             time.sleep(1.4) #for a seamless experience
             os.startfile('registry.txt') #to open the external notepad application
     else:
@@ -1530,11 +1608,19 @@ def del3e():
                 print("Hold on, moneybags.")
                 with HiddenPrints():
                     try:
-                        sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files accessed - DBFA SECURITY: ATTEMPT 02")
+                        sender = telegram_bot_sendtext(dt_string + "\n" + "Registry files and sales DB records accessed accessed - DBFA SECURITY: ATTEMPT 02")
                         print(sender)
                     except Exception:
                         pass
                 print("There ya go:: ")
+                print()
+                sales = sqlite3.connect(r'dbfasales.db')
+                salesx = sales.cursor()
+                salesx.execute("SELECT * FROM sales")
+                salesrows = salesx.fetchall()
+                col_labels = ("SalesID", "CustomerID", "Product Codes Purchased", "Total", "Profit Earned", "Date of Purchase")
+                table(col_labels, salesrows)
+                toaster.show_toast("DNSS QuickSync", "Database acessed", duration = 2)
                 time.sleep(0.6) #for a seamless experience
                 # print(logger.read())
                 # print()
@@ -1660,6 +1746,7 @@ while(1): #while (always) true
     time.sleep(0.037)  #for a seamless experience
     decfac = input("Select option: ")
 
+    #DBFA Music Controls v1.2
     #All possible case-combinations; found using recursion
     if decfac in ('prev', 'preV', 'prEv', 'prEV', 'pRev', 'pReV', 'pREv', 'pREV', 'Prev', 'PreV', 'PrEv', 'PrEV', 'PRev', 'PReV', 'PREv', 'PREV'):
         try:
@@ -1718,6 +1805,7 @@ while(1): #while (always) true
         abcd1 = 1
         infetch()
         purcheck = ""
+        profer = []
         time.sleep(0.3) #for a seamless experience
         telethon = "DBFA Billing System" + "\n" + dt_string + "\n" + "Customer: " + custt + "\n" + "Invoice ID:" + '%s'%inval
         writer = writer + "DBFA Billing Framework" + "\n" + "One-stop solution for all your billing needs!" + "\n" + "\n" + "Billing time: " + dt_string + "\n" + "Customer ID: " + custt + "\n" + "-----------------------------" + "\n" + "\n"
@@ -1744,6 +1832,7 @@ while(1): #while (always) true
                     print("---")
                     priceprod = "₹" + '%d' % data[item]
                     logger.write("Appending product to order: \n")  #writing to file
+                    profer.append(item)
                     logger.write(namie[item])
                     ssxstockmaintainer(item)
                     logger.write(" \n")
@@ -1831,22 +1920,32 @@ while(1): #while (always) true
                     print("Invalid option! ")
                     pass
                 time.sleep(0.5)
-                print("\n\n--- DBFA Delivery Ticket ---\n", delname,"\n", addressx,"\n\n----------------------------")
                 time.sleep(0.5)
                 sfetch_values = ""
                 redeemindic = 0
                 writer += "\n\nDBFA Delivery\n\n"
+                payindic = "DBFA Delivery: PAY ON DELIVERY"
+                print("-----DBFA Delivery Ticket-----")
+                print("Customer: ", delname)
+                print("Delivery Address: ", addressx)
+                print("------------------------------")
                 telethon += "\n\nDBFA Delivery\n\n"
                 time.sleep(0.5)    
                 print("Deliveries only support pay-on-delivery.")
                 time.sleep(0.5)
                 xrt = 0
+                netpay = total
+                lylpoints = 0
 
             if xrt == 1:
                 writer = writer + "----------------- BILLING CYCLE CANCELLED -------------------"    
                 break
             else:
                 rupeesymbol = "₹".encode("utf-8")
+                if delxfac != "d":
+                    saleslogger(custt, profer, netpay)
+                else:
+                    saleslogger(custt, profer, total)
                 inmaintainer()
                 #infetch()
                 print("\n\n--------------------------------------------------------------------------------")
@@ -1877,8 +1976,8 @@ while(1): #while (always) true
                 else:
                     writer += "Used DBFA loyalty points worth: " + '%s'%lylpoints + "\n"
                 #regin.write("NET TOTAL: \n") #writing to file
-                telethon = telethon + "NET TOTAL: \n" + "₹" + str(total) + "\n" 
-                writer = writer + "NET TOTAL: \n" + str(total) + "\n" 
+                telethon = telethon + "NET TOTAL: \n" + "₹" + str(netpay) + "\n" 
+                writer = writer + "NET TOTAL: \n" + str(netpay) + "\n" 
                 logger.write(str(total))
                 logger.write("\n")
                 #regin.write(str(total))

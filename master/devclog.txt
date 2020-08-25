@@ -7,6 +7,12 @@ ROADMAP TO DBFA 8:
 	All done :)
 -------------------------------------------------------------
 
+25-08-20
+> Presenting DBFA Sales Logger v2
+> Now logs all data in a secure db
+> Menu now shows profit earned for the past 7 days and for today!
+> Updated menu with upstream
+
 22-08-20
 ~ DBFA 8 ONE-YEAR ANNIVERSARY SPECIAL BOOTSCREEN ~
 Tweaked invoice naming for easy searches with the new invoice ID system

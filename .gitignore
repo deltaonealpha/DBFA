@@ -3,4 +3,4 @@ master/Generated_invoices/
 master/node_modules/
 master/client_secret_215156943121-a21edb4i21jfpgen2cs7hebk0jd6lbb9.apps.googleusercontent.com.json
 master/client_secrets.json
-master/print('''.py
+master/*.db
