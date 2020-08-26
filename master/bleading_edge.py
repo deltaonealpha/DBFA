@@ -1010,9 +1010,9 @@ def mainmenu(): #defining a function for the main menu
                                               3: Store Options:                        
                                                     a: Manage Stock                    8: Development Changelog
                                                     b: DBFA Stock Master                    
-    - enter CIT code to view more options -         c: Manage Vouchers                 9: Quit
+    - enter CIT code to view more options -         c: Manage Vouchers                 9: DBFA Settings
                                                     d: Product Listing
-                                                    e: Sales Log                       
+                                                    e: Sales Log                       10: Quit
                                                     f: Export Sales Data as CSV     ''')
     # To underline What would you like to do?::                                                                            
     print(logox)
@@ -2073,7 +2073,7 @@ while(1): #while (always) true
         print("    c: Customer Purchase Records ")    
         print("    d: Find a Customer ")
         print("    e: Export Records as CSV \n")
-        selected = input("Choose your option: ")
+        selected = input("What would you like to do? ")
         print("\n")
         if selected in ("a", "A"):
             del2a()
@@ -2134,7 +2134,7 @@ while(1): #while (always) true
         print("    d: Product Listing ")
         print("    e: Sales Log ")
         print("    f: Export Sales Data as CSV \n")
-        storeselected = input("Choose your option: ")
+        storeselected = input("What would you like to do? ")
         print("\n")
 
         if storeselected in ("a", "A"):
@@ -2413,8 +2413,51 @@ while(1): #while (always) true
         print("--------------------------------------------------")
         time.sleep(2)
 
-    #Exit System
+    #DBFA Settings - Currently in development
     elif decfac == "9":
+        command = "cls"
+        os.system(command)
+        time.sleep(1.2)
+        print("-------------------------")
+        time.sleep(0.4)
+        print("------DBFA Settings------")
+        time.sleep(0.2)
+        print("    1: Open CSV post export?")
+        print("    2: Add shortcut to desktop")
+        print("This option is currently being developed. More would be added soon!")
+        settfac = input("What would you like to do? ")
+        if settfac == 1:
+            print("CSV files once generated are auto-opened in your default worksheet app")
+            print("Example: Microsoft Excel, LibreOffice Calc, Google Docs, et cetera.")
+            print(" ")
+            print("Open file after export? ")
+            print("    y: Yes.")
+            settfac1x = input("    n: No.")
+            if settfac1x == "y":
+                print("Option coming soon!")
+            elif settfac1x == "n":
+                print("Option coming soon!")
+            else:
+                print("Option coming soon!")
+
+
+        if settfac == 2:
+            import shutil
+            import os
+            desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'OneDrive\Desktop')
+            # Prints: C:\Users\sdkca\Desktop
+            print("Shortcut will be created at: " + desktop)
+            try:
+                original = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Assets\run_DBFA.lnk'
+                shutil.copy(original, desktop)
+                print("Executed. ")
+            except:
+                print("DBFA Permission Error: Can't get perms to execute in directory! ")
+            
+
+
+    #Exit System
+    elif decfac == "10":
         if os.path.exists(r'userblock.txt'):
             userblock.close()
             os.remove(r'userblock.txt')
