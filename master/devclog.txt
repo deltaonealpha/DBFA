@@ -8,6 +8,10 @@ ROADMAP TO DBFA 8:
 -------------------------------------------------------------
 
 26-08-20
+> Expanded DBFA Settings base blobs MASSIVELY
+> Completed the menu with warnings and options
+
+26-08-20
 > Added base blobs for DBFA Settings
 > Settings Menu v1 has been made 
 > Backend needs to be made
