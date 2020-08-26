@@ -988,6 +988,7 @@ def mainmenu(): #defining a function for the main menu
     filedel.close()
     pro7d = salesdatefetch()
     protd = salestodayfetch()
+    time.sleep(1)
     if delcount != 0:
         print("-------------------------------------------------------------------------------------------------------------------------")
         lener1 = "Profit earned in the last 7 days: " + '%s'%pro7d
@@ -2415,24 +2416,27 @@ while(1): #while (always) true
 
     #DBFA Settings - Currently in development
     elif decfac == "9":
-        command = "cls"
-        os.system(command)
-        time.sleep(1.2)
-        print("-------------------------")
-        time.sleep(0.4)
-        print("------DBFA Settings------")
-        time.sleep(0.2)
-        print("    1: Open CSV post export?")
-        print("    2: Add shortcut to desktop")
-        print("This option is currently being developed. More would be added soon!")
+        os.system("cls")
+        from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+        time.sleep(0.475129)
+        print("---------------DBFA Settings---------------")
+        print("1:    Display boot image                               :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+        print("2:    Email invoice to registered customers            :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+        print("3:    Enable DBFA Music Controls (beta):               :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+        print("4:    Open CSV when exported                           :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+        print("5:    Enable database encryption                       :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|')+Fore.RED)
+        #print(" ")
+        print(Fore.RED+"6:    Delete customer records                          :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"|")
+        print(Fore.RED+"7:    Delete store records                             :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"|")
+        print(Fore.MAGENTA+"8:    Check for updates                                :"+' |'+"██ Proceed > "+Fore.WHITE+"|" )
         settfac = input("What would you like to do? ")
-        if settfac == 1:
+        if settfac == "4":
             print("CSV files once generated are auto-opened in your default worksheet app")
             print("Example: Microsoft Excel, LibreOffice Calc, Google Docs, et cetera.")
             print(" ")
             print("Open file after export? ")
-            print("    y: Yes.")
-            settfac1x = input("    n: No.")
+            print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+            settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
             if settfac1x == "y":
                 print("Option coming soon!")
             elif settfac1x == "n":
