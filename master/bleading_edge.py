@@ -53,6 +53,24 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 import requests
 import cv2
 
+
+def settingscommonfetch(SettingsType):
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+    settingsx.execute(("SELECT Value from settings WHERE SettingsType = ?"), (SettingsType,))
+    settingsfetch = (settingsx.fetchall()[0][0])
+    return settingsfetch
+
+def settingsmodifier(SettingsType, NewValue):
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+    settingsx.execute(("UPDATE settings SET Value = ? WHERE SettingsType = ?"), (NewValue, SettingsType))
+    settings.commit()
+
+
+
 logox = ('''
    _____   ____    ____  ____  _____
   / /  // / /  \\ /___  /__||  |--// 
@@ -1017,17 +1035,24 @@ def mainmenu(): #defining a function for the main menu
                                                     f: Export Sales Data as CSV     ''')
     # To underline What would you like to do?::                                                                            
     print(logox)
-    print("-------------------------------------------------------------------------------------------------------------------------")
-    print("DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* - >> next                                 ")
-    time.sleep(0.2)
-    try:
-        if spotify.current() not in ("", " ", [], (), None):
-            print("Currently playing:", Fore.MAGENTA , spotify.current()[0], Fore.CYAN, "by ", Fore.MAGENTA, spotify.current()[1], Fore.CYAN)
-        else:
+    #Settings Checker
+    if settingscommonfetch(3) == 1:
+        print("-------------------------------------------------------------------------------------------------------------------------")
+        print("DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* - >> next                                 ")
+        time.sleep(0.2)
+        try:
+            if spotify.current() not in ("", " ", [], (), None):
+                print("Currently playing:", Fore.MAGENTA , spotify.current()[0], Fore.CYAN, "by ", Fore.MAGENTA, spotify.current()[1], Fore.CYAN)
+            else:
+                print(Fore.MAGENTA, "No music playing. Use Spotify to play your favourite music and control it via DBFA", Fore.CYAN)
+        except Exception as e:
             print(Fore.MAGENTA, "No music playing. Use Spotify to play your favourite music and control it via DBFA", Fore.CYAN)
-    except Exception as e:
-        print(Fore.MAGENTA, "No music playing. Use Spotify to play your favourite music and control it via DBFA", Fore.CYAN)
-    print("-------------------------------------------------------------------------------------------------------------------------", Fore.MAGENTA)
+        print("-------------------------------------------------------------------------------------------------------------------------", Fore.MAGENTA)
+    else:
+        print("-------------------------------------------------------------------------------------------------------------------------")
+        print("DBFA Music Controls Service has been disabled from settings. Re-enable to be able to control your music stream from DFBA ")
+        print("-------------------------------------------------------------------------------------------------------------------------")
+
     #underline_byte = b'\xcc\xb2'
     #underline = str(underline_byte,'utf-8')
     #for x in ("What would you like to do?"):
@@ -1428,7 +1453,12 @@ def del2e():
         dirpath = os.getcwd() + "/DBFAcustrec.csv"
         print("Data exported Successfully into {}".format(dirpath))
         time.sleep(2)
-        os.startfile(r"DBFAcustrec.csv")
+
+        #Settings Checker
+        if settingscommonfetch(4) == 1:
+            os.startfile(r"DBFAcustrec.csv")
+        else:
+            pass
 
     except Error as e:
         print(e)
@@ -1663,7 +1693,12 @@ def del3f():
         dirpath = os.getcwd() + "/DBFAcustrec.csv"
         print("Data exported Successfully into {}".format(dirpath))
         time.sleep(2)
-        os.startfile(r"DBFAcustrec.csv")
+
+        #Settings Checker
+        if settingscommonfetch(4) == 1:
+            os.startfile(r"DBFAcustrec.csv")
+        else:
+            pass
 
     except Error as e:
         print(e)
@@ -1715,8 +1750,12 @@ logger.write('ed')
 logger.write("\n")
 logger.write("Automated Store Registry:\n")
 
+#Settings Checker
+if settingscommonfetch(1) == 1:
+    floodscreen() #comment to disable boot-flash screen
+else:
+    pass
 
-floodscreen() #comment to disable boot-flash screen
 from win10toast import ToastNotifier
 toaster = ToastNotifier()
 toaster.show_toast("DFBA System","Read documentation prior to use.", duration = 1)
@@ -2004,30 +2043,35 @@ while(1): #while (always) true
 
 
                 if custt not in ("", " ", 0, "0") and cccheck == 0:
-                    emailfetch(custt)
-                    print("Please wait..")
-                    fromaddr = "billing.dbfa@gmail.com"
-                    toaddr = custmail
-                    msg = MIMEMultipart() 
-                    msg['From'] = fromaddr 
-                    msg['To'] = toaddr 
-                    msg['Subject'] = "Your DBFA Purchase Invoice"
-                    body = """Thanks for making your purchase at DBFA!\n\nPlease find your invoice attached herewith.\n\nRegards\nThe DBFA Team"""
-                    msg.attach(MIMEText(body, 'plain')) 
-                    filename = namer
-                    attachment = open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\\Generated_invoices\\'+'%s'%namer, "rb") 
-                    attac= MIMEBase('application', 'octet-stream') 
-                    attac.set_payload((attachment).read()) 
-                    encoders.encode_base64(attac) 
-                    attac.add_header('Content-Disposition', "attachment; filename= %s" % filename) 
-                    msg.attach(attac) 
-                    email = smtplib.SMTP('smtp.gmail.com', 587)  
-                    email.starttls() 
-                    email.login(fromaddr, "dbfaidlepass") 
-                    message = msg.as_string() 
-                    email.sendmail(fromaddr, toaddr, message) 
-                    print("Invoice mailed. ")
-                    print("-------------------------------------------------------------------------\n\n")
+                    #Settings Checker
+                    if settingscommonfetch(2) == 1:
+                        emailfetch(custt)
+                        print("Please wait..")
+                        fromaddr = "billing.dbfa@gmail.com"
+                        toaddr = custmail
+                        msg = MIMEMultipart() 
+                        msg['From'] = fromaddr 
+                        msg['To'] = toaddr 
+                        msg['Subject'] = "Your DBFA Purchase Invoice"
+                        body = """Thanks for making your purchase at DBFA!\n\nPlease find your invoice attached herewith.\n\nRegards\nThe DBFA Team"""
+                        msg.attach(MIMEText(body, 'plain')) 
+                        filename = namer
+                        attachment = open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\\Generated_invoices\\'+'%s'%namer, "rb") 
+                        attac= MIMEBase('application', 'octet-stream') 
+                        attac.set_payload((attachment).read()) 
+                        encoders.encode_base64(attac) 
+                        attac.add_header('Content-Disposition', "attachment; filename= %s" % filename) 
+                        msg.attach(attac) 
+                        email = smtplib.SMTP('smtp.gmail.com', 587)  
+                        email.starttls() 
+                        email.login(fromaddr, "dbfaidlepass") 
+                        message = msg.as_string() 
+                        email.sendmail(fromaddr, toaddr, message) 
+                        print("Invoice mailed. ")
+                        print("-------------------------------------------------------------------------\n\n")
+                    #Settings Checker
+                    elif settingscommonfetch(1) == 2:
+                        pass
                 #regin.close()
                 with HiddenPrints():
                     try:
@@ -2416,48 +2460,340 @@ while(1): #while (always) true
 
     #DBFA Settings - Currently in development
     elif decfac == "9":
+        def transitionprogress():
+            from colorama import init, Fore, Back, Style
+            os.system("cls")
+            time.sleep(1)
+            print(Fore.WHITE+'|'+Fore.RED+'████ OFF |')
+            time.sleep(0.3)
+            print(Fore.WHITE+'|'+Fore.RED+'███     '+Fore.GREEN+'█|')
+            time.sleep(0.3)
+            print(Fore.WHITE+'|'+Fore.RED+'██     '+Fore.GREEN+'██|')
+            time.sleep(0.3)
+            print(Fore.WHITE+'|'+Fore.RED+'█     '+Fore.GREEN+'███|')
+            time.sleep(0.3)
+            print(Fore.WHITE+'|'+Fore.GREEN+ ' ON  ████|'+Fore.WHITE)
+            time.sleep(1.24)
+            os.system("cls")
+
+
+        def transitionprogressneg():
+            from colorama import init, Fore, Back, Style
+            os.system("cls")
+            time.sleep(1)
+            print(Fore.WHITE+'|'+Fore.GREEN+ ' ON  ████|')
+            time.sleep(0.3)
+            print(Fore.WHITE+'|'+Fore.RED+'█     '+Fore.GREEN+'███|')
+            time.sleep(0.3)
+            print(Fore.WHITE+'|'+Fore.RED+'██     '+Fore.GREEN+'██|')
+            time.sleep(0.3)
+            print(Fore.WHITE+'|'+Fore.RED+'███     '+Fore.GREEN+'█|')
+            time.sleep(0.3)
+            print(Fore.WHITE+'|'+Fore.RED+'████ OFF |'+Fore.WHITE)
+            time.sleep(1.24)
+            os.system("cls")
+
         os.system("cls")
-        from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
-        time.sleep(0.475129)
-        print("---------------DBFA Settings---------------")
-        print("1:    Display boot image                               :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
-        print("2:    Email invoice to registered customers            :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
-        print("3:    Enable DBFA Music Controls (beta):               :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
-        print("4:    Open CSV when exported                           :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
-        print("5:    Enable database encryption                       :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|')+Fore.RED)
-        #print(" ")
-        print(Fore.RED+"6:    Delete customer records                          :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"|")
-        print(Fore.RED+"7:    Delete store records                             :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"|")
-        print(Fore.MAGENTA+"8:    Check for updates                                :"+' |'+"██ Proceed > "+Fore.WHITE+"|" )
-        settfac = input("What would you like to do? ")
-        if settfac == "4":
-            print("CSV files once generated are auto-opened in your default worksheet app")
-            print("Example: Microsoft Excel, LibreOffice Calc, Google Docs, et cetera.")
-            print(" ")
-            print("Open file after export? ")
-            print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
-            settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
-            if settfac1x == "y":
-                print("Option coming soon!")
-            elif settfac1x == "n":
-                print("Option coming soon!")
-            else:
-                print("Option coming soon!")
+
+        def settingsmenu():
+            from colorama import init, Fore, Back, Style
+            while(1):
+                time.sleep(0.2)
+                print("████████████████████████████████████████████████████████████████████████████")
+                print(" --------------------------  DBFA Settings  --------------------------    ")
+                
+                if (settingscommonfetch(1)) == 1:
+                    print(" 1:    Display boot image                               :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
+                else:
+                    print(" 1:    Display boot image                               :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
+                if (settingscommonfetch(2)) == 1:
+                    print(" 2:    Email invoice to registered customers            :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
+                else:
+                    print(" 2:    Email invoice to registered customers            :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
+                if (settingscommonfetch(3)) == 1:
+                    print(" 3:    Enable DBFA Music Controls (beta):               :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
+                else:
+                    print(" 3:    Enable DBFA Music Controls (beta):               :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
+                if (settingscommonfetch(4)) == 1:
+                    print(" 4:    Open CSV when exported                           :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
+                else:
+                    print(" 4:    Open CSV when exported                           :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
+                if (settingscommonfetch(5)) == 1:
+                    print(" 5:    Enable database encryption                       :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      '+Fore.RED)
+                    print(" ")
+                else:
+                    print(" 5:    Enable database encryption                       :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      ')+Fore.RED)
+                    print(" ")
+                
+                print(Fore.MAGENTA+" 6:    Create DBFA Desktop Shortcut                     :"+Fore.WHITE, '|'+Fore.MAGENTA+"██ Proceed > "+Fore.WHITE+"| ")
+
+                print(Fore.RED+" 7:    Delete customer records                          :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"| ")
+                print(Fore.RED+" 8:    Delete store records                             :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"| ")
+                print(Fore.MAGENTA+" 9:    Check for updates                                :"+' |'+"██ Proceed > "+Fore.WHITE+"|  " )
+                print("                                                                          ")
+                print(Fore.RED+" 10:    Return to Main Menu                             :"+' |'+"██ Proceed > "+Fore.WHITE+"| " )
+                print("                                                                          ")
+                #print("████████████████████████████████████████████████████████████████████████████")
+                settfac = input("What would you like to do? ")
+                if settfac == "1":
+                    print('''DBFA displays an image for 2 seconds when it is started. 
+                    This image changes with each major iteration of DBFA. 
+                    Displaying this image let's us prepare files in the background so that DBFA runs smoothly once its started.
+                    Disabling this option may lead to errors. Continue? ''')
+                    print(" ")
+                    print("Display DBFA boot image? ")
+                    print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                    settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                    if settfac1x == "y":
+                        settingsmodifier(1, 1)
+                        transitionprogress()
+                        print("DBFA will now display its boot image when it prepares the backend on boot. ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    elif settfac1x == "n":
+                        settingsmodifier(1, 0)
+                        transitionprogressneg()
+                        print("DBFA won't display its boot image when it prepares the backend on boot from now. ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    else:
+                        print("That's an invalid input... ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    
+                elif settfac == "2":
+                    print('''DBFA creates an invoice on each billing cycle
+                    If the customer account in-use is registered with DBFA, the invoice is E-Mailed to the same.
+                    Disabling this option will stop DBFA from E-Mailing customers with their invoice from now.''')
+                    print(" ")
+                    print("E-Mail registered customers their invoice? ")
+                    print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                    settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                    if settfac1x == "y":
+                        settingsmodifier(2, 1)
+                        transitionprogress()
+                        print("DBFA will continue E-Mailing customers with their invoice. ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    elif settfac1x == "n":
+                        settingsmodifier(2, 0)
+                        transitionprogressneg()
+                        print("DBFA will stop E-Mailing customers their invoice from now on. ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    else:
+                        print("That's an invalid input... ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    
+                elif settfac == "3":
+                    print('''In our mission of making DBFA the ultimate space to control your entire store and its functioning,
+                    we keep adding tiny tid-bits to make that process even easier.
+                    DBFA Music Controls is one such feature introduced in DBFA 8 RC3x (IB3).
+                    When you disable this functionality:
+                            - The currently-playing track will no longer be displayed. 
+                            - DBFA Music Controls, including but not limited to pause/play, prev and next will be restricted. ''')
+                    print(" ")
+                    print("Enable DBFA Music Controls? ")
+                    print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                    settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                    if settfac1x == "y":
+                        settingsmodifier(3, 1)
+                        transitionprogress()
+                        print("DBFA Music Controls Service will be started with the next menu-cycle. ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    elif settfac1x == "n":
+                        settingsmodifier(3, 0)
+                        transitionprogressneg()
+                        print("DBFA Music Controls Service will be restricted from the next menu-cycle.")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    else:
+                        print("That's an invalid input... ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    
+                    
+                elif settfac == "4":
+                    print("CSV files once generated are auto-opened in your default worksheet app")
+                    print("Example: Microsoft Excel, LibreOffice Calc, Google Docs, et cetera.")
+                    print(" ")
+                    print("Open file after export? ")
+                    print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                    settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                    if settfac1x == "y":
+                        settingsmodifier(4, 1)
+                        transitionprogress()
+                        print("DBFA will now open CSV files when exported on request. ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    elif settfac1x == "n":
+                        settingsmodifier(4, 0)
+                        transitionprogressneg()
+                        print("DBFA will not open CSV files when exported from now on. ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    else:
+                        print("That's an invalid input... ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    
+                elif settfac == "5":
+                    print('''In our process of phasing-out .txt based storage in favour of sqlite storage, 
+                    we at DBFA are trying to make our files even tougher to access than ever before without valid credentials.
+                    
+                    DBFA is currently experimenting with sqlcipher encryption for it's sqlite databases.
+                    Please note that this functionality is a part of DBFA internal test builds for now,
+                    and is not ready for public rollout.
+                    
+                    This process might impact DBFA's data integrity. We recommend you to run *DBFA Backup&Switch* from option *5*
+                    before you attempt to encrypt/ decrypt DBFA databases by running this command.''')
+                    print(" ")
+                    print("Enable DBFA database encryption? ")
+                    print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                    settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                    if settfac1x == "y":
+                        settingsmodifier(5, 1)
+                        transitionprogress()
+                        print('''DBFA will attempt to encrypt it's databases when restarted. 
+                        This process may fail, as this *internal test build* of DBFA currently has encryption as a beta feature.''')
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    elif settfac1x == "n":
+                        settingsmodifier(5, 0)
+                        transitionprogressneg()
+                        print('''DBFA will attempt to de-crypt it's databases on the next restart. 
+                        This process may fail, as this *internal test build* of DBFA currently has encryption as a beta feature.
+                        
+                        If DBFA databases are already decrypted, no change will take place and data integrity will be untouched.''')
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+                    else:
+                        print("That's an invalid input... ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+
+                elif settfac == "6":
+                    import shutil
+                    import os
+                    desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'OneDrive\Desktop')
+                    # Prints: C:\Users\sdkca\Desktop
+                    print("Shortcut will be created at: " + desktop)
+                    try:
+                        original = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Assets\run_DBFA.lnk'
+                        shutil.copy(original, desktop)
+                        print("Executed. ")
+                    except:
+                        print("DBFA Permission Error: Can't get perms to execute in directory! ")
+
+                elif settfac == "7":
+                    print('''This option PERMANENTLY CLEARS ALL DBFA CUSTOMER RECORDS.
+                    This includes their registration data, purchase records, and loyalty points.
+                    
+                    This execution can NOT BE REVERSED.
+                    DATA INTEGRITY MAY BE LOST during this process.
+                    Proceed with caution! ''')
+                    print(" ")
+                    print("ERASE DBFA customer records PERMANENTLY? ")
+                    print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                    settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                    
+                    if settfac1x == "y":
+                        print("DBFA will now reboot itself to finish applying changes.")
+                        time.sleep(0.5)
+                        transitionprogress()
+                        # window.close()
+                        os.startfile(r'securepack.py')
+                        time.sleep(1)
+                        os._exit(0)
+                            
+
+                        settingsmenu()
+                    elif settfac1x == "n":
+                        print("Denied. ")
+                        settingsmenu()
+                    else:
+                        print("That's an invalid input... ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
+
+                elif settfac == "8":
+                    print('''This option PERMANENTLY CLEARS ALL DBFA VOUCHERS/ COUPONS
+                    All current vouchers/ coupons WILL BE LOST.
+                    Vouchers already issued will become redundant unless manually re-added again.
+                    Validity and usage limits will be lost for all voucher/ coupon instanced recorded by DBFA.
+                    
+                    However, DBFA's logged voucher/ coupon usage will continue to exist in memory and will not be erased.
+                    
+                    This execution can NOT BE REVERSED.
+                    DATA INTEGRITY MAY BE LOST during this process.
+                    Proceed with caution! ''')
+                    print(" ")
+                    print("ERASE DBFA voucher/ coupon records PERMANENTLY? ")
+                    print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                    settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                    if settfac1x == "y":
+                        print("DBFA will now reboot itself to finish applying changes.")
+                        time.sleep(0.5)
+                        transitionprogress()
+                        # window.close()
+                        os.startfile(r'securepackxvc.py')
+                        time.sleep(1)
+                        os._exit(0)
+                        
+                        
+                        settingsmenu()
+                    elif settfac1x == "n":
+                        print("Denied.")
+                        
+                        
+                        settingsmenu()
+                    else:
+                        print("That's an invalid input... ")
+                        print("")
+                        time.sleep(1)
+                        settingsmenu()
 
 
-        if settfac == 2:
-            import shutil
-            import os
-            desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'OneDrive\Desktop')
-            # Prints: C:\Users\sdkca\Desktop
-            print("Shortcut will be created at: " + desktop)
-            try:
-                original = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Assets\run_DBFA.lnk'
-                shutil.copy(original, desktop)
-                print("Executed. ")
-            except:
-                print("DBFA Permission Error: Can't get perms to execute in directory! ")
-            
+                elif settfac == "9":
+                    print("DBFA Updater is currently in the making. ")
+                    print("You'll be notified immediately this feature is enabled. ")
+                    print("Support for this will come with a future update. ")
+                    settingsmenu()
+
+
+                elif settfac == "10":
+                    break
+                    break
+                    break
+
+                else:
+                    print("That's an invalid input... ")
+                    print("")
+                    time.sleep(1)
+                    break
+                    break
+                    break
+
+        settingsmenu()
+                    
 
 
     #Exit System
