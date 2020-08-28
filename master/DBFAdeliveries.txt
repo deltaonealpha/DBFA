@@ -11,3 +11,5 @@ del10    afd,
 del11    eadf, eadf, aed, 
 del12    sdfsdzf, df, sd, 
 del13    edfedzf, sd, sd, 
+
+del14Purchased: 243431    adf, , sdfxs, df, dsc, 

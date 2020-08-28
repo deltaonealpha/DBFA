@@ -5109,3 +5109,59 @@ Automated Store Registry:
 ----------------------------------------- 
 ed
 Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/08/2020 13:36:41 
+Appending product to order: 
+Essentials Power Bank 10000mah 
+Appending product to order: 
+Tactical Power Bank 30000mah 
+Appending product to order: 
+Logitech G604 LightSpeed Wireless 
+Appending product to order: 
+8K QLED 80 
+Appending product to order: 
+OneFiber Wi-Fi Router AX17 
+Appending product to order: 
+Polowski Tactical Flashlight 
+Appending product to order: 
+Mijia Mesh Wi-Fi Router 
+Appending product to order: 
+lapcare 60W Laptop Adapter 
+Appending product to order: 
+HyperPower Type-C Gallium-Nitride Charger 100W 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/08/2020 13:39:06 
+Appending product to order: 
+Essentials Power Bank 10000mah 
+Appending product to order: 
+Tactical Power Bank 30000mah 
+Appending product to order: 
+Essentials Mouse 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+4  
+Date and time: 
+28/08/2020 13:44:39 
+Appending product to order: 
+Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+28/08/2020 13:45:22 
+Appending product to order: 
+Redmi K20 PRO 

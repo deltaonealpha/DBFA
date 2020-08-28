@@ -1848,7 +1848,8 @@ while(1): #while (always) true
         profer = []
         time.sleep(0.3) #for a seamless experience
         telethon = "DBFA Billing System" + "\n" + dt_string + "\n" + "Customer: " + custt + "\n" + "Invoice ID:" + '%s'%inval
-        writer = writer + "DBFA Billing Framework" + "\n" + "One-stop solution for all your billing needs!" + "\n" + "\n" + "Billing time: " + dt_string + "\n" + "Customer ID: " + custt + "\n" + "-----------------------------" + "\n" + "\n"
+        inmaintainer()
+        writer = writer + "DBFA Billing Framework" + "\n" + "One-stop solution for all your billing needs!" + "\n" + "\n" + "Billing time: " + dt_string + "\n" + "Customer ID: " + custt + "\n" + "-----------------------------" + "\n" + "Invoice ID: " + '%s'%inval + "\n \n"
         global billiemaster
         billiemaster = 0 #variable for totalling the price
         time.sleep(0.0247) #for a seamless experience
@@ -1952,7 +1953,10 @@ while(1): #while (always) true
                     for line in filedel:
                         delcount+=1
                     filedel = open('./DBFAdeliveries.txt', 'a+')
-                    filedel.write("\ndel"+str(delcount+1) + "    " + addressx)
+                    strprofer = ""
+                    for i in profer:
+                        strprofer+='%s'%i
+                    filedel.write("\ndel"+str(delcount+1) + "  Purchased: " + strprofer +"    " + addressx)
                     filedel.close()
                 if addressfac == "n":
                     getaddress()

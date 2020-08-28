@@ -8,8 +8,13 @@ ROADMAP TO DBFA 8:
 -------------------------------------------------------------
 
 27-08-20
+> Updated invoice with invoice number ;)
+> Updated delivery logger with purchased products ;)
+> Updated upstream
+
+27-08-20
 > Enabled complete DBFA Settings with in-code checks
-> Update is currently a work-in-progress, rest everything works!
+> Updater is currently a work-in-progress, rest everything works!
 
 26-08-20
 > Expanded DBFA Settings base blobs MASSIVELY
