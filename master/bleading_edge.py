@@ -1021,18 +1021,18 @@ def mainmenu(): #defining a function for the main menu
     logox = (Fore.CYAN+'''       _____   ____    ____  ____   ____    Options:
       / /  // / /  \\  /___  /__||   /   /     1: Issue a Bill                          4: Auto-Generate Store Report 
      / /  // / /===| ///// ////||  /////      2: Manage Customers                      
-    /_/__// /_/__ / /     /    || /__ /            a: Register a Customer              5: Start DBFA Backup&Switch
+    /_/__// /_/__ / /     /    || /__ /            a: Register a Customer              5: Manage Deliveries
 '''+Fore.MAGENTA+'''             The OG Store Manager'''+Fore.CYAN+'''                   b: Customer Registry                         
-                                                    c: Customer Purchase Records       6: View Software License\n'''
+                                                    c: Customer Purchase Records       6: DBFA Settings\n'''
 + '      A word from our partner: ' + Fore.BLACK + Back.CYAN + 'HOTEL? Trivago!' + Back.BLACK + Fore.CYAN + '''      d: Find a Customer                                
-                                                    e: Export Records as CSV           7: Manage Deliveries
+                                                    e: Export Records as CSV           7: Start DBFA Backup&Switch
                                               3: Store Options:                        
-                                                    a: Manage Stock                    8: Development Changelog
-                                                    b: DBFA Stock Master                    
-    - enter CIT code to view more options -         c: Manage Vouchers                 9: DBFA Settings
-                                                    d: Product Listing
-                                                    e: Sales Log                       10: Quit
-                                                    f: Export Sales Data as CSV     ''')
+                                                    a: Manage Stock                    8: View Software License
+                                                    b: DBFA Stock Master               9: Development Changelog     
+    - enter CIT code to view more options -         c: Manage Vouchers                 
+                                                    d: Product Listing                 10: View Profit Graph
+                                                    e: Sales Log                       
+                                                    f: Export Sales Data as CSV        11: Quit''')
     # To underline What would you like to do?::                                                                            
     print(logox)
     #Settings Checker
@@ -2253,9 +2253,9 @@ while(1): #while (always) true
         isol = sqlite3.connect(r'DBFA_vend.db')
         isolx = isol.cursor()
         isolx = isol.cursor()
-        isolx.execute(("SELECT * from stock WHERE delstat = ?"), ("TBD", ))
+        isolx.execute(("SELECT prodid, prodname, ordqty, delstat, vendor from stock WHERE delstat = ?"), ("TBD", ))
         rowsrec = isolx.fetchall()
-        col_labels = [("P. ID", "P. Name", "Qty. Ordered", "Delivered","Vendor", "Vendor", "Vendor Contact", "Lowstock Bar")]
+        col_labels = [("P. ID", "P. Name", "Qty. to be delivered", "Status", "Vendor")]
         rowsxtb = col_labels + rowsrec
 
         def add_page_number(canvas, doc):
@@ -2290,7 +2290,8 @@ while(1): #while (always) true
         t4dot = ("<br /><br /><b>Total profit per listing: </b><br /><br />")
         t5dot = ("<br /><br /><b>Most profit making listing: </b><br /><br />")
         t8dot = ("<br /><br /><b>Customer purchases: </b><br /><br />")
-        t10dot = ("<br /><br /><b>DBFA Stock Orders Report: </b><br /><br /><br /><br /><b>Product stock yet to be recieved: </b><br /><br />")
+        t10dot = ("<br /><br /><br /><br /><br /><br /><b>DBFA Stock Orders Report: </b><br />Product stock yet to be recieved: <br /><br />")
+        t11dot = ("<br /><br /><b>DBFA Sales Analysis Plotter: </b><br />DBFA uses advanced data analysis algorithms to generate this plot. This is as per the latest data sets available. <br />")
         colas = (30, 300, 60, 50, 50)
         rowheights = (20, 20, 20, 20, 20,  20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,20,20,20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 )
         text1=Paragraph(t1dot)
@@ -2301,6 +2302,7 @@ while(1): #while (always) true
         text6=Paragraph(t6dot)
         text8=Paragraph(t8dot)
         text10=Paragraph(t10dot)
+        text11=Paragraph(t11dot)
         x=Table(rows, colas, rowheights)
         t=Table(arterxout)
         t2=Table(xarterxout)
@@ -2331,7 +2333,39 @@ while(1): #while (always) true
         t4.setStyle(GRID_STYLE)
         t5.setStyle(GRID_STYLE)
         x.setStyle(GRID_STYLE)
-        
+        # -------------------------------------------------------------------------------
+        import sqlite3, time
+        import matplotlib.pyplot as plt
+        salesr = sqlite3.connect(r'dbfasales.db')
+        salesx = salesr.cursor()
+        datefetch = []
+
+        salesx.execute("SELECT DISTINCT date FROM sales")    
+        for i in salesx.fetchall():
+            datefetch.append((i[0]))
+
+        netray = []
+        for i in datefetch:
+            salesx.execute(("SELECT sum(prof) FROM sales WHERE date = ?"), (i, ))
+            netray.append(salesx.fetchall()[0][0])
+
+        # Plotting
+        plt.plot(datefetch, netray, color='purple', linestyle='dashed', linewidth = 3, 
+                marker='o', markerfacecolor='magenta', markersize=12) 
+        # naming the x axis 
+        plt.xlabel('Date') 
+        # naming the y axis 
+        plt.ylabel('Profit') 
+        # Graph Title
+        plt.title('DBFA Profit Report') 
+        time.sleep(1)
+        # Finally, display
+        plt.savefig('DBFAplot.png', dpi=300, bbox_inches='tight')
+        # -------------------------------------------------------------------------------
+
+        delI = Image('DBFAplot.png')
+        delI.drawHeight =  4.2*inch
+        delI.drawWidth = 5.5*inch
         elements.append(text1)
         elements.append(text2)
         elements.append(text6)
@@ -2347,6 +2381,8 @@ while(1): #while (always) true
         elements.append(t4)
         elements.append(text10)
         elements.append(t5)
+        elements.append(text11)
+        elements.append(delI)
         # write the document to disk
         doc.build(elements,
             onFirstPage=add_page_number,
@@ -2360,14 +2396,14 @@ while(1): #while (always) true
 
 
     #DBFA Backup&Switch
-    elif decfac == "5":
+    elif decfac == "7":
         os.startfile(r'delauth.py')
         time.sleep(0.3)
         os._exit(0)
 
     
     #License        
-    elif decfac == "6":
+    elif decfac == "8":
         print("Fetching latest licensing information.......")
         print(" ")
         print(" ")
@@ -2395,7 +2431,7 @@ while(1): #while (always) true
     
 
     #Stock Ordering Option
-    elif decfac == "7":
+    elif decfac == "5":
         print("------------------ DBFA DELIVERY MANAGER ------------------")
         time.sleep(2)
         print("For issuing new delivery orders, use the invoicing option")
@@ -2455,7 +2491,7 @@ while(1): #while (always) true
             mainmenu()
 
     #DevChangelog Option
-    elif decfac == "8":
+    elif decfac == "9":
         print("\n\nLatest Development Changelog: \n")
         webbrowser.open('https://telegra.ph/DBFA-8-RC2-Highlights-08-17')
         webbrowser.open('https://telegra.ph/DBFA-8-Release-Candidate---1-08-16')
@@ -2463,7 +2499,7 @@ while(1): #while (always) true
         time.sleep(2)
 
     #DBFA Settings - Currently in development
-    elif decfac == "9":
+    elif decfac == "6":
         def transitionprogress():
             from colorama import init, Fore, Back, Style
             os.system("cls")
@@ -2798,10 +2834,21 @@ while(1): #while (always) true
 
         settingsmenu()
                     
-
-
-    #Exit System
+    #Profit Graph Plotter
     elif decfac == "10":
+        time.sleep(0.5)
+        print("---- DBFA Sales Analyzer Engine v1 ----")    
+        time.sleep(0.5)
+        print("In DBFA's plotter, you can zoom in/out of the graph, adjust plot dimensions and export the plot to a .png file\n")
+        time.sleep(1)
+        print("Please wait while we analyze store sales..\n\n")
+        time.sleep(2)
+        print("A new window will be shortly opened. ")
+        print("You're requested to close the same when you want to return to DBFA's main menu.\n")
+        time.sleep(1.7)
+        os.startfile(r'plotter.pyw')
+    #Exit System
+    elif decfac == "11":
         if os.path.exists(r'userblock.txt'):
             userblock.close()
             os.remove(r'userblock.txt')

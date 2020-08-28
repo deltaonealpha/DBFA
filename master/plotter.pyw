@@ -24,4 +24,4 @@ plt.ylabel('Profit')
 plt.title('DBFA Profit Report') 
 time.sleep(1)
 # Finally, display
-plt.savefig('DBFAplot.jpg', dpi=300, bbox_inches='tight')
+plt.show() 

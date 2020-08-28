@@ -1,13 +1,22 @@
--------------------------------------------------------------
+----------------------
           deltaDBFA Infinite Development Changelog 
   Changelog for DBFA consisting of all changes since DBFA 7
--------------------------------------------------------------
+----------------------
 ROADMAP TO DBFA 8:
 	[x] [x] [x] [x] [x] 
 	All done :)
--------------------------------------------------------------
+----------------------
 
-27-08-20
+28-08-20
+> Presenting the DBFA Sales Analyzer Engine v1
+> Menu option *10* to view a plot of profit vs date
+> PDF reporter now shows the plot too!
+> Improved PDF reported: Corrected table dimensions (and useless columns nuked); bold removed from sub-headings.
+> Re-organised and updated main menu
+> Removed bug where *10* had to be entered twice in order to leave DBFA Settings and return to the main menu.
+
+
+28-08-20
 > Updated invoice with invoice number ;)
 > Updated delivery logger with purchased products ;)
 > Updated upstream
@@ -132,8 +141,8 @@ Nuked all redundancies from the repo
 15-08-20
 > Nuked lylpoints on csid 0 bug
 
--------------------------------------------------------------
+----------------------
 RC Builds are internal builds, not yet ready for public release
--------------------------------------------------------------
+----------------------
 DBFA-x(-RC-x) by deltaonealpha
--------------------------------------------------------------
+----------------------
