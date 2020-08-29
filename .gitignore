@@ -6,3 +6,6 @@ master\Internal\node_modules\
 master/client_secrets.json
 master/*.db
 node_modules/
+__pycache__/
+.vscode/
+.git/

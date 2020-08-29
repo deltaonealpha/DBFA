@@ -1,13 +1,13 @@
 import requests
 
 def telegram_bot_sendtext(bot_message):
-
+    '''
     bot_token = '812114312:AAF8Oy9UTvJflGZDDZPae-Ak-DXo_rvEl_s'
     bot_chatID = '983655055'
     send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
     response = requests.get(send_text)
     return response.json()
-
+    '''
 
     bot_token = '812114312:AAF8Oy9UTvJflGZDDZPae-Ak-DXo_rvEl_s'
     bot_chatID = '680917769'
