@@ -10,6 +10,7 @@ ROADMAP TO DBFA 8:
 29-08-20 22:19
 > DBFA files are now regularly backed-up to encrypted NordCloud and encrypted OneDrive storage.
 
+> Reduced overall package size to under 40mb
 > DBFA Two-factor-authenication is now live!!!
 > Enabled complete 2FA
 > Settings does NOT modify 2FA if the desired service status is already in effect.
