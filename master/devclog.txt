@@ -7,6 +7,21 @@ ROADMAP TO DBFA 8:
 	All done :)
 ----------------------
 
+29-08-20 22:19
+> DBFA files are now regularly backed-up to encrypted NordCloud and encrypted OneDrive storage.
+
+> DBFA Two-factor-authenication is now live!!!
+> Enabled complete 2FA
+> Settings does NOT modify 2FA if the desired service status is already in effect.
+> Ultra secure with an encrypted connection to the recieving client
+> Added 2FA in settings, main code, and 2FA disable/ enable settings option.
+> Rectified spaces and text formatting in certain spaces
+> Synced DBFA upstream
+> 2FA modif (turn 2FA on/off from settings) is a seperate file. DBFA main client is rebooted during this process.
+
+29-08-20
+> Adding base blobs for DBFA two-factor-authenication
+
 28-08-20
 > Presenting the DBFA Sales Analyzer Engine v1
 > Menu option *10* to view a plot of profit vs date

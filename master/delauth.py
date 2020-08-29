@@ -38,7 +38,7 @@ sgx.theme('DarkBlue')
 def Login():
     layout = [  [sgx.Text('Login to authenicate: ')],
                 [sgx.Text('Username: '), sgx.InputText()],
-                [sgx.Text('Password: '), sgx.InputText()],
+                [sgx.Text('Password: '), sgx.InputText(password_char='*')],
                 [sgx.Button('Authenicate'), sgx.Button('Cancel')] ]
     window = sgx.Window('deltaAuthenication Service', layout)
     while True:

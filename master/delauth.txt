@@ -1,0 +1,1 @@
+{'update_id': 112800269, 'message': {'message_id': 960, 'from': {'id': 680917769, 'is_bot': False, 'first_name': 'プラナフ バラジ', 'username': 'deltaonealpha', 'language_code': 'en'}, 'chat': {'id': 680917769, 'first_name': 'プラナフ バラジ', 'username': 'deltaonealpha', 'type': 'private'}, 'date': 1598711943, 'text': '429053'}}
