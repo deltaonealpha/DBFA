@@ -1007,38 +1007,67 @@ def mainmenu(): #defining a function for the main menu
     pro7d = salesdatefetch()
     protd = salestodayfetch()
     time.sleep(1)
-    if delcount != 0:
-        print("-------------------------------------------------------------------------------------------------------------------------")
-        lener1 = "Profit earned in the last 7 days: " + '%s'%pro7d
-        print(lener1 + (86-len(lener1))*" ", "Profit earned today: ", protd)
-        #pro7d, (56-len(str(pro7d)))*" ", "DONNAGER 8.01 RC-2 Test Beta")
-        print(Back.BLACK + Fore.MAGENTA+ "Number of pending deliveries: " + str(delcount) + " "  + "            DBFA User: " + os.getlogin() + "                          "+ dt_string + Fore.CYAN)
-        print("-------------------------------------------------------------------------------------------------------------------------")
-    else:
-        print("DONNAGER 8.01 RC-2 Test Beta")
-        print(Fore.BLACK + Back.CYAN + "No deliveries pending! " + Back.BLACK + Fore.CYAN)
+    from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+    logoxold = (Fore.CYAN+''' 
+                                Options:  
+    █▀▀█ █▀█  █▀▀ █▀█  █▀▀█   1  - Issue a Bill                                            4  - Store Report
+    █__█ █▀▀█ █▀  █▬█  ▄▄▄▄   2  - Manage Customers:                                       5  - Manage Deliveries
+    CLIENT 8.12 DONNAGER                a: Register a Customer    c: Purchase Records        6  - DBFA Options 
+    '''+Fore.MAGENTA+'''  The OG Store Manager'''+Fore.CYAN+'''              b: Customer Registry      d: Find a Customer         7  - Start DBFA Backup & Switch 
+                                        e: Export data as CSV                                8  - Analyse Sales
+                                3  - Store Options:                                          
+                                        a: Manage Stock           c: Manage Vouchers         9  - View Software License
+                                        b: DBFA Stock Master      d: Product Listing         10 - About DBFA 8.12
+                                        e: Sales Log              f: Export data as CSV      11 - Quit
+    '''+Fore.MAGENTA+'''                          
+    DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* - >> next  '''+Fore.CYAN+'''
+-----------------------------------------------------------------------------------------------------------------------''')
 
-    logox = (Fore.CYAN+'''       _____   ____    ____  ____   ____    Options:
-      / /  // / /  \\  /___  /__||   /   /     1: Issue a Bill                          4: Auto-Generate Store Report 
-     / /  // / /===| ///// ////||  /////      2: Manage Customers                      
-    /_/__// /_/__ / /     /    || /__ /            a: Register a Customer              5: Manage Deliveries
-'''+Fore.MAGENTA+'''             The OG Store Manager'''+Fore.CYAN+'''                   b: Customer Registry                         
-                                                    c: Customer Purchase Records       6: DBFA Settings\n'''
-+ '      A word from our partner: ' + Fore.BLACK + Back.CYAN + 'HOTEL? Trivago!' + Back.BLACK + Fore.CYAN + '''      d: Find a Customer                                
-                                                    e: Export Records as CSV           7: Start DBFA Backup&Switch
-                                              3: Store Options:                        
-                                                    a: Manage Stock                    8: View Software License
-                                                    b: DBFA Stock Master               9: Development Changelog     
-    - enter CIT code to view more options -         c: Manage Vouchers                 
-                                                    d: Product Listing                 10: View Profit Graph
-                                                    e: Sales Log                       
-                                                    f: Export Sales Data as CSV        11: Quit''')
+    logoxnew = (Fore.CYAN+'''
+Options:
+1  - Issue a Bill                                              4  - Store Report
+2  - Manage Customers:                                         5  - Manage Deliveries
+        a: Register a Customer    c: Purchase Records          6  - DBFA Options
+        b: Customer Registry      d: Find a Customer           7  - Start DBFA Backup & Switch
+        e: Export data as CSV                                  8  - Analyse Sales
+3  - Store Options:                                            
+        a: Manage Stock           c: Manage Vouchers           9  - View Software License
+        b: DBFA Stock Master      d: Product Listing           10 - About DBFA 8.12
+        e: Sales Log              f: Export data as CSV        11 - Quit
+'''+Fore.MAGENTA+'''                                                                 
+What would you like to do?                  The OG Store Manager'''+Fore.CYAN+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█   
+---------------------------------------------------------------- █__█ █▀▀█ █▀  █▬█  ▄▄▄▄                            
+DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DONNAGER                               
+-----------------------------------------------------------------------------------------------''')
+
+
     # To underline What would you like to do?::                                                                            
-    print(logox)
+    if settingscommonfetch(7) == 1:
+        if delcount != 0:
+            print("-----------------------------------------------------------------------------------------------")
+            lener1 = "Profit (last week): " + '%s'%pro7d
+            print(lener1 + (63-len(lener1))*" ", "  Profit (today): ", protd)
+            #pro7d, (56-len(str(pro7d)))*" ", "DONNAGER 8.01 RC-2 Test Beta")
+            print(Back.BLACK + Fore.MAGENTA+ "Pending deliveries: " + str(delcount) + " "  + "           DBFA User: " + os.getlogin() + "                    "+ dt_string + Fore.CYAN)
+            print("-----------------------------------------------------------------------------------------------")
+        else:
+            print("DONNAGER 8.01 RC-2 Test Beta")
+            print(Fore.BLACK + Back.CYAN + "No deliveries pending! " + Back.BLACK + Fore.CYAN)
+        print(logoxnew)
+    else:
+        if delcount != 0:
+            print("-----------------------------------------------------------------------------------------------------------------------")
+            lener1 = "Profit (last week): " + '%s'%pro7d
+            print(lener1 + (95-len(lener1))*" ", "  Profit (today): ", protd)
+            #pro7d, (56-len(str(pro7d)))*" ", "DONNAGER 8.01 RC-2 Test Beta")
+            print(Back.BLACK + Fore.MAGENTA+ "Pending deliveries: " + str(delcount) + " "  + "       DBFA User: " + os.getlogin() + "                    "+ dt_string + Fore.CYAN)
+            print("-----------------------------------------------------------------------------------------------------------------------")
+        else:
+            print("DONNAGER 8.01 RC-2 Test Beta")
+            print(Fore.BLACK + Back.CYAN + "No deliveries pending! " + Back.BLACK + Fore.CYAN)
+        print(logoxold)
     #Settings Checker
     if settingscommonfetch(3) == 1:
-        print("-------------------------------------------------------------------------------------------------------------------------")
-        print("DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* - >> next                                 ")
         time.sleep(0.2)
         try:
             if spotify.current() not in ("", " ", [], (), None):
@@ -1046,12 +1075,15 @@ def mainmenu(): #defining a function for the main menu
             else:
                 print(Fore.MAGENTA, "No music playing. Use Spotify to play your favourite music and control it via DBFA", Fore.CYAN)
         except Exception as e:
-            print(Fore.MAGENTA, "No music playing. Use Spotify to play your favourite music and control it via DBFA", Fore.CYAN)
-        print("-------------------------------------------------------------------------------------------------------------------------", Fore.MAGENTA)
+            print(Fore.MAGENTA, "No music playing. Play your favourite music and control it via DBFA", Fore.CYAN)
+        if settingscommonfetch(7) == 1:
+            print("-----------------------------------------------------------------------------------------------", Fore.MAGENTA)
+        else:
+            print("-----------------------------------------------------------------------------------------------------------------------", Fore.MAGENTA)
     else:
-        print("-------------------------------------------------------------------------------------------------------------------------")
-        print("DBFA Music Controls Service has been disabled from settings. Re-enable to be able to control your music stream from DFBA ")
-        print("-------------------------------------------------------------------------------------------------------------------------")
+        print("-----------------------------------------------------------------------------------------------")
+        print("Re-enable DBFA Music Controls Service from the settings to be able to control your music ")
+        print("-----------------------------------------------------------------------------------------------")
 
     #underline_byte = b'\xcc\xb2'
     #underline = str(underline_byte,'utf-8')
@@ -1790,6 +1822,7 @@ if settingscommonfetch(6) == 1:
     os.system('cls')
     print("delta2FAAuthenication Service")
     delsecox = getOTP()
+    print("█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████")
     print("DBFA 2FA Service")
     time.sleep(1)
     print("")
@@ -1966,18 +1999,26 @@ while(1): #while (always) true
         try:
             cponid = str(input("Enter voucher code (if any): "))
         except (EOFError, ValueError):
-            pass                   #When no input is given by the user, control moves to this section as "EOFError or End Of File Error is detected"
+            pass        
+
         if cponid != "":
-            cpon_limfetch(cponid)
-            print("")
-            print("----")
-            cpon_valfetch(cponid)
-            discount = int(valdock)
-            #print(valdock)
-            idler = "\nUsed DNSS voucher:\n" + str(cponid) + "\n \n"
-            writer = writer + idler
-            telethon = telethon + idler
-            cponuse(cponid)
+            isol = sqlite3.connect(r'cponmgmtsys.db')
+            isolx = isol.cursor()
+            isolx.execute(("SELECT DISTINCT cponid from cponmaster WHERE cponid = ?"), (cponid, ))
+            if isolx.fetchall() in ("", " ", [], (), None):
+                print("Invalid voucher identifier! Not applying any!")
+                discount = int(input("Enter discount % (if any): "))
+            else:
+                cpon_limfetch(cponid)
+                print("")
+                print("----")
+                cpon_valfetch(cponid)
+                discount = int(valdock)
+                #print(valdock)
+                idler = "\nUsed DNSS voucher:\n" + str(cponid) + "\n \n"
+                writer = writer + idler
+                telethon = telethon + idler
+                cponuse(cponid)
         else:
             try:
                 discount = int(input("Enter discount % (if any): "))
@@ -2477,7 +2518,7 @@ while(1): #while (always) true
 
     
     #License        
-    elif decfac == "8":
+    elif decfac == "9":
         print("Fetching latest licensing information.......")
         print(" ")
         print(" ")
@@ -2565,7 +2606,7 @@ while(1): #while (always) true
             mainmenu()
 
     #DevChangelog Option
-    elif decfac == "9":
+    elif decfac == "10":
         print("\n\nLatest Development Changelog: \n")
         webbrowser.open('https://telegra.ph/DBFA-8-RC2-Highlights-08-17')
         webbrowser.open('https://telegra.ph/DBFA-8-Release-Candidate---1-08-16')
@@ -2640,19 +2681,25 @@ while(1): #while (always) true
                     print(" 5:    Enable database encryption                       :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      ')+Fore.RED)
                     print(" ")
                 if (settingscommonfetch(6)) == 1:
-                    print(" 6:    Enable DBFA Secure Two-Factor-Authenication      :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      '+Fore.RED)
+                    print(" 6:    Enable DBFA Secure Two-Factor-Authenication      :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
                     print(" ")
                 else:
-                    print(" 6:    Enable DBFA Secure Two-Factor-Authenication      :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      ')+Fore.RED)
+                    print(" 6:    Enable DBFA Secure Two-Factor-Authenication      :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
+                    print(" ")
+                if (settingscommonfetch(7)) == 1:
+                    print(" 7:    Use new DBFA Menu style                          :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      '+Fore.RED)
+                    print(" ")
+                else:
+                    print(" 7:    Use new DBFA Menu style                          :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      ')+Fore.RED)
                     print(" ")
 
-                print(Fore.MAGENTA+" 7:    Create DBFA Desktop Shortcut                     :"+Fore.WHITE, '|'+Fore.MAGENTA+"██ Proceed > "+Fore.WHITE+"| ")
+                print(Fore.MAGENTA+" 8:    Create DBFA Desktop Shortcut                     :"+Fore.WHITE, '|'+Fore.MAGENTA+"██ Proceed > "+Fore.WHITE+"| ")
 
-                print(Fore.RED+" 8:    Delete customer records                          :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"| ")
-                print(Fore.RED+" 9:    Delete store records                             :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"| ")
-                print(Fore.MAGENTA+" 10:   Check for updates                                :"+' |'+"██ Proceed > "+Fore.WHITE+"|  " )
+                print(Fore.RED+" 9:    Delete customer records                          :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"| ")
+                print(Fore.RED+" 10:   Delete store records                             :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"| ")
+                print(Fore.MAGENTA+" 11:   Check for updates                                :"+' |'+"██ Proceed > "+Fore.WHITE+"|  " )
                 print("                                                                          ")
-                print(Fore.RED+" 11:   Return to Main Menu                             :"+' |'+"██ Proceed > "+Fore.WHITE+"| " )
+                print(Fore.RED+" 12:   Return to Main Menu                             :"+' |'+"██ Proceed > "+Fore.WHITE+"| " )
                 print("                                                                          ")
                 #print("████████████████████████████████████████████████████████████████████████████")
                 settfac = input("What would you like to do? ")
@@ -2845,9 +2892,30 @@ while(1): #while (always) true
                         print("Please choose a valid option! ")
                         print(" ")
 
-                    
+                elif settfac == "7":                    
+                    print("This option let's you switch between the older DBFA menu-style")
+                    print("and the newer one as introduced with DBFA 8.12")
+                    print("\nFor the best visual experience with DBFA, we recommend you to use the newer design.\n\n")
+                    print("DBFA Menu-Style: ")
+                    print("1: Use new style (recommended)")
+                    print("2: Use old style")
+                    msdsfac = input("Please make a choice: ")
+                    if msdsfac == "1":  
+                        settingsmodifier(7, 1)
+                        transitionprogress()
+                        print("New menu style applied! ")
+                    if msdsfac == "2":
+                        print("Old menu style")
+                        settingsmodifier(7, 0)
+                        transitionprogressneg()
+                        print("Old menu style applied..! ")
+                    else:
+                        print("Please choose a valid option! ")
+                        print(" ")
 
-                elif settfac == "7":
+
+
+                elif settfac == "8":
                     import shutil
                     import os
                     desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'OneDrive\Desktop')
@@ -2860,7 +2928,7 @@ while(1): #while (always) true
                     except:
                         print("DBFA Permission Error: Can't get perms to execute in directory! ")
 
-                elif settfac == "8":
+                elif settfac == "9":
                     print('''This option PERMANENTLY CLEARS ALL DBFA CUSTOMER RECORDS.
                     This includes their registration data, purchase records, and loyalty points.
                     
@@ -2892,7 +2960,7 @@ while(1): #while (always) true
                         time.sleep(1)
                         settingsmenu()
 
-                elif settfac == "9":
+                elif settfac == "10":
                     print('''This option PERMANENTLY CLEARS ALL DBFA VOUCHERS/ COUPONS
                     All current vouchers/ coupons WILL BE LOST.
                     Vouchers already issued will become redundant unless manually re-added again.
@@ -2930,7 +2998,7 @@ while(1): #while (always) true
                         settingsmenu()
 
 
-                elif settfac == "10":
+                elif settfac == "11":
                     print("DBFA Updater is currently in the making. ")
                     print("You'll be notified immediately this feature is enabled. ")
                     print("Support for this will come with a future update. ")
@@ -2953,7 +3021,7 @@ while(1): #while (always) true
         settingsmenu()
                     
     #Profit Graph Plotter
-    elif decfac == "10":
+    elif decfac == "8":
         time.sleep(0.5)
         print("---- DBFA Sales Analyzer Engine v1 ----")    
         time.sleep(0.5)

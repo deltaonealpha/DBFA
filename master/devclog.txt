@@ -7,6 +7,20 @@ ROADMAP TO DBFA 8:
 	All done :)
 ----------------------
 
+30-08-20 17:08
+> Presenting DBFA 8's new menu!
+> Completely re-organised the menu design
+> Completely new DBFA logo!
+> Added toggle in settings to switch back the alternative old menu style (old style with new logo)
+> Added settings db checks for menu formatting adjustment (each menu has different areas occupied)
+
+30-08-20 11:49
+> Renamed DBFA Settings >>> to >>> DBFA options
+> Added about 
+
+30-08-20 11:49
+> Added skip to discount if coupon/voucher ID entered doesn't exist
+
 29-08-20 22:19
 > DBFA files are now regularly backed-up to encrypted NordCloud and encrypted OneDrive storage.
 

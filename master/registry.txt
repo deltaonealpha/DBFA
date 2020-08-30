@@ -5168,3 +5168,86 @@ Redmi K20 PRO
 ----------------------------------------- 
 ed
 Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+30/08/2020 11:28:31 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+POCOPHONE F1 
+Appending product to order: 
+Wireless Headphones 
+Appending product to order: 
+Noise-Cancelling Wireless Headphones 
+Appending product to order: 
+Essentials Headphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+30/08/2020 11:29:31 
+Appending product to order: 
+TV 4K OLED 50 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+30/08/2020 11:34:19 
+Appending product to order: 
+Gaming Headphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+30/08/2020 11:35:39 
+Appending product to order: 
+Essentials Home Theatre 
+Total amount billed for: 
+7965.0
+-----------------  Cust. ID: 
+1  
+Date and time: 
+30/08/2020 11:35:56 
+Appending product to order: 
+Gaming Headphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+30/08/2020 11:36:20 
+Appending product to order: 
+Essentials Home Theatre 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+30/08/2020 11:36:46 
+Appending product to order: 
+Gaming Headphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+30/08/2020 11:46:42 
+Appending product to order: 
+Gaming Headphones 
