@@ -1,32 +1,20 @@
-# delta Store Manager 7.1 Bellaire <span style="color: #496dd0">#RadicallyNew</span>
+# delta Store Manager 8 Donnager <span style="color: #496dd0">#RadicallyNew</span>
 
-### Announcing DBFA 7! A radically new DBFA.
+### 30/8/2020: Presenting DBFA8!
   
    
-DBFA is a store management system like none other. From billing to inventory-management, literally anything a store could need. Ultra-light data structures, ultimate integrations, DBFA is all one could wish for, but open source! ;)
+DBFA is a store management system like none other. From billing to inventory-management, literally anything a store could need. Ultra-light data structures, ultimate integrations, DBFA is all a store-operator could crave, but open source! ;)
 
-[![Run on Repl.it](https://repl.it/badge/github/deltaonealpha/DBFA)](https://repl.it/github/deltaonealpha/DBFA)
+#[![Run on Repl.it](https://repl.it/badge/github/deltaonealpha/DBFA)](https://repl.it/github/deltaonealpha/DBFA)
 
-<h5 align="center">MARK 7.1 BELLAIRE (HYPER stable): #RadicallyNew </h5>
+<h5 align="center">v8 Donnager (stable): #RadicallyNew </h5>
 
 ## Latest Additions:
-<h5>> Presenting DBFA search engine v1: Unlocks the "Find Customer" option</h5>
-<h5>> A radically new menu UI!</h5>
-<h5>> Presenting loyalty points!</h5>
-<h5>> OTP-based loyalty points redemption!</h5>
-<h5>> DBFA now validates the entered customer ID.</h5>
-<h5>> DBFA now emails the invoice to registered customers!</h5>
-(off too many exclamations)
+<h5>> A shit tonne; scroll down to see all
 
 
 ## Roadmap
-- [X] improve menu
-- [X] search engine
-- [X] enable the find customer option
-- [X] points system
-- [X] otp-based points redemption system
-- [X] email invoices
-- [x] authenication system v2 
+- [X] all done XDD
 
 ## Getting Started:
 
@@ -51,6 +39,7 @@ tqdm
 colorama
 reportlab
 ```
+DBFA's download package has a 'DBFApip' file with all pip commands to straightly pip from.
 
 ### Installing:
 
@@ -81,7 +70,6 @@ DBFA was natively-coded to run on Windows. Use modules compatible with your oper
 ## Built With:
 
 * [Python](https://www.python.org/) - Developed in Python
-* [Visual Studio Code](https://code.visualstudio.com/) - Programmed in Microsoft Visual Studio
 * [Sqlite](https://www.sqlite.org/index.html) - Data handled by Sqlite
 
 
@@ -99,35 +87,42 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 (yeah I write a shit ton here)
 
 
-<h2>DBFA 7.1 Bellaire (HYPER stable)</h2>
-<h6>Presenting the biggest DBFA release ever since Mark 4!</h6>
-<h6>    </h6>
-<h4>Presenting DBFA Search Engine v1</h4>
-<h6>    > "Find Customer" option rolled out with a super-thorough search, yeah!</h6>
-<h6>    </h6>
-<h4>A radically new menu UI! #RadicallyNew</h4>
-<h6>    > Better design, lighter on the eye. Allows for more information to be read than before.</h6>
-<h6>    </h6>
-![new menu](https://github.com/deltaonealpha/DBFA/blob/master/master/newmenu.png?raw=true)
-![new menu](https://github.com/deltaonealpha/DBFA/blob/master/master/oldmenu.png?raw=true)
-<h6>    </h6>
-<h4>Added unregistered customer account</h4>
-<h6>    > Customer 0 for unregistered.</h6>
-<h6>    > Enter or invalid customer redirects to ID 0.</h6>
-<h6>    </h6>
-<h4>Introducing loyalty points with OTP-based redemption!</h4>
-<h6>    > DBFA lets you chose whether to redeem or not.</h6>
-<h6>    > DBFA instantly delivers a secure OTP on your email.</h6>
-<h6>    </h6>
-<h4>Guess who now emails registered customers their invoice? Yeah..</h4>
-<h6>    </h6>
-<h4>Presenting a new ultra secure login system provisioning Telegram-based authenication!</h4>
-<h6>    </h6><h5>Presenting DBFA Backup & Switch!</h4>
-<h6>    > Now backup all your data for when you want to switch devices!</h6>
-<h6>    </h6>
-<h4>DBFA now validates the entered customer ID.</h4>
-<h6>    </h6>
-<h4>Other miscellaneous changes: </h4>
-<h6>    > Merged communications upstream </h6>
-<h6>    > Merged delta upstream.</h6>
-<h4> </h4>
+<h2>DBFA 8.1 Donnager (stable)</h2>
+
+Listed down below are the new features that come with DBFA 8.1. For other improvements and bug-fixes, visit: https://telegra.ph/DBFA-8-RC2-Highlights-08-17
+
+-    Presenting DBFA two-factor-authenication!
+
+-    Completely new logo and menu design (settings toggle to switch to old menu-style)
+
+
+-    Presenting DBFA Options (settings; adjust every visual aspect to your liking)
+
+-    Presenting DBFA Deliveries 
+
+-    Presenting DBFA Stock Orders
+
+-    Presenting DBFA Sales Analyzer (profit-date plot; also added to the pdf store report)
+
+-    Presenting DBFA Store Music Controls (Thanks to XanderMJ (github.com/XanderMJ/spotilib))
+
+-    Introducing DBFA quick control! (3a, 3b,.... instead of 3 [wait], and then a, b,.... .etc.)
+
+
+
+-    Added version 8 boot image
+
+-    Nuked all redundancies from the repo (net package size now under 50mb)
+
+-    New sales logger v2 (sqlite)
+
+-    Now export sales and customer data to CSV files.
+
+-    Now add product-specific low-stock warnings     
+
+-    Enabled invoice ID with retention
+
+-    Updated menu with DBFA upstream changes
+
+
+
