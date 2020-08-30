@@ -1023,8 +1023,8 @@ def mainmenu(): #defining a function for the main menu
     DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* - >> next  '''+Fore.CYAN+'''
 -----------------------------------------------------------------------------------------------------------------------''')
 
-    logoxnew = (Fore.CYAN+'''
-Options:
+
+    logoxnew = (Fore.CYAN+'''Options:
 1  - Issue a Bill                                              4  - Store Report
 2  - Manage Customers:                                         5  - Manage Deliveries
         a: Register a Customer    c: Purchase Records          6  - DBFA Options
@@ -1033,23 +1033,22 @@ Options:
 3  - Store Options:                                            
         a: Manage Stock           c: Manage Vouchers           9  - View Software License
         b: DBFA Stock Master      d: Product Listing           10 - About DBFA 8.12
-        e: Sales Log              f: Export data as CSV        11 - Quit
+        e: Sales Log              f: Export data as CSV        11 - Quit\n
 '''+Fore.MAGENTA+'''                                                                 
 What would you like to do?                  The OG Store Manager'''+Fore.CYAN+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█   
----------------------------------------------------------------- █__█ █▀▀█ █▀  █▬█  ▄▄▄▄                            
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ █__█ █▀▀█ █▀  █▬█  ▄▄▄▄                            
 DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DONNAGER                               
------------------------------------------------------------------------------------------------''')
-
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
 
     # To underline What would you like to do?::                                                                            
     if settingscommonfetch(7) == 1:
         if delcount != 0:
-            print("-----------------------------------------------------------------------------------------------")
+            print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
             lener1 = "Profit (last week): " + '%s'%pro7d
-            print(lener1 + (63-len(lener1))*" ", "  Profit (today): ", protd)
+            print(lener1 + (62-len(lener1))*" ", "Profit (today): ", protd)
             #pro7d, (56-len(str(pro7d)))*" ", "DONNAGER 8.01 RC-2 Test Beta")
-            print(Back.BLACK + Fore.MAGENTA+ "Pending deliveries: " + str(delcount) + " "  + "           DBFA User: " + os.getlogin() + "                    "+ dt_string + Fore.CYAN)
-            print("-----------------------------------------------------------------------------------------------")
+            print(Back.BLACK + Fore.MAGENTA+ "Pending deliveries: " + str(delcount) + " "  + "           DBFA User: " + os.getlogin() + "             "+ dt_string + Fore.CYAN)
+            print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
         else:
             print("DONNAGER 8.01 RC-2 Test Beta")
             print(Fore.BLACK + Back.CYAN + "No deliveries pending! " + Back.BLACK + Fore.CYAN)
@@ -1058,9 +1057,9 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
         if delcount != 0:
             print("-----------------------------------------------------------------------------------------------------------------------")
             lener1 = "Profit (last week): " + '%s'%pro7d
-            print(lener1 + (95-len(lener1))*" ", "  Profit (today): ", protd)
+            print(lener1 + (95-len(lener1))*" ", "   Profit (today): ", protd)
             #pro7d, (56-len(str(pro7d)))*" ", "DONNAGER 8.01 RC-2 Test Beta")
-            print(Back.BLACK + Fore.MAGENTA+ "Pending deliveries: " + str(delcount) + " "  + "       DBFA User: " + os.getlogin() + "                    "+ dt_string + Fore.CYAN)
+            print(Back.BLACK + Fore.MAGENTA+ "Pending deliveries: " + str(delcount) + " "  + "       DBFA User: " + os.getlogin() + "              "+ dt_string + Fore.CYAN)
             print("-----------------------------------------------------------------------------------------------------------------------")
         else:
             print("DONNAGER 8.01 RC-2 Test Beta")
@@ -1077,13 +1076,13 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
         except Exception as e:
             print(Fore.MAGENTA, "No music playing. Play your favourite music and control it via DBFA", Fore.CYAN)
         if settingscommonfetch(7) == 1:
-            print("-----------------------------------------------------------------------------------------------", Fore.MAGENTA)
+            print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", Fore.MAGENTA)
         else:
             print("-----------------------------------------------------------------------------------------------------------------------", Fore.MAGENTA)
     else:
-        print("-----------------------------------------------------------------------------------------------")
+        print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
         print("Re-enable DBFA Music Controls Service from the settings to be able to control your music ")
-        print("-----------------------------------------------------------------------------------------------")
+        print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
 
     #underline_byte = b'\xcc\xb2'
     #underline = str(underline_byte,'utf-8')
