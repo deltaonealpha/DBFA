@@ -1,79 +1,50 @@
-DBFA 8.0 RC-3x Changelog (Inclusive)
+DBFA 8.1 Changelog (Inclusive)
 
 ____________
+Changelog:
 
-HIGHLIGHTS
+New:    
+        Presenting DBFA two-factor-authenication!
+        Completely new logo and menu design (settings toggle to switch to old menu-style)
 
-~ DBFA 8 ONE-YEAR ANNIVERSARY SPECIAL BOOTSCREEN ~
+        New menu design with redesigned logo (settings toggle to switch to the older style available)
+        Presenting DBFA Options (settings)
+        Presenting DBFA Deliveries (adjust every visual aspect to your liking)
+        Presenting DBFA Stock Orders
+        Presenting DBFA Sales Analyzer (profit-date plot; also added to the pdf store report)
+        Presenting DBFA Store Music Controls (Thanks to XanderMJ (github.com/XanderMJ/spotilib))
+        Introducing DBFA quick control! (3a, 3b,.... instead of 3 [wait], and then a, b,.... .etc.)
 
-Tweaked invoice naming for search compliance with new invoice IDs
+        Added version 8 boot image
+        Nuked all redundancies from the repo (net package size now under 50mb)
+        New sales logger v2 (sqlite)
+        Now export sales and customer data to CSV files.
+        Now add product-specific low-stock warnings        
+        Enabled invoice ID with retention
+        Updated menu with DBFA upstream changes
 
-Nuked all redundancies from the repo
+Improvements:
+        Username now fetched from Windows
+        Invoice naming changed for search compliance with invoice ids
+        Login pass is now masked in GUI
+        Better search (for strings with caps and spaces)
+        Better store report with cust. and sales data.
+        See changelog with webview
+        Added invoice ID to telethon
+        Delivery logger now has purchase list
+
+Bug-fixes and removals:
+        lylpoints, netpay, settings exit, voucher bugs rectified.
+        Nuked useless vars
+        Fixed shell-print error.
+
 
 All sales data is now simultaneously logged into a secure sqlite database
 This is a part in our aim of phasing-out .txt based logging in favour of database-based logging.
-
-New Menu Additions:
-Presenting DBFA Sales Logger v2: Menu shows last 7 days' and today's profit
-
-Updated menu with DBFA upstream
-
-Enabled invoice ID system with retention
-
-Enabled product-specific low-stock warning 
-
-Introducing DBFA Store Music Controls (View/ control Spotify and system-wide)
-
-        -- Thanks to XanderMJ (github.com/XanderMJ/spotilib)  
-
-Introducing DBFA quick control! (3a, 3b,.... instead of 3 [wait], and then a, b,....)
-
-Introducing DBFA Deliveries v1 (stable!)
-
-        -- Pending count in menu, create delivery tickets, store address, view pending and mark as delivered
-
-Introducing DBFA Stock Master v1!
-
-        -- Place stock order, fetch and update stock, view, change and contact vendor, change low-stock bar
-
-        -- "Change vendor contact" comes with email verification (for *@* and *.*)
-
-Now export sales and customer data to CSV files.
-
-   
-
-_______________
-
-IMPROVEMENTS (Drasticaly improved the menu)
-Username fetched from Windows, login pass is now masked in GUI
-
-Better search (for strings with caps and spaces)
-
-Better store report with cust. and sales data.
-
-Added "View Dev. C.log" option with webview; revamped licensing with webview.
-
-Added invoice ID to telethon.
-
-
-
-_____________________
-
-REMOVALS AND FIXES
-Nuked lylpoints bug, useless variables and *open markdown* in favour for webview.
-
-Nuked netpay error.
-
-Fixed shell-print error.
-
-
-
-___________________________________________
-
-RC (release candidate) builds are internal test builds used to judge the stability and  performance of new code, and to evaluate the need for new features.
-
-___________________________________________
-
-DBFA-8-RC-3x by deltaone
-
-___________________________________________
+_____________________________
+RC (release candidate) builds are internal test builds 
+used to judge the stability and  performance of new code, 
+and to evaluate the need for new features.
+_____________________________
+DBFA 8.1 by deltaone
+_____________________________

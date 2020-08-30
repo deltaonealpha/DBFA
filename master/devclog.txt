@@ -16,7 +16,7 @@ ROADMAP TO DBFA 8:
 
 30-08-20 11:49
 > Renamed DBFA Settings >>> to >>> DBFA options
-> Added about 
+
 
 30-08-20 11:49
 > Added skip to discount if coupon/voucher ID entered doesn't exist
