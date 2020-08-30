@@ -97,8 +97,6 @@ Listed down below are the new features that come with DBFA 8.1. For other improv
 
 
 
--    New menu design with redesigned logo (settings toggle to switch to the older style available)
-
 -    Presenting DBFA Options (settings)
 
 -    Presenting DBFA Deliveries (adjust every visual aspect to your liking)
