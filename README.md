@@ -1,6 +1,6 @@
 # delta Store Manager 8 Donnager <span style="color: #496dd0">#RadicallyNew</span>
 
-### Presenting DBFA8! A radically new update.
+### 30/8/2020: Presenting DBFA8!
   
    
 DBFA is a store management system like none other. From billing to inventory-management, literally anything a store could need. Ultra-light data structures, ultimate integrations, DBFA is all a store-operator could crave, but open source! ;)
