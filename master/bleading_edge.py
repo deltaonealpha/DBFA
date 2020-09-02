@@ -1028,7 +1028,7 @@ def mainmenu(): #defining a function for the main menu
 1  - Issue a Bill                                              4  - Store Report
 2  - Manage Customers:                                         5  - Manage Deliveries
         a: Register a Customer    c: Purchase Records          6  - DBFA Options
-        b: Customer Registry      d: Find a Customer           7  - Start DBFA Backup & Switch
+        b: Customer Registry      d: Find a Customer           7  - DBFA Backup & Switch
         e: Export data as CSV                                  8  - Analyse Sales
 3  - Store Options:                                            
         a: Manage Stock           c: Manage Vouchers           9  - View Software License
@@ -1038,17 +1038,17 @@ def mainmenu(): #defining a function for the main menu
 What would you like to do?                  The OG Store Manager'''+Fore.WHITE+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█'''+Fore.CYAN+'''
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄'''+Fore.CYAN+'''
 DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DONNAGER                               
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
 
     # To underline What would you like to do?::                                                                            
     if settingscommonfetch(7) == 1:
         if delcount != 0:
-            print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+            print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
             lener1 = "Profit (last week): " + '%s'%pro7d
             print(lener1 + (62-len(lener1))*" ", "Profit (today): ", protd)
             #pro7d, (56-len(str(pro7d)))*" ", "DONNAGER 8.01 RC-2 Test Beta")
             print(Back.BLACK + Fore.MAGENTA+ "Pending deliveries: " + str(delcount) + " "  + "           DBFA User: " + os.getlogin() + "             "+ dt_string + Fore.CYAN)
-            print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+            print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
         else:
             print("DONNAGER 8.01 RC-2 Test Beta")
             print(Fore.BLACK + Back.CYAN + "No deliveries pending! " + Back.BLACK + Fore.CYAN)
@@ -1076,13 +1076,13 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
         except Exception as e:
             print(Fore.MAGENTA, "No music playing. Play your favourite music and control it via DBFA", Fore.CYAN)
         if settingscommonfetch(7) == 1:
-            print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", Fore.MAGENTA)
+            print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", Fore.MAGENTA)
         else:
             print("-----------------------------------------------------------------------------------------------------------------------", Fore.MAGENTA)
     else:
-        print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+        print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
         print("Re-enable DBFA Music Controls Service from the settings to be able to control your music ")
-        print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+        print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
 
     #underline_byte = b'\xcc\xb2'
     #underline = str(underline_byte,'utf-8')
@@ -1787,8 +1787,96 @@ if settingscommonfetch(1) == 1:
 else:
     pass
 
+
 import requests, time, json, urllib, os, math, random, sqlite3
 from tqdm import tqdm 
+import logging, os, time, requests, socket
+import telegram_send
+from pynput.keyboard import Key, Controller
+# Telegram BOT API 2 (FULL)
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
+
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+def telegram_bot_sendtext(bot_message):
+    bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
+    bot_chatID = '680917769'
+    send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+    response = requests.get(send_text)
+    return response.json()
+
+def start(update, context):
+    keyboard = [[InlineKeyboardButton("Validate", callback_data='1'),
+                 InlineKeyboardButton("Deny", callback_data='2')]]
+
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
+    update.message.reply_text("delta 2FA Handler Service\n\n\nValidate login?", reply_markup=reply_markup)
+
+
+def button(update, context):
+    query = update.callback_query
+    # CallbackQueries need to be answered, even if no notification to the user is needed
+    # Some clients may have trouble otherwise. See https://core.telegram.org/bots/api#callbackquery
+    inlet = ("{}".format(query.data))
+    if inlet in (1, "1"):
+        query.edit_message_text(text="delta 2FA approved! \n\nThis allows your installation of the DBFA client, and its data to be accessed. \n\nIf this wasn't you, contact support and revoke your bot login at the earliest.\n\ndelta Security Service")
+        with open(r"C:\Users\balaj\OneDrive\Documents\GitHub\delXBRS7\Untitled-1.webp", "rb") as f:
+            telegram_send.send(stickers=[f])
+            keyboard = Controller()
+            print("\n\nValidation recieved! DBFA Client will start in a moment\n\n")
+            print("telegram.ext.updtr_pushreq(deltaonealpha, set.webhook; reset)")
+            keyboard.press(Key.ctrl)
+            keyboard.press('c')
+            keyboard.release('c')
+            keyboard.release(Key.ctrl)
+
+    if inlet in (2, "2"):
+        query.edit_message_text(text="Denied delta 2FA request.\n\ndelta Security Service")
+        with open(r"C:\Users\balaj\OneDrive\Documents\GitHub\delXBRS7\Untitled-1.webp", "rb") as f:
+            telegram_send.send(stickers=[f])
+        keyboard = Controller()
+        print("\n\nThe login request for this session has been DENIED.\n\n")
+        time.sleep(1)
+        print("telegram.ext.updtr_pushreq(deltaonealpha, set.webhook; reset)")
+        keyboard.press(Key.ctrl)
+        keyboard.press('c')
+        keyboard.release('c')
+        keyboard.release(Key.ctrl)
+        time.sleep(1)
+        time.sleep(1)
+        print("DBFA Client will now exit! ")
+        time.sleep(5)
+        os._exit(0)
+    if inlet in (3, "3"):
+        query.edit_message_text(text="Use */help*")    
+    
+
+
+def help_command(update, context):
+    update.message.reply_text("Use /auth when prompted. This bot will only respond when a delta service raises a request. ")
+
+
+def main():
+    # Create the Updater and pass it your bot's token.
+    # Make sure to set use_context=True to use the new context based callbacks
+    # Post version 12 this will no longer be necessary
+    updater = Updater("1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis", use_context=True)
+
+    updater.dispatcher.add_handler(CommandHandler('auth', start))
+    updater.dispatcher.add_handler(CallbackQueryHandler(button))
+    updater.dispatcher.add_handler(CommandHandler('help', help_command))
+
+    # Start the Bot
+    updater.start_polling()
+
+    # Run the bot until the user presses Ctrl-C or the process receives SIGINT,
+    # SIGTERM or SIGABRT
+    updater.idle()
+
 
 def settingscommonfetch(SettingsType):
     import sqlite3
@@ -1806,59 +1894,34 @@ if settingscommonfetch(6) == 1:
         response = requests.get(send_text)
         return response.json()
 
-    def getOTP():
-        digits = "0123456789"
-        otp = ""
-        otp += (digits[math.floor(random.random() * 10)])
-        otp += (digits[math.floor(random.random() * 10)])
-        otp += (digits[math.floor(random.random() * 10)])
-        otp += (digits[math.floor(random.random() * 10)])
-        otp += (digits[math.floor(random.random() * 10)])
-        otp += (digits[math.floor(random.random() * 10)])
-        return otp
-
-
     os.system('cls')
-    print("delta2FAAuthenication Service")
-    delsecox = getOTP()
-    print("█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████")
-    print("DBFA 2FA Service")
+    print("delta2 Authenication Service")    
+    print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    print("DBFA 2FA Service   █▀▀█ █▀█  █▀▀ █▀█  █▀▀█")
+    print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ █__█ █▀▀█ █▀  █▬█  ▄▄▄▄")
     time.sleep(1)
     print("")
-    print("As you have DBFA 2FA activated, a OTP will be sent to your Telegram account to validate this login request. ")
-    for i in tqdm (range (10), desc="Generating and sending OTP"):     
+
+
+    print("You have DBFA 2FA activated. Please validate the login from your Telegram account. ")
+    for i in tqdm (range (10), desc="Connecting.."):     
         time.sleep(0.00001)    
-    telegram_bot_sendtext("delta2FA Authenication Service" + "\n\n" + "A login request has been recieved to login to your DBFA installation. Entering this OTP in your DBFA installation will enable/ disable 2FA authenication aboard that installation." + "\n\n" + "Do not share this OTP with anyone. Use key: "+ '%s'%delsecox  + "\n\n" + "deltaAuthenication Service")
-    time.sleep(1)
-    tries = 0
-    while(1):
-        passkeyinput = input("Enter the validation key recieved: ")
-        if tries in (0, 1, 2, 3, 4):
-            if passkeyinput == delsecox:
-                telegram_bot_sendtext("You have validated a DBFA 2FA login request.\n\nYou can now run your DBFA installation with all features unlocked for this session.\n\nContact support and revoke your bot login at the earliest if this wasn't you!\n\ndeltaAuthenication Service")
-                tries += 1
-                time.sleep(1)
-                print("2FA validated.")            
-                break
-                break
-                break
-            else:
-                print("Invalid validation key entered. Please retry! ")
-                tries += 1
-                telegram_bot_sendtext('%s'%tries+"/5: validation attempts; no valid key recieved.")
-        else:
-            telegram_bot_sendtext("(5) validation attempts completed, yet no valid key recieved." + "\n\n" + "2FA denied." +"\n\ndeltaAuthenication Service")
-            print("(5) validation attempts completed, yet no valid key recieved. 2FA denied. ")
-            print("DBFA 2FA Login request denied!! ")
-            print("DBFA client is exiting! ")
-            time.sleep(3)
-            os._exit(0)
-
-
+    if __name__ == '__main__':
+        hostname = socket.gethostname()
+        ip_address = socket.gethostbyname(hostname)
+        import platform
+        from datetime import datetime  #for reporting the billing time and date
+        now = datetime.now()
+        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")  #datetime object containing current date and time
+        with open(r"C:\Users\balaj\OneDrive\Documents\GitHub\delXBRS7\Untitled-1.webp", "rb") as f:
+            telegram_send.send(stickers=[f])
+        telegram_bot_sendtext("delta 2FA Handler Service\nA login request has been recieved from your DBFA installation.\n\nRequest time        - " + '%s'%dt_string + f"\nHostname             - {hostname}\n" + f"IP Address             - {ip_address}\n" + "Service Identifier  - "+ platform.system() + platform.release() +"\n\nWARNING:  Do not approve this if this isn't you!\n\nPlease send */auth* to start the validation process: ")
+        main()
     os.system('cls')
 
 else:
     print("DBFA 2FA is disabled. We recommend you to turn it on from the settings for a more secure experience with DBFA client.")
+
 
 
 
