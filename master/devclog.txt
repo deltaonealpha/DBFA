@@ -2,10 +2,19 @@
           deltaDBFA Infinite Development Changelog 
   Changelog for DBFA consisting of all changes since DBFA 7
 ----------------------
-ROADMAP TO DBFA 8:
-	[x] [x] [x] [x] [x] 
-	All done :)
-----------------------
+06-09-20 17:08
+> DBFA Updater completed and enabled!
+> Reworked update check logic from scratch
+> Auto-download update files when told to do so by the user using git
+> Version details are checked from both, local source and server source.
+> Added instructions for update via a .txt file
+> Added "Check for updates" to the main menu
+> A seperate new repository is being maintained to host update files. (OTA; only changed files)
+> Updater is OTA-based. Only updated files will be hosted.
+> Updated menu
+
+05-09-20 17:08
+> Added general base and hiring form base for DBFA Employee Management
 
 30-08-20 17:08
 > Presenting DBFA 8's new menu!
