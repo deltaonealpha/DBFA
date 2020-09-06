@@ -1809,8 +1809,8 @@ def telegram_bot_sendtext(bot_message):
     return response.json()
 
 def start(update, context):
-    keyboard = [[InlineKeyboardButton("Validate", callback_data='1'),
-                 InlineKeyboardButton("Deny", callback_data='2')]]
+    keyboard = [[InlineKeyboardButton("✅ Validate", callback_data='1'),
+                 InlineKeyboardButton("❌ Deny", callback_data='2')]]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -1823,25 +1823,25 @@ def button(update, context):
     # Some clients may have trouble otherwise. See https://core.telegram.org/bots/api#callbackquery
     inlet = ("{}".format(query.data))
     if inlet in (1, "1"):
-        query.edit_message_text(text="delta 2FA approved! \n\nThis allows your installation of the DBFA client, and its data to be accessed. \n\nIf this wasn't you, contact support and revoke your bot login at the earliest.\n\ndelta Security Service")
-        with open(r"C:\Users\balaj\OneDrive\Documents\GitHub\delXBRS7\Untitled-1.webp", "rb") as f:
+        query.edit_message_text(text="✅ delta 2FA approved! \n\nThis allows your installation of the DBFA client, and its data to be accessed. \n\nIf this wasn't you, contact support and revoke your bot login at the earliest.\n\ndelta Security Service")
+        with open(r"C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\deltatgstickerlogonew.webp", "rb") as f:
             telegram_send.send(stickers=[f])
             keyboard = Controller()
             print("\n\nValidation recieved! DBFA Client will start in a moment\n\n")
-            print("telegram.ext.updtr_pushreq(deltaonealpha, set.webhook; reset)")
+            print("telegram_extended.updtr_pushreq(deltaonealpha, set.webhook: (on, getUpdated.redir(servers.gokku.com/deltaonealpha/arterxt1, callback=False)))")
             keyboard.press(Key.ctrl)
             keyboard.press('c')
             keyboard.release('c')
             keyboard.release(Key.ctrl)
 
     if inlet in (2, "2"):
-        query.edit_message_text(text="Denied delta 2FA request.\n\ndelta Security Service")
-        with open(r"C:\Users\balaj\OneDrive\Documents\GitHub\delXBRS7\Untitled-1.webp", "rb") as f:
+        query.edit_message_text(text="❌🔐 Denied delta 2FA request.\n\ndelta Security Service")
+        with open(r"C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\deltatgstickerlogonew.webp", "rb") as f:
             telegram_send.send(stickers=[f])
         keyboard = Controller()
         print("\n\nThe login request for this session has been DENIED.\n\n")
         time.sleep(1)
-        print("telegram.ext.updtr_pushreq(deltaonealpha, set.webhook; reset)")
+        print("telegram_extended.updtr_pushreq(deltaonealpha, set.webhook: (on, getUpdated.redir(servers.gokku.com/deltaonealpha/arterxt1, callback=False)))")
         keyboard.press(Key.ctrl)
         keyboard.press('c')
         keyboard.release('c')
@@ -1913,9 +1913,9 @@ if settingscommonfetch(6) == 1:
         from datetime import datetime  #for reporting the billing time and date
         now = datetime.now()
         dt_string = now.strftime("%d/%m/%Y %H:%M:%S")  #datetime object containing current date and time
-        with open(r"C:\Users\balaj\OneDrive\Documents\GitHub\delXBRS7\Untitled-1.webp", "rb") as f:
+        with open(r"C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\deltatgstickerlogonew.webp", "rb") as f:
             telegram_send.send(stickers=[f])
-        telegram_bot_sendtext("delta 2FA Handler Service\nA login request has been recieved from your DBFA installation.\n\nRequest time        - " + '%s'%dt_string + f"\nHostname             - {hostname}\n" + f"IP Address             - {ip_address}\n" + "Service Identifier  - "+ platform.system() + platform.release() +"\n\nWARNING:  Do not approve this if this isn't you!\n\nPlease send */auth* to start the validation process: ")
+        telegram_bot_sendtext("🔐delta 2FA Handler Service\nA login request has been recieved from your DBFA installation.\n\nRequest time        - " + '%s'%dt_string + f"\nHostname             - {hostname}\n" + f"IP Address             - {ip_address}\n" + "Service Identifier  - "+ platform.system() + platform.release() +"\n\nWARNING:  Do not approve this if this isn't you!\n\nPlease send */auth* to start the validation process: ")
         main()
     os.system('cls')
 

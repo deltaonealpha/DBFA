@@ -74,6 +74,22 @@ def getOTP():
     otp += (digits[math.floor(random.random() * 10)])
     return otp
 
+def main():
+    # Create the Updater and pass it your bot's token.
+    # Make sure to set use_context=True to use the new context based callbacks
+    # Post version 12 this will no longer be necessary
+    updater = Updater("1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis", use_context=True)
+
+    updater.dispatcher.add_handler(CommandHandler('auth', start))
+    updater.dispatcher.add_handler(CallbackQueryHandler(button))
+    updater.dispatcher.add_handler(CommandHandler('help', help_command))
+
+    # Start the Bot
+    updater.start_polling()
+
+    # Run the bot until the user presses Ctrl-C or the process receives SIGINT,
+    # SIGTERM or SIGABRT
+    updater.idle()
 
 def Login():
     layout = [  [sgx.Text('Login to authenicate: ')],
