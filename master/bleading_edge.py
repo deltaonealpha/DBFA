@@ -966,7 +966,7 @@ def salestodayfetch():  #defining a function to input data into the SQL database
     return sumerx
 
 
-
+os.system('cls')
 
 
 
@@ -990,6 +990,19 @@ def floodpay():
 def mainmenu(): #defining a function for the main menu
     from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
     init(convert = True)
+    url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
+    r = requests.get(url)
+    dbfaver = str(r.content)[6:-3]
+    xdbfaver = str(r.content)[2:-3]
+    with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
+        upread = (str(upread.read())).strip()
+    #print("Server: ", (xdbfaver + '%s'%len(xdbfaver)), "\nLocal: ", (upread + '%s'%len(upread)))
+    time.sleep(1)
+    if float(upread[4: ]) > float(dbfaver):
+        print("Uncomitted build? \n༼ つ ◕_◕ ༽つ  つ ༽ ◕_◕ つ༼")
+    else:
+        if xdbfaver != upread:
+            print("A new DBFA update is available: DBFA", dbfaver)
     # Count pending deliveries
     delcount = 0
     netprof = sqlite3.connect('recmaster.db')
@@ -1018,7 +1031,8 @@ def mainmenu(): #defining a function for the main menu
                                 3  - Store Options:                                          
                                         a: Manage Stock           c: Manage Vouchers         9  - View Software License
                                         b: DBFA Stock Master      d: Product Listing         10 - About DBFA 8.12
-                                        e: Sales Log              f: Export data as CSV      11 - Quit
+                                        e: Sales Log              f: Export data as CSV      11 - Check for updates
+                                                                                             12 - Quit
     '''+Fore.MAGENTA+'''                          
     DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* - >> next  '''+Fore.CYAN+'''
 -----------------------------------------------------------------------------------------------------------------------''')
@@ -1033,7 +1047,8 @@ def mainmenu(): #defining a function for the main menu
 3  - Store Options:                                            
         a: Manage Stock           c: Manage Vouchers           9  - View Software License
         b: DBFA Stock Master      d: Product Listing           10 - About DBFA 8.12
-        e: Sales Log              f: Export data as CSV        11 - Quit\n
+        e: Sales Log              f: Export data as CSV        11 - Check for updates
+                                                               12 - Quit\n
 '''+Fore.MAGENTA+'''                                                                 
 What would you like to do?                  The OG Store Manager'''+Fore.WHITE+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█'''+Fore.CYAN+'''
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄'''+Fore.CYAN+'''
@@ -1829,6 +1844,7 @@ def button(update, context):
             keyboard = Controller()
             print("\n\nValidation recieved! DBFA Client will start in a moment\n\n")
             print("telegram_extended.updtr_pushreq(deltaonealpha, set.webhook: (on, getUpdated.redir(servers.gokku.com/deltaonealpha/arterxt1, callback=False)))")
+            print("\n\nif there's no print below for around 5 secs from now, press ctrl+c to continue\n\n")
             keyboard.press(Key.ctrl)
             keyboard.press('c')
             keyboard.release('c')
@@ -1842,6 +1858,7 @@ def button(update, context):
         print("\n\nThe login request for this session has been DENIED.\n\n")
         time.sleep(1)
         print("telegram_extended.updtr_pushreq(deltaonealpha, set.webhook: (on, getUpdated.redir(servers.gokku.com/deltaonealpha/arterxt1, callback=False)))")
+        print("\n\nif there's no print below for around 5 secs from now, press ctrl+c to continue\n\n")
         keyboard.press(Key.ctrl)
         keyboard.press('c')
         keyboard.release('c')
@@ -1923,6 +1940,24 @@ else:
     print("DBFA 2FA is disabled. We recommend you to turn it on from the settings for a more secure experience with DBFA client.")
 
 
+print("---------------------------------\n\n༼ つ ◕_◕ ༽つ delta Update Utility\n\n---------------------------------")
+time.sleep(0.5)
+print("DBFAIntellisense")
+print("Fetching update details from server : : : : ")
+url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
+r = requests.get(url)
+dbfaver = str(r.content)[6:-3]
+xdbfaver = str(r.content)[2:-3]
+with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
+    upread = (str(upread.read())).strip()
+print("Server: ", (xdbfaver + '%s'%len(xdbfaver)), "\nLocal: ", (upread + '%s'%len(upread)))
+time.sleep(1)
+if float(upread[4: ]) > float(dbfaver):
+    print("\n\nThe local installation seems to have a greater version ID than the server copy\n༼ つ ◕_◕ ༽つ  つ ༽ ◕_◕ つ༼")
+    print("\nIf this is the master edition, have you committed?\n\n")
+time.sleep(1)
+
+os.system('cls')
 
 
 from win10toast import ToastNotifier
@@ -3095,8 +3130,73 @@ while(1): #while (always) true
         print("You're requested to close the same when you want to return to DBFA's main menu.\n")
         time.sleep(1.7)
         os.startfile(r'plotter.pyw')
-    #Exit System
+
+
+    #DBFA Updater
     elif decfac == "11":
+        import requests, os, time, shutil, oschmod
+        os.system('cls')
+        print("---------------------------------\n\n༼ つ ◕_◕ ༽つ delta Update Utility\n\n---------------------------------")
+        time.sleep(1)
+        url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
+        r = requests.get(url)
+        dbfaver = str(r.content)[6:-3]
+        xdbfaver = str(r.content)[2:-3]
+
+        with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
+            upread = (str(upread.read())).strip()
+
+        print("Server: ", (xdbfaver + '%s'%len(xdbfaver)), "\nLocal: ", (upread + '%s'%len(upread)))
+        time.sleep(1)
+        if float(upread[4: ]) > float(dbfaver):
+            print("\n\nThe local installation seems to have a greater version ID than the server copy\n༼ つ ◕_◕ ༽つ  つ ༽ ◕_◕ つ༼")
+            print("\nIf this is the master edition, have you committed?\n\n")
+        else:
+            if xdbfaver == upread:
+                print("This installation of DBFA is up-to date! ")
+            else:
+                time.sleep(1)
+                print("A new DBFA update is available: DBFA", dbfaver)
+                time.sleep(3)
+                updateconfo =  input("Update DBFA now? (y/n): ")
+                if updateconfo == "y":
+                    try:
+                        oschmod.set_mode(r"C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler", "777")
+                    except:
+                        pass
+                    shutil.rmtree(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler', ignore_errors=True)
+                    try:
+                        os.rmdir(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler')
+                    except:
+                        pass
+                    if os.path.isdir(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler') == True:
+                        shutil.rmtree(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler', ignore_errors=True)
+                        print("Cleaning-up previous update package... ")
+                        shutil.rmtree(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler', ignore_errors=True)
+                        try:
+                            os.rmdir(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler')
+                        except:
+                            pass
+                    else:
+                        pass
+                    try:
+                        os.system('git clone https://github.com/deltaonealpha/DBFA_UpdateHandler')
+                    except:
+                        print("The directory 'DBFA_UpdateHandler' already exists.")
+                        print("Please delete it from DBFA's installation location and re-run the updater.")
+                    #os.system('git log')
+                    print("Commit: ")
+                    os.system(r'git rev-parse HEAD')
+
+                    print("The new package has been downloaded to your DBFA installation > master > DBFA_UpdateHandler")
+                    print("Please replace *only the required* files manually. There's a 'Update Instructions.txt' file inside the 'DBFA_UpdateHandler' folder with the required steps to update DBFA.")
+
+                if updateconfo == "n":
+                    time.sleep(1)
+                    print("Use this, (option 11) whenever you want to update DBFA. We recommend doing so on urgent grounds. DBFA updates bring better security and new ground-breaking features with them!")
+
+    #Exit System
+    elif decfac == "12":
         if os.path.exists(r'userblock.txt'):
             userblock.close()
             os.remove(r'userblock.txt')
