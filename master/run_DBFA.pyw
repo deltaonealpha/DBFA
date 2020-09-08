@@ -13,10 +13,27 @@ def Login():
         import PySimpleGUI as sgx
         sgx.theme('DarkTeal9')	# Add a touch of color
         # All the stuff inside your window.
-        layout = [  [sgx.Text('Yo we know security...')],
-                    [sgx.Text('Username: '), sgx.InputText()],
-                    [sgx.Text('Password: '), sgx.InputText(password_char='*')],
-                    [sgx.Button('Login'), sgx.Button('Cancel')] ]
+        def CAPSLOCK_STATE():
+            import ctypes
+            hllDll = ctypes.WinDLL ("User32.dll")
+            VK_CAPITAL = 0x14
+            return hllDll.GetKeyState(VK_CAPITAL)
+
+        CAPSLOCK = CAPSLOCK_STATE()
+
+        if ((CAPSLOCK) & 0xffff) != 0:
+            #print("\nWARNING:  CAPS LOCK IS ENABLED!\n")
+            layout = [  [sgx.Text('Yo we know security...')],
+                        [sgx.Text('Username: '), sgx.InputText()],
+                        [sgx.Text('Password: '), sgx.InputText(password_char='*')],
+                        [sgx.Button('Login'), sgx.Button('Cancel')], 
+                        [sgx.Text('WARNING:  CAPS LOCK IS ENABLED!')]]
+        
+        else:
+            layout = [  [sgx.Text('Yo we know security...')],
+                        [sgx.Text('Username: '), sgx.InputText()],
+                        [sgx.Text('Password: '), sgx.InputText(password_char='*')],
+                        [sgx.Button('Login'), sgx.Button('Cancel')]]
         # Create the Window
         window = sgx.Window('DNSS Authenication Service', layout)
         # Event Loop to process "events" and get the "values" of the inputs

@@ -992,14 +992,17 @@ def mainmenu(): #defining a function for the main menu
     init(convert = True)
     url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
     r = requests.get(url)
-    dbfaver = str(r.content)[6:-3]
-    xdbfaver = str(r.content)[2:-3]
+    dbfaver = (str(r.content)[6:-3]).replace("\\n", "")
+    xdbfaver = (str(r.content)[2:-3]).replace("\\n", "")
     with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
         upread = (str(upread.read())).strip()
     #print("Server: ", (xdbfaver + '%s'%len(xdbfaver)), "\nLocal: ", (upread + '%s'%len(upread)))
     time.sleep(1)
-    if float(upread[4: ]) > float(dbfaver):
-        print("Uncomitted build? \n༼ つ ◕_◕ ༽つ  つ ༽ ◕_◕ つ༼")
+    try:
+        if float(upread[4: ]) > float(dbfaver):
+            print("Uncomitted build? \n༼ つ ◕_◕ ༽つ  つ ༽ ◕_◕ つ༼")
+    except:
+        print("Error with updater. Error code : *bckshln12* ༼ つ ◕_◕ ༽つ  つ ༽ ◕_◕ つ༼")
     else:
         if xdbfaver != upread:
             print("A new DBFA update is available: DBFA", dbfaver)
@@ -1028,7 +1031,7 @@ def mainmenu(): #defining a function for the main menu
     CLIENT 8.12 DONNAGER                a: Register a Customer    c: Purchase Records        6  - DBFA Options 
     '''+Fore.MAGENTA+'''  The OG Store Manager'''+Fore.CYAN+'''              b: Customer Registry      d: Find a Customer         7  - Start DBFA Backup & Switch 
                                         e: Export data as CSV                                8  - Analyse Sales
-                                3  - Store Options:                                          
+                                3  - Store Options:                                          '''+Fore.MAGENTA+'''emp/EMP - DBFA Employee Manager'''+Fore.CYAN+'''
                                         a: Manage Stock           c: Manage Vouchers         9  - View Software License
                                         b: DBFA Stock Master      d: Product Listing         10 - About DBFA 8.12
                                         e: Sales Log              f: Export data as CSV      11 - Check for updates
@@ -1044,7 +1047,7 @@ def mainmenu(): #defining a function for the main menu
         a: Register a Customer    c: Purchase Records          6  - DBFA Options
         b: Customer Registry      d: Find a Customer           7  - DBFA Backup & Switch
         e: Export data as CSV                                  8  - Analyse Sales
-3  - Store Options:                                            
+3  - Store Options:                                            '''+Fore.MAGENTA+'''emp/EMP - DBFA Employee Manager'''+Fore.CYAN+'''
         a: Manage Stock           c: Manage Vouchers           9  - View Software License
         b: DBFA Stock Master      d: Product Listing           10 - About DBFA 8.12
         e: Sales Log              f: Export data as CSV        11 - Check for updates
@@ -1814,7 +1817,7 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
-logger = logging.getLogger(__name__)
+xlogger = logging.getLogger(__name__)
 
 def telegram_bot_sendtext(bot_message):
     bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
@@ -1946,8 +1949,8 @@ print("DBFAIntellisense")
 print("Fetching update details from server : : : : ")
 url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
 r = requests.get(url)
-dbfaver = str(r.content)[6:-3]
-xdbfaver = str(r.content)[2:-3]
+dbfaver = (str(r.content)[6:-3]).replace("\\n", "")
+xdbfaver = (str(r.content)[2:-3]).replace("\\n", "")
 with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
     upread = (str(upread.read())).strip()
 print("Server: ", (xdbfaver + '%s'%len(xdbfaver)), "\nLocal: ", (upread + '%s'%len(upread)))
@@ -3140,8 +3143,8 @@ while(1): #while (always) true
         time.sleep(1)
         url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
         r = requests.get(url)
-        dbfaver = str(r.content)[6:-3]
-        xdbfaver = str(r.content)[2:-3]
+        dbfaver = (str(r.content)[6:-3]).replace("\\n", "")
+        xdbfaver = (str(r.content)[2:-3]).replace("\\n", "")
 
         with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
             upread = (str(upread.read())).strip()
@@ -3209,6 +3212,382 @@ while(1): #while (always) true
         #os.close('securepack.pyw')
         os._exit(0)
     
+    #DBFA EMPLOYEE MANAGER
+    elif decfac in ("emp", "EMP", "EMPLOYEE", "employee", "manager", "MANAGER", "empm", "EMPM"):
+        print("Continuing to DBFA Employee Manager - -")
+        time.sleep(2)
+        with HiddenPrints():
+            try:
+                sender = telegram_bot_sendtext(dt_string + "\n" + "DBFA Employee Manager accessed! \n\n - DBFA Security")
+                print(sender)
+            except Exception:
+                pass
+        
+        import os, time, sqlite3, requests, json
+        os.system('cls')
+        print("-------DBFA Employee Manager-------")
+        time.sleep(0.5)
+        print("༼ つ ◕_◕ ༽つ ")
+        time.sleep(0.5)
+        print("         ༼ つ ◕_◕ ༽つ ")
+        time.sleep(0.5)
+        print("                  ༼ つ ◕_◕ ༽つ ")
+        time.sleep(1)
+        os.system('cls')
+
+        def telegram_bot_sendtext(bot_message):
+                bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
+                bot_chatID = '680917769'
+                send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+                response = requests.get(send_text)
+                return response.json()
+
+        def empmenu():
+            print('''-------DBFA Employee Manager-------
+            Options:
+                1. Hire an employee
+                2. View employee records
+                3. Change employee details
+                4. Fire an employee ༼ ●'◡'● ༽つ 
+                5. Mark attendance
+                6. Attendance records
+
+                7. Pay salary
+
+                8. <<< Back to DBFA menu
+
+            ''')
+
+        while (1):
+            empmenu()
+            empfac = input("What would you like to do? ")
+            
+            if empfac == "1":
+                print("DBFA will now be opening a seperate window due to GUI-restrictions.")
+                time.sleep(2)
+                os.startfile(r'dbfaempman.py')
+                
+
+            if empfac == "2":
+                print("\n2. View employee records\n-----------------------------------------------")
+                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                empmascur = empmas.cursor()
+                print("Employee records as maintained by DBFA: ")
+                empmascur.execute("SELECT * FROM emp")
+                emprows = empmascur.fetchall()
+                time.sleep(1)
+                for emprow in emprows:
+                    print(emprow, "\n")
+                print("\n\n-----------------------------------------------")
+                time.sleep(3)
+            
+            if empfac == "3":
+                print("3. Change employee details")
+                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                empmascur = empmas.cursor()
+                empmascur.execute("SELECT * FROM emp")
+                emprows = empmascur.fetchall()
+                time.sleep(1)
+                for emprow in emprows:
+                    print(emprow, "\n")
+                print("\n")
+                emppay = str(input("Enter the Oid (Employee ID) to change details for: "))
+                empmascur.execute("SELECT Name FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                firename = str(empmascur.fetchall()[0][0])
+                confofac = input("CONFIRM: Change details for "+firename+"? (y/n): ")
+                if confofac == "y":
+                    print('''Options:
+                            1. Change Name
+                            2. Change Email
+                            3. Change Mobile Contact
+
+                            4. Change Residential Address
+
+                            5. Change UPI Payments ID
+
+                            6. Change Department
+                            7. Change Designation (POST)
+                            8. Change Salary        
+                            ''')                    
+                    subfac = input("What would you like to do? ")
+                    if subfac == "1":
+                        print("1. Change Name")
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+                        newmodif = input("Enter the changed name: ")
+                        time.sleep(1)
+                        empmascur.execute("UPDATE emp SET Name = ? WHERE Oid = ?", (newmodif, emppay))
+                        empmas.commit()
+                        print("Name changed for OID", emppay, " from ", firename, "to ", newmodif)
+                        time.sleep(1)
+                        print("--------")
+                        time.sleep(1)
+
+                    if subfac == "2":
+                        print("2. Change Email")
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+                        empmascur.execute("SELECT Email FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                        firename = str(empmascur.fetchall()[0][0])
+                        newmodif = input("Enter the changed e-mail: ")
+                        time.sleep(1)
+                        empmascur.execute("UPDATE emp SET Email = ? WHERE Oid = ?", (newmodif, emppay))
+                        empmas.commit()
+                        print("Email changed for OID", emppay, " from ", firename, "to ", newmodif)
+                        time.sleep(1)
+                        print("--------")
+                        time.sleep(1)
+
+                    if subfac == "3":
+                        print("3. Change Mobile Contact")
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+                        empmascur.execute("SELECT Mobile FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                        firename = str(empmascur.fetchall()[0][0])
+                        newmodif = input("Enter the changed mobile contact: ")
+                        time.sleep(1)
+                        empmascur.execute("UPDATE emp SET Mobile = ? WHERE Oid = ?", (newmodif, emppay))
+                        empmas.commit()
+                        print("Mobile contact changed for OID", emppay, " from ", firename, "to ", newmodif)
+                        time.sleep(1)
+                        print("--------")
+                        time.sleep(1)
+
+                    if subfac == "4":
+                        print("4. Change Residential Address")
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+                        empmascur.execute("SELECT Address FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                        firename = str(empmascur.fetchall()[0][0])
+                        newmodif = input("Enter the changed address (in one-line): ")
+                        time.sleep(1)
+                        empmascur.execute("UPDATE emp SET Address = ? WHERE Oid = ?", (newmodif, emppay))
+                        empmas.commit()
+                        print("Address changed for OID", emppay, " from ", firename, "to ", newmodif)
+                        time.sleep(1)
+                        print("--------")
+                        time.sleep(1)
+
+                    if subfac == "5":
+                        print("5. Change UPI Payments ID")
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+                        empmascur.execute("SELECT UPI FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                        firename = str(empmascur.fetchall()[0][0])
+                        newmodif = input("Enter the changed UPI ID: ")
+                        time.sleep(1)
+                        empmascur.execute("UPDATE emp SET UPI = ? WHERE Oid = ?", (newmodif, emppay))
+                        empmas.commit()
+                        print("UPI ID changed for OID", emppay, " from ", firename, "to ", newmodif)
+                        time.sleep(1)
+                        print("--------")
+                        time.sleep(1)
+
+                    if subfac == "6":
+                        print("6. Change Department")
+                        time.sleep(1)
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+                        empmascur.execute("SELECT Dept FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                        firename = str(empmascur.fetchall()[0][0])
+                        print("-----------------------------------\nCurrent Dept: ", firename)
+                        print('''Options: 
+                                    IT,
+                                    Administration, 
+                                    Sales, 
+                                    Care-taking, 
+                                    Logistics ''')
+                        print("-----------------------------------\n\n")
+                        time.sleep(2)
+                        newmodif = input("Enter the changed department: ")
+                        time.sleep(1)
+                        empmascur.execute("UPDATE emp SET Dept = ? WHERE Oid = ?", (newmodif, emppay))
+                        empmas.commit()
+                        print("Department changed for OID", emppay, " from ", firename, "to ", newmodif)
+                        time.sleep(1)
+                        print("--------")
+                        time.sleep(1)
+
+                    if subfac == "7":
+                        print("7. Change Designation (POST)")
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+                        empmascur.execute("SELECT Post FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                        firename = str(empmascur.fetchall()[0][0])
+                        newmodif = input("Enter the new designation: ")
+                        time.sleep(1)
+                        empmascur.execute("UPDATE emp SET Post = ? WHERE Oid = ?", (newmodif, emppay))
+                        empmas.commit()
+                        print("Designation (Post) changed for OID", emppay, " from ", firename, "to ", newmodif)
+                        time.sleep(1)
+                        print("--------")
+                        time.sleep(1)
+
+                    if subfac == "8":
+                        print("8. Change Salary")
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+                        empmascur.execute("SELECT Salary FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                        firename = str(empmascur.fetchall()[0][0])
+                        newmodif = input("Enter the new salary (net; not incremental): ")
+                        time.sleep(1)
+                        empmascur.execute("UPDATE emp SET Salary = ? WHERE Oid = ?", (newmodif, emppay))
+                        empmas.commit()
+                        print("Salary changed for OID", emppay, " from ", firename, "to ", newmodif)
+                        time.sleep(1)
+                        print("--------")
+                        time.sleep(1)
+                    else:
+                        print("Invalid option! \n\n")
+                        time.sleep(1)
+                else:
+                    print("Invalid option! \n\n")
+                    time.sleep(1)
+
+
+            if empfac == "4":
+                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                empmascur = empmas.cursor()
+                print("4. Fire an employee ༼ ●'◡'● ༽つ \n")
+                empmascur.execute("SELECT * FROM emp")
+                emprows = empmascur.fetchall()
+                time.sleep(1)
+                for emprow in emprows:
+                    print(emprow, "\n")
+                print("\n")
+                emppay = str(input("Enter the Oid (Employee ID) for the employee to fire: "))
+                empmascur.execute("SELECT Name FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                firename = str(empmascur.fetchall()[0][0])
+                confofac = input("CONFIRM: Fire "+firename+"? (y/n): ")
+                if confofac == "y":
+                    reasonfire = input("Enter the reason for firing: ")
+                    print("FIRING EMPLOYEE! ")
+                    empmascur.execute("DELETE FROM emp WHERE Oid = ?", ("%"+emppay+"%", ))
+                    empmas.commit()
+                    telethon = ""
+                    print("\n\n")
+                    print("---------------------------------------------")
+                    telethon += ("----------------------------\n")
+                    print("DBFA Employee Firing Record        deltaDBFA")
+                    telethon += ("DBFA Employee Firing Record\n")
+                    print("- - - - - - - - - - - - - - - - - - - - - - -")
+                    telethon += ("- - - - - - - - - - - - - - - - -\n")
+                    print("Name  :", '%s'%firename)
+                    telethon += ("Name  : "+ '%s'%firename)
+                    print("Reason:", '%s'%reasonfire)
+                    telethon += ("\nReason: "+ '%s'%reasonfire)
+                    print("- - - - - - - - - - - - - - - - - - - - - - -")
+                    telethon += ("\n- - - - - - - - - - - - - - - - -\n")
+                    telethon += ("~ deltaDBFA\n")
+                    telethon += ("-----------------------------\n\n")
+                    telegram_bot_sendtext(telethon)
+                    print("~ Event logged in Infinity Logger & Telegram.")
+                    print("---------------------------------------------\n\n")
+                    
+                    time.sleep(2)
+                else:
+                    print("Cancelled op..")
+
+            if empfac == "5":
+                print("delta-plAceKt.placeholder")
+                print("Coming soon! ")
+
+            if empfac == "6":
+                print("delta-plAceKt.placeholder")
+                print("Coming soon! ")
+
+
+
+            if empfac == "7":
+                import pyqrcode, png, os
+                from pyqrcode import QRCode 
+                
+                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                empmascur = empmas.cursor()
+
+                empmascur.execute("SELECT * FROM emp")
+                emprows = empmascur.fetchall()
+                for emprow in emprows:
+                    print(emprow)
+
+                time.sleep(1)
+
+                emppay = str(input("Enter the Oid (Employee ID) to pay salary for: "))
+                empmascur.execute("SELECT * FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                print((empmascur.fetchall()[0]))
+                time.sleep(1)
+                emppayconfox = input("\n\nPay salary? (y/n): ")
+                if emppayconfox == "y":
+                    #emarpay = str("%"+'%s'%emppay+"%")
+                    empmascur.execute("SELECT Name, UPI FROM emp WHERE Oid LIKE ?", (emppay,) )
+                    tempemppay = empmascur.fetchall()
+                    print("Paying ", list(tempemppay[0])[0], "at ", list(tempemppay[0])[1])
+                    name = list(tempemppay[0])[0]
+                    upid = list(tempemppay[0])[1]
+                else:
+                    empmenu()
+                    break
+                    print("Aaaa")
+
+                #upid = '9810141714@upi'
+                #name = 'KPBalaji'
+
+                s = "upi://pay?pa="+'%s'%upid+"&pn="+'%s'%name+"&cu=INR"
+                
+                # Generate QR code 
+                url = pyqrcode.create(s) 
+
+                url.png('payqr.png', scale = 6) 
+                from PIL import Image, ImageDraw, ImageFont
+                image = Image.open('payqr.png')
+                draw = ImageDraw.Draw(image)
+                font = ImageFont.truetype(r'C:\Users\balaj\AppData\Local\Microsoft\Windows\Fonts\MiLanProVF.ttf', size=200)
+                (x, y) = (5, 250)
+                xname = 'Scan to pay with UPI              deltaDBFA'
+                draw.text((x, y), xname) #, fill=color)
+                (x, y) = (5, 5)
+
+                name = "Paying "+'%s'%name+" "*(28-len(str(name)))+"deltaPay"
+                draw.text((x, y), name) #, fill=color)
+                image.save('payqr.png', optimize=True, quality=120)
+
+                print("-------------------------------------")
+                time.sleep(1)
+                print("DBFA will now open a QR code for UPI payment to the registered UPI address of the employee.")
+                time.sleep(1)
+                print("Scan the code in a UPI app to pay")
+                time.sleep(1)
+
+                os.system(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\payqr.png')
+
+                time.sleep(5)
+                paycheck = input("Mark salary as 'PAID'? (y/n): ")
+                if paycheck == "y":
+                    print("Salary paid!")
+                else:
+                    print("Not paid. ")
+
+            if empfac == "8":
+                print("Returning to DBFA Main.. ")
+                time.sleep(1)
+                break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
     #CIT
     elif decfac == "113":

@@ -7,10 +7,28 @@ if os.path.exists(r'userblock.zconf'):
 def Login():
     import PySimpleGUI as sgx
     sgx.theme('DarkRed')
-    layout = [  [sgx.Text('INVALID LOGIN. Please retry:')],
-                [sgx.Text('Username: '), sgx.InputText()],
-                [sgx.Text('Password: '), sgx.InputText(password_char='*')],
-                [sgx.Button('Authenicate'), sgx.Button('Cancel')] ]
+    def CAPSLOCK_STATE():
+        import ctypes
+        hllDll = ctypes.WinDLL ("User32.dll")
+        VK_CAPITAL = 0x14
+        return hllDll.GetKeyState(VK_CAPITAL)
+
+    CAPSLOCK = CAPSLOCK_STATE()
+
+    if ((CAPSLOCK) & 0xffff) != 0:
+        #print("\nWARNING:  CAPS LOCK IS ENABLED!\n")
+        layout = [  [sgx.Text('INVALID LOGIN. Please retry:')],
+                    [sgx.Text('Username: '), sgx.InputText()],
+                    [sgx.Text('Password: '), sgx.InputText(password_char='*')],
+                    [sgx.Button('Authenicate'), sgx.Button('Cancel')],
+                    [sgx.Text('WARNING:  CAPS LOCK IS ENABLED!')]]
+    
+    else:
+        layout = [  [sgx.Text('INVALID LOGIN. Please retry:')],
+                    [sgx.Text('Username: '), sgx.InputText()],
+                    [sgx.Text('Password: '), sgx.InputText(password_char='*')],
+                    [sgx.Button('Authenicate'), sgx.Button('Cancel')] ]
+
     window = sgx.Window('deltaAuthenication Service', layout)
     while True:
         event, values = window.read()

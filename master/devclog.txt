@@ -2,7 +2,10 @@
           deltaDBFA Infinite Development Changelog 
   Changelog for DBFA consisting of all changes since DBFA 7
 ----------------------
-06-09-20 17:08
+06-09-20 23:48
+> Added caps-lock check for main GUI login (main and wre)
+
+06-09-20 20:22
 > DBFA Updater completed and enabled!
 > Reworked update check logic from scratch
 > Auto-download update files when told to do so by the user using git

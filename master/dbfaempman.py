@@ -1,9 +1,24 @@
-import PySimpleGUI as sg
+import os, time, sqlite3, requests, json
 
+os.system('cls')
+
+def telegram_bot_sendtext(bot_message):
+        bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
+        bot_chatID = '680917769'
+        send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+        response = requests.get(send_text)
+        return response.json()
+
+
+
+
+print("DBFA will now open a GUI-based form for you to enter the required details.")
+time.sleep(1)
+
+import PySimpleGUI as sg
 
 SYMBOL_UP =    '▲'
 SYMBOL_DOWN =  '▼'
-
 
 def collapse(layout, key):
     return sg.pin(sg.Column(layout, key=key))
@@ -45,7 +60,7 @@ layout =   [[sg.Text('Hire an employee')],
             [collapse(section1, '-SEC1-')],
             #### Section 2 part ####
             [sg.T(SYMBOL_DOWN, enable_events=True, k='-OPEN SEC2-', text_color='white'),
-             sg.T('Personal Details', enable_events=True, text_color='white', k='-OPEN SEC2-TEXT')],
+            sg.T('Personal Details', enable_events=True, text_color='white', k='-OPEN SEC2-TEXT')],
             [collapse(section2, '-SEC2-')],
             #### Buttons at bottom ####
             [sg.Button('Proceed'), sg.Button('Exit')]]
@@ -126,7 +141,7 @@ if arter == 1:
 
     print("\n\nName          :", ds1b[0])
     print("Gender        :", ds1a[ds1b.index(True)])
-    print("DOB: (Month)  :", ds1b[4])
+    #print("DOB: (Month)  :", ds1b[4])
     monthx = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     for i in monthx:
         if i == ds1b[4]:
@@ -137,7 +152,7 @@ if arter == 1:
     else:
         day = (ds1b[6])
     dob = str(ds1b[5])+"-"+str(month)+"-"+str(day)
-    print("DOB           :   ", dob)
+    print("DOB           :", dob)
     print("EMail         :", ds1b[8])
     print("Mobile Contact:", ds1b[9])
     print("Resd. Address :", ds1b[10])
@@ -148,7 +163,7 @@ if arter == 1:
     print("Salary        :", ds2b[2])
     if len(str(month)) == 1:
         month = "0"+'%s'%month
-        print(month)
+        #print(month)
 
     import sqlite3, time
 
@@ -157,7 +172,19 @@ if arter == 1:
     empmascur.execute("SELECT MAX(Oid) FROM emp")
     Oid = (int(empmascur.fetchall()[0][0]) + 1)
     strix = ('insert into emp(Oid, Name, DOB, Email, Mobile, Address, UPI, Dept, Post, Salary) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
-    io = (Oid, str(ds1b[0]), str(dob), str(ds1b[8]), int(ds1b[9]), str(ds1b[10]), str(ds1b[11]), str(ds2b[0]), str(ds2b[1]), int(ds2b[2]))
+    io = (Oid, str(ds1b[0]), str(dob), str(ds1b[8]), int(ds1b[9]), str(ds1b[10]), ds1b[11], str(ds2b[0]), str(ds2b[1]), int(ds2b[2]))
     empmascur.execute(strix, io)
     empmas.commit()
-    print("Data sent to master repo! ")
+    time.sleep(2)
+    print("\n\nData sets logged with DBFA..")
+    empmascur.execute("SELECT * FROM emp ORDER BY Oid DESC LIMIT 0, 1")
+    time.sleep(1)
+    print("\n\nNEW Employee Details:: ")
+    print("-----------------------------------------------------------")
+    print('%s'%ds1b[0]+(30-len(str(ds1b[0])))*" "+"deltaDBFA Employee Identifier")
+    print("Employee OID: ", empmascur.fetchall()[0][0])
+    print("-----------------------------------------------------------\n\n")
+    time.sleep(2)
+
+
+    
