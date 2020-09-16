@@ -1,9 +1,38 @@
-import os
-import time
+from datetime import datetime
+import sqlite3, time, os
+
 if os.path.exists(r'userblock.txt'):
     os.remove(r'userblock.txt')
 if os.path.exists(r'userblock.zconf'):
     os.remove(r'userblock.zconf')
+
+def OAuthset():
+    now = datetime.now()
+    try: #To avoid error when time is 00:00:00
+        netr = int(now.strftime("%H"))*3600 + int(now.strftime("%M"))*60 + int(now.strftime("%S"))
+    except:
+        time.sleep(1)
+        netr = int(now.strftime("%H"))*3600 + int(now.strftime("%M"))*60 + int(now.strftime("%S"))
+    oauth = sqlite3.connect(r'dbfasettings.db')
+    oauthx = oauth.cursor()
+
+    oauthx.execute("SELECT count(*) FROM LoginHandler")
+    rows = oauthx.fetchall()
+    if (rows[0][0]) > 1:
+        print("DBFA Authenticator has been tampered with! DBFA WILL EXIT NOW!")
+        time.sleep(2)
+        os._exit(0)
+    oauthx.execute("SELECT OAuthID FROM LoginHandler")
+    try: #To avoid error when there's no data in the table
+        maxid = int(oauthx.fetchall()[0][0]) + 1
+    except:
+        maxid = 1
+        oauthx.execute("insert into LoginHandler(OAuthID, Value, TimeMark) values(?, 1, ?)", (maxid, netr))
+    oauthx.execute("UPDATE LoginHandler SET OAuthID = ?, Value = 1, TimeMark = ?", (maxid, netr))
+    print("Login session dtalgnrt", netr, "-", maxid)
+    oauth.commit()
+    oauth.close()
+
 def Login():
     creds = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\tempfile.temp'
     with open(creds, 'r') as f:
@@ -47,8 +76,19 @@ def Login():
         if values[0] == 'ed' and values[1] == 'edd':
             #os.close(r'DDD.py')
             window.close()
-            window.close
-            os.startfile(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\dlr.pyw')
+            userblock = open(r"userblock.txt","a+") #Opening / creating (if it doesn't exist already) the .txt record file
+            userblock.write('ed')
+            #time.sleep(2)
+            OAuthset()
+            userblock.close()
+            print("logging success")
+            os.startfile('bleading_edge.py')
+            window.close()
+            window.close()
+            exit
+            exit
+            exit
+            break
         else:
             os.startfile(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\wrelogin.pyw')
         #window.close
