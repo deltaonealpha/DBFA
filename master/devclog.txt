@@ -2,6 +2,10 @@
           deltaDBFA Infinite Development Changelog 
   Changelog for DBFA consisting of all changes since DBFA 7
 ----------------------
+
+10-09-20 10:59
+> Added 'DBFA Mark Attendance'
+
 06-09-20 23:48
 > Added caps-lock check for main GUI login (main and wre)
 

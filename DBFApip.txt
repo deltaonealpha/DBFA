@@ -1,10 +1,20 @@
-pip install tabular-print
-pip install tabulate
-pip install pywin32
-pip install reportlab
-pip install PySimpleGUI
-pip install pandas
-pip install opencv-python
-pip install tqdm
-pip install colorama
-pip install win10toast
+tabular-print
+tabulate
+pywin32
+reportlab
+PySimpleGUI
+pandas
+opencv-python
+tqdm
+colorama
+win10toast
+telegram-send
+telegram
+python-telegram-bot
+PyQRCode
+Pillow
+spotlib
+SwSpotify
+pynput
+matplotlib
+oschmod

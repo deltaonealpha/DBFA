@@ -175,6 +175,11 @@ if arter == 1:
     io = (Oid, str(ds1b[0]), str(dob), str(ds1b[8]), int(ds1b[9]), str(ds1b[10]), ds1b[11], str(ds2b[0]), str(ds2b[1]), int(ds2b[2]))
     empmascur.execute(strix, io)
     empmas.commit()
+    #Oid = "Oid"+'%s'%"3"  
+    #xstr = "ALTER TABLE attendance ADD COLUMN "+'%s'%Oid+" CHAR"
+    #empmascur.execute(xstr)
+    #empmas.commit()
+    print("Employee registered in all DBFA databases")
     time.sleep(2)
     print("\n\nData sets logged with DBFA..")
     empmascur.execute("SELECT * FROM emp ORDER BY Oid DESC LIMIT 0, 1")
