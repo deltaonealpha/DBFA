@@ -1,20 +1,20 @@
-# delta Store Manager 8 Donnager <span style="color: #496dd0">#RadicallyNew</span>
-
-### 30/8/2020: Presenting DBFA8!
+# DBFA 8 Store Manager <span style="color: #496dd0">#RadicallyNew</span>
+### 16/09/2020: DBFA 8.4 release (see changelog)
   
    
-DBFA is a store management system like none other. From billing to inventory-management, literally anything a store could need. Ultra-light data structures, ultimate integrations, DBFA is all a store-operator could crave, but open source! ;)
+DBFA is a store management system like none other. From billing to inventory-management, order and delivery management to even employee management, literally anything a store could need. Ultra-light data structures, ultimate integrations, its all a store could crave, but open source! ;)
 
-#[![Run on Repl.it](https://repl.it/badge/github/deltaonealpha/DBFA)](https://repl.it/github/deltaonealpha/DBFA)
+# [Not synced with repo] [![Run on Repl.it](https://repl.it/badge/github/deltaonealpha/DBFA)](https://repl.it/github/deltaonealpha/DBFA)
 
-<h5 align="center">v8 Donnager (stable): #RadicallyNew </h5>
+<h5 align="center">Mark 8.4 Donnager (stable): #RadicallyNew </h5>
 
-## Latest Additions:
-<h5>> A shit tonne; scroll down to see all
-
+## Build Highlights:
+<h5>> DBFA now has a custom two-factor-authentication which leverages Telegram's might. :D</h5>
+<h5>> DBFA now has a complete employee management system built-in, with automatic UPI-based payments, attendance keeper and much more!</h5>
 
 ## Roadmap
-- [X] all done XDD
+- [ ] Convert main authentication to server-based.
+- [ ] Start transitioning from CLI to GUI elements.
 
 ## Getting Started:
 
@@ -34,6 +34,7 @@ shutil
 pandas
 opencv-python (cv2)
 win10toast
+pyqrcode
 tabularprint
 tqdm
 colorama
@@ -53,8 +54,8 @@ Install Python 3.7.4 (preffered due to its architecture)
 
 Then:
 ```
-pip all the requirements as stated in *prerequisites* above.
-      (get pip commands from pypi)
+Use this command to pip from the .txt file inside DBFA's package:
+  pip install -r DBFApip.txt
 ```
 
 If you encounter any bugs:
@@ -84,12 +85,19 @@ List of [contributors](https://github.com/deltaonealpha/DBFA/contributors) who p
 This project is licensed under the GNU General Public License - Version 1.c, April 2020 - see the [LICENSE.md](LICENSE.md) file for more details.
 
 ## Changelog:
-(yeah I write a shit ton here)
+<h2>Recent changes are hosted below. For previous changelogs: https://telegra.ph/DBFA-8-Release-Candidate---1-08-16</h2>
 
+<h2>Changelog 8.4 Donnager (stable)</h2>
+- Changed 2FA model from OTP-based to Telegram inline-button validation
+- Presenting DBFA employee manager (track attendance/ pay salary/ hire/ change details/ fire employee ༼ ●'◡'● ༽つ)
+- Rectified all general and text formatting bugs
+- Improved primary login system
+- Improved the bypass prevention mechanism
+- Improved logging
+- Updated new docs
+- More changes and base blobs for future features added
 
-<h2>DBFA 8.1 Donnager (stable)</h2>
-
-Listed down below are the new features that come with DBFA 8.1. For other improvements and bug-fixes, visit: https://telegra.ph/DBFA-8-RC2-Highlights-08-17
+<h2>Changelog 8.3 Donnager (stable)</h2>
 
 -    Presenting DBFA two-factor-authenication!
 
