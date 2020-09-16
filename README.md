@@ -82,17 +82,24 @@ List of [contributors](https://github.com/deltaonealpha/DBFA/contributors) who p
 This project is licensed under the GNU General Public License - Version 1.c, April 2020 - see the [LICENSE.md](LICENSE.md) file for more details.
 
 ## Changelog:
-<h3>Recent changes are hosted below. For previous changelogs: https://telegra.ph/DBFA-8-Release-Candidate---1-08-16</h3>
+<h4>Only recent changes are hosted here. For previous changelogs: https://telegra.ph/DBFA-8-Release-Candidate---1-08-16</h4>
 
 <h3>Changelog 8.4 Donnager (stable)</h3>
-- Changed 2FA model from OTP-based to Telegram inline-button validation
-- Presenting DBFA employee manager (track attendance/ pay salary/ hire/ change details/ fire employee ༼ ●'◡'● ༽つ)
-- Rectified all general and text formatting bugs
-- Improved primary login system
-- Improved the bypass prevention mechanism
-- Improved logging
-- Updated new docs
-- More changes and base blobs for future features added
+- Changed 2FA model from OTP-based to Telegram inline-button validation.
+
+- Presenting DBFA employee manager (track attendance/ pay salary/ hire/ change details/ fire employee ༼ ●'◡'● ༽つ).
+
+- Rectified all general and text formatting bugs.
+
+- Improved primary login system.
+
+- Improved the bypass prevention mechanism.
+
+- Improved logging.
+
+- Docs have been re-written from scratch.
+
+- More changes and base blobs for future features added.
 
 <h3>Changelog 8.3 Donnager (stable)</h3>
 
