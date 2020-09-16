@@ -11,6 +11,8 @@ DBFA is a store management system like none other. From billing to inventory-man
 ## Build Highlights:
 <h5>> Updated two-factor-authentication with inline-buttons, leveraging Telegram's BOT API v2. :D</h5>
 <h5>> DBFA now has a complete employee management system built-in, with automatic UPI-based payments, attendance keeper and much more!</h5>
+<h5>> Improvements to bypass prevention service.</h5>
+<h5>> New re-written docs</h5>
 
 ## Roadmap
 - [ ] Convert main authentication to server-based.
