@@ -22,22 +22,26 @@ See deployment for notes on how to deploy the project on a live system.
 ### Prerequisites:
 
 ```
-getpass
-time
-pathlib
-sqlite3
-sys and os
-requests
-datetime
-shutil
+tabular-print
+tabulate
+pywin32
+reportlab
+PySimpleGUI
 pandas
-opencv-python (cv2)
-win10toast
-pyqrcode
-tabularprint
+opencv-python
 tqdm
 colorama
-reportlab
+win10toast
+telegram-send
+telegram
+python-telegram-bot
+PyQRCode
+Pillow
+spotlib
+SwSpotify
+pynput
+matplotlib
+oschmod
 ```
 DBFA's download package has a 'DBFApip' file with all pip commands to straightly pip from.
 
