@@ -85,6 +85,7 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 <h4>Only recent changes are hosted here. For previous changelogs: https://telegra.ph/DBFA-8-Release-Candidate---1-08-16</h4>
 
 <h3>Changelog 8.4 Donnager (stable)</h3>
+
 - Changed 2FA model from OTP-based to Telegram inline-button validation.
 
 - Presenting DBFA employee manager (track attendance/ pay salary/ hire/ change details/ fire employee ༼ ●'◡'● ༽つ).
