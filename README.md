@@ -90,15 +90,15 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 
 - Presenting DBFA employee manager (track attendance/ pay salary/ hire/ change details/ fire employee ༼ ●'◡'● ༽つ).
 
-- Rectified all general and text formatting bugs.
+- Improvements to primary login system.
 
-- Improved primary login system.
+- Improvements to bypass prevention service.
 
-- Improved the bypass prevention mechanism.
-
-- Improved logging.
+- More in-depth logging.
 
 - Docs have been re-written from scratch.
+
+- Rectified all general and text formatting bugs.
 
 - More changes and base blobs for future features added.
 
