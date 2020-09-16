@@ -17,7 +17,6 @@ DBFA is a store management system like none other. From billing to inventory-man
 - [ ] Start transitioning from CLI to GUI elements.
 
 ## Getting Started:
-
 See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites:
@@ -43,10 +42,8 @@ reportlab
 DBFA's download package has a 'DBFApip' file with all pip commands to straightly pip from.
 
 ### Installing:
-
 Get DBFA running on your system this way:
 
-First:
 ```
 Install Python 3.7.4 (preffered due to its architecture)
       (select *get pip* and *add to PATH*)
@@ -64,30 +61,26 @@ Run the program. If you encounter any issues/ crashes, check your environment an
 ```
 
 ## Deployment:
-
 DBFA was natively-coded to run on Windows. Use modules compatible with your operating system if you encounter module issues.
 
 
 ## Built With:
-
 * [Python](https://www.python.org/) - Developed in Python
 * [Sqlite](https://www.sqlite.org/index.html) - Data handled by Sqlite
 
 
 ## Developer:
-
-<p><a href="https://t.me/DeltaOneAlpha">Pranav Balaji</p>
+<p><a href="https://t.me/deltaonealpha">Pranav Balaji</p>
 
 List of [contributors](https://github.com/deltaonealpha/DBFA/contributors) who participated in this project.
 
 ## License:
-
 This project is licensed under the GNU General Public License - Version 1.c, April 2020 - see the [LICENSE.md](LICENSE.md) file for more details.
 
 ## Changelog:
-<h2>Recent changes are hosted below. For previous changelogs: https://telegra.ph/DBFA-8-Release-Candidate---1-08-16</h2>
+<h3>Recent changes are hosted below. For previous changelogs: https://telegra.ph/DBFA-8-Release-Candidate---1-08-16</h3>
 
-<h2>Changelog 8.4 Donnager (stable)</h2>
+<h3>Changelog 8.4 Donnager (stable)</h3>
 - Changed 2FA model from OTP-based to Telegram inline-button validation
 - Presenting DBFA employee manager (track attendance/ pay salary/ hire/ change details/ fire employee ༼ ●'◡'● ༽つ)
 - Rectified all general and text formatting bugs
@@ -97,7 +90,7 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 - Updated new docs
 - More changes and base blobs for future features added
 
-<h2>Changelog 8.3 Donnager (stable)</h2>
+<h3>Changelog 8.3 Donnager (stable)</h3>
 
 -    Presenting DBFA two-factor-authenication!
 
