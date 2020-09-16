@@ -1,4 +1,4 @@
-# DBFA 8 Store Manager <span style="color: #496dd0">#RadicallyNew</span>
+# DBFA 8 Store Manager ༼ ●'◡'● ༽つ <span style="color: #496dd0">#RadicallyNew</span>
 ### 16/09/2020: DBFA 8.4 release (see changelog)
   
    
