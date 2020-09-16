@@ -95,7 +95,7 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 
 - Presenting bypass prevention service v2.
 
-- Presenting DBFA employee manager (track attendance/ pay salary/ hire/ change details/ fire employee ༼ ●'◡'● ༽つ).
+- Presenting DBFA employee manager (attendance/ pay salary/ hire/ change details/ fire employee ༼ ●'◡'● ༽つ).
 
 - Improvements to primary login system.
 
