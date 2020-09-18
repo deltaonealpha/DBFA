@@ -102,14 +102,14 @@ def Login():
         if event in (None, 'Cancel'):	# if user closes window or clicks cancel
             print("DBFA 2FA Modification cancelled!! ")
             time.sleep(5)            
-            window.close
+            window.close()
             os._exit(0)
             window.close()
             window.close()
             os._exit(1)
         if values[0] == 'ed' and values[1] == 'edd':
-            window.close
-            window.close
+            window.close()
+            window.close()
             print("delta2FAAuthenicationAPI-lite")
             print("As you're accessing sensitive information, this request needs to be validated.")
             time.sleep(2)
@@ -120,8 +120,8 @@ def Login():
                 time.sleep(0.00001)    
             texter = "delta2FA Authenication Service" + "\n\n" + "A login request has been recieved from your DBFA installation. Entering this OTP in your DBFA installation will enable/ disable 2FA authenication aboard that installation." + "\n\n" + "Do not share this OTP with anyone. Use key: "+ '%s'%delsecox  + "\n\n" + "deltaAuthenication Service"
             sender = telegram_bot_sendtext(texter)
-            window.close
-            window.close
+            window.close()
+            window.close()
             mainprocess()
 
         else:

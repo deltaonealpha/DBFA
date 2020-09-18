@@ -1911,19 +1911,27 @@ def OAuthvalidate():
     rows = oauthx.fetchall()
     if (rows[0][0]) > 1:
         print("DBFA Authenticator has been tampered with! DBFA WILL EXIT NOW!")
+        oauthx.execute("UPDATE LoginHandler SET Value = 0, TimeMark = 0")
+        oauth.commit()
+        oauth.close()   
         time.sleep(2)
         os._exit(0)
     oauthx.execute("SELECT TimeMark FROM LoginHandler")
     stamp = oauthx.fetchall()[0][0]
     if int(netr)-int(stamp) > 60:
-        print("LOGIN TIMEOUT!")
-        print("You must open DBFA immediately after the login process.")
-        print("DBFA will now exit!")
+        print("netr")
+        oauthx.execute("UPDATE LoginHandler SET Value = 0, TimeMark = 0")
+        oauth.commit()
+        oauth.close()   
+        os.startfile('authtimeout.pyw')
         time.sleep(1)
-        os._exit
+        os._exit(0)
     elif int(netr)-int(stamp) < 60:
         print("- - - Valid login detected - - -\n\n")
     else:
+        oauthx.execute("UPDATE LoginHandler SET Value = 0, TimeMark = 0")
+        oauth.commit()
+        oauth.close()   
         print("Login was bypassed! DBFA will now exit!")
         time.sleep(1)
         os._exit(0)
@@ -2613,6 +2621,7 @@ while(1): #while (always) true
                                             topMargin=1*cm,bottomMargin=2*cm)
         # container for the 'Flowable' objects
         elements = []
+        telegram_bot_sendtext("Access alert: Store Report")
         t1dot = ("<b>DBFA Automatic Store Report: </b> <br />This report has been automatically generated. This lists the profit earned, stock analytics and customer records as logged by DBFA.<br /><br />")
         t2dot = ("DBFA synchronously updates its database alongwith algorithmic data interpretation to deliver these reports. <br />This report contains information from the start of using DBFA on this system.<br /><br />")
         t6dot = ("Report generated on: " + dt_string)
