@@ -13,6 +13,7 @@ DBFA is a store management system like none other. From billing to inventory-man
 <h5>> DBFA now has a complete employee management system built-in, with automatic UPI-based payments, attendance keeper and much more!</h5>
 <h5>> Presenting login v2 with a synchronous multi-logging with a timeout of a minute.
 <h5>> Presenting bypass prevention service v2.
+<h5>> Improved updater version tracking (option: "Check for Updates")
 <h5>> New re-written docs</h5>
 
 ## Roadmap
@@ -95,7 +96,7 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 
 - Presenting bypass prevention service v2.
 
-- Presenting DBFA employee manager (track attendance/ pay salary/ hire/ change details/ fire employee ༼ ●'◡'● ༽つ).
+- Presenting DBFA employee manager (attendance/ pay salary/ hire/ change details/ fire employee ༼ ●'◡'● ༽つ).
 
 - Improvements to primary login system.
 
@@ -104,6 +105,8 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 - More in-depth logging.
 
 - Docs have been re-written from scratch.
+
+- Improved updater version tracking (option: "Check for Updates")
 
 - Rectified all general and text formatting bugs.
 
