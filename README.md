@@ -10,6 +10,7 @@ DBFA is a store management system like none other. From billing to inventory-man
 
 ## Build Highlights:
 <h5>> Presenting delta File Integrity Validation Service (auto-launches on crash) </h5> 
+<h3> Error catching across the WHOLE length of the code! </h3>
 https://telegra.ph/file/da2c8cc43ec658c6c8273.png
 <h5>> Updated two-factor-authentication with inline-buttons, leveraging Telegram's BOT API v2. :D</h5>
 <h5>> DBFA now has a complete employee management system built-in, with automatic UPI-based payments, attendance keeper and much more!</h5>
@@ -93,6 +94,7 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 <h3>Changelog 8.5 Donnager (stable)</h3>
 
 - Presenting delta File Integrity Validation Service (auto-launches on crash)
+Error catching across the WHOLE length of the code!
 https://telegra.ph/file/da2c8cc43ec658c6c8273.png
 
 - Changed 2FA model from OTP-based to Telegram inline-button validation.
