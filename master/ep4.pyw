@@ -6,23 +6,19 @@ if os.path.exists(r'userblock.zconf'):
     os.remove(r'userblock.zconf')
 def Login():
     import PySimpleGUI as sgx
-    sgx.theme('DarkTeal10')
+    sgx.theme('BlueMono')
     #print("\nWARNING:  CAPS LOCK IS ENABLED!\n")
-    layout = [  [sgx.Text('█▀▀█  █▀█  █▀▀ █▀█  █▀▀█')],
-                [sgx.Text('█___█ █▀▀█ █▀  █▬█  ▄▄▄▄')],
-                [sgx.Text('¯\_(⊙︿⊙)_/¯¯\_(⊙︿⊙)_/¯')],
-                [sgx.Text('Error: dbfa.exe is confused           ')],
-                [sgx.Text('Input logic/ code/ runtime error!')],
-                [sgx.Text(' ')],
-                [sgx.Text('Troubleshooter: ')],
-                [sgx.Text('- Entered an invalid input?')],
-                [sgx.Text('- Modified the code?')],
-                [sgx.Text("- Changed something in DBFA's installation directory?")],
-                [sgx.Text('- Recently updated Windows or installed a software?')],
-                [sgx.Text(' ')],
-                [sgx.Text('Error code: dtaec1207-unexpectedcrash')],
-                [sgx.Button('Exit')], [sgx.Button('Submit Crash Report')]]
-    
+    layout = [  [sgx.Text('█▀▀█  █▀█  █▀▀ █▀█  █▀▀█     ¯\_(⊙︿⊙)_/¯')],
+                [sgx.Text('█___█ █▀▀█ █▀  █▬█  ▄▄▄▄     ¯\_(⊙︿⊙)_/¯')],
+                [sgx.Text("delta Installation Integrity Validation Service")],
+                [sgx.Text("█████████████████████████████████████████████████████████████████████████████████████████████████")],
+                [sgx.Text('Contacting DBFA servers')],
+                [sgx.Text('Integrity checker result: ')],
+                [sgx.Text("     The driver code of this installation of DBFA seems to be fine.\nIf you're still encountering errors:")],
+                [sgx.Text("          - We request you to try rebooting your device and re-opening DBFA.")],
+                [sgx.Text("          - If you encounter the same issue again, please contact DBFA support or re-install DBFA AFTER CREATING A DATA BACKUP FOR DBFA.")],
+                [sgx.Text('\nError code: dta=intl.err_undercommit?imp=buildahead\n')],
+                [sgx.Text('Analysis not correct?'), sgx.Button('Submit crash report'), sgx.Button('Exit')]]
     window = sgx.Window('delta Process Handler', layout)
     while True:
         event, values = window.read()
@@ -30,7 +26,7 @@ def Login():
             window.close()
             delche = 1
             break
-        if event in ('DBFA crashed?', 'Submit Crash Report'):
+        if event in ('Analysis not correct?', 'Submit crash report'):
             print("crashreport")
             window.close()
             delche = 1
