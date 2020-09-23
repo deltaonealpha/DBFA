@@ -996,8 +996,8 @@ def mainmenu(): #defining a function for the main menu
     init(convert = True)
     url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
     r = requests.get(url)
-    dbfaver = ((str(r.content)[6:-1]).replace("\\n", "")).replace(" ", "")
-    xdbfaver = ((str(r.content)[2:-3]).replace("\\n", "")).replace(" ", "")
+    dbfaver = ((str(r.content.decode('utf-8'))))[4:]
+    xdbfaver = ((str(r.content.decode('utf-8'))))
     with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
         upread = (str(upread.read())).strip()
     #print("Server: ", dbfaver, "\nLocal: ", upread[4: ])
@@ -2015,8 +2015,8 @@ print("DBFAIntellisense")
 print("Fetching update details from server : : : : ")
 url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
 r = requests.get(url)
-dbfaver = ((str(r.content)[6:-1]).replace("\\n", "")).replace(" ", "")
-xdbfaver = ((str(r.content)[2:-3]).replace("\\n", "")).replace(" ", "")
+dbfaver = ((str(r.content.decode('utf-8'))))[4:]
+xdbfaver = ((str(r.content.decode('utf-8'))))
 with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
     upread = (str(upread.read())).strip()
 print("Server: ", dbfaver, "\nLocal: ", upread[4: ])
@@ -3267,8 +3267,8 @@ while(1): #while (always) true
         time.sleep(1)
         url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
         r = requests.get(url)
-        dbfaver = ((str(r.content)[6:-1]).replace("\\n", "")).replace(" ", "")
-        xdbfaver = ((str(r.content)[2:-3]).replace("\\n", "")).replace(" ", "")
+        dbfaver = ((str(r.content.decode('utf-8'))))[4:]
+        xdbfaver = ((str(r.content.decode('utf-8'))))
 
         with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
             upread = (str(upread.read())).strip()
