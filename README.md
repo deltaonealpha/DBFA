@@ -6,9 +6,11 @@ DBFA is a store management system like none other. From billing to inventory-man
 
 ### [Not synced with repo] [![Run on Repl.it](https://repl.it/badge/github/deltaonealpha/DBFA)](https://repl.it/github/deltaonealpha/DBFA)
 
-<h5 align="center">Mark 8.4 Donnager (stable): #RadicallyNew </h5>
+<h5 align="center">Mark 8.45 Donnager (stable): #RadicallyNew </h5>
 
 ## Build Highlights:
+<h5>> Presenting DBFA File Integrity Validation Service (auto-launches on crash) </h5> 
+https://telegra.ph/file/da2c8cc43ec658c6c8273.png
 <h5>> Updated two-factor-authentication with inline-buttons, leveraging Telegram's BOT API v2. :D</h5>
 <h5>> DBFA now has a complete employee management system built-in, with automatic UPI-based payments, attendance keeper and much more!</h5>
 <h5>> Presenting login v2 with a synchronous multi-logging with a timeout of a minute.
