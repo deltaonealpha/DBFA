@@ -1,16 +1,17 @@
 # DBFA 8 Store Manager ༼ ●'◡'● ༽つ <span style="color: #496dd0">#RadicallyNew</span>
-### 16/09/2020: DBFA 8.4 release (see changelog)
+### 16/09/2020: DBFA 8.46 release (see changelog)
   
    
 DBFA is a store management system like none other. From billing to inventory-management, order and delivery management to even employee management, literally anything a store could need. Ultra-light data structures, ultimate integrations, its all a store could crave, but open source! ;)
 
 ### [Not synced with repo] [![Run on Repl.it](https://repl.it/badge/github/deltaonealpha/DBFA)](https://repl.it/github/deltaonealpha/DBFA)
 
-<h5 align="center">Mark 8.45 Donnager (stable): #RadicallyNew </h5>
+<h5 align="center">Mark 8.46 Donnager (stable): #RadicallyNew </h5>
 
 ## Build Highlights:
+<h5>> (v8.56: 24/09/2020): Added GUI-prompt for sending customer invoice emails.
 <h5>> Presenting delta File Integrity Validation Service (auto-launches on crash) </h5> 
-<h3> Error catching across the WHOLE length of the code! </h3>
+<h6> Error catching across the WHOLE length of the code! </h6>
 https://telegra.ph/file/da2c8cc43ec658c6c8273.png
 <h5>> Updated two-factor-authentication with inline-buttons, leveraging Telegram's BOT API v2. :D</h5>
 <h5>> DBFA now has a complete employee management system built-in, with automatic UPI-based payments, attendance keeper and much more!</h5>
@@ -92,6 +93,8 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 <h4>Only recent changes are hosted here. For previous changelogs: https://telegra.ph/DBFA-8-Release-Candidate---1-08-16</h4>
 
 <h3>Changelog 8.5 Donnager (stable)</h3>
+
+- (v8.56: 24/09/2020): Added GUI-prompt for sending customer invoice emails.
 
 - Presenting delta File Integrity Validation Service (auto-launches on crash)
 Error catching across the WHOLE length of the code!
