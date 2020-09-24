@@ -1056,22 +1056,22 @@ try:
 
 
         logoxnew = (Fore.CYAN+'''Options:
-    1  - Issue a Bill                                              4  - Store Report
-    2  - Manage Customers:                                         5  - Manage Deliveries
-            a: Register a Customer    c: Purchase Records          6  - DBFA Options
-            b: Customer Registry      d: Find a Customer           7  - DBFA Backup & Switch
-            e: Export data as CSV                                  8  - Analyse Sales
-    3  - Store Options:                                            '''+Fore.MAGENTA+'''emp/EMP - DBFA Employee Manager'''+Fore.CYAN+'''
-            a: Manage Stock           c: Manage Vouchers           9  - View Software License
-            b: DBFA Stock Master      d: Product Listing           10 - About DBFA 8.4
-            e: Sales Log              f: Export data as CSV        11 - Check for updates
-                                                                12 - Quit
-    - 'mark'/'MARK': to mark attendance                               
-    '''+Fore.MAGENTA+'''                                                                 
-    What would you like to do?                  The OG Store Manager'''+Fore.WHITE+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█'''+Fore.CYAN+'''
-    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄'''+Fore.CYAN+'''
-    DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DONNAGER                               
-    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
+1  - Issue a Bill                                              4  - Store Report
+2  - Manage Customers:                                         5  - Manage Deliveries
+        a: Register a Customer    c: Purchase Records          6  - DBFA Options
+        b: Customer Registry      d: Find a Customer           7  - DBFA Backup & Switch
+        e: Export data as CSV                                  8  - Analyse Sales
+3  - Store Options:                                            '''+Fore.MAGENTA+'''emp/EMP - DBFA Employee Manager'''+Fore.CYAN+'''
+        a: Manage Stock           c: Manage Vouchers           9  - View Software License
+        b: DBFA Stock Master      d: Product Listing           10 - About DBFA 8.4
+        e: Sales Log              f: Export data as CSV        11 - Check for updates
+                                                            12 - Quit
+- 'mark'/'MARK': to mark attendance                               
+'''+Fore.MAGENTA+'''                                                                 
+What would you like to do?                  The OG Store Manager'''+Fore.WHITE+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█'''+Fore.CYAN+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄'''+Fore.CYAN+'''
+DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DONNAGER                               
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
 
         # To underline What would you like to do?::                                                                            
         if settingscommonfetch(7) == 1:
