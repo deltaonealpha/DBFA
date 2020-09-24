@@ -1224,6 +1224,7 @@ try:
                     # Attach both plain and HTML versions
                     msg.attach(MIMEText(messagePlain, 'plain'))
                     msg.attach(MIMEText(messageHTML, 'html'))
+                    os.startfile(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\emailprocesswindow.pyw')
                     server = smtplib.SMTP('smtp.gmail.com', 587)
                     server.starttls()
                     server.login(email, password)
