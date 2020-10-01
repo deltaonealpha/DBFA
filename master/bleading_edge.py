@@ -14,6 +14,8 @@ package dbfafartingspider
 '''
 #vs
 
+import traceback
+
 try:
     import getpass, time, pathlib, sqlite3, sys, os #sys, os for system-level ops
     from tabularprint import table
@@ -183,7 +185,6 @@ try:
 
     # TG Communicator
     def telegram_bot_sendtext(bot_message):
-        
         with HiddenPrints():
             bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
             bot_chatID = '680917769'
@@ -1038,21 +1039,21 @@ try:
         time.sleep(1)
         from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
         logoxold = (Fore.CYAN+''' 
-                                    Options:  
-        █▀▀█ █▀█  █▀▀ █▀█  █▀▀█   1  - Issue a Bill                                            4  - Store Report
-        █__█ █▀▀█ █▀  █▬█  ▄▄▄▄   2  - Manage Customers:                                       5  - Manage Deliveries
-        CLIENT 8.12 DONNAGER                a: Register a Customer    c: Purchase Records        6  - DBFA Options 
-        '''+Fore.MAGENTA+'''  The OG Store Manager'''+Fore.CYAN+'''              b: Customer Registry      d: Find a Customer         7  - Start DBFA Backup & Switch 
-                                            e: Export data as CSV                                8  - Analyse Sales
-                                    3  - Store Options:                                          '''+Fore.MAGENTA+'''emp/EMP - DBFA Employee Manager'''+Fore.CYAN+'''
-                                            a: Manage Stock           c: Manage Vouchers         9  - View Software License
-                                            b: DBFA Stock Master      d: Product Listing         10 - About DBFA 8.4
-                                            e: Sales Log              f: Export data as CSV      11 - Check for updates
-                                                                                                12 - Quit
-        - 'mark'/'MARK': to mark attendance                                                                                                                            
-        '''+Fore.MAGENTA+'''                          
-        DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* - >> next  '''+Fore.CYAN+'''
-    -----------------------------------------------------------------------------------------------------------------------''')
+                            Options:  
+█▀▀█ █▀█  █▀▀ █▀█  █▀▀█   1  - Issue a Bill                                              4  - Store Report
+█__█ █▀▀█ █▀  █▬█  ▄▄▄▄   2  - Manage Customers:                                         5  - Manage Deliveries
+CLIENT 8.12 DONNAGER                a: Register a Customer    c: Purchase Records        6  - DBFA Options 
+'''+Fore.MAGENTA+'''  The OG Store Manager'''+Fore.CYAN+'''              b: Customer Registry      d: Find a Customer         7  - Start DBFA Backup & Switch 
+                                    e: Export data as CSV                                8  - Analyse Sales
+                          3  - Store Options:                                          '''+Fore.MAGENTA+'''emp/EMP - DBFA Employee Manager'''+Fore.CYAN+'''
+                                           a: Manage Stock           c: Manage Vouchers         9  - View Software License
+                                    b: DBFA Stock Master      d: Product Listing         10 - About DBFA 8.4
+                                    e: Sales Log              f: Export data as CSV      11 - Check for updates
+                                    g: Invoice Deep Archive                              12 - Quit
+- 'mark'/'MARK': to mark attendance                                                                                                                            
+'''+Fore.MAGENTA+'''                          
+DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* - >> next  '''+Fore.CYAN+'''
+-----------------------------------------------------------------------------------------------------------------------''')
 
 
         logoxnew = (Fore.CYAN+'''Options:
@@ -1065,23 +1066,23 @@ try:
         a: Manage Stock           c: Manage Vouchers           9  - View Software License
         b: DBFA Stock Master      d: Product Listing           10 - About DBFA 8.4
         e: Sales Log              f: Export data as CSV        11 - Check for updates
-                                                            12 - Quit
+        g: Invoice Deep Archive                                12 - Quit
 - 'mark'/'MARK': to mark attendance                               
 '''+Fore.MAGENTA+'''                                                                 
-What would you like to do?                  The OG Store Manager'''+Fore.WHITE+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█'''+Fore.CYAN+'''
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄'''+Fore.CYAN+'''
-DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DONNAGER                               
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
+What would you like to do?                        The OG Store Manager'''+Fore.WHITE+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█'''+Fore.CYAN+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄'''+Fore.CYAN+'''
+DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.552 DONNAGER                               
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
 
         # To underline What would you like to do?::                                                                            
         if settingscommonfetch(7) == 1:
             if delcount != 0:
-                print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+                print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
                 lener1 = "Profit (last week): " + '%s'%pro7d
                 print(lener1 + (62-len(lener1))*" ", "Profit (today): ", protd)
                 #pro7d, (56-len(str(pro7d)))*" ", "DONNAGER 8.01 RC-2 Test Beta")
                 print(Back.BLACK + Fore.MAGENTA+ "Pending deliveries: " + str(delcount) + " "  + "           DBFA User: " + os.getlogin() + "             "+ dt_string + Fore.CYAN)
-                print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+                print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
             else:
                 print("DONNAGER 8.01 RC-2 Test Beta")
                 print(Fore.BLACK + Back.CYAN + "No deliveries pending! " + Back.BLACK + Fore.CYAN)
@@ -1109,13 +1110,13 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
             except Exception as e:
                 print(Fore.MAGENTA, "No music playing. Play your favourite music and control it via DBFA", Fore.CYAN)
             if settingscommonfetch(7) == 1:
-                print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", Fore.MAGENTA)
+                print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", Fore.MAGENTA)
             else:
                 print("-----------------------------------------------------------------------------------------------------------------------", Fore.MAGENTA)
         else:
-            print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+            print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
             print("Re-enable DBFA Music Controls Service from the settings to be able to control your music ")
-            print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+            print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
 
         #underline_byte = b'\xcc\xb2'
         #underline = str(underline_byte,'utf-8')
@@ -1224,7 +1225,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
                     # Attach both plain and HTML versions
                     msg.attach(MIMEText(messagePlain, 'plain'))
                     msg.attach(MIMEText(messageHTML, 'html'))
-                    os.startfile(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\emailprocesswindow.pyw')
+                    os.startfile(r'Process_Handlers\\emailprocesswindow.pyw')
                     server = smtplib.SMTP('smtp.gmail.com', 587)
                     server.starttls()
                     server.login(email, password)
@@ -1770,9 +1771,16 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
 
         finally:
             pass
-
-
-
+    
+    def del3g(): #delta DEEP ARCHIVAL VAULT ENGINE
+        print("DBFA uses advanced algorithms to store invoice data in easily indecipherable strings.")
+        print("These can be used at any point to generate an invoice from any date, given its key is stored with the deep archival VAULT.")
+        print("This ensures data protection and enables us to practically store infinity invoices in a relatively non-existent amount of space\n\n")
+        print("This option can be used to generate such back-dated invoices.")
+        time.sleep(2)
+        from DBFADeepArchivalEngine import deepfetch_deeparchival, encoder_deeparchival
+        from DBFADeepArchivalEngine import alphadecoder, dttdecoder, decoder_deeparchival
+        deepfetch_deeparchival()
 
     print("-----------------------------------------------------------------------------------------------------")
 
@@ -2186,6 +2194,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
             billiemaster = 0 #variable for totalling the price
             time.sleep(0.0247) #for a seamless experience
             afac = 0
+            dde_productlist = ""
             while(1):
                 item = input("Enter product code: ")
                 if item == "0":
@@ -2194,6 +2203,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
                     ssxstockmaster(item)
                     if ssxvarscheck == 1:
                         billiemaster+=data[item]
+                        dde_productlist += str(item) + '00'
                         print("Purchased: ", namie[item], " for: ", data[item])
                         repupdate(item)
                         lenxr = len(namie[item])
@@ -2363,6 +2373,17 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
                     telethon = telethon + "NET TOTAL: \n" + "₹" + str(netpay) + "\n" 
                     writer = writer + "NET TOTAL: \n" + str(netpay) + "\n" 
                     logger.write(str(total))
+
+                    # delta DDE - Deep Archival Engine
+                    from DBFADeepArchivalEngine import encoder_deeparchival
+                    #Data Format: <order ids>///<customer name>///<customer id>///<date and time string>///tax///discount///loyalty///net
+                    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")  #datetime object containing current date and time
+                    if redeemindic == 1:
+                        data = [dde_productlist, 'dde', custt, dt_string, 18, discount, lylpoints, netpay]
+                    else:
+                        data = [dde_productlist[:-1], 'dde', custt, dt_string, 18, discount, 0, netpay]
+                    encoder_deeparchival(data, inval)
+                    
                     logger.write("\n")
                     #regin.write(str(total))
                     #regin.write("\n")
@@ -2406,6 +2427,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
                             encoders.encode_base64(attac) 
                             attac.add_header('Content-Disposition', "attachment; filename= %s" % filename) 
                             msg.attach(attac) 
+                            os.startfile(r'Process_Handlers\\emailprocesswindow.pyw')
                             email = smtplib.SMTP('smtp.gmail.com', 587)  
                             email.starttls() 
                             email.login(fromaddr, "dbfaidlepass") 
@@ -2522,7 +2544,8 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
             print("    c: Manage Vouchers ")
             print("    d: Product Listing ")
             print("    e: Sales Log ")
-            print("    f: Export Sales Data as CSV \n")
+            print("    f: Export Sales Data as CSV ")
+            print("    g: Invoice Deep Archive \n")
             storeselected = input("What would you like to do? ")
             print("\n")
 
@@ -2557,7 +2580,11 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
                 logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
                 logger.write("--------------------------------------- \n\n\n")
 
-            elif storeselected not in ("a", "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F"):
+            elif storeselected in ("g", "G"):
+                print("Deep Archival Engine")
+                del3g()
+
+            elif storeselected not in ("a", "b", "c", "d", "e", "f", "g", "A", "B", "C", "D", "E", "F", "G"):
                 print("Please select a valid option! ")
                 time.sleep(1)
                 mainmenu()
@@ -4129,7 +4156,9 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
             logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
             logger.write("--------------------------------------- \n\n\n")
 
-
+        elif decfac in ("3g", "3G", "3 f", "3 F"):
+            print("Deep Archival Engine")
+            del3g()
 
         elif decfac in (None, "", " "):
             print("Please select a valid main-menu option. erc101\n\n")
@@ -4144,8 +4173,13 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>       CLIENT 8.12 DON
 except:
     import os, requests, time
     os.system('cls')
+    error_message = traceback.format_exc()
     print("DBFA has crashed due to unexpected reasons. ")
     print("DBFA will now automatically check its installation for integrity issues:: ")
+    time.sleep(1)
+    print("Error recieved from interpreter follows:")
+    print("    ", error_message)
+    time.sleep(3)
     time.sleep(2)
     from md5checker import make_hash
 

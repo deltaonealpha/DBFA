@@ -1,203 +1,439 @@
-----------------------
-          deltaDBFA Infinite Development Changelog 
-  Changelog for DBFA consisting of all changes since DBFA 7
-----------------------
+deltaDBFA Infinity Development Changelog
+- Changelog for DBFA consisting of all changes since DBFA 7
+------------------------------------------------------------
+
+29-09-20 11:57
+> Presenting delta DEEP INVOICE ARCHIVAL VAULT
+> All invoices are stored here in the form of a string (in a db)
+> You can delete all pdfs, but with DEEP ARCHIVAL you can generate ANY invoice pdf, ANY TIME!
+> Ensures data protection, the ability to generate previous invoices at any time and SAVES A LOT OF SPACE.
+
+24-09-20 18:22
+> Yee the base work has started 😎
+https://telegra.ph/file/6f49752bb0198dec26b1a.png
+(Sub: DBFA GUI-version (in trial and discussions stage))
+
+
+24-09-20 11:10
+
+> Fixed menu formatting over 8.46.1
+> Updated MD5
+
+24-09-20 11:05
+
+> (v8.56: 24/09/2020): Added GUI-prompt for sending customer invoice emails.
+https://telegra.ph/file/6f1983ccf031814022c4d.png
+
+
+
+> Updated MD5 with source and server.
+
+23-09-20 21:45
+
+> Presenting DBFA File Integrity Validation Service (auto-launches on crash)
+
+- Error catching across the WHOLE length of the code!
+https://telegra.ph/file/da2c8cc43ec658c6c8273.png
+https://telegra.ph/file/ea94046e5f2a40923687f.png
+
 
 17-09-20 11:50
+
 > Added logger for store report
+
 > Prepared base for proper OAuth for store reportgen
 
 16-09-20 15:05
+
 > Login v2 with a synchronous multi-logging with a timeout of a minute.
+
 > Bypass prevention service v2.
+
 -- synced source to git
 
+
+
 10-09-20 10:59
+
 > Added 'DBFA Mark Attendance'
 
+
+
 06-09-20 23:48
+
 > Added caps-lock check for main GUI login (main and wre)
 
+
+
 06-09-20 20:22
+
 > DBFA Updater completed and enabled!
+
 > Reworked update check logic from scratch
+
 > Auto-download update files when told to do so by the user using git
+
 > Version details are checked from both, local source and server source.
+
 > Added instructions for update via a .txt file
+
 > Added "Check for updates" to the main menu
+
 > A seperate new repository is being maintained to host update files. (OTA; only changed files)
+
 > Updater is OTA-based. Only updated files will be hosted.
+
 > Updated menu
 
+
+
 05-09-20 17:08
+
 > Added general base and hiring form base for DBFA Employee Management
 
+
+
 30-08-20 17:08
+
 > Presenting DBFA 8's new menu!
+
 > Completely re-organised the menu design
+
 > Completely new DBFA logo!
+
 > Added toggle in settings to switch back the alternative old menu style (old style with new logo)
+
 > Added settings db checks for menu formatting adjustment (each menu has different areas occupied)
 
+
+
 30-08-20 11:49
+
 > Renamed DBFA Settings >>> to >>> DBFA options
 
 
+
+
+
 30-08-20 11:49
+
 > Added skip to discount if coupon/voucher ID entered doesn't exist
 
+
+
 29-08-20 22:19
+
 > DBFA files are now regularly backed-up to encrypted NordCloud and encrypted OneDrive storage.
 
+
+
 > Reduced overall package size to under 40mb
-> DBFA Two-factor-authenication is now live!!!
-> Enabled complete 2FA
+
+> Complete DBFA Two-factor-authenication is now live!!!
+
 > Settings does NOT modify 2FA if the desired service status is already in effect.
+
 > Ultra secure with an encrypted connection to the recieving client
+
 > Added 2FA in settings, main code, and 2FA disable/ enable settings option.
+
 > Rectified spaces and text formatting in certain spaces
+
 > Synced DBFA upstream
+
 > 2FA modif (turn 2FA on/off from settings) is a seperate file. DBFA main client is rebooted during this process.
 
+
+
 29-08-20
+
 > Adding base blobs for DBFA two-factor-authenication
 
 28-08-20
+
 > Presenting the DBFA Sales Analyzer Engine v1
+
 > Menu option *10* to view a plot of profit vs date
+
+
+
+
 > PDF reporter now shows the plot too!
+
+
+
+
 > Improved PDF reported: Corrected table dimensions (and useless columns nuked); bold removed from sub-headings.
+
 > Re-organised and updated main menu
+
 > Removed bug where *10* had to be entered twice in order to leave DBFA Settings and return to the main menu.
 
 
+
+
+
 28-08-20
+
 > Updated invoice with invoice number ;)
+
 > Updated delivery logger with purchased products ;)
+
 > Updated upstream
 
+
+
 27-08-20
+
 > Enabled complete DBFA Settings with in-code checks
+
 > Updater is currently a work-in-progress, rest everything works!
 
+
+
 26-08-20
+
 > Expanded DBFA Settings base blobs MASSIVELY
+
 > Completed the menu with warnings and options
 
+
+
 26-08-20
+
 > Added base blobs for DBFA Settings
+
 > Settings Menu v1 has been made 
+
 > Backend needs to be made
 
+
+
 25-08-20
+
 > Presenting DBFA Sales Logger v2
+
 > Now logs all data in a secure db
+
 > Menu now shows profit earned for the past 7 days and for today!
+
 > Updated menu with upstream
 
+
+
 22-08-20
+
 ~ DBFA 8 ONE-YEAR ANNIVERSARY SPECIAL BOOTSCREEN ~
+
 Tweaked invoice naming for easy searches with the new invoice ID system
+
 Nuked all redundancies from the repo
 
+
+
 22-08-20
+
 > Added new sub-option: Edit vendor contact (to DBFA stock master option)
+
 > Has email verification (for *@* and *.*)
 
+
+
 22-08-20
+
 > Fixed invoice ID system
+
 > Added invoice ID to telethon
+
 > Fixed shell-print error
+
 > Nuked netpay error
 
+
+
 21-08-20
+
 > Presenting DBFA Store Music Controls!
+
 > Now view the playing track (Spotify) in the main menu itself!
+
 > Go to the previous/ the next
+
 > Added exception-handling for when Spotify is closed (to show the track name)
+
 > Track controls (prev/ pause/ next) works for system-wide apps!!
+
 > Added music clauses before "if defcac == 1"
+
 > Improved the "What would you like to do" prompt
+
 > Updated menu with upstream
 
+
+
 20-08-20
+
 > Added date & time in main menu
+
 > Extended main menu dashes enclosing the new additions
+
 > "What would you like to do?" is now printed underlined
+
 > Updated menu from upstream
+
 > Rectified print length issue while totalling for product 40
 
+
+
 20-08-20
+
 > The "Hey there, ___!" text now fetches login username from Windows itself.
+
 > Added this in the menu too!
+
 > Updated menu
+
+
 
 19-08-20
+
 > Presenting DBFA quick control!
-	-- No need to type 3, then wait, then select a, b, c, d, e or f.
-	   Now directly enter 3a, 3b, 3c, 3d, 3e, 3f in the main menu itself!
-	-- Also available for section 2 (2a, 2b, 2c, 2d, 2e)
+
+ -- No need to type 3, then wait, then select a, b, c, d, e or f.
+
+   Now directly enter 3a, 3b, 3c, 3d, 3e, 3f in the main menu itself!
+
+ -- Also available for section 2 (2a, 2b, 2c, 2d, 2e)
+
+
 
 17-08-20
+
 > Presenting DBFA Deliveries v1 (beta)!!!
-	-- Mainmenu display shows pending delivery count everytime!
-	-- Place deliveries while invoicing itself!
-	-- Asks for and stores the address
-	-- View orders to be delivered
-	-- Mark an order as delivered
+
+ -- Mainmenu display shows pending delivery count everytime!
+
+ -- Place deliveries while invoicing itself!
+
+ -- Asks for and stores the address
+
+ -- View orders to be delivered
+
+ -- Mark an order as delivered
+
+
+
 
 
 17-08-20
+
 > Per-item low-stock bar enabled!
 
-17-08-20
-> Nuked useless variables
-> Presenting the DBFA Stock Master v1!
-	-- Place orders for new stock!
-	-- Update product quantity recieved!
-	-- Fetch delivery status (induvidually)
-	-- Fetch delivery status (for the mass)
-	-- Change the low-stock warning bar
-		> Option added and alters the db;
-		but not activated for main billing rn
-	-- View details for product vendor
-	-- Contact product vendor via email!
+
 
 17-08-20
+
+> Nuked useless variables
+
+> Presenting the DBFA Stock Master v1!
+
+ -- Place orders for new stock!
+
+ -- Update product quantity recieved!
+
+ -- Fetch delivery status (induvidually)
+
+ -- Fetch delivery status (for the mass)
+
+ -- Change the low-stock warning bar
+
+  > Option added and alters the db;
+
+  but not activated for main billing rn
+
+ -- View details for product vendor
+
+ -- Contact product vendor via email!
+
+
+
+17-08-20
+
 > Added stock delivery report to store pdf reporter
+
 > Created base blobs for stock ordering system
+
 > Added base blobs for product vendor info and contact vendor option
 
-16-08-20
-> Presenting search engine 2.0
-    -- Random capitalisations and whitespaces
-	   too return valid results now!
-	-- Improved accuracy
-> Store report now includes customer records
-	-- ID, name, purchase count, net amount, lyl pts etc.
+
 
 16-08-20
+
+> Presenting search engine 2.0
+
+  -- Random capitalisations and whitespaces
+
+   too return valid results now!
+
+ -- Improved accuracy
+
+> Store report now includes customer records
+
+ -- ID, name, purchase count, net amount, lyl pts etc.
+
+
+
+16-08-20
+
 > Added export sales data to CSV option
+
 > Added export customer data to CSV option
-	-- Picks data from both customer databases
+
+ -- Picks data from both customer databases
+
 > Updated menu
 
+
+
 16-08-20
+
 > Nuked useless variables
+
 > Added websupport for changelog
+
 > Nuked "licensing - open markdown" option
+
 > Added websupport for licensing stuff
 
+
+
 16-08-20
+
 > Login password is now masked
+
 > Added "Development Changelog" option in main
+
 > Updated menu
 
+
+
 15-08-20
+
 > Nuked lylpoints on csid 0 bug
 
+
+
 ----------------------
+
 RC Builds are internal builds, not yet ready for public release
+
 ----------------------
+
 DBFA-x(-RC-x) by deltaonealpha
+
 ----------------------
+
+
+
+
+EDIT

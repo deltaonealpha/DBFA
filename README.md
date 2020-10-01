@@ -9,16 +9,12 @@ DBFA is a store management system like none other. From billing to inventory-man
 <h5 align="center">Mark 8.46 Donnager (stable): #RadicallyNew </h5>
 
 ## Build Highlights:
-<h5>> (v8.56: 24/09/2020): Added GUI-prompt for sending customer invoice emails.
+<h5>> Presenting DBFA Invoice Deep Archival Engine - store a literal gazillion invoices in strings in a database and have PDFs generated at any time, instead of having to store lakhs of PDFs!
 <h5>> Presenting delta File Integrity Validation Service (auto-launches on crash) </h5> 
-<h6> Error catching across the WHOLE length of the code! </h6>
-https://telegra.ph/file/da2c8cc43ec658c6c8273.png
-<h5>> Updated two-factor-authentication with inline-buttons, leveraging Telegram's BOT API v2. :D</h5>
 <h5>> DBFA now has a complete employee management system built-in, with automatic UPI-based payments, attendance keeper and much more!</h5>
-<h5>> Presenting login v2 with a synchronous multi-logging with a timeout of a minute.
 <h5>> Presenting bypass prevention service v2.
 <h5>> Improved updater version tracking (option: "Check for Updates")
-<h5>> New re-written docs</h5>
+<h5>> Updated with newly written 8.52docs</h5>
 
 ## Roadmap
 - [ ] Convert main authentication to server-based.

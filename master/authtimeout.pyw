@@ -18,7 +18,7 @@ def Login():
                 [sgx.Button('Exit')], [sgx.Text('DBFA crashed?')], [sgx.Button('Submit Crash Report')]]
     
 
-    window = sgx.Window('delta ClientOAuth Handler', layout)
+    window = sgx.Window('DBFA Security Service', layout)
     while True:
         event, values = window.read()
         if event in (None, 'Exit'):	# if user closes window or clicks cancel
