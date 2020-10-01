@@ -1,5 +1,5 @@
 # DBFA 8 Store Manager ༼ ●'◡'● ༽つ <span style="color: #496dd0">#RadicallyNew</span>
-### 16/09/2020: DBFA 8.46 release (see changelog)
+### 01/10/2020: DBFA 8.52 Commemorative Edition release (see changelog)
   
    
 DBFA is a store management system like none other. From billing to inventory-management, order and delivery management to even employee management, literally anything a store could need. Ultra-light data structures, ultimate integrations, its all a store could crave, but open source! ;)
@@ -86,72 +86,17 @@ List of [contributors](https://github.com/deltaonealpha/DBFA/contributors) who p
 This project is licensed under the GNU General Public License - Version 1.c, April 2020 - see the [LICENSE.md](LICENSE.md) file for more details.
 
 ## Changelog:
-<h4>Only recent changes are hosted here. For previous changelogs: https://telegra.ph/DBFA-8-Release-Candidate---1-08-16</h4>
+<h4>Only latest build changes are posted here. For previous changelogs: https://telegra.ph/DBFA-8-Release-Candidate---1-08-16</h4>
+- Presenting DBFA Invoice Deep Archiving Engine
 
-<h3>Changelog 8.5 Donnager (stable)</h3>
+- Presenting DBFA crash detection and automatic integrity scans
 
-- (v8.56: 24/09/2020): Added GUI-prompt for sending customer invoice emails.
+- Improved menu design and updated with new features
 
-- Presenting delta File Integrity Validation Service (auto-launches on crash)
-Error catching across the WHOLE length of the code!
-https://telegra.ph/file/da2c8cc43ec658c6c8273.png
+- Rectified a few bugs
 
-- Changed 2FA model from OTP-based to Telegram inline-button validation.
+- Slightly rectified directory listing
 
-- Presenting login v2 with a synchronous multi-logging with a timeout of a minute.
+- Updated with newly writen 8.52 docs
 
-- Presenting bypass prevention service v2.
-
-- Presenting DBFA employee manager (attendance/ pay salary/ hire/ change details/ fire employee ༼ ●'◡'● ༽つ).
-
-- Improvements to primary login system.
-
-- Improvements to bypass prevention service.
-
-- More in-depth logging.
-
-- Docs have been re-written from scratch.
-
-- Improved updater version tracking (option: "Check for Updates")
-
-- Rectified all general and text formatting bugs.
-
-- More changes and base blobs for future features added.
-
-<h3>Changelog 8.3 Donnager (stable)</h3>
-
--    Presenting DBFA two-factor-authenication!
-
--    Completely new logo and menu design (settings toggle to switch to old menu-style)
-
-
--    Presenting DBFA Options (settings; adjust every visual aspect to your liking)
-
--    Presenting DBFA Deliveries 
-
--    Presenting DBFA Stock Orders
-
--    Presenting DBFA Sales Analyzer (profit-date plot; also added to the pdf store report)
-
--    Presenting DBFA Store Music Controls (Thanks to XanderMJ (github.com/XanderMJ/spotilib))
-
--    Introducing DBFA quick control! (3a, 3b,.... instead of 3 [wait], and then a, b,.... .etc.)
-
-
-
--    Added version 8 boot image
-
--    Nuked all redundancies from the repo (net package size now under 50mb)
-
--    New sales logger v2 (sqlite)
-
--    Now export sales and customer data to CSV files.
-
--    Now add product-specific low-stock warnings     
-
--    Enabled invoice ID with retention
-
--    Updated menu with DBFA upstream changes
-
-
-
+- Some redundancies removed
