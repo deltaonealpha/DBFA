@@ -1,4 +1,4 @@
-# DBFA 8 Store Manager ༼ ●'◡'● ༽つ <span style="color: #496dd0">#RadicallyNew</span>
+# <span style="color: #496dd0">DBFA Store Manager ༼ ●'◡'● ༽つ </span>
 ### 01/10/2020: DBFA 8.52 Commemorative Edition release (see changelog)
   
    
@@ -87,6 +87,7 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 
 ## Changelog:
 <h4>Only latest build changes are posted here. For previous changelogs: https://telegra.ph/DBFA-8-Release-Candidate---1-08-16</h4>
+
 - Presenting DBFA Invoice Deep Archiving Engine
 
 - Presenting DBFA crash detection and automatic integrity scans
