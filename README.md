@@ -1,19 +1,15 @@
 # DBFA 8 Store Manager ༼ ●'◡'● ༽つ <span style="color: #496dd0">#RadicallyNew</span>
-### 16/09/2020: DBFA 8.46 release (see changelog)
+### 03/10/2020: DBFA 8.55 release (see changelog)
   
    
 DBFA is a store management system like none other. From billing to inventory-management, order and delivery management to even employee management, literally anything a store could need. Ultra-light data structures, ultimate integrations, its all a store could crave, but open source! ;)
 
 ### [Not synced with repo] [![Run on Repl.it](https://repl.it/badge/github/deltaonealpha/DBFA)](https://repl.it/github/deltaonealpha/DBFA)
 
-<h5 align="center">Mark 8.46 Donnager (stable): #RadicallyNew </h5>
+<h5 align="center">Mark 8.55 Donnager (stable): #RadicallyNew </h5>
 
 ## Build Highlights:
-<h5>> Presenting DBFA Invoice Deep Archival Engine - store a literal gazillion invoices in strings in a database and have PDFs generated at any time, instead of having to store lakhs of PDFs!
-<h5>> Presenting delta File Integrity Validation Service (auto-launches on crash) </h5> 
-<h5>> DBFA now has a complete employee management system built-in, with automatic UPI-based payments, attendance keeper and much more!</h5>
-<h5>> Presenting bypass prevention service v2.
-<h5>> Improved updater version tracking (option: "Check for Updates")
+<h5>> DBFA Incremental Security Update (03/10/2020): Presenting DBFA Web Hook Security. The admin can now type 'disableDBFA' in our Telegram bot and DBFA access on related installations will be disabled from the next menu cycle/ boot until re-enabled by the admin. DBFA will exit and display a webpage showing operational status and reasons for exiting.
 <h5>> Updated with newly written 8.52docs</h5>
 
 ## Roadmap
@@ -88,7 +84,9 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 ## Changelog:
 <h4>Only recent changes are hosted here. For previous changelogs: https://telegra.ph/DBFA-8-Release-Candidate---1-08-16</h4>
 
-<h3>Changelog 8.5 Donnager (stable)</h3>
+<h3>Changelog 8.55 Donnager (stable)</h3>
+
+- DBFA Incremental Security Update (03/10/2020): Presenting DBFA Web Hook Security. The admin can now type 'disableDBFA' in our Telegram bot and DBFA access on related installations will be disabled from the next menu cycle/ boot until re-enabled by the admin. DBFA will exit and display a webpage showing operational status and reasons for exiting.
 
 - (v8.56: 24/09/2020): Added GUI-prompt for sending customer invoice emails.
 

@@ -15,6 +15,151 @@ package dbfafartingspider
 #vs
 
 import traceback
+import json, requests, time, urllib, os, sys
+
+class HiddenPrints:
+    def __enter__(self):
+        self._original_stdout = sys.stdout
+        sys.stdout = open(os.devnull, 'w')
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        sys.stdout.close()
+        sys.stdout = self._original_stdout
+        print()
+
+def telegram_bot_sendtext(bot_message):
+    with HiddenPrints():
+        bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
+        bot_chatID = '680917769'
+        send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+        response = requests.get(send_text)
+        return response.json()
+
+URL = "https://api.telegram.org/bot{}/".format('1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis')
+
+def settingscommonfetch(SettingsType):
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+    settingsx.execute(("SELECT Value from settings WHERE SettingsType = ?"), (SettingsType,))
+    settingsfetch = (settingsx.fetchall()[0][0])
+    return settingsfetch
+
+def settingsmodifier(SettingsType, NewValue):
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+    settingsx.execute(("UPDATE settings SET Value = ? WHERE SettingsType = ?"), (NewValue, SettingsType))
+    settings.commit()
+
+def get_url(url):
+    response = requests.get(url)
+    content = response.content.decode("utf8")
+    return content
+
+def get_json_from_url(url):
+    content = get_url(url)
+    js = json.loads(content)
+    return js
+
+def get_updates(offset=None):
+    url = URL + "getUpdates"
+    if offset:
+        url += "?offset={}".format(offset)
+    js = get_json_from_url(url)
+    return js
+
+def get_last_update_id(updates):
+    update_ids = []
+    for update in updates["result"]:
+        update_ids.append(int(update["update_id"]))
+    return max(update_ids)
+
+def echo_all(updates):
+    for update in updates["result"]:
+        text = update["message"]["text"]
+        chat = update["message"]["chat"]["id"]
+        send_message(text, chat)
+
+def get_last_chat_id_and_text(updates):
+    num_updates = len(updates["result"])
+    last_update = num_updates - 1
+    text = updates["result"][last_update]["message"]["text"]
+    chat_id = '680917769'
+    return (text, chat_id)
+
+
+def send_message(text, chat_id):
+    text = urllib.parse.quote_plus(text)
+    url = URL + "sendMessage?text={}&chat_id={}".format(text, '680917769')
+    get_url(url)
+
+
+def dmain():
+    get_url('https://api.telegram.org/bot/deleteWebhook')
+    with open('lastupdateid2.txt', 'a+') as file:
+        file.close()
+    with open('lastupdateid2.txt', 'r+') as file:
+        xid = file.read()
+    #print(xid)
+    last_update_id = int(xid)+1
+    import webbrowser
+    updates = get_updates(last_update_id)
+    if len(updates["result"]) > 0:
+        last_update_id = get_last_update_id(updates)
+        for update in updates["result"]:
+            #print(update["message"]["text"])
+            if (update["message"]["text"]).replace(" ", "") == "disableDBFA":
+                settingsmodifier(9, 0)
+                telegram_bot_sendtext("delta Webhook Services\nUsage permissions have been revoked from your installation of DBFA.\n\nExpect access to be stopped from the next boot/ menu cycle.\nhttps://software.deltaone.tech/servicestatus.html")
+                print("delta Webhook Prompt: ")
+                print("A webbrowser window will shortly open ~")
+                webbrowser.open('https://software.deltaone.tech/servicestatus.html')
+                with open('lastupdateid2.txt', 'a+') as file:
+                    file.close()
+                with open('lastupdateid2.txt', 'r+') as file:
+                    file.truncate(0)
+                    file.write('%d'%last_update_id)
+                print("DBFA will now exit.")
+                time.sleep(5)
+                os._exit(0)
+                os._exit(1)
+                os._exit(0)
+            elif (update["message"]["text"]).replace(" ", "") == "enableDBFA":
+                if settingscommonfetch(9) == 0:
+                    settingsmodifier(9, 1)
+                    print("delta Webhook Prompt: ")
+                    telegram_bot_sendtext("delta Webhook Services\n\nAccess has been re-granted on your installation of DBFA.")
+                    print("The administrator of this DBFA installation has re-allowed access to DBFA on this device!")
+                    time.sleep(3)
+            else:
+                if settingscommonfetch(9) == 0:
+                    with open('lastupdateid2.txt', 'a+') as file:
+                        file.close()
+                    with open('lastupdateid2.txt', 'r+') as file:
+                        file.truncate(0)
+                        file.write('%d'%last_update_id)
+                    print("A webbrowser window will shortly open ~")
+                    print("delta Webhook Prompt: ")
+                    webbrowser.open('https://software.deltaone.tech/servicestatus.html')
+                    print("DBFA will now exit.")
+                    time.sleep(5)
+                    os._exit(0)
+                    os._exit(1)
+                    os._exit(0)
+                else:
+                    pass
+        with open('lastupdateid2.txt', 'a+') as file:
+            file.close()
+        with open('lastupdateid2.txt', 'r+') as file:
+            file.truncate(0)
+            file.write('%d'%last_update_id)
+        #echo_all(updates)
+        time.sleep(0.5)
+    time.sleep(0.5)
+
+dmain()
+
+
 
 try:
     import getpass, time, pathlib, sqlite3, sys, os #sys, os for system-level ops
@@ -994,6 +1139,7 @@ try:
     # Main Menu
     # New Main Menu
     def mainmenu(): #defining a function for the main menu
+        dmain()
         from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
         init(convert = True)
         url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
@@ -1042,7 +1188,7 @@ try:
                             Options:  
 █▀▀█ █▀█  █▀▀ █▀█  █▀▀█   1  - Issue a Bill                                              4  - Store Report
 █__█ █▀▀█ █▀  █▬█  ▄▄▄▄   2  - Manage Customers:                                         5  - Manage Deliveries
-CLIENT 8.12 DONNAGER                a: Register a Customer    c: Purchase Records        6  - DBFA Options 
+CLIENT 8.54 DONNAGER                a: Register a Customer    c: Purchase Records        6  - DBFA Options 
 '''+Fore.MAGENTA+'''  The OG Store Manager'''+Fore.CYAN+'''              b: Customer Registry      d: Find a Customer         7  - Start DBFA Backup & Switch 
                                     e: Export data as CSV                                8  - Analyse Sales
                           3  - Store Options:                                          '''+Fore.MAGENTA+'''emp/EMP - DBFA Employee Manager'''+Fore.CYAN+'''
@@ -1071,7 +1217,7 @@ DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* -
 '''+Fore.MAGENTA+'''                                                                 
 What would you like to do?                        The OG Store Manager'''+Fore.WHITE+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█'''+Fore.CYAN+'''
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄'''+Fore.CYAN+'''
-DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.552 DONNAGER                               
+DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.54 DONNAGER                               
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
 
         # To underline What would you like to do?::                                                                            
@@ -1982,6 +2128,8 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
         settingsx.execute(("SELECT Value from settings WHERE SettingsType = ?"), (SettingsType,))
         settingsfetch = (settingsx.fetchall()[0][0])
         return settingsfetch
+
+
 
     if settingscommonfetch(6) == 1:
         def telegram_bot_sendtext(bot_message):

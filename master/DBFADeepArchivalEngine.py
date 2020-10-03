@@ -175,4 +175,3 @@ def deepfetch_deeparchival():
         os.startfile(temp)
         del temp
         print("DEEP ARCHIVAL VAULT: Invoice generated and moved to the 'Generated Invoices' directory ~ ")
-
