@@ -95,21 +95,29 @@ def send_message(text, chat_id):
 
 
 def dmain():
-    get_url('https://api.telegram.org/bot/deleteWebhook')
+    #print(settingscommonfetch(9))
+    #get_url('https://api.telegram.org/bot/deleteWebhook')
     with open('lastupdateid2.txt', 'a+') as file:
         file.close()
     with open('lastupdateid2.txt', 'r+') as file:
         xid = file.read()
     #print(xid)
-    last_update_id = int(xid)+1
+    last_update_id = int(xid)
+    #print(last_update_id)
     import webbrowser
     updates = get_updates(last_update_id)
+    #print(updates)
+    #time.sleep(5)
+    #print(len(updates["result"]))
     if len(updates["result"]) > 0:
+        print("ddcc")
         last_update_id = get_last_update_id(updates)
+        #print(last_update_id)
         for update in updates["result"]:
             #print(update["message"]["text"])
             if (update["message"]["text"]).replace(" ", "") == "disableDBFA":
                 settingsmodifier(9, 0)
+                time.sleep(0.5)
                 telegram_bot_sendtext("delta Webhook Services\nUsage permissions have been revoked from your installation of DBFA.\n\nExpect access to be stopped from the next boot/ menu cycle.\nhttps://software.deltaone.tech/servicestatus.html")
                 print("delta Webhook Prompt: ")
                 print("A webbrowser window will shortly open ~")
@@ -117,10 +125,14 @@ def dmain():
                 with open('lastupdateid2.txt', 'a+') as file:
                     file.close()
                 with open('lastupdateid2.txt', 'r+') as file:
+                    settingsmodifier(9, 0)
+                    time.sleep(0.5)
                     file.truncate(0)
                     file.write('%d'%last_update_id)
-                print("DBFA will now exit.")
                 time.sleep(5)
+                settingsmodifier(9, 0)
+                print("DBFA will now exit.")
+                time.sleep(0.5)
                 os._exit(0)
                 os._exit(1)
                 os._exit(0)
@@ -155,9 +167,24 @@ def dmain():
             file.write('%d'%last_update_id)
         #echo_all(updates)
         time.sleep(0.5)
+    else:
+        if settingscommonfetch(9) == 0:
+            with open('lastupdateid2.txt', 'a+') as file:
+                file.close()
+            with open('lastupdateid2.txt', 'r+') as file:
+                file.truncate(0)
+                file.write('%d'%last_update_id)
+            print("A webbrowser window will shortly open ~")
+            print("delta Webhook Prompt: ")
+            webbrowser.open('https://software.deltaone.tech/servicestatus.html')
+            print("DBFA will now exit.")
+            time.sleep(5)
+            os._exit(0)
+            os._exit(1)
+            os._exit(0)
     time.sleep(0.5)
 
-dmain()
+
 
 
 
@@ -166,7 +193,7 @@ try:
     from tabularprint import table
     from tqdm import tqdm 
     import webbrowser
-
+    dmain()
     # Credits to XanderMJ (https://github.com/XanderMJ/spotilib) for Spotify controls
     import spotilib
 
@@ -4319,142 +4346,148 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
             continue
 
 except:
-    import os, requests, time
-    os.system('cls')
-    error_message = traceback.format_exc()
-    print("DBFA has crashed due to unexpected reasons. ")
-    print("DBFA will now automatically check its installation for integrity issues:: ")
-    time.sleep(1)
-    print("Error recieved from interpreter follows:")
-    print("    ", error_message)
-    time.sleep(3)
-    time.sleep(2)
-    from md5checker import make_hash
-
-    print("-------------------------------------------------")
-    print(" delta Installation Integrity Validation Service")
-    print("-------------------------------------------------")
-    time.sleep(1)
-
-    listing = ('bleading_edge', 'modif2fa', 'dbfaempman', 'plotter', 'delauth', 'dbfabackupper', 'authtimeout', 'securepack', 'securepackxvc', 'wrelogin', 'run_DBFA')
-
-    print("Fetching MD5 from server.")
-    servermd5 = ((requests.get("https://raw.githubusercontent.com/deltaonealpha/DBFA/master/md5")).content).decode('utf-8')
-    #.replace(" ", "").replace("\n", "")
-    serverdump = (servermd5.split())
-    print("Arranging hashes ###")
-    server_md5 = []
-    server_md5.append(serverdump[0].replace(" ", "").replace("\n", ""))
-    server_md5.append(serverdump[1].replace(" ", "").replace("\n", ""))
-    server_md5.append(serverdump[2].replace(" ", "").replace("\n", ""))
-    server_md5.append(serverdump[3].replace(" ", "").replace("\n", ""))
-    server_md5.append(serverdump[4].replace(" ", "").replace("\n", ""))
-    server_md5.append(serverdump[5].replace(" ", "").replace("\n", ""))
-    server_md5.append(serverdump[6].replace(" ", "").replace("\n", ""))
-    server_md5.append(serverdump[7].replace(" ", "").replace("\n", ""))
-    server_md5.append(serverdump[8].replace(" ", "").replace("\n", ""))
-    server_md5.append(serverdump[9].replace(" ", "").replace("\n", ""))
-    server_md5.append(serverdump[10].replace(" ", "").replace("\n", ""))
-
-    print("Fetching logged MD5.")
     try:
-        localdump = str(open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\md5').read())
-        sorteddump = (localdump.split())
+        import os, requests, time
+        os.system('cls')
+        error_message = traceback.format_exc()
+        print("DBFA has crashed due to unexpected reasons. ")
+        print("DBFA will now automatically check its installation for integrity issues:: ")
+        time.sleep(1)
+        print("Error recieved from interpreter follows:")
+        print("    ", error_message)
+        time.sleep(3)
+        time.sleep(2)
+        from md5checker import make_hash
+
+        print("-------------------------------------------------")
+        print(" delta Installation Integrity Validation Service")
+        print("-------------------------------------------------")
+        time.sleep(1)
+
+        listing = ('bleading_edge', 'modif2fa', 'dbfaempman', 'plotter', 'delauth', 'dbfabackupper', 'authtimeout', 'securepack', 'securepackxvc', 'wrelogin', 'run_DBFA')
+
+        print("Fetching MD5 from server.")
+        servermd5 = ((requests.get("https://raw.githubusercontent.com/deltaonealpha/DBFA/master/md5")).content).decode('utf-8')
+        #.replace(" ", "").replace("\n", "")
+        serverdump = (servermd5.split())
         print("Arranging hashes ###")
-        local_md5 = []
-        local_md5.append(sorteddump[0].replace(" ", "").replace("\n", ""))
-        local_md5.append(sorteddump[1].replace(" ", "").replace("\n", ""))
-        local_md5.append(sorteddump[2].replace(" ", "").replace("\n", ""))
-        local_md5.append(sorteddump[3].replace(" ", "").replace("\n", ""))
-        local_md5.append(sorteddump[4].replace(" ", "").replace("\n", ""))
-        local_md5.append(sorteddump[5].replace(" ", "").replace("\n", ""))
-        local_md5.append(sorteddump[6].replace(" ", "").replace("\n", ""))
-        local_md5.append(sorteddump[7].replace(" ", "").replace("\n", ""))
-        local_md5.append(sorteddump[8].replace(" ", "").replace("\n", ""))
-        local_md5.append(sorteddump[9].replace(" ", "").replace("\n", ""))
-        local_md5.append(sorteddump[10].replace(" ", "").replace("\n", ""))
-    except:
-        print("DBFA's code has been tampered with! Please rectify this to avoid such program crashes!")
-        print("    rrtt - Master Copy Error: dta=intl.err_instldir?imp=md5lognotfound")
+        server_md5 = []
+        server_md5.append(serverdump[0].replace(" ", "").replace("\n", ""))
+        server_md5.append(serverdump[1].replace(" ", "").replace("\n", ""))
+        server_md5.append(serverdump[2].replace(" ", "").replace("\n", ""))
+        server_md5.append(serverdump[3].replace(" ", "").replace("\n", ""))
+        server_md5.append(serverdump[4].replace(" ", "").replace("\n", ""))
+        server_md5.append(serverdump[5].replace(" ", "").replace("\n", ""))
+        server_md5.append(serverdump[6].replace(" ", "").replace("\n", ""))
+        server_md5.append(serverdump[7].replace(" ", "").replace("\n", ""))
+        server_md5.append(serverdump[8].replace(" ", "").replace("\n", ""))
+        server_md5.append(serverdump[9].replace(" ", "").replace("\n", ""))
+        server_md5.append(serverdump[10].replace(" ", "").replace("\n", ""))
+
+        print("Fetching logged MD5.")
+        try:
+            localdump = str(open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\md5').read())
+            sorteddump = (localdump.split())
+            print("Arranging hashes ###")
+            local_md5 = []
+            local_md5.append(sorteddump[0].replace(" ", "").replace("\n", ""))
+            local_md5.append(sorteddump[1].replace(" ", "").replace("\n", ""))
+            local_md5.append(sorteddump[2].replace(" ", "").replace("\n", ""))
+            local_md5.append(sorteddump[3].replace(" ", "").replace("\n", ""))
+            local_md5.append(sorteddump[4].replace(" ", "").replace("\n", ""))
+            local_md5.append(sorteddump[5].replace(" ", "").replace("\n", ""))
+            local_md5.append(sorteddump[6].replace(" ", "").replace("\n", ""))
+            local_md5.append(sorteddump[7].replace(" ", "").replace("\n", ""))
+            local_md5.append(sorteddump[8].replace(" ", "").replace("\n", ""))
+            local_md5.append(sorteddump[9].replace(" ", "").replace("\n", ""))
+            local_md5.append(sorteddump[10].replace(" ", "").replace("\n", ""))
+        except:
+            print("DBFA's code has been tampered with! Please rectify this to avoid such program crashes!")
+            print("    rrtt - Master Copy Error: dta=intl.err_instldir?imp=md5lognotfound")
 
 
-    print("Hashing MD5 from deployed code.")
-    live_md5 = []
-    live_md5.append(make_hash('bleading_edge.py', algo='md5'))
-    live_md5.append(make_hash('modif2fa.py', algo='md5'))
-    live_md5.append(make_hash('dbfaempman.py', algo='md5'))
-    live_md5.append(make_hash('plotter.pyw', algo='md5'))
-    live_md5.append(make_hash('delauth.py', algo='md5'))
-    live_md5.append(make_hash('dbfabackupper.py', algo='md5'))
-    live_md5.append(make_hash('authtimeout.pyw', algo='md5'))
-    live_md5.append(make_hash('securepack.py', algo='md5'))
-    live_md5.append(make_hash('securepackxvc.py', algo='md5'))
-    live_md5.append(make_hash('wrelogin.pyw', algo='md5'))
-    live_md5.append(make_hash('run_DBFA.pyw', algo='md5'))
-    print("Arranging hashes ###")
+        print("Hashing MD5 from deployed code.")
+        live_md5 = []
+        live_md5.append(make_hash('bleading_edge.py', algo='md5'))
+        live_md5.append(make_hash('modif2fa.py', algo='md5'))
+        live_md5.append(make_hash('dbfaempman.py', algo='md5'))
+        live_md5.append(make_hash('plotter.pyw', algo='md5'))
+        live_md5.append(make_hash('delauth.py', algo='md5'))
+        live_md5.append(make_hash('dbfabackupper.py', algo='md5'))
+        live_md5.append(make_hash('authtimeout.pyw', algo='md5'))
+        live_md5.append(make_hash('securepack.py', algo='md5'))
+        live_md5.append(make_hash('securepackxvc.py', algo='md5'))
+        live_md5.append(make_hash('wrelogin.pyw', algo='md5'))
+        live_md5.append(make_hash('run_DBFA.pyw', algo='md5'))
+        print("Arranging hashes ###")
 
 
-    alphas = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        alphas = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-    for i in range(len(listing)):
-        if live_md5[i] != local_md5[i]:
-            print("! - Misaligned MD5 at")
-            print(live_md5[i], local_md5[i], "////\n")
-    print("Alignment check done p1x")
+        for i in range(len(listing)):
+            if live_md5[i] != local_md5[i]:
+                print("! - Misaligned MD5 at")
+                print(live_md5[i], local_md5[i], "////\n")
+        print("Alignment check done p1x")
 
-    for i in server_md5:
-        arter = ""
-        for j in i.replace(" ", "").replace("\n", ""):
-            if str(j).isalpha() is True:
-                arter += '%d'%(alphas.index(j.lower()))
-            else:
-                arter += j
-        server_md5[server_md5.index(i)] = int(arter)
+        for i in server_md5:
+            arter = ""
+            for j in i.replace(" ", "").replace("\n", ""):
+                if str(j).isalpha() is True:
+                    arter += '%d'%(alphas.index(j.lower()))
+                else:
+                    arter += j
+            server_md5[server_md5.index(i)] = int(arter)
 
-    for i in local_md5:
-        arter = ""
-        for j in i.replace(" ", "").replace("\n", ""):
-            if str(j).isalpha() is True:
-                arter += '%d'%(alphas.index(j.lower()))
-            else:
-                arter += j
-        local_md5[local_md5.index(i)] = int(arter)
+        for i in local_md5:
+            arter = ""
+            for j in i.replace(" ", "").replace("\n", ""):
+                if str(j).isalpha() is True:
+                    arter += '%d'%(alphas.index(j.lower()))
+                else:
+                    arter += j
+            local_md5[local_md5.index(i)] = int(arter)
 
-    for i in live_md5:
-        arter = ""
-        for j in i.replace(" ", "").replace("\n", ""):
-            if str(j).isalpha() is True:
-                arter += '%d'%(alphas.index(j.lower()))
-            else:
-                arter += j
-        live_md5[live_md5.index(i)] = int(arter)
+        for i in live_md5:
+            arter = ""
+            for j in i.replace(" ", "").replace("\n", ""):
+                if str(j).isalpha() is True:
+                    arter += '%d'%(alphas.index(j.lower()))
+                else:
+                    arter += j
+            live_md5[live_md5.index(i)] = int(arter)
 
-    for i in range(len(listing)):
-        if live_md5[i] != local_md5[i]:
-            print("! - Misaligned MD5 at")
-            print(live_md5[i], local_md5[i], "////\n")
-    print("Alignment check done p2x")
+        for i in range(len(listing)):
+            if live_md5[i] != local_md5[i]:
+                print("! - Misaligned MD5 at")
+                print(live_md5[i], local_md5[i], "////\n")
+        print("Alignment check done p2x")
 
-    print("\n")
-    if live_md5 != local_md5:
-        marker = 1
-        issue = i
-    elif live_md5 == local_md5:
-        marker = 2
+        print("\n")
+        if live_md5 != local_md5:
+            marker = 1
+            issue = i
+        elif live_md5 == local_md5:
+            marker = 2
 
-    time.sleep(3)
+        time.sleep(3)
 
-    if marker == 1:
-        if sum(server_md5) == sum(live_md5):
-            os.startfile(r'ep1.pyw')
-        elif sum(server_md5) > sum(live_md5):
-            os.startfile(r'ep2.pyw')
-        elif sum(server_md5) < sum(live_md5):
-            os.startfile(r'ep3.pyw')
-    elif marker == 2:
-            os.startfile(r'ep4.pyw')
-    else:
-        print("Integrity checker service failed to execute properly \\ | / |  -_- -_- -_-  \\ | / | ")
+        if marker == 1:
+            if sum(server_md5) == sum(live_md5):
+                os.startfile(r'ep1.pyw')
+            elif sum(server_md5) > sum(live_md5):
+                os.startfile(r'ep2.pyw')
+            elif sum(server_md5) < sum(live_md5):
+                os.startfile(r'ep3.pyw')
+        elif marker == 2:
+                os.startfile(r'ep4.pyw')
+        else:
+            print("Integrity checker service failed to execute properly \\ | / |  -_- -_- -_-  \\ | / | ")
+            time.sleep(10)
+
+    except IndexError:
+        print("----------------------------------------------")
+        print("dnss internal error: (error code - rep.pvt-01)")
         time.sleep(10)
 
 

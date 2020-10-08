@@ -132,9 +132,9 @@ def deepfetch_deeparchival():
     
     from tabulate import tabulate
    
-    print(r'''  █▀▀█ █▀█  █▀▀ █▀█  █▀▀█   █▀▀█ █▀▀ █▀▀ █▀▀█   █▀▀█ █▀▀█ █▀▀ █ █ █ ▀   ▀ █▀▀█ █     █▀▀ ██ █ █▀▀▀ █ ██ █ █▀▀
-    █__█ █▀▀█ █▀  █▬█  ▄▄▄▄   █__█ ███ ███ █▀▀▀   █  █ █▀█= █__ █▀█ █  ▀_▀  █  █ █__   ███ █ ▀█ █_▀█ █ █ ▀█ ███''')
-    print(tabulate(datastream, headers=['Inv. ID', 'Date', 'Time', 'Key'], tablefmt='orgtbl'))
+    print(r'''█▀▀█ █▀█  █▀▀ █▀█  █▀▀█   █▀▀█ █▀▀ █▀▀ █▀▀█   █▀▀█ █▀▀█ █▀▀ █ █ █ ▀   ▀ █▀▀█ █     █▀▀ ██ █ █▀▀▀ █ ██ █ █▀▀
+█__█ █▀▀█ █▀  █▬█  ▄▄▄▄   █__█ ███ ███ █▀▀▀   █  █ █▀█= █__ █▀█ █  ▀_▀  █  █ █__   ███ █ ▀█ █_▀█ █ █ ▀█ ███''')
+    print(tabulate(datastream, headers=['Inv. ID', 'Date', 'Time', 'Key'], tablefmt='fancy_grid'))
     inputmaster = input("\nEnter the invoice ID to fetch from the VAULT: ")
     print("Fetching details for invoice ID: ", inputmaster, "from the VAULT.")
     inputmaster = '%'+inputmaster+'%'

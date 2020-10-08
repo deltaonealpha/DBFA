@@ -1,1 +1,1 @@
-deftest3x
+cursor.execute(r"INSERT INTO MEMBERS(UId, UName, DATEMIssue, DATEMExpiry, WhateverTheFuck0IsFor) VALUES (?, ?, ?, ?)", (UId, UName, DATEMIssue, DATEMExpiry, 0))
