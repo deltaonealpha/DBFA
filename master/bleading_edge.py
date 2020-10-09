@@ -110,7 +110,7 @@ def dmain():
     #time.sleep(5)
     #print(len(updates["result"]))
     if len(updates["result"]) > 0:
-        print("ddcc")
+        #print("ddcc")
         last_update_id = get_last_update_id(updates)
         #print(last_update_id)
         for update in updates["result"]:
@@ -1166,7 +1166,358 @@ try:
     # Main Menu
     # New Main Menu
     def mainmenu(): #defining a function for the main menu
+        import sqlite3, time, random, requests
+        from datetime import datetime, timedelta
+
+        from datetime import datetime, timedelta
+        now = datetime.now()
+        now = now + timedelta(days=1)
+        dt_string = now.strftime("%Y-%m-%d")
+        empmas = sqlite3.connect(r'dbfaempmaster.db')
+        empmascur = empmas.cursor()
+        empmascur.execute("SELECT MAX(Date) FROM scheddelivery")
+        datie = empmascur.fetchall()[0][0]
+        if datie != dt_string:
+            def telegram_bot_sendtext(bot_message):
+                bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
+                bot_chatID = '680917769'
+                send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+                response = requests.get(send_text)
+                return response.json()
+
+            today = datetime.now().date()
+            start = today + timedelta(days=1)
+
+            def leaveget(Oid):
+                today = datetime.now().date()
+                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                empmascur = empmas.cursor()
+                empmascur.execute("SELECT * FROM leave WHERE Oid = ? AND Date = ?", ('%s'%Oid, '%s'%start, ))
+                datastream = empmascur.fetchall()
+                if len(datastream) != 0:
+                    return(datastream[0][0])
+                else:
+                    return None
+
+            def gethoursavg(Oid):
+                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                empmascur = empmas.cursor()
+                empmascur.execute("SELECT * FROM attendance WHERE OiD = ? ORDER BY Date ASC, Time", ('%s'%Oid,))
+                count = 0
+                rows = empmascur.fetchall()
+                datelist = []
+                for i in rows:
+                    datelist.append(i[0])
+                a = [i for i in rows if datelist.count(i[0])>1]
+                netr = (len(datelist) - len(a)) * 8
+                ini_list = [i[2] for i in a]
+                from datetime import timedelta   
+                diff_list = [] 
+                for x, y in zip(ini_list[0::], ini_list[1::]): 
+                    t1 = str((timedelta(hours=int(y.split(':')[0]), minutes=int(y.split(':')[1])) - timedelta(hours=int(x.split(':')[0]), minutes=int(x.split(':')[1])))).split(':')[0]
+                    diff_list.append(t1)
+                del diff_list[1::2]
+                for i in range(0, len(diff_list)): 
+                    diff_list[i] = int(diff_list[i]) 
+                if int(netr) > 0:
+                    diff_list.append(netr) 
+                return (sum(diff_list)/len(diff_list))
+
+
+            def autospacer(word):
+                #print(((17-len(word))//2))
+                if len(word) % 2 == 0:
+                    return (((17-len(word))//2)*" " + str(word) + ((17-len(word))//2)*" " + " ")
+                else:
+                    #print(word)
+                    return ((17-len(word))//2)*" " + str(word) + ((17-len(word))//2)*" "
+
+
+            def getschedvals(Oid):
+                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                empmascur = empmas.cursor()
+                empmascur.execute("SELECT Name, Post FROM emp WHERE OiD = ?", ('%s'%Oid,))
+                daysrt = empmascur.fetchall()
+                return daysrt[0][0]
+
+
+            def getSales():
+                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                empmascur = empmas.cursor()
+                empmascur.execute("SELECT OiD FROM emp WHERE Post = ?", ('Sales',))
+                daysrt = empmascur.fetchall()
+                return [daysrt[0][0], daysrt[1][0],  daysrt[2][0]]
+
+            def getMaintanence():
+                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                empmascur = empmas.cursor()
+                empmascur.execute("SELECT OiD FROM emp WHERE Post = ?", ('Maintanence',))
+                daysrt = empmascur.fetchall()
+                return [daysrt[0][0], daysrt[1][0]]
+
+            def getLogistics():
+                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                empmascur = empmas.cursor()
+                empmascur.execute("SELECT OiD FROM emp WHERE Post = ?", ('Logistics',))
+                daysrt = empmascur.fetchall()
+                return [daysrt[0][0], daysrt[1][0]]
+
+            def timex(Oid):
+                if gethoursavg(1) < 8:
+                    return ((8-gethoursavg(1))/10)*600
+                else:
+                    return 0
+
+            rand = (random.randint(1, 4))
+
+            if rand == 1:
+                if leaveget(getSales()[0]) is None:
+                    r11 = getschedvals(getSales()[0])
+                else:
+                    r11 = getschedvals(getSales()[2])+ " & " +getschedvals(getSales()[1])
+                t11 = str((int(1400+timex(3))))
+                
+                if leaveget(getSales()[1]) is None:
+                    r12 = getschedvals(getSales()[1])
+                else:
+                    r12 = getschedvals(getSales()[0]) + " & " + getschedvals(getSales()[2])
+                t12 = str(int(2200+timex(4)))
+
+                if leaveget(getSales()[2]) is None:
+                    r13 = getschedvals(getSales()[2])
+                else:
+                    r13 = getschedvals(getSales()[1]) + " & " + getschedvals(getSales()[0])
+                t13 = str("0"+str(int(600+timex(5))))
+
+                if leaveget(getMaintanence()[0]) is None:
+                    r21 = getschedvals(getMaintanence()[0])
+                else:
+                    r21 = getschedvals(getMaintanence()[1])
+                t21 = str((int(1400+timex(6))))
+
+                if leaveget(getMaintanence()[1]) is None:
+                    r22 = getschedvals(getMaintanence()[1])
+                else:
+                    r22 = getschedvals(getMaintanence()[0])
+                t22 = str(int(2200+timex(7)))
+                
+                if leaveget(getLogistics()[0]) is None:
+                    r31 = getschedvals(getLogistics()[0])
+                else:
+                    r31 = getschedvals(getLogistics()[1])
+                t31 = str((int(1400+timex(8))))
+                
+                if leaveget(getLogistics()[1]) is None:
+                    r33 = getschedvals(getLogistics()[1])
+                else:
+                    r31 = getschedvals(getLogistics()[0])
+                t33 = str("0"+str((int(600+timex(9)))))
+
+
+            if rand == 2:
+                if leaveget(getSales()[2]) is None:
+                    r11 = getschedvals(getSales()[2])
+                else:
+                    r11 = getschedvals(getSales()[0])+ " & " +getschedvals(getSales()[1])
+                t11 = str((int(1400+timex(3))))
+                
+                if leaveget(getSales()[1]) is None:
+                    r12 = getschedvals(getSales()[1])
+                else:
+                    r12 = getschedvals(getSales()[0]) + " & " + getschedvals(getSales()[2])
+                t12 = str(int(2200+timex(4)))
+
+                if leaveget(getSales()[0]) is None:
+                    r13 = getschedvals(getSales()[0])
+                else:
+                    r13 = getschedvals(getSales()[2]) + " & " + getschedvals(getSales()[1])
+                t13 = str("0"+str(int(600+timex(5))))
+
+                if leaveget(getMaintanence()[1]) is None:
+                    r21 = getschedvals(getMaintanence()[1])
+                else:
+                    r21 = getschedvals(getMaintanence()[0])
+                t21 = str((int(1400+timex(6))))
+
+                if leaveget(getMaintanence()[0]) is None:
+                    r22 = getschedvals(getMaintanence()[0])
+                else:
+                    r22 = getschedvals(getMaintanence()[1])
+                t22 = str(int(2200+timex(7)))
+                
+                if leaveget(getLogistics()[0]) is None:
+                    r31 = getschedvals(getLogistics()[0])
+                else:
+                    r31 = getschedvals(getLogistics()[1])
+                t31 = str((int(1400+timex(8))))
+                
+                if leaveget(getLogistics()[1]) is None:
+                    r33 = getschedvals(getLogistics()[1])
+                else:
+                    r31 = getschedvals(getLogistics()[0])
+                t33 = str("0"+str((int(600+timex(9)))))
+
+
+            if rand == 3:
+                if leaveget(getSales()[1]) is None:
+                    r11 = getschedvals(getSales()[1])
+                else:
+                    r11 = getschedvals(getSales()[0])+ " & " +getschedvals(getSales()[2])
+                t11 = str((int(1400+timex(3))))
+                
+                if leaveget(getSales()[0]) is None:
+                    r12 = getschedvals(getSales()[0])
+                else:
+                    r12 = getschedvals(getSales()[2]) + " & " + getschedvals(getSales()[1])
+                t12 = str(int(2200+timex(4)))
+
+                if leaveget(getSales()[2]) is None:
+                    r13 = getschedvals(getSales()[2])
+                else:
+                    r13 = getschedvals(getSales()[1]) + " & " + getschedvals(getSales()[0])
+                t13 = str("0"+str(int(600+timex(5))))
+
+                if leaveget(getMaintanence()[1]) is None:
+                    r21 = getschedvals(getMaintanence()[1])
+                else:
+                    r21 = getschedvals(getMaintanence()[0])
+                t21 = str((int(1400+timex(6))))
+
+                if leaveget(getMaintanence()[0]) is None:
+                    r22 = getschedvals(getMaintanence()[0])
+                else:
+                    r22 = getschedvals(getMaintanence()[1])
+                t22 = str(int(2200+timex(7)))
+                
+                if leaveget(getLogistics()[1]) is None:
+                    r31 = getschedvals(getLogistics()[1])
+                else:
+                    r31 = getschedvals(getLogistics()[0])
+                t31 = str((int(1400+timex(8))))
+                
+                if leaveget(getLogistics()[0]) is None:
+                    r33 = getschedvals(getLogistics()[0])
+                else:
+                    r31 = getschedvals(getLogistics()[1])
+                t33 = str("0"+str((int(600+timex(9)))))
+
+
+            if rand == 4:
+                if leaveget(getSales()[2]) is None:
+                    r11 = getschedvals(getSales()[2])
+                else:
+                    r11 = getschedvals(getSales()[0])+ " & " +getschedvals(getSales()[1])
+                t11 = str((int(1400+timex(3))))
+                
+                if leaveget(getSales()[0]) is None:
+                    r12 = getschedvals(getSales()[0])
+                else:
+                    r12 = getschedvals(getSales()[1]) + " & " + getschedvals(getSales()[2])
+                t12 = str(int(2200+timex(4)))
+
+                if leaveget(getSales()[1]) is None:
+                    r13 = getschedvals(getSales()[1])
+                else:
+                    r13 = getschedvals(getSales()[2]) + " & " + getschedvals(getSales()[0])
+                t13 = str("0"+str(int(600+timex(5))))
+
+                if leaveget(getMaintanence()[0]) is None:
+                    r21 = getschedvals(getMaintanence()[0])
+                else:
+                    r21 = getschedvals(getMaintanence()[1])
+                t21 = str((int(1400+timex(6))))
+
+                if leaveget(getMaintanence()[1]) is None:
+                    r22 = getschedvals(getMaintanence()[1])
+                else:
+                    r22 = getschedvals(getMaintanence()[0])
+                t22 = str(int(2200+timex(7)))
+                
+                if leaveget(getLogistics()[1]) is None:
+                    r31 = getschedvals(getLogistics()[1])
+                else:
+                    r31 = getschedvals(getLogistics()[0])
+                t31 = str((int(1400+timex(8))))
+                
+                if leaveget(getLogistics()[0]) is None:
+                    r33 = getschedvals(getLogistics()[0])
+                else:
+                    r31 = getschedvals(getLogistics()[1])
+                t33 = str("0"+str((int(600+timex(9)))))
+
+            sched = ('''                Schedule for ''' + str(start) + '''
+        delta           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
+        Scheduler       █   0600 - '''+t11+'''   █   1400 - '''+t12+'''   █   2200 - '''+t13+'''   █ ▀
+        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
+        SALES           █'''+autospacer(r11)+'''█'''+autospacer(r12)+'''█'''+autospacer(r13)+'''█ ▀
+                        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀
+
+        delta           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀                
+        Scheduler       █   0600 - '''+t21+'''   █   1400 - '''+t22+'''   █   2200 - 0600   █ ▀
+        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
+        MAINTANENCE     █'''+autospacer(r21)+'''█'''+autospacer(r22)+'''█ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ █ ▀
+                        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀
+
+        delta           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀                
+        Scheduler       █   0600 - '''+t31+'''   █   1400 - 2200   █   2200 - '''+t33+'''   █ ▀
+        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀                
+        LOGISTICS       █'''+autospacer(r31)+'''█ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ █'''+autospacer(r33)+'''█ ▀
+                        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀
+            ''')
+
+            print("Tomorrow's shift schedule:: \n")
+            bot_message = '''DBFA Automated Scheduler
+        Schedule for tomorrow (''' + str(start) + ''')
+
+        Sales Staff
+        0600 - '''+t11+''': '''+r11+'''
+        1400 - '''+t12+''': '''+r12+'''
+        2200 - '''+t13+''': '''+r13+'''
+            
+        Maintanence Staff
+        0600 - '''+t21+''': '''+r21+'''
+        1400 - '''+t22+''': '''+r22+'''
+
+        Logistics Staff
+        0600 - '''+t31+''': '''+r31+'''
+        2200 - '''+t33+''': '''+r33+'''
+
+        You are recieving this shift schedule as your store is serviced by DBFA.
+
+        This is a dynamically generated schedule with alternating shifts. Employees on leave are taken care of and adjusted accordingly.'''
+
+            from datetime import datetime, timedelta
+            now = datetime.now()
+            now = now + timedelta(days=1)
+            dt_string = now.strftime("%Y-%m-%d")
+            empmas = sqlite3.connect(r'dbfaempmaster.db')
+            empmascur = empmas.cursor()
+            empmascur.execute("INSERT INTO scheddelivery(Date) VALUES (?)", (dt_string,))
+            empmas.commit()
+
+            telegram_bot_sendtext(bot_message.replace("&", "and"))
+            time.sleep(2)
+            print(sched)
+            contfac = input("Enter a button to continue ~ : ")
+            with open('lastsched.txt', 'a+') as file:
+                file.close()
+            with open('lastsched.txt', 'w+', encoding="utf-8") as file:
+                file.truncate(0)
+                file.write(sched)
+                file.close()
+
+        else:
+            pass        
+
+
         dmain()
+        
+        from datetime import datetime, date
+        now = datetime.now()
+        dt_string = now.strftime("%d")  #datetime object containing current date and time 
+        #print(dt_string)
+        if dt_string in ("01", "02", "03", "04", "05"):
+            print("Salary days: Pay salaries between 01st - 05th of every month. Open DBFA Employee Manager to pay ~")
         from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
         init(convert = True)
         url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
@@ -1176,7 +1527,6 @@ try:
         with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
             upread = (str(upread.read())).strip()
         #print("Server: ", dbfaver, "\nLocal: ", upread[4: ])
-        time.sleep(1)
         spass1 = []
         spass2 = []
         for i in dbfaver:
@@ -1209,8 +1559,6 @@ try:
         filedel.close()
         pro7d = salesdatefetch()
         protd = salestodayfetch()
-        time.sleep(1)
-        from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
         logoxold = (Fore.CYAN+''' 
                             Options:  
 █▀▀█ █▀█  █▀▀ █▀█  █▀▀█   1  - Issue a Bill                                              4  - Store Report
@@ -3571,23 +3919,24 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
             os.system('cls')
 
             def empmenu():
-                print('''-------DBFA Employee Manager-------
+                print('''-------DBFA Employee Manager v2.1-------
                 Options:
                     1. Hire an employee
                     2. View employee records
                     3. Change employee details
                     4. Fire an employee ༼ ●'◡'● ༽つ 
+                    5. Scheduler & Apply for Leave
 
-                    5. Mark attendance
-                    6. Attendance records - All
-                    7. Attendance records - OiD-specific
+                    6. Mark attendance
+                    7. Attendance records - All
+                    8. Attendance records - OiD-specific
 
-                    8. Attendance records - All (THIS MONTH)
-                    9. Attendance records - OiD-specific (THIS MONTH)
+                    9. Attendance records - All (THIS MONTH)
+                    10. Attendance records - OiD-specific (THIS MONTH)
 
-                    10. Pay salary
+                    11. Pay salary
 
-                    11. <<< Back to DBFA menu
+                    12. <<< Back to DBFA menu
 
                 ''')
 
@@ -3880,8 +4229,50 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                         time.sleep(2)
                     else:
                         print("Cancelled op..")
-
+                
                 if empfac == "5":
+                    print("deltaScheduler ~\nOptions:")
+                    print("DBFA Scheduler handles duty scheduling and shifts for 24x7 services.\nDBFA can automatically schedule shifts and handle leave applications.\n----------------------------------")
+                    print("a. View tomorrow's schedule ")
+                    print("b. Apply for a leave (effective tomorrow only)")
+                    print("c. Return to main menu ~ ")
+                    submen = input("What would you like to do?: ")
+                    if submen in ("A", "a"):
+                        with open('lastsched.txt', 'r+', encoding="utf-8") as file:
+                            print("Latest schedule as sent to employees:\n", file.read())
+                            file.close()
+                    if submen in ("B", "b"):
+                        import sqlite3
+                        print("Apply for leave ~") #UDRN
+                        OiD = input("Enter your Employee ID (O-ID): ")
+                        #make db confo here
+                        from datetime import datetime, timedelta
+                        now = datetime.now()
+                        now = now + timedelta(days=1)
+                        dt_string = now.strftime("%Y-%m-%d")
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+                        empmascur.execute("SELECT Name, Oid FROM emp WHERE Oid = ?", ('%s'%OiD,))
+                        datastream = empmascur.fetchall()
+                        print(datastream[0][1])
+                        if int(OiD) == int(datastream[0][1]):
+                            confo = input(datastream[0][0] + OiD + ": Confirm leave application? for " + '%s'%dt_string + "(y/n): ")
+                            if confo in ("y", "Y"):
+                                print("Leave application recieved ~ Enjoy your day tomorrow :)")
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                empmascur.execute("INSERT INTO leave(Oid, Date) VALUES (?, ?)", ('%s'%OiD, '%s'%dt_string, ))
+                                empmas.commit()
+                            else:
+                                print("Oof. Now get to work ;) ")
+                        else:
+                            print("Invalid OiD identifier. Please try again ~")
+
+                    if submen in ("C", "c"):
+                        pass
+
+
+                if empfac == "6":
                     import sqlite3, time, os, requests
                     from datetime import datetime  #for reporting the billing time and date
                     empmas = sqlite3.connect(r'dbfaempmaster.db')
@@ -3941,8 +4332,8 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                         else:
                             print("OiD not found! \n")
 
-                if empfac == "6":
-                    print("6. Attendance records - All")
+                if empfac == "7":
+                    print("7. Attendance records - All")
                     with HiddenPrints():
                         try:
                             sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Attendance Records - deltaDBFA")
@@ -3983,8 +4374,8 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                         print(row)
 
 
-                if empfac == "7":
-                    print("7. Attendance records - OiD-specific")
+                if empfac == "8":
+                    print("8. Attendance records - OiD-specific")
                     with HiddenPrints():
                         try:
                             sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Attendance Records - deltaDBFA")
@@ -4022,8 +4413,8 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                                 print(row)
 
 
-                if empfac == "8":
-                    print("8. Attendance records - All (THIS MONTH)")
+                if empfac == "9":
+                    print("9. Attendance records - All (THIS MONTH)")
                     with HiddenPrints():
                         try:
                             sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Attendance Records - deltaDBFA")
@@ -4065,8 +4456,8 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                         print(row)
 
 
-                if empfac == "9":
-                    print("9. Attendance records - OiD-specific (THIS MONTH)")
+                if empfac == "10":
+                    print("10. Attendance records - OiD-specific (THIS MONTH)")
                     with HiddenPrints():
                         try:
                             sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Attendance Records - deltaDBFA")
@@ -4115,82 +4506,222 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                                 print(row)
 
                     
-                if empfac == "10":
-                    import pyqrcode, png, os
-                    from pyqrcode import QRCode 
-                    
-                    empmas = sqlite3.connect(r'dbfaempmaster.db')
-                    empmascur = empmas.cursor()
+                if empfac == "11":                       
+                    from datetime import datetime, date
+                    now = datetime.now()
+                    dt_string = now.strftime("%d")  #datetime object containing current date and time 
+                    #print(dt_string)
+                    if dt_string in ("01", "02", "03", "04", "05"):
+                        def errorout():
+                            print("Invalid parameters, please retry")
+                            exit
 
-                    empmascur.execute("SELECT * FROM emp")
-                    emprows = empmascur.fetchall()
-                    for emprow in emprows:
-                        print(emprow)
+                        import sqlite3, os, datetime
+                        from datetime import datetime, date
 
-                    time.sleep(1)
+                        def getpost(Oid):
+                            empmas = sqlite3.connect(r'dbfaempmaster.db')
+                            empmascur = empmas.cursor()
+                            empmascur.execute("SELECT Post FROM emp WHERE OiD = ?", ('%s'%Oid,))
+                            daysrt = empmascur.fetchall()
+                            return daysrt[0][0]
 
-                    emppay = str(input("Enter the Oid (Employee ID) to pay salary for: "))
-                    empmascur.execute("SELECT * FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
-                    print((empmascur.fetchall()[0]))
-                    time.sleep(1)
-                    emppayconfox = input("\n\nPay salary? (y/n): ")
-                    if emppayconfox == "y":
-                        #emarpay = str("%"+'%s'%emppay+"%")
-                        empmascur.execute("SELECT Name, UPI FROM emp WHERE Oid LIKE ?", (emppay,) )
-                        tempemppay = empmascur.fetchall()
-                        print("Paying ", list(tempemppay[0])[0], "at ", list(tempemppay[0])[1])
-                        name = list(tempemppay[0])[0]
-                        upid = list(tempemppay[0])[1]
-                    else:
-                        empmenu()
-                        break
-                        print("Aaaa")
 
-                    #upid = '9810141714@upi'
-                    #name = 'KPBalaji'
+                        def getdays(Oid):
+                            empmas = sqlite3.connect(r'dbfaempmaster.db')
+                            empmascur = empmas.cursor()
+                            now = datetime.now()
+                            dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
+                            month = datetime.now().month - 1
+                            if month < 1:
+                                month = 12 + month  # At this point month is 0 or a negative number so we add
+                            if len(str(month)) == 1:
+                                month = "0"+str(month)
+                            dt1mb = ('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d"))
+                            empmascur.execute("SELECT * FROM attendance WHERE OiD = ? AND Date BETWEEN ? AND ? ORDER BY Date ASC", ('%s'%Oid, dt1mb, dt_string))
+                            returned = empmascur.fetchall()
+                            return len(returned)
 
-                    s = "upi://pay?pa="+'%s'%upid+"&pn="+'%s'%name+"&cu=INR"
-                    
-                    # Generate QR code 
-                    url = pyqrcode.create(s) 
 
-                    url.png('payqr.png', scale = 6) 
-                    from PIL import Image, ImageDraw, ImageFont
-                    image = Image.open('payqr.png')
-                    with HiddenPrints():
+                        def gethoursavg(Oid):
+                            empmas = sqlite3.connect(r'dbfaempmaster.db')
+                            empmascur = empmas.cursor()
+                            empmascur.execute("SELECT * FROM attendance WHERE OiD = ? ORDER BY Date ASC, Time", ('%s'%Oid,))
+                            count = 0
+                            rows = empmascur.fetchall()
+                            datelist = []
+                            for i in rows:
+                                datelist.append(i[0])
+                            a = [i for i in rows if datelist.count(i[0])>1]
+                            netr = (len(datelist) - len(a)) * 8
+                            ini_list = [i[2] for i in a]
+                            from datetime import timedelta   
+                            diff_list = [] 
+                            for x, y in zip(ini_list[0::], ini_list[1::]): 
+                                t1 = str((timedelta(hours=int(y.split(':')[0]), minutes=int(y.split(':')[1])) - timedelta(hours=int(x.split(':')[0]), minutes=int(x.split(':')[1])))).split(':')[0]
+                                diff_list.append(t1)
+                            del diff_list[1::2]
+                            for i in range(0, len(diff_list)): 
+                                diff_list[i] = int(diff_list[i]) 
+                            if int(netr) > 0:
+                                diff_list.append(netr) 
+                            return (sum(diff_list)/len(diff_list))
+
+
+                        def getovertime(Oid):
+                            from datetime import datetime, date
+                            now = datetime.now()
+                            dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
+                            month = datetime.now().month - 1
+                            if month < 1:
+                                month = 12 + month  # At this point month is 0 or a negative number so we add
+                            if len(str(month)) == 1:
+                                month = "0"+str(month)
+                            dt1mb = ('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d"))
+                            empmas = sqlite3.connect(r'dbfaempmaster.db')
+                            empmascur = empmas.cursor()
+                            empmascur.execute("SELECT * FROM attendance WHERE OiD = ? AND Date BETWEEN ? AND ? ORDER BY Date ASC", ('%s'%Oid, dt1mb, dt_string, ))
+                            count = 0
+                            rows = empmascur.fetchall()
+                            datelist = []
+                            for i in rows:
+                                datelist.append(i[0])
+                            a = [i for i in rows if datelist.count(i[0])>1]
+                            netr = (len(datelist) - len(a)) * 8
+                            ini_list = [i[2] for i in a]
+                            from datetime import timedelta   
+                            diff_list = [] 
+                            for x, y in zip(ini_list[0::], ini_list[1::]): 
+                                t1 = str((timedelta(hours=int(y.split(':')[0]), minutes=int(y.split(':')[1])) - timedelta(hours=int(x.split(':')[0]), minutes=int(x.split(':')[1])))).split(':')[0]
+                                diff_list.append(t1)
+                            del diff_list[1::2]
+                            for i in range(0, len(diff_list)): 
+                                diff_list[i] = int(diff_list[i]) 
+                            finlist = []
+                            for i in range(0, len(diff_list)): 
+                                if diff_list[i] > 8:
+                                    finlist.append(diff_list[i])
+                            return sum(finlist)
+
+
+
+                        def calcengine(Oid, bonus):
+                            postnet = ("ceo", "cto", "admin", "it", "sales", "maintanence", "logistics")
+                            salnet = (97000, 84000, 42000, 35000, 32000, 22000, 21000)
+                            days = 30
+                            leave_days = 30-int(days)
+                            post = getpost(Oid)
+                            avg_hours_week = gethoursavg(Oid)
+                            hours_overtime = getovertime(Oid)
+                            paynet = int(salnet[postnet.index(post.lower())])
+                            if int(avg_hours_week) < 8:
+                                paynet = paynet - ((8-int(avg_hours_week))*1000)
+                            if int(hours_overtime) > 0:
+                                paynet += (int(hours_overtime)*1500)
+                            if int(leave_days) > 3:
+                                paynet = paynet - ((int(leave_days)-3)*750)
+                            if int(bonus) > 0:
+                                paynet += bonus
+                            print("----------------------------")
+                            print("Average hours worked     : ", avg_hours_week)
+                            print("Overtime hours worked    : ", hours_overtime)
+                            print("Leave(s) taken           : ", leave_days)
+                            print("Bonus added              : ", bonus)
+                            print("----------------------------\n")
+                            return paynet
+
+
+                        import time
+                        import pyqrcode, png, os
+                        from pyqrcode import QRCode 
+
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+
+                        empmascur.execute("SELECT Oid, Name, Mobile, UPI, Dept, Post, Salary FROM emp")
+                        emprows = empmascur.fetchall()
+                        from tabulate import tabulate
+                        print(tabulate(emprows, headers=['O-ID', 'Name', 'Mobile', 'UPI', 'Dept', "Post", 'Salary'], tablefmt='fancy_grid'))
+                        #for emprow in emprows:
+                            #print(emprow)
+
+                        time.sleep(2)
+
+                        emppay = str(input("Enter the Oid (Employee ID) to pay salary for: "))
+                        empmascur.execute("SELECT * FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                        print(tabulate(empmascur.fetchall(), headers=['O-ID', 'Name', 'DOB', 'Email', 'Mobile', 'Address', 'UPI', 'Dept', "Post", 'Salary'], tablefmt='fancy_grid'))
+                        print('\n')
+                        print("Please pay the employee: ₹", calcengine(1, 0))
+                        time.sleep(2)
+                        emppayconfox = input("\n\nPay salary? (y/n): ")
+                        if emppayconfox == "y":
+                            #emarpay = str("%"+'%s'%emppay+"%")
+                            empmascur.execute("SELECT Name, UPI FROM emp WHERE Oid LIKE ?", (emppay,) )
+                            tempemppay = empmascur.fetchall()
+                            print("Paying ", list(tempemppay[0])[0], "at ", list(tempemppay[0])[1])
+                            name = list(tempemppay[0])[0]
+                            upid = list(tempemppay[0])[1]
+                        else:
+                            empmenu()
+                            exit
+                            print("Aaaa")
+
+                        #upid = '9810141714@upi'
+                        #name = 'KPBalaji'
+
+                        s = "upi://pay?pa="+'%s'%upid+"&pn="+'%s'%name+"&cu=INR"
+
+                        # Generate QR code 
+                        url = pyqrcode.create(s) 
+
+                        url.png('payqr.png', scale = 6) 
+                        from PIL import Image, ImageDraw, ImageFont
+                        image = Image.open('payqr.png')
                         try:
                             sender = telegram_bot_sendtext(dt_string + "\n" + "Started Process: Issue Salary - deltaDBFA")
                             print(sender)
                         except Exception:
                             pass
-                    draw = ImageDraw.Draw(image)
-                    font = ImageFont.truetype(r'C:\Users\balaj\AppData\Local\Microsoft\Windows\Fonts\MiLanProVF.ttf', size=200)
-                    (x, y) = (5, 250)
-                    xname = 'Scan to pay with UPI              deltaDBFA'
-                    draw.text((x, y), xname) #, fill=color)
-                    (x, y) = (5, 5)
+                        draw = ImageDraw.Draw(image)
+                        font = ImageFont.truetype(r'C:\Users\balaj\AppData\Local\Microsoft\Windows\Fonts\MiLanProVF.ttf', size=200)
+                        (x, y) = (5, 250)
+                        xname = 'Scan to pay with UPI              deltaDBFA'
+                        draw.text((x, y), xname) #, fill=color)
+                        (x, y) = (5, 5)
 
-                    name = "Paying "+'%s'%name+" "*(28-len(str(name)))+"deltaPay"
-                    draw.text((x, y), name) #, fill=color)
-                    image.save('payqr.png', optimize=True, quality=120)
+                        name = "Paying "+'%s'%name+" "*(28-len(str(name)))+"deltaPay"
+                        draw.text((x, y), name) #, fill=color)
+                        image.save('payqr.png', optimize=True, quality=120)
+                        
+                        print("Please pay the employee: ₹", calcengine(1, 0))
+                        print("-------------------------------------")
+                        time.sleep(1)
+                        print("Scan the code in a UPI app to pay")
+                        time.sleep(1)
 
-                    print("-------------------------------------")
-                    time.sleep(1)
-                    print("DBFA will now open a QR code for UPI payment to the registered UPI address of the employee.")
-                    time.sleep(1)
-                    print("Scan the code in a UPI app to pay")
-                    time.sleep(1)
+                        os.system(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\payqr.png')
 
-                    os.system(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\payqr.png')
+                        time.sleep(5)
+                        paycheck = input("Mark salary as 'PAID'? (y/n): ")
+                        if paycheck == "y":
+                            print("Salary paid!")
+                            from datetime import datetime, date
+                            now = datetime.now()
+                            dt_string = now.strftime("%d")  #datetime object containing current date and time 
+                            empmas = sqlite3.connect(r'dbfaempmaster.db')
+                            empmascur = empmas.cursor()
+                            empmascur.execute("insert into salpay(Oid, Date, Amount) values(?, ?, ?)", (emppay, dt_string, calcengine(1, 0)))
+                            empmas.commit()
+                        else:
+                            print("Not paid. ")
 
-                    time.sleep(5)
-                    paycheck = input("Mark salary as 'PAID'? (y/n): ")
-                    if paycheck == "y":
-                        print("Salary paid!")
+
                     else:
-                        print("Not paid. ")
+                        print("Salary payments can only be made between 01st - 05th of each month. ~")
 
-                if empfac == "11":
+
+
+                if empfac == "12":
                     print("Returning to DBFA Main.. ")
                     time.sleep(1)
                     break

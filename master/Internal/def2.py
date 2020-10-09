@@ -1,163 +1,367 @@
-import PySimpleGUI as sg
+#################################################
+# deltaDBFA Internal Testing Build              #
+#                                               #
+# Test subject: Scheduler and Leave Application #
+# Broad category: DBFA Employee Manager         #
+#                                               #
+# Author: @deltaonealpha                        #
+#################################################
+
+# The future of dbfa (will take a LONG time to code :D)
+# Automatic employee shift scheduling with an option to apply for leaves.
+
+#delta           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
+#Scheduler       █   0600 - 1400   █   1400 - 2200   █   2200 - 0600   █ ▀
+#▀▀▀▀▀▀▀▀▀       █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
+#SALES           █                 █                 █                 █ ▀
+#                █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
+#MAINTANENCE     █                 █                 █ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ █ ▀
+#                █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
+#LOGISTICS       █                 █ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ █                 █ ▀
+#                ███████████████████████████████████████████████████████ ▀
+
+# Todo now
+# Generate, send email, send tg and update db IF NOT UPDATED IN DB YET
+        # Add apply for leave/ see regen option
+
+import sqlite3, time, random, requests
+from datetime import datetime, timedelta
+
+from datetime import datetime, timedelta
+now = datetime.now()
+now = now + timedelta(days=1)
+dt_string = now.strftime("%Y-%m-%d")
+empmas = sqlite3.connect(r'dbfaempmaster.db')
+empmascur = empmas.cursor()
+empmascur.execute("SELECT MAX(Date) FROM scheddelivery")
+datie = empmascur.fetchall()[0][0]
+if datie != dt_string:
+    def telegram_bot_sendtext(bot_message):
+        bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
+        bot_chatID = '680917769'
+        send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+        response = requests.get(send_text)
+        return response.json()
+
+    today = datetime.now().date()
+    start = today + timedelta(days=1)
+
+    def leaveget(Oid):
+        today = datetime.now().date()
+        empmas = sqlite3.connect(r'dbfaempmaster.db')
+        empmascur = empmas.cursor()
+        empmascur.execute("SELECT * FROM leave WHERE Oid = ? AND Date = ?", ('%s'%Oid, '%s'%start, ))
+        datastream = empmascur.fetchall()
+        if len(datastream) != 0:
+            return(datastream[0][0])
+        else:
+            return None
+
+    def gethoursavg(Oid):
+        empmas = sqlite3.connect(r'dbfaempmaster.db')
+        empmascur = empmas.cursor()
+        empmascur.execute("SELECT * FROM attendance WHERE OiD = ? ORDER BY Date ASC, Time", ('%s'%Oid,))
+        count = 0
+        rows = empmascur.fetchall()
+        datelist = []
+        for i in rows:
+            datelist.append(i[0])
+        a = [i for i in rows if datelist.count(i[0])>1]
+        netr = (len(datelist) - len(a)) * 8
+        ini_list = [i[2] for i in a]
+        from datetime import timedelta   
+        diff_list = [] 
+        for x, y in zip(ini_list[0::], ini_list[1::]): 
+            t1 = str((timedelta(hours=int(y.split(':')[0]), minutes=int(y.split(':')[1])) - timedelta(hours=int(x.split(':')[0]), minutes=int(x.split(':')[1])))).split(':')[0]
+            diff_list.append(t1)
+        del diff_list[1::2]
+        for i in range(0, len(diff_list)): 
+            diff_list[i] = int(diff_list[i]) 
+        if int(netr) > 0:
+            diff_list.append(netr) 
+        return (sum(diff_list)/len(diff_list))
 
 
-SYMBOL_UP =    '▲'
-SYMBOL_DOWN =  '▼'
+    def autospacer(word):
+        #print(((17-len(word))//2))
+        if len(word) % 2 == 0:
+            return (((17-len(word))//2)*" " + str(word) + ((17-len(word))//2)*" " + " ")
+        else:
+            #print(word)
+            return ((17-len(word))//2)*" " + str(word) + ((17-len(word))//2)*" "
 
 
-def collapse(layout, key):
-    return sg.pin(sg.Column(layout, key=key))
+    def getschedvals(Oid):
+        empmas = sqlite3.connect(r'dbfaempmaster.db')
+        empmascur = empmas.cursor()
+        empmascur.execute("SELECT Name, Post FROM emp WHERE OiD = ?", ('%s'%Oid,))
+        daysrt = empmascur.fetchall()
+        return daysrt[0][0]
 
 
-section1 = [[sg.Text('Name:')],
-            [sg.Input(key='-IN1-')],
-            #[sg.Input(key='-IN11-')],
-            [sg.Text('Gender:')],
-            [sg.Checkbox('Male', key='male'), sg.Checkbox('Female', key='female'), sg.Checkbox('Others', key='othergender')],
-            [sg.Text('Date of Birth:')],
-            [sg.InputCombo(('Select - ', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'), size=(20, 1))],
-            [sg.Text('Year:')],
-            [sg.Input(key='-IN3-')],
-            [sg.Text('Day:')],
-            [sg.Input(key='-IN4-')]]
+    def getSales():
+        empmas = sqlite3.connect(r'dbfaempmaster.db')
+        empmascur = empmas.cursor()
+        empmascur.execute("SELECT OiD FROM emp WHERE Post = ?", ('Sales',))
+        daysrt = empmascur.fetchall()
+        return [daysrt[0][0], daysrt[1][0],  daysrt[2][0]]
 
-section2 = [[sg.Text('Email:')],
-            [sg.I(k='-IN5-')],
-            [sg.Text('Mobile Contact:')],
-            [sg.I(k='-IN6-')],
-            [sg.Text('Residential Address:')],
-            [sg.I(k='-IN7-')],
-            [sg.Text("Employee's UPI ID for salary payments:")],
-            [sg.I(k='-IN8-')]]
+    def getMaintanence():
+        empmas = sqlite3.connect(r'dbfaempmaster.db')
+        empmascur = empmas.cursor()
+        empmascur.execute("SELECT OiD FROM emp WHERE Post = ?", ('Maintanence',))
+        daysrt = empmascur.fetchall()
+        return [daysrt[0][0], daysrt[1][0]]
 
-section3 = [[sg.Text('Department Name:')],
-            [sg.InputCombo(('Select - ', 'IT' ,'Administration', 'Sales', 'Care-taking', 'Logistics'), size=(20, 1))],
-            #[sg.Input(key='-IN11-')],
-            [sg.Text('Designation:')],
-            [sg.Input(key='-IN8-')],
-            [sg.Text('Salary:')],
-            [sg.Input(key='-IN9-')]]
+    def getLogistics():
+        empmas = sqlite3.connect(r'dbfaempmaster.db')
+        empmascur = empmas.cursor()
+        empmascur.execute("SELECT OiD FROM emp WHERE Post = ?", ('Logistics',))
+        daysrt = empmascur.fetchall()
+        return [daysrt[0][0], daysrt[1][0]]
+
+    def timex(Oid):
+        if gethoursavg(1) < 8:
+            return ((8-gethoursavg(1))/10)*600
+        else:
+            return 0
+
+    rand = (random.randint(1, 4))
+
+    if rand == 1:
+        if leaveget(getSales()[0]) is None:
+            r11 = getschedvals(getSales()[0])
+        else:
+            r11 = getschedvals(getSales()[2])+ " & " +getschedvals(getSales()[1])
+        t11 = str((int(1400+timex(3))))
+        
+        if leaveget(getSales()[1]) is None:
+            r12 = getschedvals(getSales()[1])
+        else:
+            r12 = getschedvals(getSales()[0]) + " & " + getschedvals(getSales()[2])
+        t12 = str(int(2200+timex(4)))
+
+        if leaveget(getSales()[2]) is None:
+            r13 = getschedvals(getSales()[2])
+        else:
+            r13 = getschedvals(getSales()[1]) + " & " + getschedvals(getSales()[0])
+        t13 = str("0"+str(int(600+timex(5))))
+
+        if leaveget(getMaintanence()[0]) is None:
+            r21 = getschedvals(getMaintanence()[0])
+        else:
+            r21 = getschedvals(getMaintanence()[1])
+        t21 = str((int(1400+timex(6))))
+
+        if leaveget(getMaintanence()[1]) is None:
+            r22 = getschedvals(getMaintanence()[1])
+        else:
+            r22 = getschedvals(getMaintanence()[0])
+        t22 = str(int(2200+timex(7)))
+        
+        if leaveget(getLogistics()[0]) is None:
+            r31 = getschedvals(getLogistics()[0])
+        else:
+            r31 = getschedvals(getLogistics()[1])
+        t31 = str((int(1400+timex(8))))
+        
+        if leaveget(getLogistics()[1]) is None:
+            r33 = getschedvals(getLogistics()[1])
+        else:
+            r31 = getschedvals(getLogistics()[0])
+        t33 = str("0"+str((int(600+timex(9)))))
 
 
-layout =   [[sg.Text('Hire an employee')],
-            #### Section 1 part ####
-            [sg.T(SYMBOL_DOWN, enable_events=True, k='-OPEN SEC1-', text_color='white'), sg.T('Personal Details', enable_events=True, text_color='yellow', k='-OPEN SEC1-TEXT')],
-            [collapse(section1, '-SEC1-')],
-            #### Section 2 part ####
-            [sg.T(SYMBOL_DOWN, enable_events=True, k='-OPEN SEC2-', text_color='white'),
-             sg.T('Personal Details', enable_events=True, text_color='white', k='-OPEN SEC2-TEXT')],
-            [collapse(section2, '-SEC2-')],
-            #### Buttons at bottom ####
-            [sg.Button('Proceed'), sg.Button('Exit')]]
-            
+    if rand == 2:
+        if leaveget(getSales()[2]) is None:
+            r11 = getschedvals(getSales()[2])
+        else:
+            r11 = getschedvals(getSales()[0])+ " & " +getschedvals(getSales()[1])
+        t11 = str((int(1400+timex(3))))
+        
+        if leaveget(getSales()[1]) is None:
+            r12 = getschedvals(getSales()[1])
+        else:
+            r12 = getschedvals(getSales()[0]) + " & " + getschedvals(getSales()[2])
+        t12 = str(int(2200+timex(4)))
 
-layout3 = [[sg.Text('Hire an employee')],
-            [sg.T(SYMBOL_DOWN, enable_events=True, k='-OPEN SEC3-', text_color='white'), sg.T('Employment Details', enable_events=True, text_color='yellow', k='-OPEN SEC3-TEXT')],
-            [collapse(section3, '-SEC3-')],
-            [sg.Button('Complete Form >>>'), sg.Button('Exit')]]
+        if leaveget(getSales()[0]) is None:
+            r13 = getschedvals(getSales()[0])
+        else:
+            r13 = getschedvals(getSales()[2]) + " & " + getschedvals(getSales()[1])
+        t13 = str("0"+str(int(600+timex(5))))
 
-window = sg.Window('deltaDBFA 8.2 - Add New Employee', layout)
-arter = 0
-opened1, opened2 = True, True
+        if leaveget(getMaintanence()[1]) is None:
+            r21 = getschedvals(getMaintanence()[1])
+        else:
+            r21 = getschedvals(getMaintanence()[0])
+        t21 = str((int(1400+timex(6))))
 
-while True:             # Event Loop
-    event, values = window.read()
-    eventx, valuesx = event, values
-    #print(event, values)
-    if event == sg.WIN_CLOSED or event == 'Exit':
-        break
+        if leaveget(getMaintanence()[0]) is None:
+            r22 = getschedvals(getMaintanence()[0])
+        else:
+            r22 = getschedvals(getMaintanence()[1])
+        t22 = str(int(2200+timex(7)))
+        
+        if leaveget(getLogistics()[0]) is None:
+            r31 = getschedvals(getLogistics()[0])
+        else:
+            r31 = getschedvals(getLogistics()[1])
+        t31 = str((int(1400+timex(8))))
+        
+        if leaveget(getLogistics()[1]) is None:
+            r33 = getschedvals(getLogistics()[1])
+        else:
+            r31 = getschedvals(getLogistics()[0])
+        t33 = str("0"+str((int(600+timex(9)))))
 
-    if event.startswith('-OPEN SEC1-'):
-        opened1 = not opened1
-        window['-OPEN SEC1-'].update(SYMBOL_DOWN if opened1 else SYMBOL_UP)
-        window['-SEC1-'].update(visible=opened1)
 
-    if event.startswith('-OPEN SEC2-'):
-        opened2 = not opened2
-        window['-OPEN SEC2-'].update(SYMBOL_DOWN if opened2 else SYMBOL_UP)
-        window['-OPEN SEC2-CHECKBOX'].update(not opened2)
-        window['-SEC2-'].update(visible=opened2)
+    if rand == 3:
+        if leaveget(getSales()[1]) is None:
+            r11 = getschedvals(getSales()[1])
+        else:
+            r11 = getschedvals(getSales()[0])+ " & " +getschedvals(getSales()[2])
+        t11 = str((int(1400+timex(3))))
+        
+        if leaveget(getSales()[0]) is None:
+            r12 = getschedvals(getSales()[0])
+        else:
+            r12 = getschedvals(getSales()[2]) + " & " + getschedvals(getSales()[1])
+        t12 = str(int(2200+timex(4)))
+
+        if leaveget(getSales()[2]) is None:
+            r13 = getschedvals(getSales()[2])
+        else:
+            r13 = getschedvals(getSales()[1]) + " & " + getschedvals(getSales()[0])
+        t13 = str("0"+str(int(600+timex(5))))
+
+        if leaveget(getMaintanence()[1]) is None:
+            r21 = getschedvals(getMaintanence()[1])
+        else:
+            r21 = getschedvals(getMaintanence()[0])
+        t21 = str((int(1400+timex(6))))
+
+        if leaveget(getMaintanence()[0]) is None:
+            r22 = getschedvals(getMaintanence()[0])
+        else:
+            r22 = getschedvals(getMaintanence()[1])
+        t22 = str(int(2200+timex(7)))
+        
+        if leaveget(getLogistics()[1]) is None:
+            r31 = getschedvals(getLogistics()[1])
+        else:
+            r31 = getschedvals(getLogistics()[0])
+        t31 = str((int(1400+timex(8))))
+        
+        if leaveget(getLogistics()[0]) is None:
+            r33 = getschedvals(getLogistics()[0])
+        else:
+            r31 = getschedvals(getLogistics()[1])
+        t33 = str("0"+str((int(600+timex(9)))))
+
+
+    if rand == 4:
+        if leaveget(getSales()[2]) is None:
+            r11 = getschedvals(getSales()[2])
+        else:
+            r11 = getschedvals(getSales()[0])+ " & " +getschedvals(getSales()[1])
+        t11 = str((int(1400+timex(3))))
+        
+        if leaveget(getSales()[0]) is None:
+            r12 = getschedvals(getSales()[0])
+        else:
+            r12 = getschedvals(getSales()[1]) + " & " + getschedvals(getSales()[2])
+        t12 = str(int(2200+timex(4)))
+
+        if leaveget(getSales()[1]) is None:
+            r13 = getschedvals(getSales()[1])
+        else:
+            r13 = getschedvals(getSales()[2]) + " & " + getschedvals(getSales()[0])
+        t13 = str("0"+str(int(600+timex(5))))
+
+        if leaveget(getMaintanence()[0]) is None:
+            r21 = getschedvals(getMaintanence()[0])
+        else:
+            r21 = getschedvals(getMaintanence()[1])
+        t21 = str((int(1400+timex(6))))
+
+        if leaveget(getMaintanence()[1]) is None:
+            r22 = getschedvals(getMaintanence()[1])
+        else:
+            r22 = getschedvals(getMaintanence()[0])
+        t22 = str(int(2200+timex(7)))
+        
+        if leaveget(getLogistics()[1]) is None:
+            r31 = getschedvals(getLogistics()[1])
+        else:
+            r31 = getschedvals(getLogistics()[0])
+        t31 = str((int(1400+timex(8))))
+        
+        if leaveget(getLogistics()[0]) is None:
+            r33 = getschedvals(getLogistics()[0])
+        else:
+            r31 = getschedvals(getLogistics()[1])
+        t33 = str("0"+str((int(600+timex(9)))))
+
+    sched = ('''                Schedule for ''' + str(start) + '''
+delta           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
+Scheduler       █   0600 - '''+t11+'''   █   1400 - '''+t12+'''   █   2200 - '''+t13+'''   █ ▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
+SALES           █'''+autospacer(r11)+'''█'''+autospacer(r12)+'''█'''+autospacer(r13)+'''█ ▀
+                ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀
+
+delta           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀                
+Scheduler       █   0600 - '''+t21+'''   █   1400 - '''+t22+'''   █   2200 - 0600   █ ▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
+MAINTANENCE     █'''+autospacer(r21)+'''█'''+autospacer(r22)+'''█ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ █ ▀
+                ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀
+
+delta           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀                
+Scheduler       █   0600 - '''+t31+'''   █   1400 - 2200   █   2200 - '''+t33+'''   █ ▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀                
+LOGISTICS       █'''+autospacer(r31)+'''█ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ █'''+autospacer(r33)+'''█ ▀
+                ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀
+    ''')
+
+    print("Tomorrow's shift schedule:: \n")
+    bot_message = '''DBFA Automated Scheduler
+Schedule for tomorrow (''' + str(start) + ''')
+
+Sales Staff
+0600 - '''+t11+''': '''+r11+'''
+1400 - '''+t12+''': '''+r12+'''
+2200 - '''+t13+''': '''+r13+'''
     
-    if  event.startswith('Proceed'):
-        axt = open(r"dbfaempre.txt", "w+")
-        axt.write(str(eventx))
-        axt.write(str(valuesx))
-        #print(eventx, valuesx)
-        global ds1
-        ds1 = (eventx, valuesx)
-        window.close()
-        window = sg.Window('deltaDBFA 8.2 - Add New Employee', layout3)
-        opened1, opened2 = True, True
-        while True:             # Event Loop
-            event, values = window.read()
-            eventr, valuesr = event, values
-            global ds2
-            ds2 = (eventr, valuesr)
-            if event == sg.WIN_CLOSED or event == 'Exit':
-                break
-                break
+Maintanence Staff
+0600 - '''+t21+''': '''+r21+'''
+1400 - '''+t22+''': '''+r22+'''
 
-            if event.startswith('Complete Form'):
-                opened1 = not opened1
-                arter = 1
-                window.close()
-                break
+Logistics Staff
+0600 - '''+t31+''': '''+r31+'''
+2200 - '''+t33+''': '''+r33+'''
 
-window.close()
+You are recieving this shift schedule as your store is serviced by DBFA.
 
-if arter == 0:
-    print("No data recieved! ")
-if arter == 1:
-    import os
-    os.system('cls')
-    print("Data sets recieved! ")
-    ds1 = (dict(ds1[1]))
-    ds2 = (dict(ds2[1]))
-    print("----------------")
-    print("Data from the filled form follows. These details will be sent to DBFA's data repository for safekeeping: ")
+This is a dynamically generated schedule with alternating shifts. Employees on leave are taken care of and adjusted accordingly.'''
 
-    ds1a = list(ds1.keys()) 
-    ds1b = list(ds1.values()) 
-
-    ds2a = list(ds2.keys()) 
-    ds2b = list(ds2.values()) 
-
-    #print(ds1a, ds1b, ds2a, ds2b)
-
-    print("\n\nName          :", ds1b[0])
-    print("Gender        :", ds1a[ds1b.index(True)])
-    print("DOB: (Month)  :", ds1b[4])
-    monthx = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    for i in monthx:
-        if i == ds1b[4]:
-            month = (int(monthx.index(i))+1)
-    #print(month)
-    if len(str(ds1b[6])) == 1:
-        day = ("0"+'%s'%ds1b[6])
-    else:
-        day = (ds1b[6])
-    dob = str(ds1b[5])+"-"+str(month)+"-"+str(day)
-    print("DOB           :   ", dob)
-    print("EMail         :", ds1b[8])
-    print("Mobile Contact:", ds1b[9])
-    print("Resd. Address :", ds1b[10])
-    print("UPI Payment ID:", ds1b[11])
-
-    print("\nDepartment    :", ds2b[0])
-    print("Designation   :", ds2b[1])
-    print("Salary        :", ds2b[2])
-    if len(str(month)) == 1:
-        month = "0"+'%s'%month
-        print(month)
-
-    import sqlite3, time
-
+    from datetime import datetime, timedelta
+    now = datetime.now()
+    now = now + timedelta(days=1)
+    dt_string = now.strftime("%Y-%m-%d")
     empmas = sqlite3.connect(r'dbfaempmaster.db')
     empmascur = empmas.cursor()
-    empmascur.execute("SELECT MAX(Oid) FROM emp")
-    Oid = (int(empmascur.fetchall()[0][0]) + 1)
-    strix = ('insert into emp(Oid, Name, DOB, Email, Mobile, Address, UPI, Dept, Post, Salary) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
-    io = (Oid, str(ds1b[0]), str(dob), str(ds1b[8]), int(ds1b[9]), str(ds1b[10]), str(ds1b[11]), str(ds2b[0]), str(ds2b[1]), int(ds2b[2]))
-    empmascur.execute(strix, io)
-    empmas.commit()
-    print("Data sent to master repo! ")
+    empmascur.execute("INSERT INTO scheddelivery(Date) VALUES (?)", (dt_string,))
+
+    telegram_bot_sendtext(bot_message.replace("&", "and"))
+    time.sleep(2)
+    print(sched)
+    contfac = input("Enter a button to continue ~ : ")
+    with open('lastsched.txt', 'a+') as file:
+        file.close()
+    with open('lastsched.txt', 'w+', encoding="utf-8") as file:
+        file.truncate(0)
+        file.write(sched)
+        file.close()
+
+else:
+    pass

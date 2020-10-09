@@ -1,6 +1,24 @@
-deltaDBFA Infinity Development Changelog
+deltaDBFA Infinity Development Changelog | author: @deltaonealpha
 - Changelog for DBFA consisting of all changes since DBFA 7
 ------------------------------------------------------------
+
+09-10-2020
+New Release: DBFA 8.6-CE (beta) (09-10-2020)
+Updated DBFA Employee Manager v(1.0) >>> v(2.1)
+    > DBFA Smart Shift-Scheduler 
+        Auto-schedules the day before, Telegrams the owner. (Coming soon: Email sched. to all employees)
+    > Leave Applications: Apply for a leave a day before and DBFA will automatically change the schedule!
+    > Automatic salary calculations (depends on post, days, weekly hours and overtime worked and applicable bonus-es)
+
+06-10-2020
+> Rectified detection rules for the webhook.
+
+03-10-20 22:35
+Release - DBFA 8.55 Commemorative Edition (Stable) *Incremental Security Update  
+> Presenting DBFA Web Hook Security. The admin can now type 'disableDBFA' in our Telegram bot and DBFA access on related installations will be disabled from the next menu cycle/ boot until re-enabled by the admin. DBFA will exit and display a webpage (https://software.deltaone.tech/servicestatus.html) showing operational status and reasons for exiting.
+> Updated sync details and version ID for updater and MD5 crash detection.
+> Updated .readme on Git.
+> Updated GitHub releases with new .zip.
 
 29-09-20 11:57
 > Presenting delta DEEP INVOICE ARCHIVAL VAULT
