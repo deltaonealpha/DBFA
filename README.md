@@ -1,5 +1,5 @@
 # DBFA 8 Store Manager ༼ ●'◡'● ༽つ <span style="color: #496dd0">#RadicallyNew</span>
-### 03/10/2020: DBFA 8.55 release (see changelog)
+### 09/10/2020: DBFA 8.60 (beta) release (see changelog)
   
    
 DBFA is a store management system like none other. From billing to inventory-management, order and delivery management to even employee management, literally anything a store could need. Ultra-light data structures, ultimate integrations, its all a store could crave, but open source! ;)
@@ -9,7 +9,8 @@ DBFA is a store management system like none other. From billing to inventory-man
 <h5 align="center">Mark 8.55 Donnager (stable): #RadicallyNew </h5>
 
 ## Build Highlights:
-<h5>> DBFA Incremental Security Update (03/10/2020): Presenting DBFA Web Hook Security. The admin can now type 'disableDBFA' in our Telegram bot and DBFA access on related installations will be disabled from the next menu cycle/ boot until re-enabled by the admin. DBFA will exit and display a webpage showing operational status and reasons for exiting.
+<h5>> DBFA Employee Manager v2.1 (auto-shift scheduling, leave applications, automated salary calculation and work monitoring)
+<h5>> DBFA Incremental Security Update (09/10/2020)
 <h5>> Updated with newly written 8.52docs</h5>
 
 ## Roadmap
@@ -83,6 +84,18 @@ This project is licensed under the GNU General Public License - Version 1.c, Apr
 
 ## Changelog:
 <h4>Only recent changes are hosted here. For previous changelogs: https://telegra.ph/DBFA-8-Release-Candidate---1-08-16</h4>
+
+<h3>Changelog 8.60 Donnager (beta)</h3>
+- Updated DBFA Employee Manager v(1.0) >>> v(2.1)
+
+- DBFA Smart Shift-Scheduler (Auto-schedules the day before, Telegrams the owner. (Coming soon: Email sched. to all employees))
+
+- Leave Applications: Apply for a leave a day before and DBFA will automatically change the schedule!
+
+- Automatic salary calculations (depends on post, days, weekly hours and overtime worked and applicable bonus-es)
+
+- Rectified detection rules for the webhook.
+
 
 <h3>Changelog 8.55 Donnager (stable)</h3>
 
