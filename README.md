@@ -2,11 +2,11 @@
 ##### 09/10/2020: DBFA 8.60 (beta) release (see changelog)
   
 A store manager like none other, DBFA handles everything from billing and inventory to employees, payments, shifts and even deliveries, while staying open source! ;)
+
 DBFA comes with ultra-light data structures and superior security features, which we take pride over.
 
-NOTE: DBFA consumer-grade builds are published via GitHub releases while master houses the latest source which may/ may not work at all.
 
-####### [Not synced with repo] [![Run on Repl.it](https://repl.it/badge/github/deltaonealpha/DBFA)](https://repl.it/github/deltaonealpha/DBFA)
+NOTE: DBFA consumer-grade builds are published via GitHub releases while master houses the latest source which may/ may not work at all.
 
 ## Build Highlights:
 <h5>> DBFA Employee Manager v2.1 (auto-shift scheduling, leave applications, automated salary calculation and work monitoring)
@@ -19,6 +19,7 @@ NOTE: DBFA consumer-grade builds are published via GitHub releases while master 
 
 ## Getting Started:
 See deployment for notes on how to deploy the project on a live system.
+[Not synced with repo] [![Run on Repl.it](https://repl.it/badge/github/deltaonealpha/DBFA)](https://repl.it/github/deltaonealpha/DBFA)
 
 ### Prerequisites:
 
