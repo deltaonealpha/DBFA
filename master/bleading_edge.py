@@ -377,21 +377,21 @@ try:
     # DBFA Logo Printer
     def logoprintxrt():
                 print("        ___ ______ ___   _____________    ____________     _______")
-                time.sleep(0.05)
+                time.sleep(0.02)
                 print("       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /")
-                time.sleep(0.05)
+                time.sleep(0.02)
                 print("      /  /       /  /  /  /       /  /  /  /             /  /  / /")
-                time.sleep(0.05)
+                time.sleep(0.02)
                 print("     /  /       /  /  /  /_______/  /  /  /  CLI        /  /   / /")
-                time.sleep(0.05)
+                time.sleep(0.02)
                 print("    /  /       /  /  / // // // // /  /  /_________    /  /____/ /")
-                time.sleep(0.05)
+                time.sleep(0.02)
                 print("   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ /")
-                time.sleep(0.05)
+                time.sleep(0.02)
                 print("  /  /       /  /  /  /       /  /  /  /             /  /      / /")
-                time.sleep(0.05)
+                time.sleep(0.02)
                 print(" /  /_______/  /  /  /______ /  /  /  /             /  /       / /")
-                time.sleep(0.05)
+                time.sleep(0.02)
                 print("/__/_______/__/  /__/_______/__/  /__/             /__/        /__/")
                 print(" ")
                 print(" ")
@@ -1167,6 +1167,7 @@ try:
     # New Main Menu
     def mainmenu(): #defining a function for the main menu
         import sqlite3, time, random, requests
+        start = time.time()
         from datetime import datetime, timedelta
 
         from datetime import datetime, timedelta
@@ -1467,24 +1468,24 @@ try:
 
             print("Tomorrow's shift schedule:: \n")
             bot_message = '''DBFA Automated Scheduler
-        Schedule for tomorrow (''' + str(start) + ''')
+Schedule for tomorrow (''' + str(start) + ''')
 
-        Sales Staff
-        0600 - '''+t11+''': '''+r11+'''
-        1400 - '''+t12+''': '''+r12+'''
-        2200 - '''+t13+''': '''+r13+'''
-            
-        Maintanence Staff
-        0600 - '''+t21+''': '''+r21+'''
-        1400 - '''+t22+''': '''+r22+'''
+Sales Staff
+0600 - '''+t11+''': '''+r11+'''
+1400 - '''+t12+''': '''+r12+'''
+2200 - '''+t13+''': '''+r13+'''
+    
+Maintanence Staff
+0600 - '''+t21+''': '''+r21+'''
+1400 - '''+t22+''': '''+r22+'''
 
-        Logistics Staff
-        0600 - '''+t31+''': '''+r31+'''
-        2200 - '''+t33+''': '''+r33+'''
+Logistics Staff
+0600 - '''+t31+''': '''+r31+'''
+2200 - '''+t33+''': '''+r33+'''
 
-        You are recieving this shift schedule as your store is serviced by DBFA.
+You are recieving this shift schedule as your store is serviced by DBFA.
 
-        This is a dynamically generated schedule with alternating shifts. Employees on leave are taken care of and adjusted accordingly.'''
+This is a dynamically generated schedule with alternating shifts. Employees on leave are taken care of and adjusted accordingly.'''
 
             from datetime import datetime, timedelta
             now = datetime.now()
@@ -1559,6 +1560,9 @@ try:
         filedel.close()
         pro7d = salesdatefetch()
         protd = salestodayfetch()
+        end = time.time()
+        if (end - start) > 1.9:
+            print("Execution policy 2.12", '%d'%(end - start))
         logoxold = (Fore.CYAN+''' 
                             Options:  
 █▀▀█ █▀█  █▀▀ █▀█  █▀▀█   1  - Issue a Bill                                              4  - Store Report
@@ -1701,9 +1705,9 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
             print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
             pointfetch(custid)
             if lylpoints != 0:
-                print("You have loyalty points: ", lylpoints, "worth: ", lylpoints)
+                print("You have loyalty points: ", lylpoints, "worth: ₹", lylpoints)
                 time.sleep(0.5)
-                pointscheck = input("Use points (y/n)? ")
+                pointscheck = input("Use " + '%s'%total + " points (y/n)? ")
                 print(Fore.LIGHTBLUE_EX + "-----------------" + Fore.WHITE)
                 if pointscheck == "y":
                     if total > lylpoints:
@@ -1763,6 +1767,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                             redeemindic = 1
                             netpay = total
                             print("Points redeemed worth: ", lylpoints)
+                            return total
 
                         else:
                             redeemindic = 1
@@ -1771,6 +1776,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                             time.sleep(0.3)
                             total = 0
                             print("Points redeemed worth: ", lylpoints)
+                            return total
                         time.sleep(0.3)
                         
                     else:
@@ -1786,24 +1792,28 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                                 redeemindic = 1
                                 netpay = total
                                 print("Points redeemed worth: ", lylpoints)
+                                return total
                             else:
                                 netpay = 0
                                 pointsuse(custid, total)
                                 time.sleep(0.3)
                                 total = 0
                                 print("Points redeemed worth: ", lylpoints)
+                                return total
                         else:
                             print("Wrong OTP. (0) attempt(s) remaining")
                             time.sleep(0.2)
                 elif pointscheck == "n":
                     redeemindic = 0
                     netpay = total
+                    return total
                 else:
                     pass
                 time.sleep(1)
                 os.system(command)
             else:
                 netpay = total
+                return total
             
         else:
             redeemindic = 0
@@ -1811,6 +1821,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
             redeemindic = 0
             lylpoints = 0
             netpay = total
+            return total
 
 
     global custname, email, idd
@@ -2458,7 +2469,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
             time.sleep(1)
             os._exit(0)
         elif int(netr)-int(stamp) < 60:
-            print("- - - Valid login detected - - -\n\n")
+            print("- - - Login validated - - -\n\n")
         else:
             oauthx.execute("UPDATE LoginHandler SET Value = 0, TimeMark = 0")
             oauth.commit()
@@ -2518,7 +2529,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
         print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
         print("DBFA 2FA Service   █▀▀█ █▀█  █▀▀ █▀█  █▀▀█")
         print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ █__█ █▀▀█ █▀  █▬█  ▄▄▄▄")
-        time.sleep(1)
+        time.sleep(0.5)
         print("")
 
 
@@ -2542,10 +2553,9 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
         print("DBFA 2FA is disabled. We recommend you to turn it on from the settings for a more secure experience with DBFA client.")
 
 
-    print("---------------------------------\n\n༼ つ ◕_◕ ༽つ delta Update Utility\n\n---------------------------------")
+    print("---------------------------------\n\n༼ つ ◕_◕ ༽つ delta IntelliSense Updater\n\n---------------------------------")
     time.sleep(0.5)
-    print("DBFAIntellisense")
-    print("Fetching update details from server : : : : ")
+    print("Talking to server ~ ")
     url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
     r = requests.get(url)
     dbfaver = ((str(r.content.decode('utf-8'))))[4:]
@@ -2553,7 +2563,6 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
     with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
         upread = (str(upread.read())).strip()
     print("Server: ", dbfaver, "\nLocal: ", upread[4: ])
-    time.sleep(1)
     spass1 = []
     spass2 = []
     for i in dbfaver:
@@ -2562,7 +2571,6 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
         spass2.append(j)
     if float(upread[4: ]) > float(dbfaver):
         pass
-    time.sleep(1)
 
     os.system('cls')
 
@@ -2571,7 +2579,6 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
     toaster = ToastNotifier()
     toaster.show_toast("DFBA System","Read documentation prior to use.", duration = 1)
     print("Heyy there,", os.getlogin()) #enable parts in the auth script to enable user detection
-    time.sleep(0.5)
     if redflag == 0:
         logger.write("Auth bypass - registering for security") 
         time.sleep(1)
@@ -2595,7 +2602,6 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
         mainmenu() #mainmenu
         writer = ""
         telethon = ""
-        time.sleep(0.037)  #for a seamless experience
         decfac = input("Select option: ")
 
         #DBFA Music Controls v1.2
@@ -2795,7 +2801,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                 writer = writer + "\n" + "\n" + "-----------------------------" + "\n" + "Tax amount: 18%"  + "\n"  + discountx + "\n"  + "\n" 
                 delxfac = input("Enter *d* for delivery; skip for in-store purchase: ")
                 if delxfac != "d":
-                    payboxie(custt, total)
+                    netpay = payboxie(custt, total)
                     xpayboxie()
                 else:
                     # Add a delivery
@@ -2882,7 +2888,10 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                     print("IGST             : ₹","%.2f" % ((9/100)*billiemaster))
                     print("CGST             : ₹","%.2f" % ((9/100)*billiemaster))
                     if redeemindic == 1:
-                        print("Redeemed loyalty points worth: ₹",lylpoints)
+                        if total > lylpoints:
+                            print("Redeemed loyalty points worth: ₹", lylpoints)
+                        else:
+                            print("Redeemed loyalty points worth: ₹", total)
                     print("--------------------------------------------------------------------------------")
                     print("Amount to be paid: ₹","%.2f" % netpay)
                     print("--------------------------------------------------------------------------------")
@@ -3919,26 +3928,21 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
             os.system('cls')
 
             def empmenu():
-                print('''-------DBFA Employee Manager v2.1-------
-                Options:
-                    1. Hire an employee
-                    2. View employee records
-                    3. Change employee details
-                    4. Fire an employee ༼ ●'◡'● ༽つ 
-                    5. Scheduler & Apply for Leave
+                from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+                init(convert = True)
+                print(Fore.CYAN+'''\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nOptions:              
+1  - Hire an employee                    5  - Scheduler & Leave Application
+2  - View employee records               
+3  - Update employee details             6  - Mark attendance
+4  - Fire an employee ༼ ●'◡'● ༽つ        7  - Work records - All
+                                         8  - Work records - oID-specf.
+11 - Pay salary                          9  - Work records - All (past 30)
+12 - <<< Back to DBFA menu               10 - Work records - oID-specf. (past 30)          
 
-                    6. Mark attendance
-                    7. Attendance records - All
-                    8. Attendance records - OiD-specific
-
-                    9. Attendance records - All (THIS MONTH)
-                    10. Attendance records - OiD-specific (THIS MONTH)
-
-                    11. Pay salary
-
-                    12. <<< Back to DBFA menu
-
-                ''')
+What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █▀█  █▀▀ █▀█  █▀▀█ Employee'''+Fore.CYAN+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄ Manager 2.12'''+Fore.CYAN+'''
+'''+Fore.MAGENTA+'''The Ultimate Employee Buster ~'''+Fore.CYAN+'''     
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
 
             while (1):
                 empmenu()
@@ -4231,8 +4235,9 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                         print("Cancelled op..")
                 
                 if empfac == "5":
-                    print("deltaScheduler ~\nOptions:")
-                    print("DBFA Scheduler handles duty scheduling and shifts for 24x7 services.\nDBFA can automatically schedule shifts and handle leave applications.\n----------------------------------")
+                    print("\nDBFA Scheduler handles duty scheduling and shifts for 24x7 services.\nDBFA can automatically schedule shifts and handle leave applications.")
+                    print("----------------------------------\ndeltaScheduler ~\n\nOptions:")
+                    
                     print("a. View tomorrow's schedule ")
                     print("b. Apply for a leave (effective tomorrow only)")
                     print("c. Return to main menu ~ ")
@@ -4241,6 +4246,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                         with open('lastsched.txt', 'r+', encoding="utf-8") as file:
                             print("Latest schedule as sent to employees:\n", file.read())
                             file.close()
+                        contfac = input("Press 'enter' to continue: (workspace will be cleared!)")
                     if submen in ("B", "b"):
                         import sqlite3
                         print("Apply for leave ~") #UDRN
@@ -4725,6 +4731,10 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                     print("Returning to DBFA Main.. ")
                     time.sleep(1)
                     break
+                
+                #else:
+                    #import os
+                    #os.system('cls')
 
 
             
@@ -4868,13 +4878,9 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
 
         elif decfac in (None, "", " "):
             print("Please select a valid main-menu option. erc101\n\n")
-            time.sleep(0.8)
-            continue
 
         else:
             print("Please select a valid main-menu option. erc101\n\n")
-            time.sleep(0.8)
-            continue
 
 except:
     try:
