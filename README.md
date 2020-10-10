@@ -1,12 +1,11 @@
-# DBFA 8 Store Manager ༼ ●'◡'● ༽つ <span style="color: #496dd0">#RadicallyNew</span>
-### 09/10/2020: DBFA 8.60 (beta) release (see changelog)
+# DBFA 8 Store Manager <span style="color: #496dd0">#RadicallyNew</span>
+##### 09/10/2020: DBFA 8.60 (beta) release (see changelog)
   
-   
 DBFA is a store management system like none other. From billing to inventory-management, order and delivery management to even employee management, literally anything a store could need. Ultra-light data structures, ultimate integrations, its all a store could crave, but open source! ;)
 
-### [Not synced with repo] [![Run on Repl.it](https://repl.it/badge/github/deltaonealpha/DBFA)](https://repl.it/github/deltaonealpha/DBFA)
+NOTE: DBFA consumer-grade builds are published via GitHub releases while master houses the latest source which may/ may not work at all.
 
-<h5 align="center">Mark 8.55 Donnager (stable): #RadicallyNew </h5>
+####### [Not synced with repo] [![Run on Repl.it](https://repl.it/badge/github/deltaonealpha/DBFA)](https://repl.it/github/deltaonealpha/DBFA)
 
 ## Build Highlights:
 <h5>> DBFA Employee Manager v2.1 (auto-shift scheduling, leave applications, automated salary calculation and work monitoring)
