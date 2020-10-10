@@ -8,7 +8,9 @@ DBFA comes with ultra-light data structures and superior security features, whic
 
 NOTE: DBFA consumer-grade builds are published via GitHub releases while master houses the latest source which may/ may not work at all.
 
-## Build Highlights:
+## Source Highlights:
+<h5>> Decreased program boot times by 4-5 seconds and per-menu-cycle times by 2 seconds!
+<h5>> Started transitioning all menu designs to the new (main menu like) schema, starting with the Employee Manager menu.
 <h5>> DBFA Employee Manager v2.1 (auto-shift scheduling, leave applications, automated salary calculation and work monitoring)
 <h5>> DBFA Incremental Security Update (09/10/2020)
 <h5>> Updated with newly written 8.52docs</h5>
