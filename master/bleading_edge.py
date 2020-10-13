@@ -115,51 +115,54 @@ def dmain():
         #print(last_update_id)
         for update in updates["result"]:
             #print(update["message"]["text"])
-            if (update["message"]["text"]).replace(" ", "") == "disableDBFA":
-                settingsmodifier(9, 0)
-                time.sleep(0.5)
-                telegram_bot_sendtext("delta Webhook Services\nUsage permissions have been revoked from your installation of DBFA.\n\nExpect access to be stopped from the next boot/ menu cycle.\nhttps://software.deltaone.tech/servicestatus.html")
-                print("delta Webhook Prompt: ")
-                print("A webbrowser window will shortly open ~")
-                webbrowser.open('https://software.deltaone.tech/servicestatus.html')
-                with open('lastupdateid2.txt', 'a+') as file:
-                    file.close()
-                with open('lastupdateid2.txt', 'r+') as file:
+            try:
+                if (update["message"]["text"]).replace(" ", "") == "disableDBFA":
                     settingsmodifier(9, 0)
                     time.sleep(0.5)
-                    file.truncate(0)
-                    file.write('%d'%last_update_id)
-                time.sleep(5)
-                settingsmodifier(9, 0)
-                print("DBFA will now exit.")
-                time.sleep(0.5)
-                os._exit(0)
-                os._exit(1)
-                os._exit(0)
-            elif (update["message"]["text"]).replace(" ", "") == "enableDBFA":
-                if settingscommonfetch(9) == 0:
-                    settingsmodifier(9, 1)
+                    telegram_bot_sendtext("delta Webhook Services\nUsage permissions have been revoked from your installation of DBFA.\n\nExpect access to be stopped from the next boot/ menu cycle.\nhttps://software.deltaone.tech/servicestatus.html")
                     print("delta Webhook Prompt: ")
-                    telegram_bot_sendtext("delta Webhook Services\n\nAccess has been re-granted on your installation of DBFA.")
-                    print("The administrator of this DBFA installation has re-allowed access to DBFA on this device!")
-                    time.sleep(3)
-            else:
-                if settingscommonfetch(9) == 0:
+                    print("A webbrowser window will shortly open ~")
+                    webbrowser.open('https://software.deltaone.tech/servicestatus.html')
                     with open('lastupdateid2.txt', 'a+') as file:
                         file.close()
                     with open('lastupdateid2.txt', 'r+') as file:
+                        settingsmodifier(9, 0)
+                        time.sleep(0.5)
                         file.truncate(0)
                         file.write('%d'%last_update_id)
-                    print("A webbrowser window will shortly open ~")
-                    print("delta Webhook Prompt: ")
-                    webbrowser.open('https://software.deltaone.tech/servicestatus.html')
-                    print("DBFA will now exit.")
                     time.sleep(5)
+                    settingsmodifier(9, 0)
+                    print("DBFA will now exit.")
+                    time.sleep(0.5)
                     os._exit(0)
                     os._exit(1)
                     os._exit(0)
+                elif (update["message"]["text"]).replace(" ", "") == "enableDBFA":
+                    if settingscommonfetch(9) == 0:
+                        settingsmodifier(9, 1)
+                        print("delta Webhook Prompt: ")
+                        telegram_bot_sendtext("delta Webhook Services\n\nAccess has been re-granted on your installation of DBFA.")
+                        print("The administrator of this DBFA installation has re-allowed access to DBFA on this device!")
+                        time.sleep(3)
                 else:
-                    pass
+                    if settingscommonfetch(9) == 0:
+                        with open('lastupdateid2.txt', 'a+') as file:
+                            file.close()
+                        with open('lastupdateid2.txt', 'r+') as file:
+                            file.truncate(0)
+                            file.write('%d'%last_update_id)
+                        print("A webbrowser window will shortly open ~")
+                        print("delta Webhook Prompt: ")
+                        webbrowser.open('https://software.deltaone.tech/servicestatus.html')
+                        print("DBFA will now exit.")
+                        time.sleep(5)
+                        os._exit(0)
+                        os._exit(1)
+                        os._exit(0)
+                    else:
+                        pass
+            except KeyError:
+                print("Do not sent images to DBFA communicator on Telegram!")
         with open('lastupdateid2.txt', 'a+') as file:
             file.close()
         with open('lastupdateid2.txt', 'r+') as file:
@@ -1521,7 +1524,7 @@ This is a dynamically generated schedule with alternating shifts. Employees on l
             print("Salary days: Pay salaries between 01st - 05th of every month. Open DBFA Employee Manager to pay ~")
         from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
         init(convert = True)
-        url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
+        url = "https://raw.githubusercontent.com/deltaonealpha/DBFAcrashhandler/main/updates.txt"
         r = requests.get(url)
         dbfaver = ((str(r.content.decode('utf-8'))))[4:]
         xdbfaver = ((str(r.content.decode('utf-8'))))
@@ -1561,7 +1564,7 @@ This is a dynamically generated schedule with alternating shifts. Employees on l
         pro7d = salesdatefetch()
         protd = salestodayfetch()
         end = time.time()
-        if (end - start) > 1.9:
+        if (int(end) - int(start)) > 2:
             print("Execution policy 2.12", '%d'%(end - start))
         logoxold = (Fore.CYAN+''' 
                             Options:  
@@ -2081,17 +2084,26 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
 
 
     def del3b():
-        print("-------- DBFA Stock Master v1 ---------")
-        print(" ")
+        from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+        init(convert = True)
         time.sleep(1)
-        print("a: Order New Stock")
-        print("b: Update Delivery Status")
-        print("c: MASS - Fetch Current Status")
-        print("d: INDVL - Fetch Current Status")
-        print("e: View Vendor Details")
-        print("f: Contact Vendor")
-        print("g: Edit Vendor Contact")
-        print("h: Modify Low-Stock Warning Bar")
+        print(Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+Options:                              Store Options >>> DBFA Stock Master v1
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    a: Order New Stock
+    b: Update Delivery Status
+    c: MASS - Fetch Current Status
+    d: INDVL - Fetch Current Status
+    e: View Vendor Details
+    f: Contact Vendor
+    g: Edit Vendor Contact
+    h: Modify Low-Stock Warning Bar
+
+What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+'''+Fore.CYAN+'''Stock Master ~'''+Fore.MAGENTA+'''     
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
         stkmaster = input("Select:: ")
         if stkmaster in ("a", "A"):
             idquery = int(input("Enter the product ID: "))
@@ -2465,7 +2477,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
             oauthx.execute("UPDATE LoginHandler SET Value = 0, TimeMark = 0")
             oauth.commit()
             oauth.close()   
-            os.startfile('authtimeout.pyw')
+            os.startfile(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\authtimeout.pyw')
             time.sleep(1)
             os._exit(0)
         elif int(netr)-int(stamp) < 60:
@@ -2556,7 +2568,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
     print("---------------------------------\n\n༼ つ ◕_◕ ༽つ delta IntelliSense Updater\n\n---------------------------------")
     time.sleep(0.5)
     print("Talking to server ~ ")
-    url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
+    url = "https://raw.githubusercontent.com/deltaonealpha/DBFAcrashhandler/main/updates.txt"
     r = requests.get(url)
     dbfaver = ((str(r.content.decode('utf-8'))))[4:]
     xdbfaver = ((str(r.content.decode('utf-8'))))
@@ -3010,13 +3022,23 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
 
         #Manage Customers
         elif decfac == "2":
-            print("Select: ")
-            print("    a: Register a Customer ")
-            print("    b: Customer Registry ")
-            print("    c: Customer Purchase Records ")    
-            print("    d: Find a Customer ")
-            print("    e: Export Records as CSV \n")
-            selected = input("What would you like to do? ")
+            from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+            init(convert = True)
+            print(Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+Options:                                               Client >>> Manage Customers
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    a: Register a Customer 
+    b: Customer Registry 
+    c: Customer Purchase Records 
+    d: Find a Customer 
+    e: Export Records as CSV 
+
+What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+'''+Fore.CYAN+'''Manage Customers ~'''+Fore.MAGENTA+'''     
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
+            selected = input("What would you like to do? "+Fore.WHITE)
             print("\n")
             if selected in ("a", "A"):
                 del2a()
@@ -3070,14 +3092,24 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
 
         #Store Options:
         elif decfac == "3":
-            print("Select: ")
-            print("    a: Manage Stock ")
-            print("    b: DBFA Stock Master ")
-            print("    c: Manage Vouchers ")
-            print("    d: Product Listing ")
-            print("    e: Sales Log ")
-            print("    f: Export Sales Data as CSV ")
-            print("    g: Invoice Deep Archive \n")
+            from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+            init(convert = True)
+            print(Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+Options:                                                  Client >>> Store Options
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    a: Manage Stock 
+    b: DBFA Stock Master 
+    c: Manage Vouchers 
+    d: Product Listing 
+    e: Sales Log 
+    f: Export Sales Data as CSV 
+    g: Invoice Deep Archive 
+
+What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+'''+Fore.CYAN+'''Store Options ~'''+Fore.MAGENTA+'''     
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
             storeselected = input("What would you like to do? ")
             print("\n")
 
@@ -3332,13 +3364,23 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
 
         #Stock Ordering Option
         elif decfac == "5":
-            print("------------------ DBFA DELIVERY MANAGER ------------------")
+            from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+            init(convert = True)
             time.sleep(2)
-            print("For issuing new delivery orders, use the invoicing option")
-            print("-----------------------------------------------------------")
-            print("a: View existing deliveries")
-            print("b: Show delivery count")
-            print("c: Confirm a delivery")
+            print(Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+Options:                                         Client >>> Delivery Handler
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+For issuing new delivery orders, use the invoicing option
+-----------------------------------------------------------
+a: View existing deliveries
+b: Show delivery count
+c: Confirm a delivery
+
+What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+'''+Fore.CYAN+'''DBFA Delivery Handler ~'''+Fore.MAGENTA+'''     
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
             delfacx = input("Select: ")
             if delfacx in ("a", "A"):
                 # Fetch Data
@@ -3826,7 +3868,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
             os.system('cls')
             print("---------------------------------\n\n༼ つ ◕_◕ ༽つ delta Update Utility\n\n---------------------------------")
             time.sleep(1)
-            url = "https://raw.github.com/deltaonealpha/DBFA/master/updates.txt"
+            url = "https://raw.githubusercontent.com/deltaonealpha/DBFAcrashhandler/main/updates.txt"
             r = requests.get(url)
             dbfaver = ((str(r.content.decode('utf-8'))))[4:]
             xdbfaver = ((str(r.content.decode('utf-8'))))
@@ -3994,19 +4036,27 @@ What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █
                     firename = str(empmascur.fetchall()[0][0])
                     confofac = input("CONFIRM: Change details for "+firename+"? (y/n): ")
                     if confofac == "y":
-                        print('''Options:
-                                1. Change Name
-                                2. Change Email
-                                3. Change Mobile Contact
+                        from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+                        init(convert = True)
+                        print(Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+Options:                            Employee Manager >>> Employee Details Modifier
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    1. Change Name
+    2. Change Email
+    3. Change Mobile Contact
 
-                                4. Change Residential Address
+    4. Change Residential Address
+    5. Change UPI Payments ID
 
-                                5. Change UPI Payments ID
+    6. Change Department
+    7. Change Designation (POST)
+    8. Change Salary 
 
-                                6. Change Department
-                                7. Change Designation (POST)
-                                8. Change Salary        
-                                ''')                    
+What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+'''+Fore.CYAN+'''Employee Details Modifier ~'''+Fore.MAGENTA+'''     
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)                  
                         subfac = input("What would you like to do? ")
                         if subfac == "1":
                             print("1. Change Name")
@@ -4236,11 +4286,20 @@ What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █
                 
                 if empfac == "5":
                     print("\nDBFA Scheduler handles duty scheduling and shifts for 24x7 services.\nDBFA can automatically schedule shifts and handle leave applications.")
-                    print("----------------------------------\ndeltaScheduler ~\n\nOptions:")
-                    
-                    print("a. View tomorrow's schedule ")
-                    print("b. Apply for a leave (effective tomorrow only)")
-                    print("c. Return to main menu ~ ")
+                    from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+                    init(convert = True)
+                    print(Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+Options:                                       Employee Manager >>> deltaScheduler
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    a. View tomorrow's schedule 
+    b. Apply for a leave (effective tomorrow only)
+    c. Return to main menu ~ 
+
+What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+'''+Fore.CYAN+'''Shift Scheduler ~'''+Fore.MAGENTA+'''     
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
                     submen = input("What would you like to do?: ")
                     if submen in ("A", "a"):
                         with open('lastsched.txt', 'r+', encoding="utf-8") as file:
@@ -4745,14 +4804,22 @@ What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █
             if ffxfac == "y":
                 ffrxfac = str(input("Entering CIT may lead to data loss. Confirm entering CIT? (y/n):: "))
                 if ffrxfac == "y":
-                    print("DNSS CIT MODE")
-                    print(" ")
-                    print(" ")
-                    print("NOTE: DBFA will restart to execute CIT options. ")
-                    print("CIT Options::")
-                    print("Enter '1' to CLEAR ALL CUSTOMER RECORDS")
-                    print("Enter '2' to CLEAR ALL VOUCHERS/ COUPONS")
-                    print("Enter '3' to exit CIT")
+                    from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+                    init(convert = True)
+                    print(Fore.RED+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+Internal Testing Mode                               DBFA Debugger >>> Permissive Options
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+DBFA Client will restart to execute Permissive Options!'''+Fore.MAGENTA+'''
+    '1' - to CLEAR ALL CUSTOMER RECORDS
+    '2' - to CLEAR ALL VOUCHERS/ COUPONS
+    '3' - to exit CIT
+
+What would you like to do?                '''+Fore.RED+'''█▀▀█ █▀ ██  █ █ █▀▀  █▀▀  █▀ ██   Internal'''+Fore.MAGENTA+'''
+'''+Fore.RED+'''▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.RED+'''█__█ █_ ███ █_█ █_▀█ █_▀█ █_ █ ▀_ Testing Mode'''+Fore.MAGENTA+'''
+'''+Fore.CYAN+'''DBFA Debugger >>> Permissive Options ~    
+'''+Fore.RED+'''▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
+
                     citfacin = int(input("Waiting for input:: "))
                     if citfacin == 1:
                         # window.close()
@@ -4904,7 +4971,7 @@ except:
         listing = ('bleading_edge', 'modif2fa', 'dbfaempman', 'plotter', 'delauth', 'dbfabackupper', 'authtimeout', 'securepack', 'securepackxvc', 'wrelogin', 'run_DBFA')
 
         print("Fetching MD5 from server.")
-        servermd5 = ((requests.get("https://raw.githubusercontent.com/deltaonealpha/DBFA/master/md5")).content).decode('utf-8')
+        servermd5 = ((requests.get("https://raw.github.com/deltaonealpha/DBFAcrashhandler/main/md5")).content).decode('utf-8')
         #.replace(" ", "").replace("\n", "")
         serverdump = (servermd5.split())
         print("Arranging hashes ###")

@@ -2,11 +2,20 @@ deltaDBFA Infinity Development Changelog | author: @deltaonealpha
 - Changelog for DBFA consisting of all changes since DBFA 7
 ------------------------------------------------------------
 
+13-10-2020 18:56
+> Rectified bug with menu time meter
+> Rectified webhook bug which induced a crash when an image was sent to the Telegram bot 
+> Changed DBFA updater & integrity validator files from GitHub >>> DBFA to GitHub >>> DBFAcrashhandler
+  (Benefit: Main repo can now go private without DBFA crashing yey)
+
+11-10-2020
+> All menu designs are now unified across DBFA.
+
 10-10-2020
-> Started work on PHASE - II of DBFA - Unifying menu designs across the code
-    - Unified Employee Manager menu design with main menu
-> Decreased per-boot-cycle time by 2 seconds!
-> Reduced main boot timings by 4-5 seconds!
+> Started work on PHASE - II of DBFA - Unifying menu designs across the code.
+    - Unified Employee Manager menu design with main menu.
+> Decreased per-boot-cycle time by 2 seconds
+> Reduced main boot timings by 4-5 seconds
 > Improved invoicing code logic (majorly lylpoints)
 
 09-10-2020
