@@ -119,10 +119,10 @@ def dmain():
                 if (update["message"]["text"]).replace(" ", "") == "disableDBFA":
                     settingsmodifier(9, 0)
                     time.sleep(0.5)
-                    telegram_bot_sendtext("delta Webhook Services\nUsage permissions have been revoked from your installation of DBFA.\n\nExpect access to be stopped from the next boot/ menu cycle.\nhttps://software.deltaone.tech/servicestatus.html")
+                    telegram_bot_sendtext("delta Webhook Services\nUsage permissions have been revoked from your installation of DBFA.\n\nExpect access to be stopped from the next boot/ menu cycle.\nhttps://servicestatus.deltaone.tech/")
                     print("delta Webhook Prompt: ")
                     print("A webbrowser window will shortly open ~")
-                    webbrowser.open('https://software.deltaone.tech/servicestatus.html')
+                    webbrowser.open('https://servicestatus.deltaone.tech/')
                     with open('lastupdateid2.txt', 'a+') as file:
                         file.close()
                     with open('lastupdateid2.txt', 'r+') as file:
@@ -153,7 +153,7 @@ def dmain():
                             file.write('%d'%last_update_id)
                         print("A webbrowser window will shortly open ~")
                         print("delta Webhook Prompt: ")
-                        webbrowser.open('https://software.deltaone.tech/servicestatus.html')
+                        webbrowser.open('https://servicestatus.deltaone.tech/')
                         print("DBFA will now exit.")
                         time.sleep(5)
                         os._exit(0)
@@ -179,7 +179,7 @@ def dmain():
                 file.write('%d'%last_update_id)
             print("A webbrowser window will shortly open ~")
             print("delta Webhook Prompt: ")
-            webbrowser.open('https://software.deltaone.tech/servicestatus.html')
+            webbrowser.open('https://servicestatus.deltaone.tech/')
             print("DBFA will now exit.")
             time.sleep(5)
             os._exit(0)
@@ -366,6 +366,14 @@ try:
             send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
             response = requests.get(send_text)
             return response.json()
+        
+    def telegram_bot_grouptext(bot_message):    
+        with HiddenPrints():
+            bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
+            bot_chatID = '-1001389013987'
+            send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+            response = requests.get(send_text)
+        return response.json()
 
     def getOTP():   
         global otp
@@ -1450,23 +1458,23 @@ try:
                 t33 = str("0"+str((int(600+timex(9)))))
 
             sched = ('''                Schedule for ''' + str(start) + '''
-        delta           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
-        Scheduler       █   0600 - '''+t11+'''   █   1400 - '''+t12+'''   █   2200 - '''+t13+'''   █ ▀
-        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
-        SALES           █'''+autospacer(r11)+'''█'''+autospacer(r12)+'''█'''+autospacer(r13)+'''█ ▀
-                        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀
+delta           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
+Scheduler       █   0600 - '''+t11+'''   █   1400 - '''+t12+'''   █   2200 - '''+t13+'''   █ ▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
+SALES           █'''+autospacer(r11)+'''█'''+autospacer(r12)+'''█'''+autospacer(r13)+'''█ ▀
+                ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀
 
-        delta           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀                
-        Scheduler       █   0600 - '''+t21+'''   █   1400 - '''+t22+'''   █   2200 - 0600   █ ▀
-        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
-        MAINTANENCE     █'''+autospacer(r21)+'''█'''+autospacer(r22)+'''█ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ █ ▀
-                        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀
+delta           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀                
+Scheduler       █   0600 - '''+t21+'''   █   1400 - '''+t22+'''   █   2200 - 0600   █ ▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀
+MAINTANENCE     █'''+autospacer(r21)+'''█'''+autospacer(r22)+'''█ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ █ ▀
+                ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀
 
-        delta           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀                
-        Scheduler       █   0600 - '''+t31+'''   █   1400 - 2200   █   2200 - '''+t33+'''   █ ▀
-        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀                
-        LOGISTICS       █'''+autospacer(r31)+'''█ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ █'''+autospacer(r33)+'''█ ▀
-                        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀
+delta           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀                
+Scheduler       █   0600 - '''+t31+'''   █   1400 - 2200   █   2200 - '''+t33+'''   █ ▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ▀                
+LOGISTICS       █'''+autospacer(r31)+'''█ ▀ ▀ ▀ ▀ ▀ ▀ ▀ ▀ █'''+autospacer(r33)+'''█ ▀
+                ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀
             ''')
 
             print("Tomorrow's shift schedule:: \n")
@@ -1499,8 +1507,9 @@ This is a dynamically generated schedule with alternating shifts. Employees on l
             empmascur.execute("INSERT INTO scheddelivery(Date) VALUES (?)", (dt_string,))
             empmas.commit()
 
-            telegram_bot_sendtext(bot_message.replace("&", "and"))
+            telegram_bot_grouptext(bot_message.replace("&", "and"))
             time.sleep(2)
+            telegram_bot_sendtext(bot_message.replace("&", "and"))            
             print(sched)
             contfac = input("Enter a button to continue ~ : ")
             with open('lastsched.txt', 'a+') as file:
@@ -1563,9 +1572,6 @@ This is a dynamically generated schedule with alternating shifts. Employees on l
         filedel.close()
         pro7d = salesdatefetch()
         protd = salestodayfetch()
-        end = time.time()
-        if (int(end) - int(start)) > 2:
-            print("Execution policy 2.12", '%d'%(end - start))
         logoxold = (Fore.CYAN+''' 
                             Options:  
 █▀▀█ █▀█  █▀▀ █▀█  █▀▀█   1  - Issue a Bill                                              4  - Store Report

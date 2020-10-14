@@ -2,6 +2,11 @@ deltaDBFA Infinity Development Changelog | author: @deltaonealpha
 - Changelog for DBFA consisting of all changes since DBFA 7
 ------------------------------------------------------------
 
+14-10-2020 20:40
+> Service status page has been moved from https://software.deltaone.tech/servicestatus.html to https://servicestatus.deltaone.tech/
+  This incorporated dashboard UI v2.1 and has base for deltaInsync Status API.
+> Schedule is now sent to a Telegram group consisting of all employees.
+
 13-10-2020 18:56
 > Rectified bug with menu time meter
 > Rectified webhook bug which induced a crash when an image was sent to the Telegram bot 
