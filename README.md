@@ -1,6 +1,8 @@
 # DBFA 8 Store Manager <span style="color: #496dd0">#RadicallyNew</span>
 ##### 09/10/2020: DBFA 8.60 (beta) release (see changelog)
-  
+
+### A NEW .exe installer is now available for DBFA releases (8.60 & +) which automatically deploys the latest DBFA release with an additional built-in Python installer if the Python installation is unavailable.
+
 A store manager like none other, DBFA handles everything from billing and inventory to employees, payments, shifts and even deliveries, while staying open source! ;)
 
 DBFA comes with ultra-light data structures and superior security features, which we take pride over.
