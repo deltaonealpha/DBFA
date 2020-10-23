@@ -1,15 +1,19 @@
+from os import curdir, error
+from typing import KeysView
 from zipfile import ZipFile 
 import os, shutil, time
 from tqdm import tqdm 
-
+import traceback
 
 command = "cls"
 os.system(command)
 
+global curdir, parentdir, fontsdir
+currdir = str(os.getcwd())
 
 print("DBFA Backup & Switch Utility")
 time.sleep(0.7)
-if os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\delauth.txt'):
+if os.path.exists(currdir+'\\delauth.txt'):
     pass
 else:
     print("Authenication bypased. Exiting.")
@@ -24,72 +28,116 @@ print("Fetching settings..")
 print("")
 time.sleep(0.5)
 
+import os
+from datetime import datetime  #for reporting the billing time and date
+now = datetime.now()
+dt_string = now.strftime("%d/%m/%Y %H:%M:%S")  #datetime object containing current date and time
+def securedatafetch(SettingsType):
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+    settingsx.execute(("SELECT Col1 from passkeyhandler WHERE Sno = ?"), (SettingsType,))
+    settingsfetch = (settingsx.fetchall()[0][0])
+    return settingsfetch
+with open('backupconfig.txt', 'a+') as file:
+    file.close()
+with open('backupconfig.txt', 'r+') as file:
+    file.truncate(0)
+    file.write("delta Backup Package\n")
+    file.write("Installation: DBFA Client\n")
+    file.write(str("User: " + str(os.getlogin())))
+    file.write(str("configpasskey:" + str(securedatafetch(8))))
+    file.write(str("\nTime of creation: " + str(dt_string)))
+    file.write("\nDELTAID: 12907789")
 
 def copier():
-    for i in tqdm (range (100), desc="Processing:                       "): 
-        slave = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFATempc'
-        if os.path.exists(r'delauth.txt'):
-            master = r'cponmgmtsys.db'
+    slave = 'C:\DBFATempc'
+    if os.path.exists(currdir+'\\delauth.txt'):  
+        for i in tqdm (range (100), desc="Copying Databases                       "): 
+            master = currdir+'\\DBFA_vend.db'
             shutil.copy(master, slave)
-            master = r'lastupdateid.txt'
+            master = currdir+'\\cponmgmtsys.db'
             shutil.copy(master, slave)
-            time.sleep(0.0000000001)
-            master = r'DBFA.db'
+            master = currdir+'\\DBFA.db'
             shutil.copy(master, slave)
-            master = r'DBFA_CUSTCC.db'
+            master = currdir+'\\DBFA_CUSTCC.db'
             shutil.copy(master, slave)
-            master = r'DBFA_handler.db'
+            master = currdir+'\\DBFA_handler.db'
             shutil.copy(master, slave)
-            master = r'recmaster.db'
-            shutil.copy(master, slave)
-            time.sleep(0.0000000001)
-            master = r'invoicemaster.db'
-            shutil.copy(master, slave)
-            master = r'registry.txt'
-            shutil.copy(master, slave)
-            master = r'stockature.txt'
-            shutil.copy(master, slave)
-            master = r'tempfile.temp'
-            shutil.copy(master, slave)
-            master = r'qr-code.png'
+            master = currdir+'\\recmaster.db'
             shutil.copy(master, slave)
             time.sleep(0.0000000001)
-            master = r'log.txt'
+            master = currdir+'\\invoicemaster.db'
             shutil.copy(master, slave)
-            os.remove(r'delauth.txt')
-            master = r'DBFA_vend.db'
+            master = currdir+'\\dbfaempmaster.db'
             shutil.copy(master, slave)
-            master = r'client_secrets.json'
+            master = currdir+'\\dbfasales.db'
             shutil.copy(master, slave)
-            master = r'DBFAdeliveries.txt'
+            master = currdir+'\\dbfasettings.db'
+            if os.path.exists(currdir+'\\delauth.txt'):
+                os.remove(currdir+'\\delauth.txt')
             shutil.copy(master, slave)
-            master = r'graphing_testbuild.py'
+            master = currdir+'\\DeepArchivalVault.db'
             shutil.copy(master, slave)
-            master = r'wrelogin.pyw'
+            master = currdir+'\\recmaster.db'
             shutil.copy(master, slave)
-            master = r'run_DBFA.pyw'
+
+        for i in tqdm (range (100), desc="Copying Session Keys                    "): 
+            master = currdir+'\\backupconfig.txt'
             shutil.copy(master, slave)
-            master = r'lastupdateid.txt'
+            master = currdir+'\\lastupdateid.txt'
             shutil.copy(master, slave)
-            master = r'dlr.pyq'
+            master = currdir+'\\lastupdateid2.txt'
             shutil.copy(master, slave)
+            if os.path.exists(currdir+'\\delauth.txt'):
+                os.remove(currdir+'\\delauth.txt')
+            master = currdir+'\\lastsched.txt'
+            shutil.copy(master, slave)
+            time.sleep(0.0000000001)
+
+        for i in tqdm (range (100), desc="Copying Authorization Keys              "): 
+            master = currdir+'\\tempfile.temp'
+            shutil.copy(master, slave)
+            if os.path.exists(currdir+'\\delauth.txt'):
+                os.remove(currdir+'\\delauth.txt')
+            master = currdir+'\\client_secrets.json'
+            shutil.copy(master, slave)
+            time.sleep(0.0000000001)
+
+        for i in tqdm (range (100), desc="Copying Payment Keys                    "): 
+            master = currdir+'\\DBFAdeliveries.txt'
+            shutil.copy(master, slave)
+            master = currdir+'\\payqr.png'
+            if os.path.exists(currdir+'\\delauth.txt'):
+                os.remove(currdir+'\\delauth.txt')
+            shutil.copy(master, slave)
+            time.sleep(0.0000000001)
+
+        for i in tqdm (range (100), desc="Copying Registery & Logs Files          "): 
+            master = currdir+'\\log.txt'
+            shutil.copy(master, slave)
+            master = currdir+'\\devclog.txt'
+            if os.path.exists(currdir+'\\delauth.txt'):
+                os.remove(currdir+'\\delauth.txt')
+            shutil.copy(master, slave)
+            master = currdir+'\\registry.txt'
+            shutil.copy(master, slave)
+            time.sleep(0.0000000001)
+            time.sleep(0.0000000001)
             
 try:
     for i in tqdm (range (100), desc="Creating File Structure:          "): 
-        if os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc'):
-            shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc', ignore_errors=True)
-        if os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc'):
-            shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc', ignore_errors=True)
-        if not os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc'):
-            os.mkdir(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc', mode = 0o777, dir_fd = None)
-        if not os.path.exists(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc'):
-            os.mkdir(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc', mode = 0o777, dir_fd = None)
+        if os.path.exists('C:\DBFATempc'):
+            shutil.rmtree('C:\DBFATempc', ignore_errors=True)
+        if os.path.exists(currdir+'\\DBFA_Backup&Switchc'):
+            shutil.rmtree(currdir+'\\DBFA_Backup&Switchc', ignore_errors=True)
+        if os.path.exists('C:\DBFATempc'):
+            os.remove('C:\DBFATempc')
+        os.makedirs('C:\DBFATempc', mode = 0o777)
+        os.makedirs(currdir+'\\DBFA_Backup&Switchc', mode = 0o777)
+        #, dir_fd = None
         time.sleep(0.000001)
     copier()
-
-    
-    
-
 
     def get_all_file_paths(directory): 
         file_paths = [] 
@@ -100,7 +148,7 @@ try:
         return file_paths		 
 
     def main(): 
-        directory = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc'
+        directory = 'C:\DBFATempc'
         file_paths = get_all_file_paths(directory) 
 
         with ZipFile('DBFABackup.zip','w') as zip: 
@@ -110,19 +158,21 @@ try:
         
 
     if __name__ == "__main__": 
-        for i in tqdm (range (100), desc="Zipping Files:                    "): 
+        for i in tqdm (range (100), desc="Archiving Backup:                    "): 
             main()
             time.sleep(0.000001)
     time.sleep(1)
 
-    shutil.move('DBFABackup.zip', 'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc')  
+    shutil.move('DBFABackup.zip', (currdir+'\\DBFA_Backup&Switchc'))
 
     for i in tqdm (range (100), desc="Cleaning up:                      "): 
-        shutil.rmtree(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc', ignore_errors=True)
+        shutil.rmtree('C:\DBFATempc', ignore_errors=True)
         time.sleep(0.000001)
+        if os.path.exists(currdir+'\\backupconfig.txt'):
+            os.remove(currdir+'\\backupconfig.txt')
     for i in tqdm (range (100), desc="Writing Restoration Instructions: "): 
-        slave = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFATempc'
-        master = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\Assets\\instructions.txt'
+        slave = currdir+'\\DBFA_Backup&Switchc'
+        master = currdir+'\\Assets\\instructions.txt'
         shutil.copy(master, slave)
         time.sleep(0.000001)
     print("")
@@ -149,24 +199,29 @@ try:
         })
         drive_folder.Upload()
 
-        directory = r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc'
+        directory = currdir+'\\DBFA_Backup&Switchc'
 
         folders = drive.ListFile(
-            {'q': "title='" + folderName + "' and mimeType='application/vnd.google-apps.folder' and trashed=false"}).GetList()
+            {'q': "title='" + folderName + "' and mimeType='application/vnd.google-apps.foldecurrdir+'\\ and trashed=false"}).GetList()
         for folder in folders:
             if folder['title'] == folderName:
                 file2 = drive.CreateFile({'parents': [{'id': folder['id']}]})
-                file2.SetContentFile(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\DBFA_Backup&Switchc\\DBFABackup.zip')
+                file2.SetContentFile(currdir+'\\DBFA_Backup&Switchc\\DBFABackup.zip')
                 file2.Upload()
-        os.startfile(r'delauth.py')
+                print("Backup archive uploaded to Google Drive ~")
+        os.startfile(currdir+'\\DBFA_Backup&Switchc')
+        os.startfile(currdir+'\\run_DBFA.pyw')
     else:
         time.sleep(2)
-        os.startfile(r'delauth.py')
+        os.startfile(currdir+'\\DBFA_Backup&Switchc')
+        os.startfile(currdir+'\\run_DBFA.pyw')
         os._exit(0)
-
-
 
         print("Directory: {} backed up successfully".format(directory))
 except:
     time.sleep(1)
     print("PERMISSION ERROR: We couldn't get access to DBFA directories.")
+    error_message = traceback.format_exc()
+    print(error_message)
+    os.startfile(currdir+'\\DBFA_Backup&Switchc')
+    time.sleep(10)

@@ -1,6 +1,18 @@
 from datetime import datetime
 import sqlite3, time, os
 
+import os, time
+global curdir, parentdir, fontsdir
+currdir = str(os.getcwd())
+
+def securedatafetch(SettingsType):
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+    settingsx.execute(("SELECT Col1 from passkeyhandler WHERE Sno = ?"), (SettingsType,))
+    settingsfetch = (settingsx.fetchall()[0][0])
+    return settingsfetch
+    
 def OAuthset():
     now = datetime.now()
     try: #To avoid error when time is 00:00:00
@@ -65,7 +77,7 @@ def Login():
             break
         window.close()
         window.close()
-        if values[0] == 'ed' and values[1] == 'edd':
+        if values[0] == str(securedatafetch(7)) and values[1] == str(securedatafetch(8)):
             #os.close(r'DDD.py')
             window.close()
             userblock = open(r"userblock.txt","a+") #Opening / creating (if it doesn't exist already) the .txt record file
@@ -74,7 +86,7 @@ def Login():
             OAuthset()
             userblock.close()
             print("logging success")
-            os.startfile('bleading_edge.py')
+            os.startfile(currdir+'\\bleading_edge.py')
             window.close()
             window.close()
             exit
@@ -82,7 +94,7 @@ def Login():
             exit
             break
         else:
-            os.startfile("wrelogin.pyw")
+            os.startfile(currdir+"\\wrelogin.pyw")
             exit
         #window.close
         #erraise()

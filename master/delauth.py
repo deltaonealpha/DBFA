@@ -2,6 +2,14 @@ import requests, time, json, urllib, os
 from tqdm import tqdm 
 import PySimpleGUI as sgx
 
+def securedatafetch(SettingsType):
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+    settingsx.execute(("SELECT Col1 from passkeyhandler WHERE Sno = ?"), (SettingsType,))
+    settingsfetch = (settingsx.fetchall()[0][0])
+    return settingsfetch
+
 global valn
 valn = 0
 #print(valn)
@@ -49,7 +57,7 @@ def Login():
             window.close()
             window.close()
             os._exit(1)
-        if values[0] == 'ed' and values[1] == 'edd':
+        if values[0] == str(securedatafetch(7)) and values[1] == str(securedatafetch(8)):
             window.close()
             window.close()
             print("As you're accessing sensitive information, we'll require you to authenicate this request.")
@@ -104,7 +112,7 @@ def echo_all(updates):
             if text == "ed":
                 valn = 1
                 send_message("You have authenicated a DBFA Backup & Switch request.\n\nThis allows your installation of DBFA to be backed-up.\n\nIf this wasn't you, contact support and revoke your Telegram bot login at the earliest.\n\nDBFA Security", chat)
-                ins = open(r"delauth.txt", "a+")  #Opening / creating (if it doesn't exist already) the .txt record file
+                ins = open(r"delauth.txt", "a+", encoding="utf-8")  #Opening / creating (if it doesn't exist already) the .txt record file
                 ins.write('%s'%update)
                 ins.close()
                 get_updates(last_update_id)

@@ -2,7 +2,9 @@ import requests, time, json, urllib, os, math, random, sqlite3
 from tqdm import tqdm 
 import PySimpleGUI as sgx
 
-
+import os, time
+global curdir, parentdir, fontsdir
+currdir = str(os.getcwd())
 
 def settingscommonfetch(SettingsType):
     import sqlite3
@@ -19,7 +21,13 @@ def settingsmodifier(SettingsType, NewValue):
     settingsx.execute(("UPDATE settings SET Value = ? WHERE SettingsType = ?"), (NewValue, SettingsType))
     settings.commit()
 
-
+def securedatafetch(SettingsType):
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+    settingsx.execute(("SELECT Col1 from passkeyhandler WHERE Sno = ?"), (SettingsType,))
+    settingsfetch = (settingsx.fetchall()[0][0])
+    return settingsfetch
 
 
 def transitionprogress():
@@ -107,7 +115,7 @@ def Login():
             window.close()
             window.close()
             os._exit(1)
-        if values[0] == 'ed' and values[1] == 'edd':
+        if values[0] == str(securedatafetch(7)) and values[1] == str(securedatafetch(8)):
             window.close()
             window.close()
             print("delta2FAAuthenicationAPI-lite")
@@ -148,14 +156,14 @@ def mainprocess():
                         transitionprogress()
                         time.sleep(3)
                         print("Please wait while we restart DBFA main client")
-                        os.startfile('bleading_edge.py')
+                        os.startfile(currdir+'\\bleading_edge.py')
                         time.sleep(1)
                         os._exit(0)
                     else:
                         print("DBFA 2FA is already enabled!")
                         time.sleep(3)
                         print("Please wait while we restart DBFA main client")
-                        os.startfile('bleading_edge.py')
+                        os.startfile(currdir+'\\bleading_edge.py')
                         time.sleep(1)
                         os._exit(0)
 
@@ -165,14 +173,14 @@ def mainprocess():
                         transitionprogressneg()
                         time.sleep(3)
                         print("Please wait while we restart DBFA main client")
-                        os.startfile('bleading_edge.py')
+                        os.startfile(currdir+'\\bleading_edge.py')
                         time.sleep(1)
                         os._exit(0)
                     else:
                         print("DBFA 2FA is already enabled!")
                         time.sleep(3)
                         print("Please wait while we restart DBFA main client")
-                        os.startfile('bleading_edge.py')
+                        os.startfile(currdir+'\\bleading_edge.py')
                         time.sleep(1)
                         os._exit(0)
 

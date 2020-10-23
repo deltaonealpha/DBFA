@@ -1,5 +1,34 @@
 from datetime import datetime
+from os import curdir
 import sqlite3, time, os
+
+import os, time
+global currdir, parentdir, fontsdir
+currdir = str(os.getcwd())
+
+def securedatafetch(SettingsType):
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+    settingsx.execute(("SELECT Col1 from passkeyhandler WHERE Sno = ?"), (SettingsType,))
+    settingsfetch = (settingsx.fetchall()[0][0])
+    return settingsfetch
+
+if securedatafetch(9) == (0):
+    import os
+    os.startfile('initializeDBFA.py')
+    os._exit(0)
+else:
+    pass
+
+def securedatafetch(SettingsType):
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+    settingsx.execute(("SELECT Col1 from passkeyhandler WHERE Sno = ?"), (SettingsType,))
+    settingsfetch = (settingsx.fetchall()[0][0])
+    return settingsfetch
+
 
 if os.path.exists(r'userblock.txt'):
     os.remove(r'userblock.txt')
@@ -34,7 +63,7 @@ def OAuthset():
     oauth.close()
 
 def Login():
-    creds = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\tempfile.temp'
+    creds = currdir+'\\tempfile.temp'
     with open(creds, 'r') as f:
         data = f.readlines() # This takes the entire document we put the info into and puts it into the data variable
         uname = data[0].rstrip() # Data[0], 0 is the first line, 1 is the second and so on.
@@ -73,7 +102,7 @@ def Login():
             break
         window.close()
         window.close()
-        if values[0] == 'ed' and values[1] == 'edd':
+        if values[0] == str(securedatafetch(7)) and values[1] == str(securedatafetch(8)):
             #os.close(r'DDD.py')
             window.close()
             userblock = open(r"userblock.txt","a+") #Opening / creating (if it doesn't exist already) the .txt record file
@@ -82,7 +111,7 @@ def Login():
             OAuthset()
             userblock.close()
             print("logging success")
-            os.startfile('bleading_edge.py')
+            os.startfile(currdir+'\\bleading_edge.py')
             window.close()
             window.close()
             exit
@@ -90,14 +119,14 @@ def Login():
             exit
             break
         else:
-            os.startfile(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\wrelogin.pyw')
+            os.startfile(currdir+'\\wrelogin.pyw')
         #window.close
         #erraise()
 import PySimpleGUI as sg
-if os.path.exists(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\userblock.txt'):
-    os.remove(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\userblock.txt')
-if os.path.exists(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\userblock.zconf'):
-    os.remove(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\userblock.zconf')
+if os.path.exists(currdir+'\\userblock.txt'):
+    os.remove(currdir+'\\userblock.txt')
+if os.path.exists(currdir+'\\userblock.zconf'):
+    os.remove(currdir+'\\userblock.zconf')
 sg.theme('DarkTeal9')	# Add a touch of color
 # All the stuff inside your window.
 layout = [  [sg.Text("DBFA Security")],

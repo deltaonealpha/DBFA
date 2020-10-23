@@ -10,7 +10,7 @@ colorama
 win10toast
 telegram-send
 telegram
-python-telegram-bot
+python-telegram-bot==4.0rc1
 PyQRCode
 Pillow
 spotlib
@@ -18,3 +18,4 @@ SwSpotify
 pynput
 matplotlib
 oschmod
+telegram-send

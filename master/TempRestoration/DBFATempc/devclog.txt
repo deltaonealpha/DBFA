@@ -1,22 +1,6 @@
 deltaDBFA Infinity Development Changelog | author: @deltaonealpha
 - Changelog for DBFA consisting of all changes since DBFA 7
---------------------------------------------------------------
-TODO:
-- User accounts (admin, cashier et cetera)
-- Package DBFA with dummy dbs from now, DBFA will detect
-  missing files and autogenerate dummy files (basically 
-  restore them from a built-in dummy backup yey nice ideaahh)
---------------------------------------------------------------
-
-23-10-2020 18:00
-> Presenting DBFA Restoration (Backup & Switch v2.0)
-  Now the 'Backup & Switch' option gives you an option to restore the backup too!
-  On selecting 'restore', DBFA will open a file dialog where you can chose the backup .zip file.
-  DBFA will automatically scan the backup file's metadata and figure out the earlier installation's password, which
-  would be required to complete restoration.
-
-  Upon recieving a valid password, DBFA will restore the backed-up data smoothly and restart DBFA client.
-
+------------------------------------------------------------
 
 23-10-2020 08:59 Critical Security Patch
 > All keys moved from settings > settings >>> to >>> settings > passkeyhandler for organizational purposes.

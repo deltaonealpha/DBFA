@@ -15,7 +15,16 @@ package dbfafartingspider
 #vs
 
 import traceback
-import json, requests, time, urllib, os, sys
+import json, requests, time, urllib, sys
+
+import os, time
+global curdir, parentdir, fontsdir
+currdir = str(os.getcwd())
+from pathlib import Path
+path = Path(os.getcwd())
+parentdir = str(Path(path.parent))
+userdir = os.path.expanduser('~')
+fontsdir = str(os.path.join(userdir, 'AppData\Local\Microsoft\Windows\Fonts\MiLanProVF.ttf')) 
 
 class HiddenPrints:
     def __enter__(self):
@@ -26,16 +35,6 @@ class HiddenPrints:
         sys.stdout = self._original_stdout
         print()
 
-def telegram_bot_sendtext(bot_message):
-    with HiddenPrints():
-        bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
-        bot_chatID = '680917769'
-        send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
-        response = requests.get(send_text)
-        return response.json()
-
-URL = "https://api.telegram.org/bot{}/".format('1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis')
-
 def settingscommonfetch(SettingsType):
     import sqlite3
     settings = sqlite3.connect(r'dbfasettings.db')
@@ -43,6 +42,32 @@ def settingscommonfetch(SettingsType):
     settingsx.execute(("SELECT Value from settings WHERE SettingsType = ?"), (SettingsType,))
     settingsfetch = (settingsx.fetchall()[0][0])
     return settingsfetch
+
+def settingsdatafetch(SettingsType):
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+    settingsx.execute(("SELECT Notes from settings WHERE SettingsType = ?"), (SettingsType,))
+    settingsfetch = (settingsx.fetchall()[0][0])
+    return settingsfetch
+
+def securedatafetch(SettingsType):
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+    settingsx.execute(("SELECT Col1 from passkeyhandler WHERE Sno = ?"), (SettingsType,))
+    settingsfetch = (settingsx.fetchall()[0][0])
+    return settingsfetch
+
+def telegram_bot_sendtext(bot_message):
+    with HiddenPrints():
+        bot_token = str(securedatafetch(2))
+        bot_chatID = str(securedatafetch(3))
+        send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+        response = requests.get(send_text)
+        return response.json()
+
+URL = "https://api.telegram.org/bot{}/".format('1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis')
 
 def settingsmodifier(SettingsType, NewValue):
     import sqlite3
@@ -119,10 +144,10 @@ def dmain():
                 if (update["message"]["text"]).replace(" ", "") == "disableDBFA":
                     settingsmodifier(9, 0)
                     time.sleep(0.5)
-                    telegram_bot_sendtext("delta Webhook Services\nUsage permissions have been revoked from your installation of DBFA.\n\nExpect access to be stopped from the next boot/ menu cycle.\nhttps://servicestatus.deltaone.tech/")
+                    telegram_bot_sendtext("delta Webhook Services\nUsage permissions have been revoked from your installation of DBFA.\n\nExpect access to be stopped from the next boot/ menu cycle.\nhttps://dashboard.deltaone.tech/dbfa.html")
                     print("delta Webhook Prompt: ")
                     print("A webbrowser window will shortly open ~")
-                    webbrowser.open('https://servicestatus.deltaone.tech/')
+                    webbrowser.open('https://dashboard.deltaone.tech/dbfa.html')
                     with open('lastupdateid2.txt', 'a+') as file:
                         file.close()
                     with open('lastupdateid2.txt', 'r+') as file:
@@ -153,7 +178,7 @@ def dmain():
                             file.write('%d'%last_update_id)
                         print("A webbrowser window will shortly open ~")
                         print("delta Webhook Prompt: ")
-                        webbrowser.open('https://servicestatus.deltaone.tech/')
+                        webbrowser.open('https://dashboard.deltaone.tech/dbfa.html')
                         print("DBFA will now exit.")
                         time.sleep(5)
                         os._exit(0)
@@ -179,7 +204,7 @@ def dmain():
                 file.write('%d'%last_update_id)
             print("A webbrowser window will shortly open ~")
             print("delta Webhook Prompt: ")
-            webbrowser.open('https://servicestatus.deltaone.tech/')
+            webbrowser.open('https://dashboard.deltaone.tech/dbfa.html')
             print("DBFA will now exit.")
             time.sleep(5)
             os._exit(0)
@@ -217,7 +242,7 @@ try:
 
     from reportlab.pdfbase import pdfmetrics
     from reportlab.pdfbase.ttfonts import TTFont
-    pdfmetrics.registerFont(TTFont('MiLanProVF', r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\MiLanProVF.ttf'))
+    pdfmetrics.registerFont(TTFont('MiLanProVF', str(currdir+r'\\MiLanProVF.ttf')))
     from reportlab.pdfgen import canvas
     from reportlab.lib.pagesizes import A4
     from reportlab.platypus import SimpleDocTemplate, Paragraph
@@ -361,16 +386,16 @@ try:
     # TG Communicator
     def telegram_bot_sendtext(bot_message):
         with HiddenPrints():
-            bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
-            bot_chatID = '680917769'
+            bot_token = str(securedatafetch(2))
+            bot_chatID = str(securedatafetch(3))
             send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
             response = requests.get(send_text)
             return response.json()
         
     def telegram_bot_grouptext(bot_message):    
         with HiddenPrints():
-            bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
-            bot_chatID = '-1001389013987'
+            bot_token = str(securedatafetch(2))
+            bot_chatID = str(securedatafetch(4))
             send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
             response = requests.get(send_text)
         return response.json()
@@ -1191,8 +1216,8 @@ try:
         datie = empmascur.fetchall()[0][0]
         if datie != dt_string:
             def telegram_bot_sendtext(bot_message):
-                bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
-                bot_chatID = '680917769'
+                bot_token = str(securedatafetch(2))
+                bot_chatID = str(securedatafetch(3))
                 send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
                 response = requests.get(send_text)
                 return response.json()
@@ -1537,7 +1562,7 @@ This is a dynamically generated schedule with alternating shifts. Employees on l
         r = requests.get(url)
         dbfaver = ((str(r.content.decode('utf-8'))))[4:]
         xdbfaver = ((str(r.content.decode('utf-8'))))
-        with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
+        with open(str(parentdir+'\\updates.txt'), 'r+') as upread:
             upread = (str(upread.read())).strip()
         #print("Server: ", dbfaver, "\nLocal: ", upread[4: ])
         spass1 = []
@@ -1594,7 +1619,7 @@ DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* -
 1  - Issue a Bill                                              4  - Store Report
 2  - Manage Customers:                                         5  - Manage Deliveries
         a: Register a Customer    c: Purchase Records          6  - DBFA Options
-        b: Customer Registry      d: Find a Customer           7  - DBFA Backup & Switch
+        b: Customer Registry      d: Find a Customer           7  - DBFA Backup & Switch 
         e: Export data as CSV                                  8  - Analyse Sales
 3  - Store Options:                                            '''+Fore.MAGENTA+'''emp/EMP - DBFA Employee Manager'''+Fore.CYAN+'''
         a: Manage Stock           c: Manage Vouchers           9  - View Software License
@@ -1726,8 +1751,8 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                     getOTP()
                     emailfetch(custid)
                     print("Please wait..")
-                    email = 'billing.dbfa@gmail.com'
-                    password = 'dbfaidlepass'
+                    email = str(securedatafetch(5))
+                    password = str(securedatafetch(1))
                     send_to_email = custmail
                     subject = 'Redeem your DBFA loyalty points'
                     messageHTML = ('''
@@ -2042,19 +2067,19 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
         from sqlite3 import Error
 
         try:
-            csvex=sql.connect(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA.db')
+            csvex=sql.connect(currdir+'\\DBFA.db')
             cursor = csvex.cursor()
             cursor.execute("select * from cust")
             print("Fetching data from database - I...")
             with open("DBFAcustrec.csv", "w") as csv_file:
-                csv_writer = csv.writer(csv_file, delimiter="\t")
+                csv_writer = csv.writer(csv_file)
                 csv_writer.writerow([i[0] for i in cursor.description])
                 csv_writer.writerows(cursor)
-                csvexx=sql.connect(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_CUSTCC.db')
+                csvexx=sql.connect(currdir+'\\DBFA_CUSTCC.db')
                 print("Fetching data from database - II...")
                 cursorx = csvexx.cursor()
                 cursorx.execute("select * from custcc")
-                csv_writer = csv.writer(csv_file, delimiter="\t")
+                csv_writer = csv.writer(csv_file)
                 csv_writer.writerow([i[0] for i in cursorx.description])
                 csv_writer.writerows(cursorx)    
             dirpath = os.getcwd() + "/DBFAcustrec.csv"
@@ -2297,12 +2322,12 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
         from sqlite3 import Error
 
         try:
-            csvex=sql.connect(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\recmaster.db')
+            csvex=sql.connect(currdir+'\\recmaster.db')
             print("Exporting sales data to CSV....")
             cursor = csvex.cursor()
             cursor.execute("select * from recmasterx")
             with open("DBFAstorerec.csv", "w") as csv_file:
-                csv_writer = csv.writer(csv_file, delimiter="\t")
+                csv_writer = csv.writer(csv_file)
                 csv_writer.writerow([i[0] for i in cursor.description])
                 csv_writer.writerows(cursor)
 
@@ -2394,8 +2419,8 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
     xlogger = logging.getLogger(__name__)
 
     def telegram_bot_sendtext(bot_message):
-        bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
-        bot_chatID = '680917769'
+        bot_token = str(securedatafetch(2))
+        bot_chatID = str(securedatafetch(3))
         send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
         response = requests.get(send_text)
         return response.json()
@@ -2416,7 +2441,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
         inlet = ("{}".format(query.data))
         if inlet in (1, "1"):
             query.edit_message_text(text="✅ delta 2FA approved! \n\nThis allows your installation of the DBFA client, and its data to be accessed. \n\nIf this wasn't you, contact support and revoke your bot login at the earliest.\n\ndelta Security Service")
-            with open(r"C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\deltatgstickerlogonew.webp", "rb") as f:
+            with open(currdir+'\\deltatgstickerlogonew.webp', "rb") as f:
                 telegram_send.send(stickers=[f])
                 keyboard = Controller()
                 print("\n\nValidation recieved! DBFA Client will start in a moment\n\n")
@@ -2429,7 +2454,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
 
         if inlet in (2, "2"):
             query.edit_message_text(text="❌🔐 Denied delta 2FA request.\n\ndelta Security Service")
-            with open(r"C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\deltatgstickerlogonew.webp", "rb") as f:
+            with open(currdir+'\\deltatgstickerlogonew.webp', "rb") as f:
                 telegram_send.send(stickers=[f])
             keyboard = Controller()
             print("\n\nThe login request for this session has been DENIED.\n\n")
@@ -2483,7 +2508,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
             oauthx.execute("UPDATE LoginHandler SET Value = 0, TimeMark = 0")
             oauth.commit()
             oauth.close()   
-            os.startfile(r'C:\\Users\\balaj\\OneDrive\\Documents\\GitHub\\DBFA\\master\\authtimeout.pyw')
+            os.startfile(curdir+'\\authtimeout.pyw')
             time.sleep(1)
             os._exit(0)
         elif int(netr)-int(stamp) < 60:
@@ -2537,8 +2562,8 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
 
     if settingscommonfetch(6) == 1:
         def telegram_bot_sendtext(bot_message):
-            bot_token = '1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis'
-            bot_chatID = '680917769'
+            bot_token = str(securedatafetch(2))
+            bot_chatID = str(securedatafetch(3))
             send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
             response = requests.get(send_text)
             return response.json()
@@ -2561,7 +2586,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
             from datetime import datetime  #for reporting the billing time and date
             now = datetime.now()
             dt_string = now.strftime("%d/%m/%Y %H:%M:%S")  #datetime object containing current date and time
-            with open(r"C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\deltatgstickerlogonew.webp", "rb") as f:
+            with open(currdir+'\\deltatgstickerlogonew.webp', "rb") as f:
                 telegram_send.send(stickers=[f])
             telegram_bot_sendtext("🔐delta 2FA Handler Service\nA login request has been recieved from your DBFA installation.\n\nRequest time        - " + '%s'%dt_string + f"\nHostname             - {hostname}\n" + f"IP Address             - {ip_address}\n" + "Service Identifier  - "+ platform.system() + platform.release() +"\n\nWARNING:  Do not approve this if this isn't you!\n\nPlease send */auth* to start the validation process: ")
             main()
@@ -2578,7 +2603,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
     r = requests.get(url)
     dbfaver = ((str(r.content.decode('utf-8'))))[4:]
     xdbfaver = ((str(r.content.decode('utf-8'))))
-    with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
+    with open(parentdir+'\\updates.txt', 'r+') as upread:
         upread = (str(upread.read())).strip()
     print("Server: ", dbfaver, "\nLocal: ", upread[4: ])
     spass1 = []
@@ -2952,7 +2977,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
 
                     import shutil
                     source = namer
-                    destination = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Generated_invoices'
+                    destination = currdir+'\\Generated_invoices'
                     dest = shutil.move(source, destination)  
                     time.sleep(1.5) #for a seamless experience
 
@@ -2971,7 +2996,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
                             body = """Thanks for making your purchase at DBFA!\n\nPlease find your invoice attached herewith.\n\nRegards\nThe DBFA Team"""
                             msg.attach(MIMEText(body, 'plain')) 
                             filename = namer
-                            attachment = open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\\Generated_invoices\\'+'%s'%namer, "rb") 
+                            attachment = open(currdir+'\\\Generated_invoices\\'+'%s'%namer, "rb") 
                             attac= MIMEBase('application', 'octet-stream') 
                             attac.set_payload((attachment).read()) 
                             encoders.encode_base64(attac) 
@@ -3207,7 +3232,7 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
                 canvas.restoreState()
 
             import sqlite3 as sql
-            csvexx=sql.connect(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_CUSTCC.db')
+            csvexx=sql.connect(currdir+'\\DBFA_CUSTCC.db')
             print("Fetching data from database - II...")
             cursorx = csvexx.cursor()
             axct = cursorx.execute("select * from custcc")
@@ -3335,11 +3360,25 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
 
         #DBFA Backup&Switch
         elif decfac == "7":
-            os.startfile(r'delauth.py')
-            time.sleep(0.3)
-            os._exit(0)
+            print('''DBFA Backup & Switch v2.0
 
-        
+            a. ) Create a backup
+            b. ) Restore from backup file (Switch/ Restore)
+            
+            c. ) 'Enter' to return to main menu
+            ''')
+            basfac = input("What would you like to do?: ")
+            if basfac in ("A", "a"):            
+                os.startfile(r'delauth.py')
+                time.sleep(0.3)
+                os._exit(0)
+            elif basfac in ("B", "b"):            
+                os.startfile(r'dbfarestoration.py')
+                time.sleep(0.3)
+                os._exit(0)
+            else:
+                pass
+
         #License        
         elif decfac == "9":
             print("Fetching latest licensing information.......")
@@ -3755,7 +3794,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
                         # Prints: C:\Users\sdkca\Desktop
                         print("Shortcut will be created at: " + desktop)
                         try:
-                            original = r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\Assets\run_DBFA.lnk'
+                            original = currdir+'\\Assets\run_DBFA.lnk'
                             shutil.copy(original, desktop)
                             print("Executed. ")
                         except:
@@ -3879,7 +3918,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
             dbfaver = ((str(r.content.decode('utf-8'))))[4:]
             xdbfaver = ((str(r.content.decode('utf-8'))))
 
-            with open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\updates.txt', 'r+') as upread:
+            with open(parentdir+'\\updates.txt', 'r+') as upread:
                 upread = (str(upread.read())).strip()
 
             print("Server: ", dbfaver, "\nLocal: ", upread[4: ])
@@ -3904,20 +3943,20 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
                     updateconfo =  input("Update DBFA now? (y/n): ")
                     if updateconfo == "y":
                         try:
-                            oschmod.set_mode(r"C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler", "777")
+                            oschmod.set_mode(currdir+'\\DBFA_UpdateHandler', "777")
                         except:
                             pass
-                        shutil.rmtree(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler', ignore_errors=True)
+                        shutil.rmtree(currdir+'\\DBFA_UpdateHandler', ignore_errors=True)
                         try:
-                            os.rmdir(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler')
+                            os.rmdir(currdir+'\\DBFA_UpdateHandler')
                         except:
                             pass
-                        if os.path.isdir(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler') == True:
-                            shutil.rmtree(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler', ignore_errors=True)
+                        if os.path.isdir(currdir+'\\DBFA_UpdateHandler') == True:
+                            shutil.rmtree(currdir+'\\DBFA_UpdateHandler', ignore_errors=True)
                             print("Cleaning-up previous update package... ")
-                            shutil.rmtree(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler', ignore_errors=True)
+                            shutil.rmtree(currdir+'\\DBFA_UpdateHandler', ignore_errors=True)
                             try:
-                                os.rmdir(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\DBFA_UpdateHandler')
+                                os.rmdir(currdir+'\\DBFA_UpdateHandler')
                             except:
                                 pass
                         else:
@@ -3956,851 +3995,862 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
         elif decfac in ("emp", "EMP", "EMPLOYEE", "employee", "manager", "MANAGER", "empm", "EMPM"):
             print("Continuing to DBFA Employee Manager - -")
             time.sleep(2)
-            with HiddenPrints():
-                try:
-                    sender = telegram_bot_sendtext(dt_string + "\n" + "DBFA Employee Manager accessed! \n\n - DBFA Security")
-                    print(sender)
-                except Exception:
-                    pass
-            
-            import os, time, sqlite3, requests, json
-            os.system('cls')
-            print("-------DBFA Employee Manager-------")
-            time.sleep(0.5)
-            print("༼ つ ◕_◕ ༽つ ")
-            time.sleep(0.5)
-            print("         ༼ つ ◕_◕ ༽つ ")
-            time.sleep(0.5)
-            print("                  ༼ つ ◕_◕ ༽つ ")
+            print("\n-------------------------------------------------")
+            print("This action needs administrator authorization.")
+            print("This will provide access to: ")
+            print("     - All employee data on your DBFA installation")
+            print("\n-------------------------------------------------")
             time.sleep(1)
-            os.system('cls')
-
-            def empmenu():
-                from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
-                init(convert = True)
-                print(Fore.CYAN+'''\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nOptions:              
-1  - Hire an employee                    5  - Scheduler & Leave Application
-2  - View employee records               
-3  - Update employee details             6  - Mark attendance
-4  - Fire an employee ༼ ●'◡'● ༽つ        7  - Work records - All
-                                         8  - Work records - oID-specf.
-11 - Pay salary                          9  - Work records - All (past 30)
-12 - <<< Back to DBFA menu               10 - Work records - oID-specf. (past 30)          
-
-What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █▀█  █▀▀ █▀█  █▀▀█ Employee'''+Fore.CYAN+'''
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄ Manager 2.12'''+Fore.CYAN+'''
-'''+Fore.MAGENTA+'''The Ultimate Employee Buster ~'''+Fore.CYAN+'''     
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
-
-            while (1):
-                empmenu()
-                empfac = input("What would you like to do? ")
+            import getpass
+            passrt = getpass.getpass(prompt='Enter password: ', stream=None)
+            if passrt == str(securedatafetch(6)):
+                with HiddenPrints():
+                    try:
+                        sender = telegram_bot_sendtext(dt_string + "\n" + "DBFA Employee Manager accessed! \n\n - DBFA Security")
+                        print(sender)
+                    except Exception:
+                        pass
                 
-                if empfac == "1":
-                    print("DBFA will now be opening a seperate window due to GUI-restrictions.")
-                    time.sleep(2)
-                    with HiddenPrints():
-                        try:
-                            sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Hire Employee - deltaDBFA")
-                            print(sender)
-                        except Exception:
-                            pass
-                    os.startfile(r'dbfaempman.py')
+                import os, time, sqlite3, requests, json
+                os.system('cls')
+                print("-------DBFA Employee Manager-------")
+                time.sleep(0.5)
+                print("༼ つ ◕_◕ ༽つ ")
+                time.sleep(0.5)
+                print("         ༼ つ ◕_◕ ༽つ ")
+                time.sleep(0.5)
+                print("                  ༼ つ ◕_◕ ༽つ ")
+                time.sleep(1)
+                os.system('cls')
+
+                def empmenu():
+                    from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+                    init(convert = True)
+                    print(Fore.CYAN+'''\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nOptions:              
+    1  - Hire an employee                    5  - Scheduler & Leave Application
+    2  - View employee records               
+    3  - Update employee details             6  - Mark attendance
+    4  - Fire an employee ༼ ●'◡'● ༽つ        7  - Work records - All
+                                            8  - Work records - oID-specf.
+    11 - Pay salary                          9  - Work records - All (past 30)
+    12 - <<< Back to DBFA menu               10 - Work records - oID-specf. (past 30)          
+
+    What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █▀█  █▀▀ █▀█  █▀▀█ Employee'''+Fore.CYAN+'''
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄ Manager 2.12'''+Fore.CYAN+'''
+    '''+Fore.MAGENTA+'''The Ultimate Employee Buster ~'''+Fore.CYAN+'''     
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
+
+                while (1):
+                    empmenu()
+                    empfac = input("What would you like to do? ")
                     
+                    if empfac == "1":
+                        print("DBFA will now be opening a seperate window due to GUI-restrictions.")
+                        time.sleep(2)
+                        with HiddenPrints():
+                            try:
+                                sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Hire Employee - deltaDBFA")
+                                print(sender)
+                            except Exception:
+                                pass
+                        os.startfile(r'dbfaempman.py')
+                        
 
-                if empfac == "2":
-                    print("\n2. View employee records\n-----------------------------------------------")
-                    empmas = sqlite3.connect(r'dbfaempmaster.db')
-                    empmascur = empmas.cursor()
-                    print("Employee records as maintained by DBFA: ")
-                    with HiddenPrints():
-                        try:
-                            sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Records - deltaDBFA")
-                            print(sender)
-                        except Exception:
-                            pass
-                    empmascur.execute("SELECT * FROM emp")
-                    emprows = empmascur.fetchall()
-                    time.sleep(1)
-                    for emprow in emprows:
-                        print(emprow, "\n")
-                    print("\n\n-----------------------------------------------")
-                    time.sleep(3)
-                
-                if empfac == "3":
-                    print("3. Change employee details")
-                    empmas = sqlite3.connect(r'dbfaempmaster.db')
-                    empmascur = empmas.cursor()
-                    empmascur.execute("SELECT * FROM emp")
-                    emprows = empmascur.fetchall()
-                    time.sleep(1)
-                    for emprow in emprows:
-                        print(emprow, "\n")
-                    print("\n")
-                    emppay = str(input("Enter the Oid (Employee ID) to change details for: "))
-                    empmascur.execute("SELECT Name FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
-                    firename = str(empmascur.fetchall()[0][0])
-                    confofac = input("CONFIRM: Change details for "+firename+"? (y/n): ")
-                    if confofac == "y":
-                        from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
-                        init(convert = True)
-                        print(Fore.MAGENTA+'''
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-Options:                            Employee Manager >>> Employee Details Modifier
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-    1. Change Name
-    2. Change Email
-    3. Change Mobile Contact
+                    if empfac == "2":
+                        print("\n2. View employee records\n-----------------------------------------------")
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+                        print("Employee records as maintained by DBFA: ")
+                        with HiddenPrints():
+                            try:
+                                sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Records - deltaDBFA")
+                                print(sender)
+                            except Exception:
+                                pass
+                        empmascur.execute("SELECT * FROM emp")
+                        emprows = empmascur.fetchall()
+                        time.sleep(1)
+                        for emprow in emprows:
+                            print(emprow, "\n")
+                        print("\n\n-----------------------------------------------")
+                        time.sleep(3)
+                    
+                    if empfac == "3":
+                        print("3. Change employee details")
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+                        empmascur.execute("SELECT * FROM emp")
+                        emprows = empmascur.fetchall()
+                        time.sleep(1)
+                        for emprow in emprows:
+                            print(emprow, "\n")
+                        print("\n")
+                        emppay = str(input("Enter the Oid (Employee ID) to change details for: "))
+                        empmascur.execute("SELECT Name FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                        firename = str(empmascur.fetchall()[0][0])
+                        confofac = input("CONFIRM: Change details for "+firename+"? (y/n): ")
+                        if confofac == "y":
+                            from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+                            init(convert = True)
+                            print(Fore.MAGENTA+'''
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    Options:                            Employee Manager >>> Employee Details Modifier
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+        1. Change Name
+        2. Change Email
+        3. Change Mobile Contact
 
-    4. Change Residential Address
-    5. Change UPI Payments ID
+        4. Change Residential Address
+        5. Change UPI Payments ID
 
-    6. Change Department
-    7. Change Designation (POST)
-    8. Change Salary 
+        6. Change Department
+        7. Change Designation (POST)
+        8. Change Salary 
 
-What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
-'''+Fore.CYAN+'''Employee Details Modifier ~'''+Fore.MAGENTA+'''     
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)                  
-                        subfac = input("What would you like to do? ")
-                        if subfac == "1":
-                            print("1. Change Name")
-                            empmas = sqlite3.connect(r'dbfaempmaster.db')
-                            empmascur = empmas.cursor()
-                            newmodif = input("Enter the changed name: ")
-                            time.sleep(1)
-                            empmascur.execute("UPDATE emp SET Name = ? WHERE Oid = ?", (newmodif, emppay))
-                            empmas.commit()
-                            print("Name changed for OID", emppay, " from ", firename, "to ", newmodif)
-                            time.sleep(1)
-                            with HiddenPrints():
-                                try:
-                                    sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
-                                    print(sender)
-                                except Exception:
-                                    pass
-                            print("--------")
-                            time.sleep(1)
+    What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+    '''+Fore.CYAN+'''Employee Details Modifier ~'''+Fore.MAGENTA+'''     
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)                  
+                            subfac = input("What would you like to do? ")
+                            if subfac == "1":
+                                print("1. Change Name")
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                newmodif = input("Enter the changed name: ")
+                                time.sleep(1)
+                                empmascur.execute("UPDATE emp SET Name = ? WHERE Oid = ?", (newmodif, emppay))
+                                empmas.commit()
+                                print("Name changed for OID", emppay, " from ", firename, "to ", newmodif)
+                                time.sleep(1)
+                                with HiddenPrints():
+                                    try:
+                                        sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
+                                        print(sender)
+                                    except Exception:
+                                        pass
+                                print("--------")
+                                time.sleep(1)
 
-                        if subfac == "2":
-                            print("2. Change Email")
-                            empmas = sqlite3.connect(r'dbfaempmaster.db')
-                            empmascur = empmas.cursor()
-                            empmascur.execute("SELECT Email FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
-                            firename = str(empmascur.fetchall()[0][0])
-                            newmodif = input("Enter the changed e-mail: ")
-                            time.sleep(1)
-                            empmascur.execute("UPDATE emp SET Email = ? WHERE Oid = ?", (newmodif, emppay))
-                            empmas.commit()
-                            with HiddenPrints():
-                                try:
-                                    sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
-                                    print(sender)
-                                except Exception:
-                                    pass
-                            print("Email changed for OID", emppay, " from ", firename, "to ", newmodif)
-                            time.sleep(1)
-                            print("--------")
-                            time.sleep(1)
+                            if subfac == "2":
+                                print("2. Change Email")
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                empmascur.execute("SELECT Email FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                                firename = str(empmascur.fetchall()[0][0])
+                                newmodif = input("Enter the changed e-mail: ")
+                                time.sleep(1)
+                                empmascur.execute("UPDATE emp SET Email = ? WHERE Oid = ?", (newmodif, emppay))
+                                empmas.commit()
+                                with HiddenPrints():
+                                    try:
+                                        sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
+                                        print(sender)
+                                    except Exception:
+                                        pass
+                                print("Email changed for OID", emppay, " from ", firename, "to ", newmodif)
+                                time.sleep(1)
+                                print("--------")
+                                time.sleep(1)
 
-                        if subfac == "3":
-                            print("3. Change Mobile Contact")
-                            empmas = sqlite3.connect(r'dbfaempmaster.db')
-                            empmascur = empmas.cursor()
-                            empmascur.execute("SELECT Mobile FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
-                            firename = str(empmascur.fetchall()[0][0])
-                            newmodif = input("Enter the changed mobile contact: ")
-                            time.sleep(1)
-                            empmascur.execute("UPDATE emp SET Mobile = ? WHERE Oid = ?", (newmodif, emppay))
-                            empmas.commit()
-                            with HiddenPrints():
-                                try:
-                                    sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
-                                    print(sender)
-                                except Exception:
-                                    pass
-                            print("Mobile contact changed for OID", emppay, " from ", firename, "to ", newmodif)
-                            time.sleep(1)
-                            print("--------")
-                            time.sleep(1)
+                            if subfac == "3":
+                                print("3. Change Mobile Contact")
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                empmascur.execute("SELECT Mobile FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                                firename = str(empmascur.fetchall()[0][0])
+                                newmodif = input("Enter the changed mobile contact: ")
+                                time.sleep(1)
+                                empmascur.execute("UPDATE emp SET Mobile = ? WHERE Oid = ?", (newmodif, emppay))
+                                empmas.commit()
+                                with HiddenPrints():
+                                    try:
+                                        sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
+                                        print(sender)
+                                    except Exception:
+                                        pass
+                                print("Mobile contact changed for OID", emppay, " from ", firename, "to ", newmodif)
+                                time.sleep(1)
+                                print("--------")
+                                time.sleep(1)
 
-                        if subfac == "4":
-                            print("4. Change Residential Address")
-                            empmas = sqlite3.connect(r'dbfaempmaster.db')
-                            empmascur = empmas.cursor()
-                            empmascur.execute("SELECT Address FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
-                            firename = str(empmascur.fetchall()[0][0])
-                            newmodif = input("Enter the changed address (in one-line): ")
-                            time.sleep(1)
-                            empmascur.execute("UPDATE emp SET Address = ? WHERE Oid = ?", (newmodif, emppay))
-                            empmas.commit()
-                            with HiddenPrints():
-                                try:
-                                    sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
-                                    print(sender)
-                                except Exception:
-                                    pass
-                            print("Address changed for OID", emppay, " from ", firename, "to ", newmodif)
-                            time.sleep(1)
-                            print("--------")
-                            time.sleep(1)
+                            if subfac == "4":
+                                print("4. Change Residential Address")
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                empmascur.execute("SELECT Address FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                                firename = str(empmascur.fetchall()[0][0])
+                                newmodif = input("Enter the changed address (in one-line): ")
+                                time.sleep(1)
+                                empmascur.execute("UPDATE emp SET Address = ? WHERE Oid = ?", (newmodif, emppay))
+                                empmas.commit()
+                                with HiddenPrints():
+                                    try:
+                                        sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
+                                        print(sender)
+                                    except Exception:
+                                        pass
+                                print("Address changed for OID", emppay, " from ", firename, "to ", newmodif)
+                                time.sleep(1)
+                                print("--------")
+                                time.sleep(1)
 
-                        if subfac == "5":
-                            print("5. Change UPI Payments ID")
-                            empmas = sqlite3.connect(r'dbfaempmaster.db')
-                            empmascur = empmas.cursor()
-                            empmascur.execute("SELECT UPI FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
-                            firename = str(empmascur.fetchall()[0][0])
-                            newmodif = input("Enter the changed UPI ID: ")
-                            time.sleep(1)
-                            empmascur.execute("UPDATE emp SET UPI = ? WHERE Oid = ?", (newmodif, emppay))
-                            empmas.commit()
-                            with HiddenPrints():
-                                try:
-                                    sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
-                                    print(sender)
-                                except Exception:
-                                    pass
-                            print("UPI ID changed for OID", emppay, " from ", firename, "to ", newmodif)
-                            time.sleep(1)
-                            print("--------")
-                            time.sleep(1)
+                            if subfac == "5":
+                                print("5. Change UPI Payments ID")
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                empmascur.execute("SELECT UPI FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                                firename = str(empmascur.fetchall()[0][0])
+                                newmodif = input("Enter the changed UPI ID: ")
+                                time.sleep(1)
+                                empmascur.execute("UPDATE emp SET UPI = ? WHERE Oid = ?", (newmodif, emppay))
+                                empmas.commit()
+                                with HiddenPrints():
+                                    try:
+                                        sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
+                                        print(sender)
+                                    except Exception:
+                                        pass
+                                print("UPI ID changed for OID", emppay, " from ", firename, "to ", newmodif)
+                                time.sleep(1)
+                                print("--------")
+                                time.sleep(1)
 
-                        if subfac == "6":
-                            print("6. Change Department")
-                            time.sleep(1)
-                            empmas = sqlite3.connect(r'dbfaempmaster.db')
-                            empmascur = empmas.cursor()
-                            empmascur.execute("SELECT Dept FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
-                            firename = str(empmascur.fetchall()[0][0])
-                            print("-----------------------------------\nCurrent Dept: ", firename)
-                            print('''Options: 
-                                        IT,
-                                        Administration, 
-                                        Sales, 
-                                        Care-taking, 
-                                        Logistics ''')
-                            print("-----------------------------------\n\n")
-                            time.sleep(2)
-                            newmodif = input("Enter the changed department: ")
-                            time.sleep(1)
-                            empmascur.execute("UPDATE emp SET Dept = ? WHERE Oid = ?", (newmodif, emppay))
-                            empmas.commit()
-                            with HiddenPrints():
-                                try:
-                                    sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
-                                    print(sender)
-                                except Exception:
-                                    pass
-                            print("Department changed for OID", emppay, " from ", firename, "to ", newmodif)
-                            time.sleep(1)
-                            print("--------")
-                            time.sleep(1)
+                            if subfac == "6":
+                                print("6. Change Department")
+                                time.sleep(1)
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                empmascur.execute("SELECT Dept FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                                firename = str(empmascur.fetchall()[0][0])
+                                print("-----------------------------------\nCurrent Dept: ", firename)
+                                print('''Options: 
+                                            IT,
+                                            Administration, 
+                                            Sales, 
+                                            Care-taking, 
+                                            Logistics ''')
+                                print("-----------------------------------\n\n")
+                                time.sleep(2)
+                                newmodif = input("Enter the changed department: ")
+                                time.sleep(1)
+                                empmascur.execute("UPDATE emp SET Dept = ? WHERE Oid = ?", (newmodif, emppay))
+                                empmas.commit()
+                                with HiddenPrints():
+                                    try:
+                                        sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
+                                        print(sender)
+                                    except Exception:
+                                        pass
+                                print("Department changed for OID", emppay, " from ", firename, "to ", newmodif)
+                                time.sleep(1)
+                                print("--------")
+                                time.sleep(1)
 
-                        if subfac == "7":
-                            print("7. Change Designation (POST)")
-                            empmas = sqlite3.connect(r'dbfaempmaster.db')
-                            empmascur = empmas.cursor()
-                            empmascur.execute("SELECT Post FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
-                            firename = str(empmascur.fetchall()[0][0])
-                            newmodif = input("Enter the new designation: ")
-                            time.sleep(1)
-                            empmascur.execute("UPDATE emp SET Post = ? WHERE Oid = ?", (newmodif, emppay))
-                            empmas.commit()
-                            with HiddenPrints():
-                                try:
-                                    sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
-                                    print(sender)
-                                except Exception:
-                                    pass
-                            print("Designation (Post) changed for OID", emppay, " from ", firename, "to ", newmodif)
-                            time.sleep(1)
-                            print("--------")
-                            time.sleep(1)
+                            if subfac == "7":
+                                print("7. Change Designation (POST)")
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                empmascur.execute("SELECT Post FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                                firename = str(empmascur.fetchall()[0][0])
+                                newmodif = input("Enter the new designation: ")
+                                time.sleep(1)
+                                empmascur.execute("UPDATE emp SET Post = ? WHERE Oid = ?", (newmodif, emppay))
+                                empmas.commit()
+                                with HiddenPrints():
+                                    try:
+                                        sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
+                                        print(sender)
+                                    except Exception:
+                                        pass
+                                print("Designation (Post) changed for OID", emppay, " from ", firename, "to ", newmodif)
+                                time.sleep(1)
+                                print("--------")
+                                time.sleep(1)
 
-                        if subfac == "8":
-                            print("8. Change Salary")
-                            empmas = sqlite3.connect(r'dbfaempmaster.db')
-                            empmascur = empmas.cursor()
-                            empmascur.execute("SELECT Salary FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
-                            firename = str(empmascur.fetchall()[0][0])
-                            newmodif = input("Enter the new salary (net; not incremental): ")
-                            time.sleep(1)
-                            empmascur.execute("UPDATE emp SET Salary = ? WHERE Oid = ?", (newmodif, emppay))
-                            empmas.commit()
-                            with HiddenPrints():
-                                try:
-                                    sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
-                                    print(sender)
-                                except Exception:
-                                    pass
-                            print("Salary changed for OID", emppay, " from ", firename, "to ", newmodif)
-                            time.sleep(1)
-                            print("--------")
-                            time.sleep(1)
+                            if subfac == "8":
+                                print("8. Change Salary")
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                empmascur.execute("SELECT Salary FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                                firename = str(empmascur.fetchall()[0][0])
+                                newmodif = input("Enter the new salary (net; not incremental): ")
+                                time.sleep(1)
+                                empmascur.execute("UPDATE emp SET Salary = ? WHERE Oid = ?", (newmodif, emppay))
+                                empmas.commit()
+                                with HiddenPrints():
+                                    try:
+                                        sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Details Changed - deltaDBFA")
+                                        print(sender)
+                                    except Exception:
+                                        pass
+                                print("Salary changed for OID", emppay, " from ", firename, "to ", newmodif)
+                                time.sleep(1)
+                                print("--------")
+                                time.sleep(1)
+                            else:
+                                print("Invalid option! \n\n")
+                                time.sleep(1)
                         else:
                             print("Invalid option! \n\n")
                             time.sleep(1)
-                    else:
-                        print("Invalid option! \n\n")
-                        time.sleep(1)
 
 
-                if empfac == "4":
-                    empmas = sqlite3.connect(r'dbfaempmaster.db')
-                    empmascur = empmas.cursor()
-                    print("4. Fire an employee ༼ ●'◡'● ༽つ \n")
-                    empmascur.execute("SELECT * FROM emp")
-                    emprows = empmascur.fetchall()
-                    time.sleep(1)
-                    for emprow in emprows:
-                        print(emprow, "\n")
-                    print("\n")
-                    emppay = str(input("Enter the Oid (Employee ID) for the employee to fire: "))
-                    empmascur.execute("SELECT Name FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
-                    firename = str(empmascur.fetchall()[0][0])
-                    confofac = input("CONFIRM: Fire "+firename+"? (y/n): ")
-                    if confofac == "y":
-                        reasonfire = input("Enter the reason for firing: ")
-                        print("FIRING EMPLOYEE! ")
-                        empmascur.execute("DELETE FROM emp WHERE Oid = ?", ("%"+emppay+"%", ))
-                        empmas.commit()
-                        telethon = ""
-                        print("\n\n")
-                        print("---------------------------------------------")
-                        telethon += ("----------------------------\n")
-                        print("DBFA Employee Firing Record        deltaDBFA")
-                        telethon += ("DBFA Employee Firing Record\n")
-                        print("- - - - - - - - - - - - - - - - - - - - - - -")
-                        telethon += ("- - - - - - - - - - - - - - - - -\n")
-                        print("Name  :", '%s'%firename)
-                        telethon += ("Name  : "+ '%s'%firename)
-                        print("Reason:", '%s'%reasonfire)
-                        telethon += ("\nReason: "+ '%s'%reasonfire)
-                        print("- - - - - - - - - - - - - - - - - - - - - - -")
-                        telethon += ("\n- - - - - - - - - - - - - - - - -\n")
-                        telethon += ("~ deltaDBFA\n")
-                        telethon += ("-----------------------------\n\n")
-                        telegram_bot_sendtext(telethon)
-                        print("~ Event logged in Infinity Logger & Telegram.")
-                        print("---------------------------------------------\n\n")
-                        
-                        time.sleep(2)
-                    else:
-                        print("Cancelled op..")
-                
-                if empfac == "5":
-                    print("\nDBFA Scheduler handles duty scheduling and shifts for 24x7 services.\nDBFA can automatically schedule shifts and handle leave applications.")
-                    from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
-                    init(convert = True)
-                    print(Fore.MAGENTA+'''
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-Options:                                       Employee Manager >>> deltaScheduler
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-    a. View tomorrow's schedule 
-    b. Apply for a leave (effective tomorrow only)
-    c. Return to main menu ~ 
-
-What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
-'''+Fore.CYAN+'''Shift Scheduler ~'''+Fore.MAGENTA+'''     
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
-                    submen = input("What would you like to do?: ")
-                    if submen in ("A", "a"):
-                        with open('lastsched.txt', 'r+', encoding="utf-8") as file:
-                            print("Latest schedule as sent to employees:\n", file.read())
-                            file.close()
-                        contfac = input("Press 'enter' to continue: (workspace will be cleared!)")
-                    if submen in ("B", "b"):
-                        import sqlite3
-                        print("Apply for leave ~") #UDRN
-                        OiD = input("Enter your Employee ID (O-ID): ")
-                        #make db confo here
-                        from datetime import datetime, timedelta
-                        now = datetime.now()
-                        now = now + timedelta(days=1)
-                        dt_string = now.strftime("%Y-%m-%d")
+                    if empfac == "4":
                         empmas = sqlite3.connect(r'dbfaempmaster.db')
                         empmascur = empmas.cursor()
-                        empmascur.execute("SELECT Name, Oid FROM emp WHERE Oid = ?", ('%s'%OiD,))
-                        datastream = empmascur.fetchall()
-                        print(datastream[0][1])
-                        if int(OiD) == int(datastream[0][1]):
-                            confo = input(datastream[0][0] + OiD + ": Confirm leave application? for " + '%s'%dt_string + "(y/n): ")
-                            if confo in ("y", "Y"):
-                                print("Leave application recieved ~ Enjoy your day tomorrow :)")
-                                empmas = sqlite3.connect(r'dbfaempmaster.db')
-                                empmascur = empmas.cursor()
-                                empmascur.execute("INSERT INTO leave(Oid, Date) VALUES (?, ?)", ('%s'%OiD, '%s'%dt_string, ))
-                                empmas.commit()
-                            else:
-                                print("Oof. Now get to work ;) ")
+                        print("4. Fire an employee ༼ ●'◡'● ༽つ \n")
+                        empmascur.execute("SELECT * FROM emp")
+                        emprows = empmascur.fetchall()
+                        time.sleep(1)
+                        for emprow in emprows:
+                            print(emprow, "\n")
+                        print("\n")
+                        emppay = str(input("Enter the Oid (Employee ID) for the employee to fire: "))
+                        empmascur.execute("SELECT Name FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                        firename = str(empmascur.fetchall()[0][0])
+                        confofac = input("CONFIRM: Fire "+firename+"? (y/n): ")
+                        if confofac == "y":
+                            reasonfire = input("Enter the reason for firing: ")
+                            print("FIRING EMPLOYEE! ")
+                            empmascur.execute("DELETE FROM emp WHERE Oid = ?", ("%"+emppay+"%", ))
+                            empmas.commit()
+                            telethon = ""
+                            print("\n\n")
+                            print("---------------------------------------------")
+                            telethon += ("----------------------------\n")
+                            print("DBFA Employee Firing Record        deltaDBFA")
+                            telethon += ("DBFA Employee Firing Record\n")
+                            print("- - - - - - - - - - - - - - - - - - - - - - -")
+                            telethon += ("- - - - - - - - - - - - - - - - -\n")
+                            print("Name  :", '%s'%firename)
+                            telethon += ("Name  : "+ '%s'%firename)
+                            print("Reason:", '%s'%reasonfire)
+                            telethon += ("\nReason: "+ '%s'%reasonfire)
+                            print("- - - - - - - - - - - - - - - - - - - - - - -")
+                            telethon += ("\n- - - - - - - - - - - - - - - - -\n")
+                            telethon += ("~ deltaDBFA\n")
+                            telethon += ("-----------------------------\n\n")
+                            telegram_bot_sendtext(telethon)
+                            print("~ Event logged in Infinity Logger & Telegram.")
+                            print("---------------------------------------------\n\n")
+                            
+                            time.sleep(2)
                         else:
-                            print("Invalid OiD identifier. Please try again ~")
-
-                    if submen in ("C", "c"):
-                        pass
-
-
-                if empfac == "6":
-                    import sqlite3, time, os, requests
-                    from datetime import datetime  #for reporting the billing time and date
-                    empmas = sqlite3.connect(r'dbfaempmaster.db')
-                    empmascur = empmas.cursor()
-                    empmascur.execute("SELECT DISTINCT * FROM emp")
-                    dump = empmascur.fetchall()
-                    Oiddump = []
-                    for row in dump:
-                        Oiddump.append(row[0])
-                    print("OiDs registered: ", Oiddump)
-                    try:
-                        Oid = int(input("DBFA MARK ATTENDANCE- Enter your OiD: "))
-                        trypass = 1
-                    except:
-                        print("OiDs are integer-only. Please retry using valid credentials! \n")
-                        trypass = 0
+                            print("Cancelled op..")
                     
-                    if trypass == 1:
-                        if Oid in Oiddump:
-                            print("OiD found ")
-                            time.sleep(0.5)
+                    if empfac == "5":
+                        print("\nDBFA Scheduler handles duty scheduling and shifts for 24x7 services.\nDBFA can automatically schedule shifts and handle leave applications.")
+                        from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+                        init(convert = True)
+                        print(Fore.MAGENTA+'''
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    Options:                                       Employee Manager >>> deltaScheduler
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+        a. View tomorrow's schedule 
+        b. Apply for a leave (effective tomorrow only)
+        c. Return to main menu ~ 
+
+    What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+    '''+Fore.CYAN+'''Shift Scheduler ~'''+Fore.MAGENTA+'''     
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
+                        submen = input("What would you like to do?: ")
+                        if submen in ("A", "a"):
+                            with open('lastsched.txt', 'r+', encoding="utf-8") as file:
+                                print("Latest schedule as sent to employees:\n", file.read())
+                                file.close()
+                            contfac = input("Press 'enter' to continue: (workspace will be cleared!)")
+                        if submen in ("B", "b"):
+                            import sqlite3
+                            print("Apply for leave ~") #UDRN
+                            OiD = input("Enter your Employee ID (O-ID): ")
+                            #make db confo here
+                            from datetime import datetime, timedelta
                             now = datetime.now()
-                            dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time
-                            tm_string = now.strftime("%H:%M:%S")  #datetime object containing current date and time
-                            empmascur.execute("SELECT count(*) FROM attendance WHERE Date = ? AND OiD = ?", (dt_string, Oid,))
-                            data = empmascur.fetchone()[0]
-                            if data==0:
-                                #print('No record on %s'%dt_string+' for Employee %s'%Oid)
-                                #print("insert into attendance(Date, OiD, Time, YN, IO) values(?, ?, ?, ?, ?)", (dt_string, Oid, tm_string, 'Y', 'I'))
-                                empmascur.execute("insert into attendance(Date, OiD, Time, YN, IO) values(?, ?, ?, ?, ?)", (dt_string, Oid, tm_string, 'Y', 'I'))
-                                #empmascur.execute("UPDATE attendance SET Oid = 'Y' WHERE DATE = ?", (dt_string))
-                                empmas.commit()
-                                print("\n----------------DBFA-----------------")
-                                print("C1 ENTRY: Marked Attendance! OiD: ", Oid)
-                                with HiddenPrints():
-                                    try:
-                                        sender = telegram_bot_sendtext(dt_string + "\n" + "C1 ENTRY: Marked attendance - OiD"+'%s'%Oid)
-                                        print(sender)
-                                    except Exception:
-                                        pass
-                                print("-------------------------------------\n")
-                            elif data==1:
-                                #print('Component %s found in %s row(s)'%(dt_string, data))
-                                empmascur.execute("insert into attendance(Date, OiD, Time, YN, IO) values(?, ?, ?, ?, ?)", (dt_string, Oid, tm_string, 'Y', 'O'))
-                                empmas.commit()
-                                print("\n----------------DBFA-----------------")
-                                print("C2 DAY END: Marked Attendance! OiD: ", Oid)
-                                with HiddenPrints():
-                                    try:
-                                        sender = telegram_bot_sendtext(dt_string + "\n" + "C2 DAY END: Marked attendance - OiD"+'%s'%Oid)
-                                        print(sender)
-                                    except Exception:
-                                        pass
-                                print("-------------------------------------\n")
-                            elif data > 1:
-                                print("You can only mark in/out attendance once a day! \n")
-                        else:
-                            print("OiD not found! \n")
+                            now = now + timedelta(days=1)
+                            dt_string = now.strftime("%Y-%m-%d")
+                            empmas = sqlite3.connect(r'dbfaempmaster.db')
+                            empmascur = empmas.cursor()
+                            empmascur.execute("SELECT Name, Oid FROM emp WHERE Oid = ?", ('%s'%OiD,))
+                            datastream = empmascur.fetchall()
+                            print(datastream[0][1])
+                            if int(OiD) == int(datastream[0][1]):
+                                confo = input(datastream[0][0] + OiD + ": Confirm leave application? for " + '%s'%dt_string + "(y/n): ")
+                                if confo in ("y", "Y"):
+                                    print("Leave application recieved ~ Enjoy your day tomorrow :)")
+                                    empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                    empmascur = empmas.cursor()
+                                    empmascur.execute("INSERT INTO leave(Oid, Date) VALUES (?, ?)", ('%s'%OiD, '%s'%dt_string, ))
+                                    empmas.commit()
+                                else:
+                                    print("Oof. Now get to work ;) ")
+                            else:
+                                print("Invalid OiD identifier. Please try again ~")
 
-                if empfac == "7":
-                    print("7. Attendance records - All")
-                    with HiddenPrints():
-                        try:
-                            sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Attendance Records - deltaDBFA")
-                            print(sender)
-                        except Exception:
+                        if submen in ("C", "c"):
                             pass
-                    import sqlite3, time, os, requests, datetime
-                    from datetime import datetime, date
-
-                    empmas = sqlite3.connect(r'dbfaempmaster.db')
-                    empmascur = empmas.cursor()
-
-                    empmascur.execute("SELECT DISTINCT * FROM emp")
-                    dump = empmascur.fetchall()
-                    Oiddump = []
-                    for row in dump:
-                        Oiddump.append(row[0])
-
-                    print("OiDs registered: ", Oiddump)
 
 
-                    now = datetime.now()
-                    dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
-
-                    month = datetime.now().month - 1
-                    if month < 1:
-                        month = 12 + month  # At this point month is 0 or a negative number so we add
-                    if len(str(month)) == 1:
-                        month = "0"+str(month)
-                    dt1mb = ('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d"))
-
-
-                    time.sleep(0.5)
-                    print("\nLoading ALL attendance data recorded since the start of using DBFA\n")
-                    empmascur.execute("SELECT * FROM attendance ORDER BY Date ASC")
-                    returned = empmascur.fetchall()
-                    for row in returned:
-                        print(row)
-
-
-                if empfac == "8":
-                    print("8. Attendance records - OiD-specific")
-                    with HiddenPrints():
+                    if empfac == "6":
+                        import sqlite3, time, os, requests
+                        from datetime import datetime  #for reporting the billing time and date
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+                        empmascur.execute("SELECT DISTINCT * FROM emp")
+                        dump = empmascur.fetchall()
+                        Oiddump = []
+                        for row in dump:
+                            Oiddump.append(row[0])
+                        print("OiDs registered: ", Oiddump)
                         try:
-                            sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Attendance Records - deltaDBFA")
-                            print(sender)
-                        except Exception:
-                            pass
-                    import sqlite3, time, os, requests
-                    from datetime import datetime  #for reporting the billing time and date
-
-                    empmas = sqlite3.connect(r'dbfaempmaster.db')
-                    empmascur = empmas.cursor()
-
-                    empmascur.execute("SELECT DISTINCT * FROM emp")
-                    dump = empmascur.fetchall()
-                    Oiddump = []
-                    for row in dump:
-                        Oiddump.append(row[0])
-
-                    print("OiDs registered: ", Oiddump)
-
-                    try:
-                        Oid = int(input("DBFA ATTENDANCE RECORDS- Enter the OiD: "))
-                        trypass = 1
-                    except:
-                        print("OiDs are integer-only. Please retry using valid credentials! \n")
-                        trypass = 0
+                            Oid = int(input("DBFA MARK ATTENDANCE- Enter your OiD: "))
+                            trypass = 1
+                        except:
+                            print("OiDs are integer-only. Please retry using valid credentials! \n")
+                            trypass = 0
                         
-                    if trypass == 1:
-                        if Oid in Oiddump:
-                            print("OiD found ")
-                            time.sleep(0.5)
-                            empmascur.execute("SELECT * FROM attendance WHERE Oid = ? ORDER BY Date ASC, Time, IO", ('%s'%Oid))
-                            returned = empmascur.fetchall()
-                            for row in returned:
-                                print(row)
+                        if trypass == 1:
+                            if Oid in Oiddump:
+                                print("OiD found ")
+                                time.sleep(0.5)
+                                now = datetime.now()
+                                dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time
+                                tm_string = now.strftime("%H:%M:%S")  #datetime object containing current date and time
+                                empmascur.execute("SELECT count(*) FROM attendance WHERE Date = ? AND OiD = ?", (dt_string, Oid,))
+                                data = empmascur.fetchone()[0]
+                                if data==0:
+                                    #print('No record on %s'%dt_string+' for Employee %s'%Oid)
+                                    #print("insert into attendance(Date, OiD, Time, YN, IO) values(?, ?, ?, ?, ?)", (dt_string, Oid, tm_string, 'Y', 'I'))
+                                    empmascur.execute("insert into attendance(Date, OiD, Time, YN, IO) values(?, ?, ?, ?, ?)", (dt_string, Oid, tm_string, 'Y', 'I'))
+                                    #empmascur.execute("UPDATE attendance SET Oid = 'Y' WHERE DATE = ?", (dt_string))
+                                    empmas.commit()
+                                    print("\n----------------DBFA-----------------")
+                                    print("C1 ENTRY: Marked Attendance! OiD: ", Oid)
+                                    with HiddenPrints():
+                                        try:
+                                            sender = telegram_bot_sendtext(dt_string + "\n" + "C1 ENTRY: Marked attendance - OiD"+'%s'%Oid)
+                                            print(sender)
+                                        except Exception:
+                                            pass
+                                    print("-------------------------------------\n")
+                                elif data==1:
+                                    #print('Component %s found in %s row(s)'%(dt_string, data))
+                                    empmascur.execute("insert into attendance(Date, OiD, Time, YN, IO) values(?, ?, ?, ?, ?)", (dt_string, Oid, tm_string, 'Y', 'O'))
+                                    empmas.commit()
+                                    print("\n----------------DBFA-----------------")
+                                    print("C2 DAY END: Marked Attendance! OiD: ", Oid)
+                                    with HiddenPrints():
+                                        try:
+                                            sender = telegram_bot_sendtext(dt_string + "\n" + "C2 DAY END: Marked attendance - OiD"+'%s'%Oid)
+                                            print(sender)
+                                        except Exception:
+                                            pass
+                                    print("-------------------------------------\n")
+                                elif data > 1:
+                                    print("You can only mark in/out attendance once a day! \n")
+                            else:
+                                print("OiD not found! \n")
 
-
-                if empfac == "9":
-                    print("9. Attendance records - All (THIS MONTH)")
-                    with HiddenPrints():
-                        try:
-                            sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Attendance Records - deltaDBFA")
-                            print(sender)
-                        except Exception:
-                            pass
-                    print("Coming soon! ")
-                    import sqlite3, time, os, requests, datetime
-                    from datetime import datetime, date
-
-                    empmas = sqlite3.connect(r'dbfaempmaster.db')
-                    empmascur = empmas.cursor()
-
-                    empmascur.execute("SELECT DISTINCT * FROM emp")
-                    dump = empmascur.fetchall()
-                    Oiddump = []
-                    for row in dump:
-                        Oiddump.append(row[0])
-
-                    print("OiDs registered: ", Oiddump)
-
-
-                    now = datetime.now()
-                    dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
-
-                    month = datetime.now().month - 1
-                    if month < 1:
-                        month = 12 + month  # At this point month is 0 or a negative number so we add
-                    if len(str(month)) == 1:
-                        month = "0"+str(month)
-                    dt1mb = ('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d"))
-
-
-                    time.sleep(0.5)
-                    print("\nLoading data for days between "+'%s'%dt1mb+" and "+'%s'%dt_string+"\n")
-                    empmascur.execute("SELECT * FROM attendance WHERE Date BETWEEN ? AND ? ORDER BY Date ASC", (dt1mb, dt_string))
-                    returned = empmascur.fetchall()
-                    for row in returned:
-                        print(row)
-
-
-                if empfac == "10":
-                    print("10. Attendance records - OiD-specific (THIS MONTH)")
-                    with HiddenPrints():
-                        try:
-                            sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Attendance Records - deltaDBFA")
-                            print(sender)
-                        except Exception:
-                            pass
-                    import sqlite3, time, os, requests, datetime
-                    from datetime import datetime, date
-
-                    empmas = sqlite3.connect(r'dbfaempmaster.db')
-                    empmascur = empmas.cursor()
-
-                    empmascur.execute("SELECT DISTINCT * FROM emp")
-                    dump = empmascur.fetchall()
-                    Oiddump = []
-                    for row in dump:
-                        Oiddump.append(row[0])
-
-                    print("OiDs registered: ", Oiddump)
-
-                    try:
-                        Oid = int(input("DBFA ATTENDANCE RECORDS- Enter the OiD: "))
-                        trypass = 1
-                    except:
-                        print("OiDs are integer-only. Please retry using valid credentials! \n")
-                        trypass = 0
-
-                    now = datetime.now()
-                    dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
-
-                    month = datetime.now().month - 1
-                    if month < 1:
-                        month = 12 + month  # At this point month is 0 or a negative number so we add
-                    if len(str(month)) == 1:
-                        month = "0"+str(month)
-                    dt1mb = ('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d"))
-
-                    if trypass == 1:
-                        if Oid in Oiddump:
-                            print("OiD found ")
-                            time.sleep(0.5)
-                            print("\nLoading data for days between "+'%s'%dt1mb+" and "+'%s'%dt_string+"\n")
-                            empmascur.execute("SELECT * FROM attendance WHERE OiD = ? AND Date BETWEEN ? AND ? ORDER BY Date ASC", ('%s'%Oid, dt1mb, dt_string))
-                            returned = empmascur.fetchall()
-                            for row in returned:
-                                print(row)
-
-                    
-                if empfac == "11":                       
-                    from datetime import datetime, date
-                    now = datetime.now()
-                    dt_string = now.strftime("%d")  #datetime object containing current date and time 
-                    #print(dt_string)
-                    if dt_string in ("01", "02", "03", "04", "05"):
-                        def errorout():
-                            print("Invalid parameters, please retry")
-                            exit
-
-                        import sqlite3, os, datetime
+                    if empfac == "7":
+                        print("7. Attendance records - All")
+                        with HiddenPrints():
+                            try:
+                                sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Attendance Records - deltaDBFA")
+                                print(sender)
+                            except Exception:
+                                pass
+                        import sqlite3, time, os, requests, datetime
                         from datetime import datetime, date
 
-                        def getpost(Oid):
-                            empmas = sqlite3.connect(r'dbfaempmaster.db')
-                            empmascur = empmas.cursor()
-                            empmascur.execute("SELECT Post FROM emp WHERE OiD = ?", ('%s'%Oid,))
-                            daysrt = empmascur.fetchall()
-                            return daysrt[0][0]
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+
+                        empmascur.execute("SELECT DISTINCT * FROM emp")
+                        dump = empmascur.fetchall()
+                        Oiddump = []
+                        for row in dump:
+                            Oiddump.append(row[0])
+
+                        print("OiDs registered: ", Oiddump)
 
 
-                        def getdays(Oid):
-                            empmas = sqlite3.connect(r'dbfaempmaster.db')
-                            empmascur = empmas.cursor()
-                            now = datetime.now()
-                            dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
-                            month = datetime.now().month - 1
-                            if month < 1:
-                                month = 12 + month  # At this point month is 0 or a negative number so we add
-                            if len(str(month)) == 1:
-                                month = "0"+str(month)
-                            dt1mb = ('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d"))
-                            empmascur.execute("SELECT * FROM attendance WHERE OiD = ? AND Date BETWEEN ? AND ? ORDER BY Date ASC", ('%s'%Oid, dt1mb, dt_string))
-                            returned = empmascur.fetchall()
-                            return len(returned)
+                        now = datetime.now()
+                        dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
+
+                        month = datetime.now().month - 1
+                        if month < 1:
+                            month = 12 + month  # At this point month is 0 or a negative number so we add
+                        if len(str(month)) == 1:
+                            month = "0"+str(month)
+                        dt1mb = ('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d"))
 
 
-                        def gethoursavg(Oid):
-                            empmas = sqlite3.connect(r'dbfaempmaster.db')
-                            empmascur = empmas.cursor()
-                            empmascur.execute("SELECT * FROM attendance WHERE OiD = ? ORDER BY Date ASC, Time", ('%s'%Oid,))
-                            count = 0
-                            rows = empmascur.fetchall()
-                            datelist = []
-                            for i in rows:
-                                datelist.append(i[0])
-                            a = [i for i in rows if datelist.count(i[0])>1]
-                            netr = (len(datelist) - len(a)) * 8
-                            ini_list = [i[2] for i in a]
-                            from datetime import timedelta   
-                            diff_list = [] 
-                            for x, y in zip(ini_list[0::], ini_list[1::]): 
-                                t1 = str((timedelta(hours=int(y.split(':')[0]), minutes=int(y.split(':')[1])) - timedelta(hours=int(x.split(':')[0]), minutes=int(x.split(':')[1])))).split(':')[0]
-                                diff_list.append(t1)
-                            del diff_list[1::2]
-                            for i in range(0, len(diff_list)): 
-                                diff_list[i] = int(diff_list[i]) 
-                            if int(netr) > 0:
-                                diff_list.append(netr) 
-                            return (sum(diff_list)/len(diff_list))
+                        time.sleep(0.5)
+                        print("\nLoading ALL attendance data recorded since the start of using DBFA\n")
+                        empmascur.execute("SELECT * FROM attendance ORDER BY Date ASC")
+                        returned = empmascur.fetchall()
+                        for row in returned:
+                            print(row)
 
 
-                        def getovertime(Oid):
-                            from datetime import datetime, date
-                            now = datetime.now()
-                            dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
-                            month = datetime.now().month - 1
-                            if month < 1:
-                                month = 12 + month  # At this point month is 0 or a negative number so we add
-                            if len(str(month)) == 1:
-                                month = "0"+str(month)
-                            dt1mb = ('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d"))
-                            empmas = sqlite3.connect(r'dbfaempmaster.db')
-                            empmascur = empmas.cursor()
-                            empmascur.execute("SELECT * FROM attendance WHERE OiD = ? AND Date BETWEEN ? AND ? ORDER BY Date ASC", ('%s'%Oid, dt1mb, dt_string, ))
-                            count = 0
-                            rows = empmascur.fetchall()
-                            datelist = []
-                            for i in rows:
-                                datelist.append(i[0])
-                            a = [i for i in rows if datelist.count(i[0])>1]
-                            netr = (len(datelist) - len(a)) * 8
-                            ini_list = [i[2] for i in a]
-                            from datetime import timedelta   
-                            diff_list = [] 
-                            for x, y in zip(ini_list[0::], ini_list[1::]): 
-                                t1 = str((timedelta(hours=int(y.split(':')[0]), minutes=int(y.split(':')[1])) - timedelta(hours=int(x.split(':')[0]), minutes=int(x.split(':')[1])))).split(':')[0]
-                                diff_list.append(t1)
-                            del diff_list[1::2]
-                            for i in range(0, len(diff_list)): 
-                                diff_list[i] = int(diff_list[i]) 
-                            finlist = []
-                            for i in range(0, len(diff_list)): 
-                                if diff_list[i] > 8:
-                                    finlist.append(diff_list[i])
-                            return sum(finlist)
-
-
-
-                        def calcengine(Oid, bonus):
-                            postnet = ("ceo", "cto", "admin", "it", "sales", "maintanence", "logistics")
-                            salnet = (97000, 84000, 42000, 35000, 32000, 22000, 21000)
-                            days = 30
-                            leave_days = 30-int(days)
-                            post = getpost(Oid)
-                            avg_hours_week = gethoursavg(Oid)
-                            hours_overtime = getovertime(Oid)
-                            paynet = int(salnet[postnet.index(post.lower())])
-                            if int(avg_hours_week) < 8:
-                                paynet = paynet - ((8-int(avg_hours_week))*1000)
-                            if int(hours_overtime) > 0:
-                                paynet += (int(hours_overtime)*1500)
-                            if int(leave_days) > 3:
-                                paynet = paynet - ((int(leave_days)-3)*750)
-                            if int(bonus) > 0:
-                                paynet += bonus
-                            print("----------------------------")
-                            print("Average hours worked     : ", avg_hours_week)
-                            print("Overtime hours worked    : ", hours_overtime)
-                            print("Leave(s) taken           : ", leave_days)
-                            print("Bonus added              : ", bonus)
-                            print("----------------------------\n")
-                            return paynet
-
-
-                        import time
-                        import pyqrcode, png, os
-                        from pyqrcode import QRCode 
+                    if empfac == "8":
+                        print("8. Attendance records - OiD-specific")
+                        with HiddenPrints():
+                            try:
+                                sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Attendance Records - deltaDBFA")
+                                print(sender)
+                            except Exception:
+                                pass
+                        import sqlite3, time, os, requests
+                        from datetime import datetime  #for reporting the billing time and date
 
                         empmas = sqlite3.connect(r'dbfaempmaster.db')
                         empmascur = empmas.cursor()
 
-                        empmascur.execute("SELECT Oid, Name, Mobile, UPI, Dept, Post, Salary FROM emp")
-                        emprows = empmascur.fetchall()
-                        from tabulate import tabulate
-                        print(tabulate(emprows, headers=['O-ID', 'Name', 'Mobile', 'UPI', 'Dept', "Post", 'Salary'], tablefmt='fancy_grid'))
-                        #for emprow in emprows:
-                            #print(emprow)
+                        empmascur.execute("SELECT DISTINCT * FROM emp")
+                        dump = empmascur.fetchall()
+                        Oiddump = []
+                        for row in dump:
+                            Oiddump.append(row[0])
 
-                        time.sleep(2)
+                        print("OiDs registered: ", Oiddump)
 
-                        emppay = str(input("Enter the Oid (Employee ID) to pay salary for: "))
-                        empmascur.execute("SELECT * FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
-                        print(tabulate(empmascur.fetchall(), headers=['O-ID', 'Name', 'DOB', 'Email', 'Mobile', 'Address', 'UPI', 'Dept', "Post", 'Salary'], tablefmt='fancy_grid'))
-                        print('\n')
-                        print("Please pay the employee: ₹", calcengine(1, 0))
-                        time.sleep(2)
-                        emppayconfox = input("\n\nPay salary? (y/n): ")
-                        if emppayconfox == "y":
-                            #emarpay = str("%"+'%s'%emppay+"%")
-                            empmascur.execute("SELECT Name, UPI FROM emp WHERE Oid LIKE ?", (emppay,) )
-                            tempemppay = empmascur.fetchall()
-                            print("Paying ", list(tempemppay[0])[0], "at ", list(tempemppay[0])[1])
-                            name = list(tempemppay[0])[0]
-                            upid = list(tempemppay[0])[1]
-                        else:
-                            empmenu()
-                            exit
-                            print("Aaaa")
-
-                        #upid = '9810141714@upi'
-                        #name = 'KPBalaji'
-
-                        s = "upi://pay?pa="+'%s'%upid+"&pn="+'%s'%name+"&cu=INR"
-
-                        # Generate QR code 
-                        url = pyqrcode.create(s) 
-
-                        url.png('payqr.png', scale = 6) 
-                        from PIL import Image, ImageDraw, ImageFont
-                        image = Image.open('payqr.png')
                         try:
-                            sender = telegram_bot_sendtext(dt_string + "\n" + "Started Process: Issue Salary - deltaDBFA")
-                            print(sender)
-                        except Exception:
-                            pass
-                        draw = ImageDraw.Draw(image)
-                        font = ImageFont.truetype(r'C:\Users\balaj\AppData\Local\Microsoft\Windows\Fonts\MiLanProVF.ttf', size=200)
-                        (x, y) = (5, 250)
-                        xname = 'Scan to pay with UPI              deltaDBFA'
-                        draw.text((x, y), xname) #, fill=color)
-                        (x, y) = (5, 5)
+                            Oid = int(input("DBFA ATTENDANCE RECORDS- Enter the OiD: "))
+                            trypass = 1
+                        except:
+                            print("OiDs are integer-only. Please retry using valid credentials! \n")
+                            trypass = 0
+                            
+                        if trypass == 1:
+                            if Oid in Oiddump:
+                                print("OiD found ")
+                                time.sleep(0.5)
+                                empmascur.execute("SELECT * FROM attendance WHERE Oid = ? ORDER BY Date ASC, Time, IO", ('%s'%Oid))
+                                returned = empmascur.fetchall()
+                                for row in returned:
+                                    print(row)
 
-                        name = "Paying "+'%s'%name+" "*(28-len(str(name)))+"deltaPay"
-                        draw.text((x, y), name) #, fill=color)
-                        image.save('payqr.png', optimize=True, quality=120)
+
+                    if empfac == "9":
+                        print("9. Attendance records - All (THIS MONTH)")
+                        with HiddenPrints():
+                            try:
+                                sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Attendance Records - deltaDBFA")
+                                print(sender)
+                            except Exception:
+                                pass
+                        print("Coming soon! ")
+                        import sqlite3, time, os, requests, datetime
+                        from datetime import datetime, date
+
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+
+                        empmascur.execute("SELECT DISTINCT * FROM emp")
+                        dump = empmascur.fetchall()
+                        Oiddump = []
+                        for row in dump:
+                            Oiddump.append(row[0])
+
+                        print("OiDs registered: ", Oiddump)
+
+
+                        now = datetime.now()
+                        dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
+
+                        month = datetime.now().month - 1
+                        if month < 1:
+                            month = 12 + month  # At this point month is 0 or a negative number so we add
+                        if len(str(month)) == 1:
+                            month = "0"+str(month)
+                        dt1mb = ('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d"))
+
+
+                        time.sleep(0.5)
+                        print("\nLoading data for days between "+'%s'%dt1mb+" and "+'%s'%dt_string+"\n")
+                        empmascur.execute("SELECT * FROM attendance WHERE Date BETWEEN ? AND ? ORDER BY Date ASC", (dt1mb, dt_string))
+                        returned = empmascur.fetchall()
+                        for row in returned:
+                            print(row)
+
+
+                    if empfac == "10":
+                        print("10. Attendance records - OiD-specific (THIS MONTH)")
+                        with HiddenPrints():
+                            try:
+                                sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: Employee Attendance Records - deltaDBFA")
+                                print(sender)
+                            except Exception:
+                                pass
+                        import sqlite3, time, os, requests, datetime
+                        from datetime import datetime, date
+
+                        empmas = sqlite3.connect(r'dbfaempmaster.db')
+                        empmascur = empmas.cursor()
+
+                        empmascur.execute("SELECT DISTINCT * FROM emp")
+                        dump = empmascur.fetchall()
+                        Oiddump = []
+                        for row in dump:
+                            Oiddump.append(row[0])
+
+                        print("OiDs registered: ", Oiddump)
+
+                        try:
+                            Oid = int(input("DBFA ATTENDANCE RECORDS- Enter the OiD: "))
+                            trypass = 1
+                        except:
+                            print("OiDs are integer-only. Please retry using valid credentials! \n")
+                            trypass = 0
+
+                        now = datetime.now()
+                        dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
+
+                        month = datetime.now().month - 1
+                        if month < 1:
+                            month = 12 + month  # At this point month is 0 or a negative number so we add
+                        if len(str(month)) == 1:
+                            month = "0"+str(month)
+                        dt1mb = ('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d"))
+
+                        if trypass == 1:
+                            if Oid in Oiddump:
+                                print("OiD found ")
+                                time.sleep(0.5)
+                                print("\nLoading data for days between "+'%s'%dt1mb+" and "+'%s'%dt_string+"\n")
+                                empmascur.execute("SELECT * FROM attendance WHERE OiD = ? AND Date BETWEEN ? AND ? ORDER BY Date ASC", ('%s'%Oid, dt1mb, dt_string))
+                                returned = empmascur.fetchall()
+                                for row in returned:
+                                    print(row)
+
                         
-                        print("Please pay the employee: ₹", calcengine(1, 0))
-                        print("-------------------------------------")
-                        time.sleep(1)
-                        print("Scan the code in a UPI app to pay")
-                        time.sleep(1)
+                    if empfac == "11":                       
+                        from datetime import datetime, date
+                        now = datetime.now()
+                        dt_string = now.strftime("%d")  #datetime object containing current date and time 
+                        #print(dt_string)
+                        if dt_string in ("01", "02", "03", "04", "05"):
+                            def errorout():
+                                print("Invalid parameters, please retry")
+                                exit
 
-                        os.system(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\master\payqr.png')
-
-                        time.sleep(5)
-                        paycheck = input("Mark salary as 'PAID'? (y/n): ")
-                        if paycheck == "y":
-                            print("Salary paid!")
+                            import sqlite3, os, datetime
                             from datetime import datetime, date
-                            now = datetime.now()
-                            dt_string = now.strftime("%d")  #datetime object containing current date and time 
+
+                            def getpost(Oid):
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                empmascur.execute("SELECT Post FROM emp WHERE OiD = ?", ('%s'%Oid,))
+                                daysrt = empmascur.fetchall()
+                                return daysrt[0][0]
+
+
+                            def getdays(Oid):
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                now = datetime.now()
+                                dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
+                                month = datetime.now().month - 1
+                                if month < 1:
+                                    month = 12 + month  # At this point month is 0 or a negative number so we add
+                                if len(str(month)) == 1:
+                                    month = "0"+str(month)
+                                dt1mb = ('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d"))
+                                empmascur.execute("SELECT * FROM attendance WHERE OiD = ? AND Date BETWEEN ? AND ? ORDER BY Date ASC", ('%s'%Oid, dt1mb, dt_string))
+                                returned = empmascur.fetchall()
+                                return len(returned)
+
+
+                            def gethoursavg(Oid):
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                empmascur.execute("SELECT * FROM attendance WHERE OiD = ? ORDER BY Date ASC, Time", ('%s'%Oid,))
+                                count = 0
+                                rows = empmascur.fetchall()
+                                datelist = []
+                                for i in rows:
+                                    datelist.append(i[0])
+                                a = [i for i in rows if datelist.count(i[0])>1]
+                                netr = (len(datelist) - len(a)) * 8
+                                ini_list = [i[2] for i in a]
+                                from datetime import timedelta   
+                                diff_list = [] 
+                                for x, y in zip(ini_list[0::], ini_list[1::]): 
+                                    t1 = str((timedelta(hours=int(y.split(':')[0]), minutes=int(y.split(':')[1])) - timedelta(hours=int(x.split(':')[0]), minutes=int(x.split(':')[1])))).split(':')[0]
+                                    diff_list.append(t1)
+                                del diff_list[1::2]
+                                for i in range(0, len(diff_list)): 
+                                    diff_list[i] = int(diff_list[i]) 
+                                if int(netr) > 0:
+                                    diff_list.append(netr) 
+                                return (sum(diff_list)/len(diff_list))
+
+
+                            def getovertime(Oid):
+                                from datetime import datetime, date
+                                now = datetime.now()
+                                dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
+                                month = datetime.now().month - 1
+                                if month < 1:
+                                    month = 12 + month  # At this point month is 0 or a negative number so we add
+                                if len(str(month)) == 1:
+                                    month = "0"+str(month)
+                                dt1mb = ('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d"))
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                empmascur.execute("SELECT * FROM attendance WHERE OiD = ? AND Date BETWEEN ? AND ? ORDER BY Date ASC", ('%s'%Oid, dt1mb, dt_string, ))
+                                count = 0
+                                rows = empmascur.fetchall()
+                                datelist = []
+                                for i in rows:
+                                    datelist.append(i[0])
+                                a = [i for i in rows if datelist.count(i[0])>1]
+                                netr = (len(datelist) - len(a)) * 8
+                                ini_list = [i[2] for i in a]
+                                from datetime import timedelta   
+                                diff_list = [] 
+                                for x, y in zip(ini_list[0::], ini_list[1::]): 
+                                    t1 = str((timedelta(hours=int(y.split(':')[0]), minutes=int(y.split(':')[1])) - timedelta(hours=int(x.split(':')[0]), minutes=int(x.split(':')[1])))).split(':')[0]
+                                    diff_list.append(t1)
+                                del diff_list[1::2]
+                                for i in range(0, len(diff_list)): 
+                                    diff_list[i] = int(diff_list[i]) 
+                                finlist = []
+                                for i in range(0, len(diff_list)): 
+                                    if diff_list[i] > 8:
+                                        finlist.append(diff_list[i])
+                                return sum(finlist)
+
+
+
+                            def calcengine(Oid, bonus):
+                                postnet = ("ceo", "cto", "admin", "it", "sales", "maintanence", "logistics")
+                                salnet = (97000, 84000, 42000, 35000, 32000, 22000, 21000)
+                                days = 30
+                                leave_days = 30-int(days)
+                                post = getpost(Oid)
+                                avg_hours_week = gethoursavg(Oid)
+                                hours_overtime = getovertime(Oid)
+                                paynet = int(salnet[postnet.index(post.lower())])
+                                if int(avg_hours_week) < 8:
+                                    paynet = paynet - ((8-int(avg_hours_week))*1000)
+                                if int(hours_overtime) > 0:
+                                    paynet += (int(hours_overtime)*1500)
+                                if int(leave_days) > 3:
+                                    paynet = paynet - ((int(leave_days)-3)*750)
+                                if int(bonus) > 0:
+                                    paynet += bonus
+                                print("----------------------------")
+                                print("Average hours worked     : ", avg_hours_week)
+                                print("Overtime hours worked    : ", hours_overtime)
+                                print("Leave(s) taken           : ", leave_days)
+                                print("Bonus added              : ", bonus)
+                                print("----------------------------\n")
+                                return paynet
+
+
+                            import time
+                            import pyqrcode, png, os
+                            from pyqrcode import QRCode 
+
                             empmas = sqlite3.connect(r'dbfaempmaster.db')
                             empmascur = empmas.cursor()
-                            empmascur.execute("insert into salpay(Oid, Date, Amount) values(?, ?, ?)", (emppay, dt_string, calcengine(1, 0)))
-                            empmas.commit()
+
+                            empmascur.execute("SELECT Oid, Name, Mobile, UPI, Dept, Post, Salary FROM emp")
+                            emprows = empmascur.fetchall()
+                            from tabulate import tabulate
+                            print(tabulate(emprows, headers=['O-ID', 'Name', 'Mobile', 'UPI', 'Dept', "Post", 'Salary'], tablefmt='fancy_grid'))
+                            #for emprow in emprows:
+                                #print(emprow)
+
+                            time.sleep(2)
+
+                            emppay = str(input("Enter the Oid (Employee ID) to pay salary for: "))
+                            empmascur.execute("SELECT * FROM emp WHERE Oid LIKE ?", ("%"+emppay+"%", ))
+                            print(tabulate(empmascur.fetchall(), headers=['O-ID', 'Name', 'DOB', 'Email', 'Mobile', 'Address', 'UPI', 'Dept', "Post", 'Salary'], tablefmt='fancy_grid'))
+                            print('\n')
+                            print("Please pay the employee: ₹", calcengine(1, 0))
+                            time.sleep(2)
+                            emppayconfox = input("\n\nPay salary? (y/n): ")
+                            if emppayconfox == "y":
+                                #emarpay = str("%"+'%s'%emppay+"%")
+                                empmascur.execute("SELECT Name, UPI FROM emp WHERE Oid LIKE ?", (emppay,) )
+                                tempemppay = empmascur.fetchall()
+                                print("Paying ", list(tempemppay[0])[0], "at ", list(tempemppay[0])[1])
+                                name = list(tempemppay[0])[0]
+                                upid = list(tempemppay[0])[1]
+                            else:
+                                empmenu()
+                                exit
+                                print("Aaaa")
+
+                            #upid = '9810141714@upi'
+                            #name = 'KPBalaji'
+
+                            s = "upi://pay?pa="+'%s'%upid+"&pn="+'%s'%name+"&cu=INR"
+
+                            # Generate QR code 
+                            url = pyqrcode.create(s) 
+
+                            url.png('payqr.png', scale = 6) 
+                            from PIL import Image, ImageDraw, ImageFont
+                            image = Image.open('payqr.png')
+                            try:
+                                sender = telegram_bot_sendtext(dt_string + "\n" + "Started Process: Issue Salary - deltaDBFA")
+                                print(sender)
+                            except Exception:
+                                pass
+                            draw = ImageDraw.Draw(image)
+                            font = ImageFont.truetype(fontsdir, size=200)
+                            (x, y) = (5, 250)
+                            xname = 'Scan to pay with UPI              deltaDBFA'
+                            draw.text((x, y), xname) #, fill=color)
+                            (x, y) = (5, 5)
+
+                            name = "Paying "+'%s'%name+" "*(28-len(str(name)))+"deltaPay"
+                            draw.text((x, y), name) #, fill=color)
+                            image.save('payqr.png', optimize=True, quality=120)
+                            
+                            print("Please pay the employee: ₹", calcengine(1, 0))
+                            print("-------------------------------------")
+                            time.sleep(1)
+                            print("Scan the code in a UPI app to pay")
+                            time.sleep(1)
+
+                            os.system(currdir+'\\payqr.png')
+
+                            time.sleep(5)
+                            paycheck = input("Mark salary as 'PAID'? (y/n): ")
+                            if paycheck == "y":
+                                print("Salary paid!")
+                                from datetime import datetime, date
+                                now = datetime.now()
+                                dt_string = now.strftime("%d")  #datetime object containing current date and time 
+                                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                                empmascur = empmas.cursor()
+                                empmascur.execute("insert into salpay(Oid, Date, Amount) values(?, ?, ?)", (emppay, dt_string, calcengine(1, 0)))
+                                empmas.commit()
+                            else:
+                                print("Not paid. ")
+
+
                         else:
-                            print("Not paid. ")
-
-
-                    else:
-                        print("Salary payments can only be made between 01st - 05th of each month. ~")
+                            print("Salary payments can only be made between 01st - 05th of each month. ~")
 
 
 
-                if empfac == "12":
-                    print("Returning to DBFA Main.. ")
-                    time.sleep(1)
-                    break
-                
-                #else:
-                    #import os
-                    #os.system('cls')
+                    if empfac == "12":
+                        print("Returning to DBFA Main.. ")
+                        time.sleep(1)
+                        break
+                    
+                    #else:
+                        #import os
+                        #os.system('cls')
 
+            else:
+                print("Invalid password! ")
 
             
         #CIT
@@ -4996,7 +5046,7 @@ except:
 
         print("Fetching logged MD5.")
         try:
-            localdump = str(open(r'C:\Users\balaj\OneDrive\Documents\GitHub\DBFA\md5').read())
+            localdump = str(open(parentdir+'\\md5').read())
             sorteddump = (localdump.split())
             print("Arranging hashes ###")
             local_md5 = []

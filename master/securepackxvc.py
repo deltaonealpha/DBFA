@@ -1,5 +1,7 @@
 print("Removing ALL registered vouchers now...")
 import os, time
+global curdir, parentdir, fontsdir
+currdir = str(os.getcwd())
 print("        ___ ______ ___   _____________    ____________     _______")
 time.sleep(0.1)
 print("       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /")
@@ -38,11 +40,11 @@ try:
     time.sleep(1)
     print("Restarting DBFA")
     time.sleep(1)
-    os.startfile(r"bleading_edge.py")
+    os.startfile(currdir+'\\bleading_edge.py')
 except:
     print("Critical error while operating on file.")
     time.sleep(0.5)
     print("Manually delete file - cponmgmtsys.db from your DBFA installation directory")
     time.sleep(1)
-    os.startfile(r"bleading_edge.py")
+    os.startfile(currdir+'\\bleading_edge.py')
     time.sleep(19)
