@@ -1,0 +1,523 @@
+deltaDBFA Infinity Development Changelog | author: @deltaonealpha
+- Changelog for DBFA consisting of all changes since DBFA 7
+--------------------------------------------------------------
+TODO:
+- User accounts (admin, cashier et cetera)
+- Package DBFA with dummy dbs from now, DBFA will detect
+  missing files and autogenerate dummy files (basically 
+  restore them from a built-in dummy backup yey nice ideaahh)
+--------------------------------------------------------------
+
+23-10-2020 18:00
+> Presenting DBFA Restoration (Backup & Switch v2.0)
+  Now the 'Backup & Switch' option gives you an option to restore the backup too!
+  On selecting 'restore', DBFA will open a file dialog where you can chose the backup .zip file.
+  DBFA will automatically scan the backup file's metadata and figure out the earlier installation's password, which
+  would be required to complete restoration.
+
+  Upon recieving a valid password, DBFA will restore the backed-up data smoothly and restart DBFA client.
+
+
+23-10-2020 08:59 Critical Security Patch
+> All keys moved from settings > settings >>> to >>> settings > passkeyhandler for organizational purposes.
+> Modified most scripts to incorporate password detection from database, removed direct references from the code.
+RE > All file references (paths) have been changed to automatically detect the installation directory.
+
+22-10-2020 FULL
+> Introducing DBFA Deployment. This is an .exe installer with smarts.
+  It will check your registry for a Python installation and will install Python if not found. 
+  Then it will pip install all dependencies automatically, and then install DBFA (.py and others)
+  This replaces the experimental 'DBFA Executable' releases which used .exe files converted from .py 
+  as they were buggy and large in size.
+
+> Updates to Updater (coming soon)
+  Starting soon, DBFA's Deployment Installer will also install a "DBFA-updater.exe". 
+  Using this, users can search for and have the latest updates auto-installed as released on our Git.
+
+> All file references (paths) have been changed to automatically detect the installation directory.
+
+> NOTE: We have detected a broken 'backup&switch' implementation from DBFA 8.20 - 8.60. We're currently investigating the issue 
+        in an attempt to provide a patch soon.
+
+18-10-2020 17:10 ISU (Incremental Security Update)
+> Added native (in-main-script) admin login for employee manager
+
+18-10-2020 12:00 ISU (Incremental Security Update)
+> Passwords/ tokens/ IDs are now removed from the main code.
+> They're now fetched from the settings DB.
+
+14-10-2020 20:40
+> Service status page has been moved from https://software.deltaone.tech/servicestatus.html to https://servicestatus.deltaone.tech/ to https://dashboard.deltaone.tech/dbfa.html
+  This incorporated dashboard UI v2.1 and has base for deltaInsync Status API.
+  References have been changed in DBFA Client.
+> Schedule is now sent to a Telegram group consisting of all employees.
+
+13-10-2020 18:56
+> Rectified bug with menu time meter
+> Rectified webhook bug which induced a crash when an image was sent to the Telegram bot 
+> Changed DBFA updater & integrity validator files from GitHub >>> DBFA to GitHub >>> DBFAcrashhandler
+  (Benefit: Main repo can now go private without DBFA crashing yey)
+
+11-10-2020
+> All menu designs are now unified across DBFA.
+
+10-10-2020
+> Started work on PHASE - II of DBFA - Unifying menu designs across the code.
+    - Unified Employee Manager menu design with main menu.
+> Decreased per-boot-cycle time by 2 seconds
+> Reduced main boot timings by 4-5 seconds
+> Improved invoicing code logic (majorly lylpoints)
+
+09-10-2020
+New Release: DBFA 8.6-CE (beta) (09-10-2020)
+Updated DBFA Employee Manager v(1.0) >>> v(2.1)
+    > DBFA Smart Shift-Scheduler 
+        Auto-schedules the day before, Telegrams the owner. (Coming soon: Email sched. to all employees)
+    > Leave Applications: Apply for a leave a day before and DBFA will automatically change the schedule!
+    > Automatic salary calculations (depends on post, days, weekly hours and overtime worked and applicable bonus-es)
+
+06-10-2020
+> Rectified detection rules for the webhook.
+
+03-10-20 22:35
+Release - DBFA 8.55 Commemorative Edition (Stable) *Incremental Security Update  
+> Presenting DBFA Web Hook Security. The admin can now type 'disableDBFA' in our Telegram bot and DBFA access on related installations will be disabled from the next menu cycle/ boot until re-enabled by the admin. DBFA will exit and display a webpage (https://software.deltaone.tech/servicestatus.html) showing operational status and reasons for exiting.
+> Updated sync details and version ID for updater and MD5 crash detection.
+> Updated .readme on Git.
+> Updated GitHub releases with new .zip.
+
+29-09-20 11:57
+> Presenting delta DEEP INVOICE ARCHIVAL VAULT
+> All invoices are stored here in the form of a string (in a db)
+> You can delete all pdfs, but with DEEP ARCHIVAL you can generate ANY invoice pdf, ANY TIME!
+> Ensures data protection, the ability to generate previous invoices at any time and SAVES A LOT OF SPACE.
+
+24-09-20 18:22
+> Yee the base work has started 😎
+https://telegra.ph/file/6f49752bb0198dec26b1a.png
+(Sub: DBFA GUI-version (in trial and discussions stage))
+
+
+24-09-20 11:10
+
+> Fixed menu formatting over 8.46.1
+> Updated MD5
+
+24-09-20 11:05
+
+> (v8.56: 24/09/2020): Added GUI-prompt for sending customer invoice emails.
+https://telegra.ph/file/6f1983ccf031814022c4d.png
+
+
+
+> Updated MD5 with source and server.
+
+23-09-20 21:45
+
+> Presenting DBFA File Integrity Validation Service (auto-launches on crash)
+
+- Error catching across the WHOLE length of the code!
+https://telegra.ph/file/da2c8cc43ec658c6c8273.png
+https://telegra.ph/file/ea94046e5f2a40923687f.png
+
+
+17-09-20 11:50
+
+> Added logger for store report
+
+> Prepared base for proper OAuth for store reportgen
+
+16-09-20 15:05
+
+> Login v2 with a synchronous multi-logging with a timeout of a minute.
+
+> Bypass prevention service v2.
+
+-- synced source to git
+
+
+
+10-09-20 10:59
+
+> Added 'DBFA Mark Attendance'
+
+
+
+06-09-20 23:48
+
+> Added caps-lock check for main GUI login (main and wre)
+
+
+
+06-09-20 20:22
+
+> DBFA Updater completed and enabled!
+
+> Reworked update check logic from scratch
+
+> Auto-download update files when told to do so by the user using git
+
+> Version details are checked from both, local source and server source.
+
+> Added instructions for update via a .txt file
+
+> Added "Check for updates" to the main menu
+
+> A seperate new repository is being maintained to host update files. (OTA; only changed files)
+
+> Updater is OTA-based. Only updated files will be hosted.
+
+> Updated menu
+
+
+
+05-09-20 17:08
+
+> Added general base and hiring form base for DBFA Employee Management
+
+
+
+30-08-20 17:08
+
+> Presenting DBFA 8's new menu!
+
+> Completely re-organised the menu design
+
+> Completely new DBFA logo!
+
+> Added toggle in settings to switch back the alternative old menu style (old style with new logo)
+
+> Added settings db checks for menu formatting adjustment (each menu has different areas occupied)
+
+
+
+30-08-20 11:49
+
+> Renamed DBFA Settings >>> to >>> DBFA options
+
+
+
+
+
+30-08-20 11:49
+
+> Added skip to discount if coupon/voucher ID entered doesn't exist
+
+
+
+29-08-20 22:19
+
+> DBFA files are now regularly backed-up to encrypted NordCloud and encrypted OneDrive storage.
+
+
+
+> Reduced overall package size to under 40mb
+
+> Complete DBFA Two-factor-authenication is now live!!!
+
+> Settings does NOT modify 2FA if the desired service status is already in effect.
+
+> Ultra secure with an encrypted connection to the recieving client
+
+> Added 2FA in settings, main code, and 2FA disable/ enable settings option.
+
+> Rectified spaces and text formatting in certain spaces
+
+> Synced DBFA upstream
+
+> 2FA modif (turn 2FA on/off from settings) is a seperate file. DBFA main client is rebooted during this process.
+
+
+
+29-08-20
+
+> Adding base blobs for DBFA two-factor-authenication
+
+28-08-20
+
+> Presenting the DBFA Sales Analyzer Engine v1
+
+> Menu option *10* to view a plot of profit vs date
+
+
+
+
+> PDF reporter now shows the plot too!
+
+
+
+
+> Improved PDF reported: Corrected table dimensions (and useless columns nuked); bold removed from sub-headings.
+
+> Re-organised and updated main menu
+
+> Removed bug where *10* had to be entered twice in order to leave DBFA Settings and return to the main menu.
+
+
+
+
+
+28-08-20
+
+> Updated invoice with invoice number ;)
+
+> Updated delivery logger with purchased products ;)
+
+> Updated upstream
+
+
+
+27-08-20
+
+> Enabled complete DBFA Settings with in-code checks
+
+> Updater is currently a work-in-progress, rest everything works!
+
+
+
+26-08-20
+
+> Expanded DBFA Settings base blobs MASSIVELY
+
+> Completed the menu with warnings and options
+
+
+
+26-08-20
+
+> Added base blobs for DBFA Settings
+
+> Settings Menu v1 has been made 
+
+> Backend needs to be made
+
+
+
+25-08-20
+
+> Presenting DBFA Sales Logger v2
+
+> Now logs all data in a secure db
+
+> Menu now shows profit earned for the past 7 days and for today!
+
+> Updated menu with upstream
+
+
+
+22-08-20
+
+~ DBFA 8 ONE-YEAR ANNIVERSARY SPECIAL BOOTSCREEN ~
+
+Tweaked invoice naming for easy searches with the new invoice ID system
+
+Nuked all redundancies from the repo
+
+
+
+22-08-20
+
+> Added new sub-option: Edit vendor contact (to DBFA stock master option)
+
+> Has email verification (for *@* and *.*)
+
+
+
+22-08-20
+
+> Fixed invoice ID system
+
+> Added invoice ID to telethon
+
+> Fixed shell-print error
+
+> Nuked netpay error
+
+
+
+21-08-20
+
+> Presenting DBFA Store Music Controls!
+
+> Now view the playing track (Spotify) in the main menu itself!
+
+> Go to the previous/ the next
+
+> Added exception-handling for when Spotify is closed (to show the track name)
+
+> Track controls (prev/ pause/ next) works for system-wide apps!!
+
+> Added music clauses before "if defcac == 1"
+
+> Improved the "What would you like to do" prompt
+
+> Updated menu with upstream
+
+
+
+20-08-20
+
+> Added date & time in main menu
+
+> Extended main menu dashes enclosing the new additions
+
+> "What would you like to do?" is now printed underlined
+
+> Updated menu from upstream
+
+> Rectified print length issue while totalling for product 40
+
+
+
+20-08-20
+
+> The "Hey there, ___!" text now fetches login username from Windows itself.
+
+> Added this in the menu too!
+
+> Updated menu
+
+
+
+19-08-20
+
+> Presenting DBFA quick control!
+
+ -- No need to type 3, then wait, then select a, b, c, d, e or f.
+
+   Now directly enter 3a, 3b, 3c, 3d, 3e, 3f in the main menu itself!
+
+ -- Also available for section 2 (2a, 2b, 2c, 2d, 2e)
+
+
+
+17-08-20
+
+> Presenting DBFA Deliveries v1 (beta)!!!
+
+ -- Mainmenu display shows pending delivery count everytime!
+
+ -- Place deliveries while invoicing itself!
+
+ -- Asks for and stores the address
+
+ -- View orders to be delivered
+
+ -- Mark an order as delivered
+
+
+
+
+
+17-08-20
+
+> Per-item low-stock bar enabled!
+
+
+
+17-08-20
+
+> Nuked useless variables
+
+> Presenting the DBFA Stock Master v1!
+
+ -- Place orders for new stock!
+
+ -- Update product quantity recieved!
+
+ -- Fetch delivery status (induvidually)
+
+ -- Fetch delivery status (for the mass)
+
+ -- Change the low-stock warning bar
+
+  > Option added and alters the db;
+
+  but not activated for main billing rn
+
+ -- View details for product vendor
+
+ -- Contact product vendor via email!
+
+
+
+17-08-20
+
+> Added stock delivery report to store pdf reporter
+
+> Created base blobs for stock ordering system
+
+> Added base blobs for product vendor info and contact vendor option
+
+
+
+16-08-20
+
+> Presenting search engine 2.0
+
+  -- Random capitalisations and whitespaces
+
+   too return valid results now!
+
+ -- Improved accuracy
+
+> Store report now includes customer records
+
+ -- ID, name, purchase count, net amount, lyl pts etc.
+
+
+
+16-08-20
+
+> Added export sales data to CSV option
+
+> Added export customer data to CSV option
+
+ -- Picks data from both customer databases
+
+> Updated menu
+
+
+
+16-08-20
+
+> Nuked useless variables
+
+> Added websupport for changelog
+
+> Nuked "licensing - open markdown" option
+
+> Added websupport for licensing stuff
+
+
+
+16-08-20
+
+> Login password is now masked
+
+> Added "Development Changelog" option in main
+
+> Updated menu
+
+
+
+15-08-20
+
+> Nuked lylpoints on csid 0 bug
+
+
+
+----------------------
+
+RC Builds are internal builds, not yet ready for public release
+
+----------------------
+
+DBFA-x(-RC-x) by deltaonealpha
+
+----------------------
+
+
+
+
+EDIT

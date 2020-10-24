@@ -187,7 +187,7 @@ def dmain():
                     else:
                         pass
             except KeyError:
-                print("Do not sent images to DBFA communicator on Telegram!")
+                print("Do not send images to DBFA communicator on Telegram!")
         with open('lastupdateid2.txt', 'a+') as file:
             file.close()
         with open('lastupdateid2.txt', 'r+') as file:
@@ -1558,7 +1558,7 @@ This is a dynamically generated schedule with alternating shifts. Employees on l
             print("Salary days: Pay salaries between 01st - 05th of every month. Open DBFA Employee Manager to pay ~")
         from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
         init(convert = True)
-        url = "https://raw.githubusercontent.com/deltaonealpha/DBFAcrashhandler/main/updates.txt"
+        url = "https://raw.githubusercontent.com/deltaonealpha/DBFA_UpdateHandler/master/updates.txt"
         r = requests.get(url)
         dbfaver = ((str(r.content.decode('utf-8'))))[4:]
         xdbfaver = ((str(r.content.decode('utf-8'))))
@@ -2599,7 +2599,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
     print("---------------------------------\n\n༼ つ ◕_◕ ༽つ delta IntelliSense Updater\n\n---------------------------------")
     time.sleep(0.5)
     print("Talking to server ~ ")
-    url = "https://raw.githubusercontent.com/deltaonealpha/DBFAcrashhandler/main/updates.txt"
+    url = "https://raw.githubusercontent.com/deltaonealpha/DBFA_UpdateHandler/master/updates.txt"
     r = requests.get(url)
     dbfaver = ((str(r.content.decode('utf-8'))))[4:]
     xdbfaver = ((str(r.content.decode('utf-8'))))
@@ -3911,13 +3911,25 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
         elif decfac == "11":
             import requests, os, time, shutil, oschmod
             os.system('cls')
-            print("---------------------------------\n\n༼ つ ◕_◕ ༽つ delta Update Utility\n\n---------------------------------")
+            print('''---------------------------------
+delta Update Deployment Service
+---------------------------------
+Checking for updates. . . 
+---------------------------------''')
             time.sleep(1)
-            url = "https://raw.githubusercontent.com/deltaonealpha/DBFAcrashhandler/main/updates.txt"
+
+            import os, time
+            currdir = str(os.getcwd())
+            from pathlib import Path
+            path = Path(os.getcwd())
+            parentdir = str(Path(path.parent))
+            #print(parentdir)
+            #print(parentdir+'\\updates.txt')
+            userdir = os.path.expanduser('~')
+            url = "https://raw.githubusercontent.com/deltaonealpha/DBFA_UpdateHandler/master/updates.txt"
             r = requests.get(url)
             dbfaver = ((str(r.content.decode('utf-8'))))[4:]
             xdbfaver = ((str(r.content.decode('utf-8'))))
-
             with open(parentdir+'\\updates.txt', 'r+') as upread:
                 upread = (str(upread.read())).strip()
 
@@ -3934,48 +3946,15 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
 
             else:
                 if xdbfaver == upread:
-                    print("This installation of DBFA is up-to date! ")
+                    print("This installation of DBFA is already up-to date ~ \n")
 
                 elif spass1 != spass2:
-                    time.sleep(1)
-                    print("A new DBFA update is available: DBFA", dbfaver)
-                    time.sleep(3)
-                    updateconfo =  input("Update DBFA now? (y/n): ")
-                    if updateconfo == "y":
-                        try:
-                            oschmod.set_mode(currdir+'\\DBFA_UpdateHandler', "777")
-                        except:
-                            pass
-                        shutil.rmtree(currdir+'\\DBFA_UpdateHandler', ignore_errors=True)
-                        try:
-                            os.rmdir(currdir+'\\DBFA_UpdateHandler')
-                        except:
-                            pass
-                        if os.path.isdir(currdir+'\\DBFA_UpdateHandler') == True:
-                            shutil.rmtree(currdir+'\\DBFA_UpdateHandler', ignore_errors=True)
-                            print("Cleaning-up previous update package... ")
-                            shutil.rmtree(currdir+'\\DBFA_UpdateHandler', ignore_errors=True)
-                            try:
-                                os.rmdir(currdir+'\\DBFA_UpdateHandler')
-                            except:
-                                pass
-                        else:
-                            pass
-                        try:
-                            os.system('git clone https://github.com/deltaonealpha/DBFA_UpdateHandler')
-                        except:
-                            print("The directory 'DBFA_UpdateHandler' already exists.")
-                            print("Please delete it from DBFA's installation location and re-run the updater.")
-                        #os.system('git log')
-                        print("Commit: ")
-                        os.system(r'git rev-parse HEAD')
-
-                        print("The new package has been downloaded to your DBFA installation > master > DBFA_UpdateHandler")
-                        print("Please replace *only the required* files manually. There's a 'Update Instructions.txt' file inside the 'DBFA_UpdateHandler' folder with the required steps to update DBFA.")
-
-                    if updateconfo == "n":
-                        time.sleep(1)
-                        print("Use this, (option 11) whenever you want to update DBFA. We recommend doing so on urgent grounds. DBFA updates bring better security and new ground-breaking features with them!")
+                    print("Please wait...")
+                    time.sleep(2)
+                    os.startfile(r'updateDBFA.py')
+                    print("Updater opened in a different window")
+                    time.sleep(2)
+                    os._exit(0)
 
         #Exit System
         elif decfac == "12":
