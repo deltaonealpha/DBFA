@@ -2,11 +2,34 @@ deltaDBFA Infinity Development Changelog | author: @deltaonealpha
 - Changelog for DBFA consisting of all changes since DBFA 7
 --------------------------------------------------------------
 TODO:
-- User accounts (admin, cashier et cetera)
-- Package DBFA with dummy dbs from now, DBFA will detect
-  missing files and autogenerate dummy files (basically 
-  restore them from a built-in dummy backup yey nice ideaahh)
+<<DONE>> - User accounts (admin, cashier et cetera)
+- Add option to create new account and assign perms (admin/ cashier) [option available from admin acc only]
 --------------------------------------------------------------
+
+27-10-2020 11:59
+> Presenting User Account Controls in DBFA
+  Administrator/ Cashier accounts (more can be easily added)
+  Restricted operations for cashier accounts.
+  Option to have separate accounts for different cashiers.
+
+
+24-10-2020 13:59
+> Presenting Automatic Update Installation (DBFA Updater v2)
+  In earlier builds, updater used to just download new update files and instruct the user to copy-replace the files.
+  With this build, DBFA automatically does the following when "Update now" is chosen:
+      - Downloads update
+      - Unpackages update files
+      - Installs updates (copy-replaces on its own!)
+      - Increments DBFA version ID
+      - Cleans up and deletes unpackages and downloaded files
+
+23-10-2020 18:33
+> DBFA now comes with a setup for first-time installations.
+  It auto-generates missing files as dummy files, creates dummy databases
+  which will be populated as the user starts using DBFA.
+  It also provides the user with a "First Time Installation Wizard", where it completely 
+  guides the user through getting Telegram and EMail requirements ready, takes them and stores them.
+  An option to set admin and cashier password is also given at this time.
 
 23-10-2020 18:00
 > Presenting DBFA Restoration (Backup & Switch v2.0)
@@ -14,9 +37,7 @@ TODO:
   On selecting 'restore', DBFA will open a file dialog where you can chose the backup .zip file.
   DBFA will automatically scan the backup file's metadata and figure out the earlier installation's password, which
   would be required to complete restoration.
-
   Upon recieving a valid password, DBFA will restore the backed-up data smoothly and restart DBFA client.
-
 
 23-10-2020 08:59 Critical Security Patch
 > All keys moved from settings > settings >>> to >>> settings > passkeyhandler for organizational purposes.

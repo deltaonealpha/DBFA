@@ -12,7 +12,11 @@ package dbfafartingspider
 *
 * @author deltaonealpha
 '''
-#vs
+###########################################################################
+# vs                                                                      #
+# Administrator == all                                                    #
+# Sales = ['1', "2a", '2b', '2c', '2d', '3a', '3b', '3d', 5, 9, 10, 12 ]  #
+###########################################################################
 
 import traceback
 import json, requests, time, urllib, sys
@@ -269,11 +273,26 @@ try:
         settingsfetch = (settingsx.fetchall()[0][0])
         return settingsfetch
 
+    def settingscommondumpfetch(SettingsType):
+        import sqlite3
+        settings = sqlite3.connect(r'dbfasettings.db')
+        settingsx = settings.cursor()
+        settingsx.execute(("SELECT Notes from settings WHERE SettingsType = ?"), (SettingsType,))
+        settingsfetch = (settingsx.fetchall()[0][0])
+        return settingsfetch
+
     def settingsmodifier(SettingsType, NewValue):
         import sqlite3
         settings = sqlite3.connect(r'dbfasettings.db')
         settingsx = settings.cursor()
         settingsx.execute(("UPDATE settings SET Value = ? WHERE SettingsType = ?"), (NewValue, SettingsType))
+        settings.commit()
+
+    def permssetter(NewValue):
+        import sqlite3
+        settings = sqlite3.connect(r'dbfasettings.db')
+        settingsx = settings.cursor()
+        settingsx.execute(("UPDATE settings SET Notes = ? WHERE SettingsType = 10"), (NewValue, ))
         settings.commit()
 
 
@@ -1630,7 +1649,28 @@ DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* -
 '''+Fore.MAGENTA+'''                                                                 
 What would you like to do?                        The OG Store Manager'''+Fore.WHITE+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█'''+Fore.CYAN+'''
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄'''+Fore.CYAN+'''
-DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.54 DONNAGER                               
+DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.54 DONNAGER   \n'''
++Back.CYAN+Fore.BLACK+'''Administrator Controls'''+Back.BLACK+Fore.CYAN+'''                              
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
+#  '''+Fore.RED+'''
+#  '''+Fore.CYAN+'''
+        logoxnewrestrictedperms = (Fore.CYAN+'''Options:
+1  - Issue a Bill                                              
+2  - Manage Customers:                                         5  - Manage Deliveries
+        a: Register a Customer    c: Purchase Records          
+        b: Customer Registry      d: Find a Customer           
+                                                               
+3  - Store Options:                                            '''+Fore.MAGENTA+'''emp/EMP - DBFA Employee Manager'''+Fore.CYAN+'''
+        a: Manage Stock                                        9  - View Software License
+        b: DBFA Stock Master      d: Product Listing           10 - About DBFA 8.4
+                                                               
+                                                               12 - Quit
+- 'mark'/'MARK': to mark attendance                               
+'''+Fore.MAGENTA+'''                                                                 
+What would you like to do?                        The OG Store Manager'''+Fore.WHITE+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█'''+Fore.CYAN+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄'''+Fore.CYAN+'''
+DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.54 DONNAGER  \n'''
++Back.RED+Fore.BLACK+'''Restricted access mode'''+Back.BLACK+Fore.CYAN+'''                               
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
 
         # To underline What would you like to do?::                                                                            
@@ -1645,7 +1685,10 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
             else:
                 print("DONNAGER 8.01 RC-2 Test Beta")
                 print(Fore.BLACK + Back.CYAN + "No deliveries pending! " + Back.BLACK + Fore.CYAN)
-            print(logoxnew)
+            if str(settingscommondumpfetch(10)) == "Administrator":
+                print(logoxnew)
+            elif str(settingscommondumpfetch(10)) in ("Sales - 1", "Sales - 2", "Sales - 3"):
+                print(logoxnewrestrictedperms)
         else:
             if delcount != 0:
                 print("-----------------------------------------------------------------------------------------------------------------------")
@@ -2513,6 +2556,11 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
             os._exit(0)
         elif int(netr)-int(stamp) < 60:
             print("- - - Login validated - - -\n\n")
+            oauthx.execute("SELECT PermSet FROM LoginHandler")
+            permset = oauthx.fetchall()[0][0]
+            permssetter(permset)
+            print("Permissions set: ", settingscommondumpfetch(10))
+
         else:
             oauthx.execute("UPDATE LoginHandler SET Value = 0, TimeMark = 0")
             oauth.commit()
@@ -3104,18 +3152,21 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
                 logger.write("\nCustomer search used. \n")
 
             elif selected in ("e", "E"):
-                del2e()
-                logger.write("\n\n--------------------------------------- \n")
-                logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
-                logger.write("Customer data exported to CSV! ")
-                with HiddenPrints():
-                    try:
-                        sender = telegram_bot_sendtext(dt_string + "\n" + "Sales data exported to CSV- REDFLAG Urgent Security Notice!")
-                        print(sender)
-                    except Exception:
-                        pass
-                logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
-                logger.write("--------------------------------------- \n\n\n")
+                if str(settingscommondumpfetch(10)) == "Administrator":
+                    del2e()
+                    logger.write("\n\n--------------------------------------- \n")
+                    logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+                    logger.write("Customer data exported to CSV! ")
+                    with HiddenPrints():
+                        try:
+                            sender = telegram_bot_sendtext(dt_string + "\n" + "Sales data exported to CSV- REDFLAG Urgent Security Notice!")
+                            print(sender)
+                        except Exception:
+                            pass
+                    logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+                    logger.write("--------------------------------------- \n\n\n")
+                else:
+                    print("This function is restricted on your account.")
 
             elif selected not in ("a", "b", "c", "d", "e", "A", "B", "C", "D", "E"):
                 print("Please chose a valid option!")
@@ -3151,33 +3202,45 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
                 del3b()
 
             elif storeselected in ("c", "C"):
-                del3c()
+                if str(settingscommondumpfetch(10)) == "Administrator":
+                    del3c()
+                else:
+                    print("This function is restricted on your account.")
 
             elif storeselected in ("d", "D"):
                 del3d()            
 
             elif storeselected in ("e", "E"):
-                del3e()
-                logger.write("\n--------------------------------------- \n")
-                logger.write("Sales log accessed! ")
+                if str(settingscommondumpfetch(10)) == "Administrator":
+                    del3e()
+                    logger.write("\n--------------------------------------- \n")
+                    logger.write("Sales log accessed! ")
+                else:
+                    print("This function is restricted on your account.")
 
             elif storeselected in ("f", "F"):
-                del3f()
-                logger.write("\n\n--------------------------------------- \n")
-                logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
-                with HiddenPrints():
-                    try:
-                        sender = telegram_bot_sendtext(dt_string + "\n" + "Customer data exported to CSV- REDFLAG Urgent Security Notice!")
-                        print(sender)
-                    except Exception:
-                        pass
-                logger.write("Sales data exported to CSV! ")
-                logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
-                logger.write("--------------------------------------- \n\n\n")
+                if str(settingscommondumpfetch(10)) == "Administrator":
+                    del3f()
+                    logger.write("\n\n--------------------------------------- \n")
+                    logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+                    with HiddenPrints():
+                        try:
+                            sender = telegram_bot_sendtext(dt_string + "\n" + "Customer data exported to CSV- REDFLAG Urgent Security Notice!")
+                            print(sender)
+                        except Exception:
+                            pass
+                    logger.write("Sales data exported to CSV! ")
+                    logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+                    logger.write("--------------------------------------- \n\n\n")
+                else:
+                    print("This function is restricted on your account.")
 
             elif storeselected in ("g", "G"):
-                print("Deep Archival Engine")
-                del3g()
+                if str(settingscommondumpfetch(10)) == "Administrator":
+                    print("Deep Archival Engine")
+                    del3g()
+                else:
+                    print("This function is restricted on your account.")
 
             elif storeselected not in ("a", "b", "c", "d", "e", "f", "g", "A", "B", "C", "D", "E", "F", "G"):
                 print("Please select a valid option! ")
@@ -3188,196 +3251,202 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
 
         #Reports
         elif decfac == "4":
-            command = "cls"
-            os.system(command)
-            print("-- Generating store report --")
-            repstockfetch()
-            print("Please wait...")
-            repdatafetch()
-            findMaximum = "select max(prodsales) from recmasterx"
-            recx.execute(findMaximum)
-            # Print the maximum score
-            netr = recx.fetchone()[0]
-            findin = "select prodid, prodname, prodprofit, prodsales, netprof from recmasterx WHERE prodsales = ?"
-            arterx = (str(int(netr)),)
-            recx.execute(findin, arterx)
-            arterxout = recx.fetchall()
+            if str(settingscommondumpfetch(10)) == "Administrator":
+                command = "cls"
+                os.system(command)
+                print("-- Generating store report --")
+                repstockfetch()
+                print("Please wait...")
+                repdatafetch()
+                findMaximum = "select max(prodsales) from recmasterx"
+                recx.execute(findMaximum)
+                # Print the maximum score
+                netr = recx.fetchone()[0]
+                findin = "select prodid, prodname, prodprofit, prodsales, netprof from recmasterx WHERE prodsales = ?"
+                arterx = (str(int(netr)),)
+                recx.execute(findin, arterx)
+                arterxout = recx.fetchall()
 
-            findMaximumProf = "select max(netprof) from recmasterx"
-            recx.execute(findMaximumProf)
-            xnetr = recx.fetchone()[0]
-            findin = "select prodid, prodname, prodprofit, prodsales, netprof from recmasterx WHERE netprof = ?"
-            xarterx = str(int(xnetr))
-            xxarterx = (xarterx,)
-            recx.execute(findin, xxarterx)
-            xarterxout = recx.fetchall()
+                findMaximumProf = "select max(netprof) from recmasterx"
+                recx.execute(findMaximumProf)
+                xnetr = recx.fetchone()[0]
+                findin = "select prodid, prodname, prodprofit, prodsales, netprof from recmasterx WHERE netprof = ?"
+                xarterx = str(int(xnetr))
+                xxarterx = (xarterx,)
+                recx.execute(findin, xxarterx)
+                xarterxout = recx.fetchall()
 
-            isol = sqlite3.connect(r'DBFA_vend.db')
-            isolx = isol.cursor()
-            isolx = isol.cursor()
-            isolx.execute(("SELECT prodid, prodname, ordqty, delstat, vendor from stock WHERE delstat = ?"), ("TBD", ))
-            rowsrec = isolx.fetchall()
-            col_labels = [("P. ID", "P. Name", "Qty. to be delivered", "Status", "Vendor")]
-            rowsxtb = col_labels + rowsrec
+                isol = sqlite3.connect(r'DBFA_vend.db')
+                isolx = isol.cursor()
+                isolx = isol.cursor()
+                isolx.execute(("SELECT prodid, prodname, ordqty, delstat, vendor from stock WHERE delstat = ?"), ("TBD", ))
+                rowsrec = isolx.fetchall()
+                col_labels = [("P. ID", "P. Name", "Qty. to be delivered", "Status", "Vendor")]
+                rowsxtb = col_labels + rowsrec
 
-            def add_page_number(canvas, doc):
-                canvas.saveState()
-                canvas.setFont('Times-Roman', 10)
-                page_number_text = "%d" % (doc.page)
-                canvas.drawCentredString(
-                    0.75 * inch,
-                    0.75 * inch,
-                    page_number_text
-                )
-                canvas.restoreState()
+                def add_page_number(canvas, doc):
+                    canvas.saveState()
+                    canvas.setFont('Times-Roman', 10)
+                    page_number_text = "%d" % (doc.page)
+                    canvas.drawCentredString(
+                        0.75 * inch,
+                        0.75 * inch,
+                        page_number_text
+                    )
+                    canvas.restoreState()
 
-            import sqlite3 as sql
-            csvexx=sql.connect(currdir+'\\DBFA_CUSTCC.db')
-            print("Fetching data from database - II...")
-            cursorx = csvexx.cursor()
-            axct = cursorx.execute("select * from custcc")
-            axctx = []
-            for i in axct:
-                axctx.append(i)
-            axctx = [("C. ID","C. Name","Purchases Made","Total Amount","Loyalty Points")] + axctx
-            doc = SimpleDocTemplate("dbfastorerep.pdf", pagesize=A4,
-                                                rightMargin=2*cm,leftMargin=1.5*cm,
-                                                topMargin=1*cm,bottomMargin=2*cm)
-            # container for the 'Flowable' objects
-            elements = []
-            telegram_bot_sendtext("Access alert: Store Report")
-            t1dot = ("<b>DBFA Automatic Store Report: </b> <br />This report has been automatically generated. This lists the profit earned, stock analytics and customer records as logged by DBFA.<br /><br />")
-            t2dot = ("DBFA synchronously updates its database alongwith algorithmic data interpretation to deliver these reports. <br />This report contains information from the start of using DBFA on this system.<br /><br />")
-            t6dot = ("Report generated on: " + dt_string)
-            t3dot = ("<br /><br /><b>Most sold listing: </b><br />")
-            t4dot = ("<br /><br /><b>Total profit per listing: </b><br /><br />")
-            t5dot = ("<br /><br /><b>Most profit making listing: </b><br /><br />")
-            t8dot = ("<br /><br /><b>Customer purchases: </b><br /><br />")
-            t10dot = ("<br /><br /><br /><br /><br /><br /><b>DBFA Stock Orders Report: </b><br />Product stock yet to be recieved: <br /><br />")
-            t11dot = ("<br /><br /><b>DBFA Sales Analysis Plotter: </b><br />DBFA uses advanced data analysis algorithms to generate this plot. This is as per the latest data sets available. <br />")
-            colas = (30, 300, 60, 50, 50)
-            rowheights = (20, 20, 20, 20, 20,  20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,20,20,20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 )
-            text1=Paragraph(t1dot)
-            text2=Paragraph(t2dot)
-            text3=Paragraph(t3dot)
-            text4=Paragraph(t4dot)
-            text5=Paragraph(t5dot)
-            text6=Paragraph(t6dot)
-            text8=Paragraph(t8dot)
-            text10=Paragraph(t10dot)
-            text11=Paragraph(t11dot)
-            x=Table(rows, colas, rowheights)
-            t=Table(arterxout)
-            t2=Table(xarterxout)
-            t4=Table(axctx)
-            t5=Table(rowsxtb)
-            if tabarter == ['--']:
-                t7dot = ("<br /><br /><b>All listings currently in stock!</b><br /><br />")
+                import sqlite3 as sql
+                csvexx=sql.connect(currdir+'\\DBFA_CUSTCC.db')
+                print("Fetching data from database - II...")
+                cursorx = csvexx.cursor()
+                axct = cursorx.execute("select * from custcc")
+                axctx = []
+                for i in axct:
+                    axctx.append(i)
+                axctx = [("C. ID","C. Name","Purchases Made","Total Amount","Loyalty Points")] + axctx
+                doc = SimpleDocTemplate("dbfastorerep.pdf", pagesize=A4,
+                                                    rightMargin=2*cm,leftMargin=1.5*cm,
+                                                    topMargin=1*cm,bottomMargin=2*cm)
+                # container for the 'Flowable' objects
+                elements = []
+                telegram_bot_sendtext("Access alert: Store Report")
+                t1dot = ("<b>DBFA Automatic Store Report: </b> <br />This report has been automatically generated. This lists the profit earned, stock analytics and customer records as logged by DBFA.<br /><br />")
+                t2dot = ("DBFA synchronously updates its database alongwith algorithmic data interpretation to deliver these reports. <br />This report contains information from the start of using DBFA on this system.<br /><br />")
+                t6dot = ("Report generated on: " + dt_string)
+                t3dot = ("<br /><br /><b>Most sold listing: </b><br />")
+                t4dot = ("<br /><br /><b>Total profit per listing: </b><br /><br />")
+                t5dot = ("<br /><br /><b>Most profit making listing: </b><br /><br />")
+                t8dot = ("<br /><br /><b>Customer purchases: </b><br /><br />")
+                t10dot = ("<br /><br /><br /><br /><br /><br /><b>DBFA Stock Orders Report: </b><br />Product stock yet to be recieved: <br /><br />")
+                t11dot = ("<br /><br /><b>DBFA Sales Analysis Plotter: </b><br />DBFA uses advanced data analysis algorithms to generate this plot. This is as per the latest data sets available. <br />")
+                colas = (30, 300, 60, 50, 50)
+                rowheights = (20, 20, 20, 20, 20,  20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,20,20,20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 )
+                text1=Paragraph(t1dot)
+                text2=Paragraph(t2dot)
+                text3=Paragraph(t3dot)
+                text4=Paragraph(t4dot)
+                text5=Paragraph(t5dot)
+                text6=Paragraph(t6dot)
+                text8=Paragraph(t8dot)
+                text10=Paragraph(t10dot)
+                text11=Paragraph(t11dot)
+                x=Table(rows, colas, rowheights)
+                t=Table(arterxout)
+                t2=Table(xarterxout)
+                t4=Table(axctx)
+                t5=Table(rowsxtb)
+                if tabarter == ['--']:
+                    t7dot = ("<br /><br /><b>All listings currently in stock!</b><br /><br />")
+                else:
+                    t7dot = ("<br /><br /><b>Products running low on stock: </b><br /><br />")
+                
+                
+                tblStyle = TableStyle([('TEXTCOLOR',(0,0),(-1,-1),colors.black),
+                                    ('VALIGN',(0,0),(-1,-1),'TOP'),
+                                    ('LINEBELOW',(0,0),(-1,-1),1,colors.black),
+                                    ('BOX',(0,0),(-1,-1),1,colors.black),
+                                    ('BOX',(0,0),(0,-1),1,colors.black)])
+                tblStyle.add('BACKGROUND',(0,0),(1,0),colors.lightblue)
+                tblStyle.add('BACKGROUND',(0,1),(-1,-1),colors.lightblue)
+                GRID_STYLE = TableStyle(
+                    [('GRID', (0,0), (-1,-1), 0.25, colors.black),
+                    ('ALIGN', (1,1), (-1,-1), 'LEFT')]
+                    )
+                text7=Paragraph(t7dot)
+                t3=Table(tabarter)
+                t.setStyle(GRID_STYLE)
+                t2.setStyle(GRID_STYLE)
+                t3.setStyle(GRID_STYLE)
+                t4.setStyle(GRID_STYLE)
+                t5.setStyle(GRID_STYLE)
+                x.setStyle(GRID_STYLE)
+                # -------------------------------------------------------------------------------
+                import sqlite3, time
+                import matplotlib.pyplot as plt
+                salesr = sqlite3.connect(r'dbfasales.db')
+                salesx = salesr.cursor()
+                datefetch = []
+
+                salesx.execute("SELECT DISTINCT date FROM sales")    
+                for i in salesx.fetchall():
+                    datefetch.append((i[0]))
+
+                netray = []
+                for i in datefetch:
+                    salesx.execute(("SELECT sum(prof) FROM sales WHERE date = ?"), (i, ))
+                    netray.append(salesx.fetchall()[0][0])
+
+                # Plotting
+                plt.plot(datefetch, netray, color='purple', linestyle='dashed', linewidth = 3, 
+                        marker='o', markerfacecolor='magenta', markersize=12) 
+                # naming the x axis 
+                plt.xlabel('Date') 
+                # naming the y axis 
+                plt.ylabel('Profit') 
+                # Graph Title
+                plt.title('DBFA Profit Report') 
+                time.sleep(1)
+                # Finally, display
+                plt.savefig('DBFAplot.png', dpi=300, bbox_inches='tight')
+                # -------------------------------------------------------------------------------
+
+                delI = Image('DBFAplot.png')
+                delI.drawHeight =  4.2*inch
+                delI.drawWidth = 5.5*inch
+                elements.append(text1)
+                elements.append(text2)
+                elements.append(text6)
+                elements.append(text3)
+                elements.append(t)
+                elements.append(text5)
+                elements.append(t2)
+                elements.append(text7)
+                elements.append(t3)
+                elements.append(text4)
+                elements.append(x)
+                elements.append(text8)
+                elements.append(t4)
+                elements.append(text10)
+                elements.append(t5)
+                elements.append(text11)
+                elements.append(delI)
+                # write the document to disk
+                doc.build(elements,
+                    onFirstPage=add_page_number,
+                    onLaterPages=add_page_number,)
+                print("Report Created. ")
+                for i in tqdm (range (100), desc="Publishing Report: "):
+                    time.sleep(0.00001)
+                print("Opening store report now")
+                os.startfile('dbfastorerep.pdf')
+                time.sleep(2)
             else:
-                t7dot = ("<br /><br /><b>Products running low on stock: </b><br /><br />")
-            
-            
-            tblStyle = TableStyle([('TEXTCOLOR',(0,0),(-1,-1),colors.black),
-                                ('VALIGN',(0,0),(-1,-1),'TOP'),
-                                ('LINEBELOW',(0,0),(-1,-1),1,colors.black),
-                                ('BOX',(0,0),(-1,-1),1,colors.black),
-                                ('BOX',(0,0),(0,-1),1,colors.black)])
-            tblStyle.add('BACKGROUND',(0,0),(1,0),colors.lightblue)
-            tblStyle.add('BACKGROUND',(0,1),(-1,-1),colors.lightblue)
-            GRID_STYLE = TableStyle(
-                [('GRID', (0,0), (-1,-1), 0.25, colors.black),
-                ('ALIGN', (1,1), (-1,-1), 'LEFT')]
-                )
-            text7=Paragraph(t7dot)
-            t3=Table(tabarter)
-            t.setStyle(GRID_STYLE)
-            t2.setStyle(GRID_STYLE)
-            t3.setStyle(GRID_STYLE)
-            t4.setStyle(GRID_STYLE)
-            t5.setStyle(GRID_STYLE)
-            x.setStyle(GRID_STYLE)
-            # -------------------------------------------------------------------------------
-            import sqlite3, time
-            import matplotlib.pyplot as plt
-            salesr = sqlite3.connect(r'dbfasales.db')
-            salesx = salesr.cursor()
-            datefetch = []
-
-            salesx.execute("SELECT DISTINCT date FROM sales")    
-            for i in salesx.fetchall():
-                datefetch.append((i[0]))
-
-            netray = []
-            for i in datefetch:
-                salesx.execute(("SELECT sum(prof) FROM sales WHERE date = ?"), (i, ))
-                netray.append(salesx.fetchall()[0][0])
-
-            # Plotting
-            plt.plot(datefetch, netray, color='purple', linestyle='dashed', linewidth = 3, 
-                    marker='o', markerfacecolor='magenta', markersize=12) 
-            # naming the x axis 
-            plt.xlabel('Date') 
-            # naming the y axis 
-            plt.ylabel('Profit') 
-            # Graph Title
-            plt.title('DBFA Profit Report') 
-            time.sleep(1)
-            # Finally, display
-            plt.savefig('DBFAplot.png', dpi=300, bbox_inches='tight')
-            # -------------------------------------------------------------------------------
-
-            delI = Image('DBFAplot.png')
-            delI.drawHeight =  4.2*inch
-            delI.drawWidth = 5.5*inch
-            elements.append(text1)
-            elements.append(text2)
-            elements.append(text6)
-            elements.append(text3)
-            elements.append(t)
-            elements.append(text5)
-            elements.append(t2)
-            elements.append(text7)
-            elements.append(t3)
-            elements.append(text4)
-            elements.append(x)
-            elements.append(text8)
-            elements.append(t4)
-            elements.append(text10)
-            elements.append(t5)
-            elements.append(text11)
-            elements.append(delI)
-            # write the document to disk
-            doc.build(elements,
-                onFirstPage=add_page_number,
-                onLaterPages=add_page_number,)
-            print("Report Created. ")
-            for i in tqdm (range (100), desc="Publishing Report: "):
-                time.sleep(0.00001)
-            print("Opening store report now")
-            os.startfile('dbfastorerep.pdf')
-            time.sleep(2)
+                    print("This function is restricted on your account.")
 
 
         #DBFA Backup&Switch
         elif decfac == "7":
-            print('''DBFA Backup & Switch v2.0
+            if str(settingscommondumpfetch(10)) == "Administrator":
+                print('''DBFA Backup & Switch v2.0
 
-            a. ) Create a backup
-            b. ) Restore from backup file (Switch/ Restore)
-            
-            c. ) 'Enter' to return to main menu
-            ''')
-            basfac = input("What would you like to do?: ")
-            if basfac in ("A", "a"):            
-                os.startfile(r'delauth.py')
-                time.sleep(0.3)
-                os._exit(0)
-            elif basfac in ("B", "b"):            
-                os.startfile(r'dbfarestoration.py')
-                time.sleep(0.3)
-                os._exit(0)
+a. ) Create a backup
+b. ) Restore from backup file (Switch/ Restore)
+
+c. ) 'Enter' to return to main menu
+                ''')
+                basfac = input("What would you like to do?: ")
+                if basfac in ("A", "a"):            
+                    os.startfile(r'delauth.py')
+                    time.sleep(0.3)
+                    os._exit(0)
+                elif basfac in ("B", "b"):            
+                    os.startfile(r'dbfarestoration.py')
+                    time.sleep(0.3)
+                    os._exit(0)
+                else:
+                    pass
             else:
-                pass
+                    print("This function is restricted on your account.")
 
         #License        
         elif decfac == "9":
@@ -3487,474 +3556,480 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
 
         #DBFA Settings - Currently in development
         elif decfac == "6":
-            def transitionprogress():
-                from colorama import init, Fore, Back, Style
+            if str(settingscommondumpfetch(10)) == "Administrator":
+                def transitionprogress():
+                    from colorama import init, Fore, Back, Style
+                    os.system("cls")
+                    time.sleep(1)
+                    print(Fore.WHITE+'|'+Fore.RED+'████ OFF |')
+                    time.sleep(0.3)
+                    print(Fore.WHITE+'|'+Fore.RED+'███     '+Fore.GREEN+'█|')
+                    time.sleep(0.3)
+                    print(Fore.WHITE+'|'+Fore.RED+'██     '+Fore.GREEN+'██|')
+                    time.sleep(0.3)
+                    print(Fore.WHITE+'|'+Fore.RED+'█     '+Fore.GREEN+'███|')
+                    time.sleep(0.3)
+                    print(Fore.WHITE+'|'+Fore.GREEN+ ' ON  ████|'+Fore.WHITE)
+                    time.sleep(1.24)
+                    os.system("cls")
+
+
+                def transitionprogressneg():
+                    from colorama import init, Fore, Back, Style
+                    os.system("cls")
+                    time.sleep(1)
+                    print(Fore.WHITE+'|'+Fore.GREEN+ ' ON  ████|')
+                    time.sleep(0.3)
+                    print(Fore.WHITE+'|'+Fore.RED+'█     '+Fore.GREEN+'███|')
+                    time.sleep(0.3)
+                    print(Fore.WHITE+'|'+Fore.RED+'██     '+Fore.GREEN+'██|')
+                    time.sleep(0.3)
+                    print(Fore.WHITE+'|'+Fore.RED+'███     '+Fore.GREEN+'█|')
+                    time.sleep(0.3)
+                    print(Fore.WHITE+'|'+Fore.RED+'████ OFF |'+Fore.WHITE)
+                    time.sleep(1.24)
+                    os.system("cls")
+
                 os.system("cls")
-                time.sleep(1)
-                print(Fore.WHITE+'|'+Fore.RED+'████ OFF |')
-                time.sleep(0.3)
-                print(Fore.WHITE+'|'+Fore.RED+'███     '+Fore.GREEN+'█|')
-                time.sleep(0.3)
-                print(Fore.WHITE+'|'+Fore.RED+'██     '+Fore.GREEN+'██|')
-                time.sleep(0.3)
-                print(Fore.WHITE+'|'+Fore.RED+'█     '+Fore.GREEN+'███|')
-                time.sleep(0.3)
-                print(Fore.WHITE+'|'+Fore.GREEN+ ' ON  ████|'+Fore.WHITE)
-                time.sleep(1.24)
-                os.system("cls")
 
-
-            def transitionprogressneg():
-                from colorama import init, Fore, Back, Style
-                os.system("cls")
-                time.sleep(1)
-                print(Fore.WHITE+'|'+Fore.GREEN+ ' ON  ████|')
-                time.sleep(0.3)
-                print(Fore.WHITE+'|'+Fore.RED+'█     '+Fore.GREEN+'███|')
-                time.sleep(0.3)
-                print(Fore.WHITE+'|'+Fore.RED+'██     '+Fore.GREEN+'██|')
-                time.sleep(0.3)
-                print(Fore.WHITE+'|'+Fore.RED+'███     '+Fore.GREEN+'█|')
-                time.sleep(0.3)
-                print(Fore.WHITE+'|'+Fore.RED+'████ OFF |'+Fore.WHITE)
-                time.sleep(1.24)
-                os.system("cls")
-
-            os.system("cls")
-
-            def settingsmenu():
-                from colorama import init, Fore, Back, Style
-                while(1):
-                    import time
-                    time.sleep(0.2)
-                    print("████████████████████████████████████████████████████████████████████████████")
-                    print(" --------------------------  DBFA Settings  --------------------------    ")
-                    
-                    if (settingscommonfetch(1)) == 1:
-                        print(" 1:    Display boot image                               :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
-                    else:
-                        print(" 1:    Display boot image                               :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
-                    if (settingscommonfetch(2)) == 1:
-                        print(" 2:    Email invoice to registered customers            :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
-                    else:
-                        print(" 2:    Email invoice to registered customers            :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
-                    if (settingscommonfetch(3)) == 1:
-                        print(" 3:    Enable DBFA Music Controls (beta):               :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
-                    else:
-                        print(" 3:    Enable DBFA Music Controls (beta):               :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
-                    if (settingscommonfetch(4)) == 1:
-                        print(" 4:    Open CSV when exported                           :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
-                    else:
-                        print(" 4:    Open CSV when exported                           :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
-                    if (settingscommonfetch(5)) == 1:
-                        print(" 5:    Enable database encryption                       :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      '+Fore.RED)
-                        print(" ")
-                    else:
-                        print(" 5:    Enable database encryption                       :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      ')+Fore.RED)
-                        print(" ")
-                    if (settingscommonfetch(6)) == 1:
-                        print(" 6:    Enable DBFA Secure Two-Factor-Authenication      :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
-                        print(" ")
-                    else:
-                        print(" 6:    Enable DBFA Secure Two-Factor-Authenication      :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
-                        print(" ")
-                    if (settingscommonfetch(7)) == 1:
-                        print(" 7:    Use new DBFA Menu style                          :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      '+Fore.RED)
-                        print(" ")
-                    else:
-                        print(" 7:    Use new DBFA Menu style                          :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      ')+Fore.RED)
-                        print(" ")
-
-                    print(Fore.MAGENTA+" 8:    Create DBFA Desktop Shortcut                     :"+Fore.WHITE, '|'+Fore.MAGENTA+"██ Proceed > "+Fore.WHITE+"| ")
-
-                    print(Fore.RED+" 9:    Delete customer records                          :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"| ")
-                    print(Fore.RED+" 10:   Delete store records                             :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"| ")
-                    print(Fore.MAGENTA+" 11:   Check for updates                                :"+' |'+"██ Proceed > "+Fore.WHITE+"|  " )
-                    print("                                                                          ")
-                    print(Fore.RED+" 12:   Return to Main Menu                             :"+' |'+"██ Proceed > "+Fore.WHITE+"| " )
-                    print("                                                                          ")
-                    #print("████████████████████████████████████████████████████████████████████████████")
-                    settfac = input("What would you like to do? ")
-                    if settfac == "1":
-                        print('''DBFA displays an image for 2 seconds when it is started. 
-                        This image changes with each major iteration of DBFA. 
-                        Displaying this image let's us prepare files in the background so that DBFA runs smoothly once its started.
-                        Disabling this option may lead to errors. Continue? ''')
-                        print(" ")
-                        print("Display DBFA boot image? ")
-                        print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
-                        settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
-                        if settfac1x == "y":
-                            settingsmodifier(1, 1)
-                            transitionprogress()
-                            print("DBFA will now display its boot image when it prepares the backend on boot. ")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
-                        elif settfac1x == "n":
-                            settingsmodifier(1, 0)
-                            transitionprogressneg()
-                            print("DBFA won't display its boot image when it prepares the backend on boot from now. ")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
+                def settingsmenu():
+                    from colorama import init, Fore, Back, Style
+                    while(1):
+                        import time
+                        time.sleep(0.2)
+                        print("████████████████████████████████████████████████████████████████████████████")
+                        print(" --------------------------  DBFA Settings  --------------------------    ")
+                        
+                        if (settingscommonfetch(1)) == 1:
+                            print(" 1:    Display boot image                               :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
                         else:
-                            print("That's an invalid input... ")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
-                        
-                    elif settfac == "2":
-                        print('''DBFA creates an invoice on each billing cycle
-                        If the customer account in-use is registered with DBFA, the invoice is E-Mailed to the same.
-                        Disabling this option will stop DBFA from E-Mailing customers with their invoice from now.''')
-                        print(" ")
-                        print("E-Mail registered customers their invoice? ")
-                        print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
-                        settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
-                        if settfac1x == "y":
-                            settingsmodifier(2, 1)
-                            transitionprogress()
-                            print("DBFA will continue E-Mailing customers with their invoice. ")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
-                        elif settfac1x == "n":
-                            settingsmodifier(2, 0)
-                            transitionprogressneg()
-                            print("DBFA will stop E-Mailing customers their invoice from now on. ")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
+                            print(" 1:    Display boot image                               :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
+                        if (settingscommonfetch(2)) == 1:
+                            print(" 2:    Email invoice to registered customers            :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
                         else:
-                            print("That's an invalid input... ")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
-                        
-                    elif settfac == "3":
-                        print('''In our mission of making DBFA the ultimate space to control your entire store and its functioning,
-                        we keep adding tiny tid-bits to make that process even easier.
-                        DBFA Music Controls is one such feature introduced in DBFA 8 RC3x (IB3).
-                        When you disable this functionality:
-                                - The currently-playing track will no longer be displayed. 
-                                - DBFA Music Controls, including but not limited to pause/play, prev and next will be restricted. ''')
-                        print(" ")
-                        print("Enable DBFA Music Controls? ")
-                        print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
-                        settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
-                        if settfac1x == "y":
-                            settingsmodifier(3, 1)
-                            transitionprogress()
-                            print("DBFA Music Controls Service will be started with the next menu-cycle. ")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
-                        elif settfac1x == "n":
-                            settingsmodifier(3, 0)
-                            transitionprogressneg()
-                            print("DBFA Music Controls Service will be restricted from the next menu-cycle.")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
+                            print(" 2:    Email invoice to registered customers            :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
+                        if (settingscommonfetch(3)) == 1:
+                            print(" 3:    Enable DBFA Music Controls (beta):               :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
                         else:
-                            print("That's an invalid input... ")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
-                        
-                        
-                    elif settfac == "4":
-                        print("CSV files once generated are auto-opened in your default worksheet app")
-                        print("Example: Microsoft Excel, LibreOffice Calc, Google Docs, et cetera.")
-                        print(" ")
-                        print("Open file after export? ")
-                        print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
-                        settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
-                        if settfac1x == "y":
-                            settingsmodifier(4, 1)
-                            transitionprogress()
-                            print("DBFA will now open CSV files when exported on request. ")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
-                        elif settfac1x == "n":
-                            settingsmodifier(4, 0)
-                            transitionprogressneg()
-                            print("DBFA will not open CSV files when exported from now on. ")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
+                            print(" 3:    Enable DBFA Music Controls (beta):               :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
+                        if (settingscommonfetch(4)) == 1:
+                            print(" 4:    Open CSV when exported                           :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
                         else:
-                            print("That's an invalid input... ")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
-                        
-                    elif settfac == "5":
-                        print('''In our process of phasing-out .txt based storage in favour of sqlite storage, 
-                        we at DBFA are trying to make our files even tougher to access than ever before without valid credentials.
-                        
-                        DBFA is currently experimenting with sqlcipher encryption for it's sqlite databases.
-                        Please note that this functionality is a part of DBFA internal test builds for now,
-                        and is not ready for public rollout.
-                        
-                        This process might impact DBFA's data integrity. We recommend you to run *DBFA Backup&Switch* from option *5*
-                        before you attempt to encrypt/ decrypt DBFA databases by running this command.''')
-                        print(" ")
-                        print("Enable DBFA database encryption? ")
-                        print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
-                        settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
-                        if settfac1x == "y":
-                            settingsmodifier(5, 1)
-                            transitionprogress()
-                            print('''DBFA will attempt to encrypt it's databases when restarted. 
-                            This process may fail, as this *internal test build* of DBFA currently has encryption as a beta feature.''')
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
-                        elif settfac1x == "n":
-                            settingsmodifier(5, 0)
-                            transitionprogressneg()
-                            print('''DBFA will attempt to de-crypt it's databases on the next restart. 
-                            This process may fail, as this *internal test build* of DBFA currently has encryption as a beta feature.
+                            print(" 4:    Open CSV when exported                           :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
+                        if (settingscommonfetch(5)) == 1:
+                            print(" 5:    Enable database encryption                       :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      '+Fore.RED)
+                            print(" ")
+                        else:
+                            print(" 5:    Enable database encryption                       :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      ')+Fore.RED)
+                            print(" ")
+                        if (settingscommonfetch(6)) == 1:
+                            print(" 6:    Enable DBFA Secure Two-Factor-Authenication      :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      ')
+                            print(" ")
+                        else:
+                            print(" 6:    Enable DBFA Secure Two-Factor-Authenication      :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      '))
+                            print(" ")
+                        if (settingscommonfetch(7)) == 1:
+                            print(" 7:    Use new DBFA Menu style                          :", '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|      '+Fore.RED)
+                            print(" ")
+                        else:
+                            print(" 7:    Use new DBFA Menu style                          :", ('|'+Fore.RED+'████'+Fore.WHITE+' OFF|      ')+Fore.RED)
+                            print(" ")
+
+                        print(Fore.MAGENTA+" 8:    Create DBFA Desktop Shortcut                     :"+Fore.WHITE, '|'+Fore.MAGENTA+"██ Proceed > "+Fore.WHITE+"| ")
+
+                        print(Fore.RED+" 9:    Delete customer records                          :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"| ")
+                        print(Fore.RED+" 10:   Delete store records                             :"+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.WHITE+"| ")
+                        print(Fore.MAGENTA+" 11:   Check for updates                                :"+' |'+"██ Proceed > "+Fore.WHITE+"|  " )
+                        print("                                                                          ")
+                        print(Fore.RED+" 12:   Return to Main Menu                             :"+' |'+"██ Proceed > "+Fore.WHITE+"| " )
+                        print("                                                                          ")
+                        #print("████████████████████████████████████████████████████████████████████████████")
+                        settfac = input("What would you like to do? ")
+                        if settfac == "1":
+                            print('''DBFA displays an image for 2 seconds when it is started. 
+                            This image changes with each major iteration of DBFA. 
+                            Displaying this image let's us prepare files in the background so that DBFA runs smoothly once its started.
+                            Disabling this option may lead to errors. Continue? ''')
+                            print(" ")
+                            print("Display DBFA boot image? ")
+                            print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                            settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                            if settfac1x == "y":
+                                settingsmodifier(1, 1)
+                                transitionprogress()
+                                print("DBFA will now display its boot image when it prepares the backend on boot. ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+                            elif settfac1x == "n":
+                                settingsmodifier(1, 0)
+                                transitionprogressneg()
+                                print("DBFA won't display its boot image when it prepares the backend on boot from now. ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+                            else:
+                                print("That's an invalid input... ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
                             
-                            If DBFA databases are already decrypted, no change will take place and data integrity will be untouched.''')
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
-                        else:
-                            print("That's an invalid input... ")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
-
-                    elif settfac == "6":
-                        print("----DBFA 2FA MANAGER----")
-                        print("Two-factor authenication is a widely-used method helpful in securing accounts when their passwords get compromised.")
-                        print("With DBFA, you can choose between Telegram and Google Authenicator as a medium to recieve these 2FA requests. ")
-                        print(" ")
-                        print("DBFA randomly generates these OTPs/ requests and sends them via a secure and encrypted connection.")
-                        time.sleep(2)
-                        print(" ")
-                        print(" ")
-                        print("Please do note that enabling/ disabling 2FA will reboot DBFA Store Manager!!")
-                        print(" ")
-                        print(" ")
-                        print("Available authenication methods: ")
-                        print("1: Telegram Authenication")
-                        import os
-                        print("2: Google Authenicator (alpha; experimental)")
-                        print("3/ skip: Exit to settings menu")
-                        authfac = input("What would you like?: ")
-                        if authfac == "1":
-                            print("Connecting to the Telegram Web API..")
-                            print("To turn on/ off DBFA 2FA, you need to authenicate with 2FA first.")
-                            time.sleep(0.5)
-                            os.startfile('modif2fa.py')
-                            time.sleep(1)
-                            os._exit(0)
-
-                        if authfac == "2":
-                            print("Loading Django framework..")
-                            print("This option is currently under development!")
+                        elif settfac == "2":
+                            print('''DBFA creates an invoice on each billing cycle
+                            If the customer account in-use is registered with DBFA, the invoice is E-Mailed to the same.
+                            Disabling this option will stop DBFA from E-Mailing customers with their invoice from now.''')
                             print(" ")
-                            time.sleep(2)
-                        else:
-                            print("Please choose a valid option! ")
+                            print("E-Mail registered customers their invoice? ")
+                            print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                            settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                            if settfac1x == "y":
+                                settingsmodifier(2, 1)
+                                transitionprogress()
+                                print("DBFA will continue E-Mailing customers with their invoice. ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+                            elif settfac1x == "n":
+                                settingsmodifier(2, 0)
+                                transitionprogressneg()
+                                print("DBFA will stop E-Mailing customers their invoice from now on. ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+                            else:
+                                print("That's an invalid input... ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+                            
+                        elif settfac == "3":
+                            print('''In our mission of making DBFA the ultimate space to control your entire store and its functioning,
+                            we keep adding tiny tid-bits to make that process even easier.
+                            DBFA Music Controls is one such feature introduced in DBFA 8 RC3x (IB3).
+                            When you disable this functionality:
+                                    - The currently-playing track will no longer be displayed. 
+                                    - DBFA Music Controls, including but not limited to pause/play, prev and next will be restricted. ''')
                             print(" ")
-
-                    elif settfac == "7":                    
-                        print("This option let's you switch between the older DBFA menu-style")
-                        print("and the newer one as introduced with DBFA 8.12")
-                        print("\nFor the best visual experience with DBFA, we recommend you to use the newer design.\n\n")
-                        print("DBFA Menu-Style: ")
-                        print("1: Use new style (recommended)")
-                        print("2: Use old style")
-                        msdsfac = input("Please make a choice: ")
-                        if msdsfac == "1":  
-                            settingsmodifier(7, 1)
-                            transitionprogress()
-                            print("New menu style applied! ")
-                        if msdsfac == "2":
-                            print("Old menu style")
-                            settingsmodifier(7, 0)
-                            transitionprogressneg()
-                            print("Old menu style applied..! ")
-                        else:
-                            print("Please choose a valid option! ")
+                            print("Enable DBFA Music Controls? ")
+                            print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                            settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                            if settfac1x == "y":
+                                settingsmodifier(3, 1)
+                                transitionprogress()
+                                print("DBFA Music Controls Service will be started with the next menu-cycle. ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+                            elif settfac1x == "n":
+                                settingsmodifier(3, 0)
+                                transitionprogressneg()
+                                print("DBFA Music Controls Service will be restricted from the next menu-cycle.")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+                            else:
+                                print("That's an invalid input... ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+                            
+                            
+                        elif settfac == "4":
+                            print("CSV files once generated are auto-opened in your default worksheet app")
+                            print("Example: Microsoft Excel, LibreOffice Calc, Google Docs, et cetera.")
                             print(" ")
-
-
-
-                    elif settfac == "8":
-                        import shutil
-                        import os
-                        desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'OneDrive\Desktop')
-                        # Prints: C:\Users\sdkca\Desktop
-                        print("Shortcut will be created at: " + desktop)
-                        try:
-                            original = currdir+'\\Assets\run_DBFA.lnk'
-                            shutil.copy(original, desktop)
-                            print("Executed. ")
-                        except:
-                            print("DBFA Permission Error: Can't get perms to execute in directory! ")
-
-                    elif settfac == "9":
-                        print('''This option PERMANENTLY CLEARS ALL DBFA CUSTOMER RECORDS.
-                        This includes their registration data, purchase records, and loyalty points.
-                        
-                        This execution can NOT BE REVERSED.
-                        DATA INTEGRITY MAY BE LOST during this process.
-                        Proceed with caution! ''')
-                        print(" ")
-                        print("ERASE DBFA customer records PERMANENTLY? ")
-                        print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
-                        settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
-                        
-                        if settfac1x == "y":
-                            print("DBFA will now reboot itself to finish applying changes.")
-                            time.sleep(0.5)
-                            transitionprogress()
-                            # window.close()
-                            os.startfile(r'securepack.py')
-                            time.sleep(1)
-                            os._exit(0)
+                            print("Open file after export? ")
+                            print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                            settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                            if settfac1x == "y":
+                                settingsmodifier(4, 1)
+                                transitionprogress()
+                                print("DBFA will now open CSV files when exported on request. ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+                            elif settfac1x == "n":
+                                settingsmodifier(4, 0)
+                                transitionprogressneg()
+                                print("DBFA will not open CSV files when exported from now on. ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+                            else:
+                                print("That's an invalid input... ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+                            
+                        elif settfac == "5":
+                            print('''In our process of phasing-out .txt based storage in favour of sqlite storage, 
+                            we at DBFA are trying to make our files even tougher to access than ever before without valid credentials.
+                            
+                            DBFA is currently experimenting with sqlcipher encryption for it's sqlite databases.
+                            Please note that this functionality is a part of DBFA internal test builds for now,
+                            and is not ready for public rollout.
+                            
+                            This process might impact DBFA's data integrity. We recommend you to run *DBFA Backup&Switch* from option *5*
+                            before you attempt to encrypt/ decrypt DBFA databases by running this command.''')
+                            print(" ")
+                            print("Enable DBFA database encryption? ")
+                            print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                            settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                            if settfac1x == "y":
+                                settingsmodifier(5, 1)
+                                transitionprogress()
+                                print('''DBFA will attempt to encrypt it's databases when restarted. 
+                                This process may fail, as this *internal test build* of DBFA currently has encryption as a beta feature.''')
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+                            elif settfac1x == "n":
+                                settingsmodifier(5, 0)
+                                transitionprogressneg()
+                                print('''DBFA will attempt to de-crypt it's databases on the next restart. 
+                                This process may fail, as this *internal test build* of DBFA currently has encryption as a beta feature.
                                 
+                                If DBFA databases are already decrypted, no change will take place and data integrity will be untouched.''')
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+                            else:
+                                print("That's an invalid input... ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
 
+                        elif settfac == "6":
+                            print("----DBFA 2FA MANAGER----")
+                            print("Two-factor authenication is a widely-used method helpful in securing accounts when their passwords get compromised.")
+                            print("With DBFA, you can choose between Telegram and Google Authenicator as a medium to recieve these 2FA requests. ")
+                            print(" ")
+                            print("DBFA randomly generates these OTPs/ requests and sends them via a secure and encrypted connection.")
+                            time.sleep(2)
+                            print(" ")
+                            print(" ")
+                            print("Please do note that enabling/ disabling 2FA will reboot DBFA Store Manager!!")
+                            print(" ")
+                            print(" ")
+                            print("Available authenication methods: ")
+                            print("1: Telegram Authenication")
+                            import os
+                            print("2: Google Authenicator (alpha; experimental)")
+                            print("3/ skip: Exit to settings menu")
+                            authfac = input("What would you like?: ")
+                            if authfac == "1":
+                                print("Connecting to the Telegram Web API..")
+                                print("To turn on/ off DBFA 2FA, you need to authenicate with 2FA first.")
+                                time.sleep(0.5)
+                                os.startfile('modif2fa.py')
+                                time.sleep(1)
+                                os._exit(0)
+
+                            if authfac == "2":
+                                print("Loading Django framework..")
+                                print("This option is currently under development!")
+                                print(" ")
+                                time.sleep(2)
+                            else:
+                                print("Please choose a valid option! ")
+                                print(" ")
+
+                        elif settfac == "7":                    
+                            print("This option let's you switch between the older DBFA menu-style")
+                            print("and the newer one as introduced with DBFA 8.12")
+                            print("\nFor the best visual experience with DBFA, we recommend you to use the newer design.\n\n")
+                            print("DBFA Menu-Style: ")
+                            print("1: Use new style (recommended)")
+                            print("2: Use old style")
+                            msdsfac = input("Please make a choice: ")
+                            if msdsfac == "1":  
+                                settingsmodifier(7, 1)
+                                transitionprogress()
+                                print("New menu style applied! ")
+                            if msdsfac == "2":
+                                print("Old menu style")
+                                settingsmodifier(7, 0)
+                                transitionprogressneg()
+                                print("Old menu style applied..! ")
+                            else:
+                                print("Please choose a valid option! ")
+                                print(" ")
+
+
+
+                        elif settfac == "8":
+                            import shutil
+                            import os
+                            desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'OneDrive\Desktop')
+                            # Prints: C:\Users\sdkca\Desktop
+                            print("Shortcut will be created at: " + desktop)
+                            try:
+                                original = currdir+'\\Assets\run_DBFA.lnk'
+                                shutil.copy(original, desktop)
+                                print("Executed. ")
+                            except:
+                                print("DBFA Permission Error: Can't get perms to execute in directory! ")
+
+                        elif settfac == "9":
+                            print('''This option PERMANENTLY CLEARS ALL DBFA CUSTOMER RECORDS.
+                            This includes their registration data, purchase records, and loyalty points.
+                            
+                            This execution can NOT BE REVERSED.
+                            DATA INTEGRITY MAY BE LOST during this process.
+                            Proceed with caution! ''')
+                            print(" ")
+                            print("ERASE DBFA customer records PERMANENTLY? ")
+                            print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                            settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                            
+                            if settfac1x == "y":
+                                print("DBFA will now reboot itself to finish applying changes.")
+                                time.sleep(0.5)
+                                transitionprogress()
+                                # window.close()
+                                os.startfile(r'securepack.py')
+                                time.sleep(1)
+                                os._exit(0)
+                                    
+
+                                settingsmenu()
+                            elif settfac1x == "n":
+                                print("Denied. ")
+                                settingsmenu()
+                            else:
+                                print("That's an invalid input... ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+
+                        elif settfac == "10":
+                            print('''This option PERMANENTLY CLEARS ALL DBFA VOUCHERS/ COUPONS
+                            All current vouchers/ coupons WILL BE LOST.
+                            Vouchers already issued will become redundant unless manually re-added again.
+                            Validity and usage limits will be lost for all voucher/ coupon instanced recorded by DBFA.
+                            
+                            However, DBFA's logged voucher/ coupon usage will continue to exist in memory and will not be erased.
+                            
+                            This execution can NOT BE REVERSED.
+                            DATA INTEGRITY MAY BE LOST during this process.
+                            Proceed with caution! ''')
+                            print(" ")
+                            print("ERASE DBFA voucher/ coupon records PERMANENTLY? ")
+                            print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
+                            settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
+                            if settfac1x == "y":
+                                print("DBFA will now reboot itself to finish applying changes.")
+                                time.sleep(0.5)
+                                transitionprogress()
+                                # window.close()
+                                os.startfile(r'securepackxvc.py')
+                                time.sleep(1)
+                                os._exit(0)
+                                
+                                
+                                settingsmenu()
+                            elif settfac1x == "n":
+                                print("Denied.")
+                                
+                                
+                                settingsmenu()
+                            else:
+                                print("That's an invalid input... ")
+                                print("")
+                                time.sleep(1)
+                                settingsmenu()
+
+
+                        elif settfac == "11":
+                            print("Please use DBFA Updater from the main menu (option 11)")
                             settingsmenu()
-                        elif settfac1x == "n":
-                            print("Denied. ")
-                            settingsmenu()
+
+
+                        elif settfac == "11":
+                            break
+                            break
+                            break
+
                         else:
                             print("That's an invalid input... ")
                             print("")
                             time.sleep(1)
-                            settingsmenu()
+                            break
+                            break
+                            break
 
-                    elif settfac == "10":
-                        print('''This option PERMANENTLY CLEARS ALL DBFA VOUCHERS/ COUPONS
-                        All current vouchers/ coupons WILL BE LOST.
-                        Vouchers already issued will become redundant unless manually re-added again.
-                        Validity and usage limits will be lost for all voucher/ coupon instanced recorded by DBFA.
-                        
-                        However, DBFA's logged voucher/ coupon usage will continue to exist in memory and will not be erased.
-                        
-                        This execution can NOT BE REVERSED.
-                        DATA INTEGRITY MAY BE LOST during this process.
-                        Proceed with caution! ''')
-                        print(" ")
-                        print("ERASE DBFA voucher/ coupon records PERMANENTLY? ")
-                        print("y:    ",  '| ON '+Fore.GREEN+'████'+Fore.WHITE+'|')
-                        settfac1x = input(("n:     "+ '|'+Fore.RED+'████'+Fore.WHITE+' OFF|: '))
-                        if settfac1x == "y":
-                            print("DBFA will now reboot itself to finish applying changes.")
-                            time.sleep(0.5)
-                            transitionprogress()
-                            # window.close()
-                            os.startfile(r'securepackxvc.py')
-                            time.sleep(1)
-                            os._exit(0)
-                            
-                            
-                            settingsmenu()
-                        elif settfac1x == "n":
-                            print("Denied.")
-                            
-                            
-                            settingsmenu()
-                        else:
-                            print("That's an invalid input... ")
-                            print("")
-                            time.sleep(1)
-                            settingsmenu()
-
-
-                    elif settfac == "11":
-                        print("DBFA Updater is currently in the making. ")
-                        print("You'll be notified immediately this feature is enabled. ")
-                        print("Support for this will come with a future update. ")
-                        settingsmenu()
-
-
-                    elif settfac == "11":
-                        break
-                        break
-                        break
-
-                    else:
-                        print("That's an invalid input... ")
-                        print("")
-                        time.sleep(1)
-                        break
-                        break
-                        break
-
-            settingsmenu()
-                        
+                settingsmenu()
+            else:
+                    print("This function is restricted on your account.")
         #Profit Graph Plotter
         elif decfac == "8":
-            time.sleep(0.5)
-            print("---- DBFA Sales Analyzer Engine v1 ----")    
-            time.sleep(0.5)
-            print("In DBFA's plotter, you can zoom in/out of the graph, adjust plot dimensions and export the plot to a .png file\n")
-            time.sleep(1)
-            print("Please wait while we analyze store sales..\n\n")
-            time.sleep(2)
-            print("A new window will be shortly opened. ")
-            print("You're requested to close the same when you want to return to DBFA's main menu.\n")
-            time.sleep(1.7)
-            os.startfile(r'plotter.pyw')
+            if str(settingscommondumpfetch(10)) == "Administrator":
+                time.sleep(0.5)
+                print("---- DBFA Sales Analyzer Engine v1 ----")    
+                time.sleep(0.5)
+                print("In DBFA's plotter, you can zoom in/out of the graph, adjust plot dimensions and export the plot to a .png file\n")
+                time.sleep(1)
+                print("Please wait while we analyze store sales..\n\n")
+                time.sleep(2)
+                print("A new window will be shortly opened. ")
+                print("You're requested to close the same when you want to return to DBFA's main menu.\n")
+                time.sleep(1.7)
+                os.startfile(r'plotter.pyw')
+            else:
+                print("This function is restricted on your account.")
 
 
         #DBFA Updater
         elif decfac == "11":
-            import requests, os, time, shutil, oschmod
-            os.system('cls')
-            print('''---------------------------------
+            if str(settingscommondumpfetch(10)) == "Administrator":
+                import requests, os, time, shutil, oschmod
+                os.system('cls')
+                print('''---------------------------------
 delta Update Deployment Service
 ---------------------------------
 Checking for updates. . . 
 ---------------------------------''')
-            time.sleep(1)
+                time.sleep(1)
 
-            import os, time
-            currdir = str(os.getcwd())
-            from pathlib import Path
-            path = Path(os.getcwd())
-            parentdir = str(Path(path.parent))
-            #print(parentdir)
-            #print(parentdir+'\\updates.txt')
-            userdir = os.path.expanduser('~')
-            url = "https://raw.githubusercontent.com/deltaonealpha/DBFA_UpdateHandler/master/updates.txt"
-            r = requests.get(url)
-            dbfaver = ((str(r.content.decode('utf-8'))))[4:]
-            xdbfaver = ((str(r.content.decode('utf-8'))))
-            with open(parentdir+'\\updates.txt', 'r+') as upread:
-                upread = (str(upread.read())).strip()
+                import os, time
+                currdir = str(os.getcwd())
+                from pathlib import Path
+                path = Path(os.getcwd())
+                parentdir = str(Path(path.parent))
+                #print(parentdir)
+                #print(parentdir+'\\updates.txt')
+                userdir = os.path.expanduser('~')
+                url = "https://raw.githubusercontent.com/deltaonealpha/DBFA_UpdateHandler/master/updates.txt"
+                r = requests.get(url)
+                dbfaver = ((str(r.content.decode('utf-8'))))[4:]
+                xdbfaver = ((str(r.content.decode('utf-8'))))
+                with open(parentdir+'\\updates.txt', 'r+') as upread:
+                    upread = (str(upread.read())).strip()
 
-            print("Server: ", dbfaver, "\nLocal: ", upread[4: ])
-            time.sleep(1)
-            spass1 = []
-            spass2 = []
-            for i in dbfaver:
-                spass1.append(i)
-            for j in upread[4: ]:
-                spass2.append(j)
-            if float(upread[4: ]) > float(dbfaver):
-                pass
+                print("Server: ", dbfaver, "\nLocal: ", upread[4: ])
+                time.sleep(1)
+                spass1 = []
+                spass2 = []
+                for i in dbfaver:
+                    spass1.append(i)
+                for j in upread[4: ]:
+                    spass2.append(j)
+                if float(upread[4: ]) > float(dbfaver):
+                    pass
 
+                else:
+                    if xdbfaver == upread:
+                        print("This installation of DBFA is already up-to date ~ \n")
+
+                    elif spass1 != spass2:
+                        print("Please wait...")
+                        time.sleep(2)
+                        os.startfile(r'updateDBFA.py')
+                        print("Updater opened in a different window")
+                        time.sleep(2)
+                        os._exit(0)
             else:
-                if xdbfaver == upread:
-                    print("This installation of DBFA is already up-to date ~ \n")
-
-                elif spass1 != spass2:
-                    print("Please wait...")
-                    time.sleep(2)
-                    os.startfile(r'updateDBFA.py')
-                    print("Updater opened in a different window")
-                    time.sleep(2)
-                    os._exit(0)
+                print("This function is restricted on your account.")
 
         #Exit System
         elif decfac == "12":
@@ -4834,63 +4909,67 @@ Checking for updates. . .
             
         #CIT
         elif decfac == "113":
-            print("INTERNAL TESTING MODE")
-            ffxfac = str(input("Enter CIT Testing Mode? (y/n):: "))
-            if ffxfac == "y":
-                ffrxfac = str(input("Entering CIT may lead to data loss. Confirm entering CIT? (y/n):: "))
-                if ffrxfac == "y":
-                    from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
-                    init(convert = True)
-                    print(Fore.RED+'''
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-Internal Testing Mode                               DBFA Debugger >>> Permissive Options
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-DBFA Client will restart to execute Permissive Options!'''+Fore.MAGENTA+'''
-    '1' - to CLEAR ALL CUSTOMER RECORDS
-    '2' - to CLEAR ALL VOUCHERS/ COUPONS
-    '3' - to exit CIT
+            if str(settingscommondumpfetch(10)) == "Administrator":
+                print("INTERNAL TESTING MODE")
+                ffxfac = str(input("Enter CIT Testing Mode? (y/n):: "))
+                if ffxfac == "y":
+                    ffrxfac = str(input("Entering CIT may lead to data loss. Confirm entering CIT? (y/n):: "))
+                    if ffrxfac == "y":
+                        from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
+                        init(convert = True)
+                        print(Fore.RED+'''
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    Internal Testing Mode                               DBFA Debugger >>> Permissive Options
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    DBFA Client will restart to execute Permissive Options!'''+Fore.MAGENTA+'''
+        '1' - to CLEAR ALL CUSTOMER RECORDS
+        '2' - to CLEAR ALL VOUCHERS/ COUPONS
+        '3' - to exit CIT
 
-What would you like to do?                '''+Fore.RED+'''█▀▀█ █▀ ██  █ █ █▀▀  █▀▀  █▀ ██   Internal'''+Fore.MAGENTA+'''
-'''+Fore.RED+'''▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.RED+'''█__█ █_ ███ █_█ █_▀█ █_▀█ █_ █ ▀_ Testing Mode'''+Fore.MAGENTA+'''
-'''+Fore.CYAN+'''DBFA Debugger >>> Permissive Options ~    
-'''+Fore.RED+'''▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
+    What would you like to do?                '''+Fore.RED+'''█▀▀█ █▀ ██  █ █ █▀▀  █▀▀  █▀ ██   Internal'''+Fore.MAGENTA+'''
+    '''+Fore.RED+'''▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.RED+'''█__█ █_ ███ █_█ █_▀█ █_▀█ █_ █ ▀_ Testing Mode'''+Fore.MAGENTA+'''
+    '''+Fore.CYAN+'''DBFA Debugger >>> Permissive Options ~    
+    '''+Fore.RED+'''▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
 
-                    citfacin = int(input("Waiting for input:: "))
-                    if citfacin == 1:
-                        # window.close()
-                        with HiddenPrints():
-                            try:
-                                sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: CIT del cust recs - deltaDBFA")
-                                print(sender)
-                            except Exception:
-                                pass
-                        os.startfile(r'securepack.py')
-                        time.sleep(1)
-                        os._exit(0)
-                    if citfacin == 2:
-                        # window.close()
-                        with HiddenPrints():
-                            try:
-                                sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: CIT del voucher recs - deltaDBFA")
-                                print(sender)
-                            except Exception:
-                                pass
-                        os.startfile(r'securepackxvc.py')
-                        time.sleep(1)
-                        os._exit(0)
+                        citfacin = int(input("Waiting for input:: "))
+                        if citfacin == 1:
+                            # window.close()
+                            with HiddenPrints():
+                                try:
+                                    sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: CIT del cust recs - deltaDBFA")
+                                    print(sender)
+                                except Exception:
+                                    pass
+                            os.startfile(r'securepack.py')
+                            time.sleep(1)
+                            os._exit(0)
+                        if citfacin == 2:
+                            # window.close()
+                            with HiddenPrints():
+                                try:
+                                    sender = telegram_bot_sendtext(dt_string + "\n" + "Accessed: CIT del voucher recs - deltaDBFA")
+                                    print(sender)
+                                except Exception:
+                                    pass
+                            os.startfile(r'securepackxvc.py')
+                            time.sleep(1)
+                            os._exit(0)
+                        else:
+                            continue
+                
                     else:
                         continue
             
-                else:
+
+                elif ffxfac == "3":
+                    print("Exiting CIT")
+                    time.sleep(1)
                     continue
-            
-            elif ffxfac == "3":
-                print("Exiting CIT")
-                time.sleep(1)
-                continue
+                else:
+                    print("Invalid input. . . . ")
+                    time.sleep(1)
             else:
-                print("Invalid input. . . . ")
-                time.sleep(1)
+                print("This function is restricted on your account.")
 
 
         # Direct Calls Section - 2
@@ -4926,18 +5005,21 @@ What would you like to do?                '''+Fore.RED+'''█▀▀█ █▀ �
             logger.write("\nCustomer search used. \n")
 
         elif decfac in ("2e", "2E", "2 e", "2 E"):
-            del2e()
-            logger.write("\n\n--------------------------------------- \n")
-            logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
-            logger.write("Customer data exported to CSV! ")
-            with HiddenPrints():
-                try:
-                    sender = telegram_bot_sendtext(dt_string + "\n" + "Sales data exported to CSV- REDFLAG Urgent Security Notice!")
-                    print(sender)
-                except Exception:
-                    pass
-            logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
-            logger.write("--------------------------------------- \n\n\n")
+            if str(settingscommondumpfetch(10)) == "Administrator":
+                del2e()
+                logger.write("\n\n--------------------------------------- \n")
+                logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+                logger.write("Customer data exported to CSV! ")
+                with HiddenPrints():
+                    try:
+                        sender = telegram_bot_sendtext(dt_string + "\n" + "Sales data exported to CSV- REDFLAG Urgent Security Notice!")
+                        print(sender)
+                    except Exception:
+                        pass
+                logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+                logger.write("--------------------------------------- \n\n\n")
+            else:
+                print("This function is restricted on your account ")
 
 
 
@@ -4949,34 +5031,46 @@ What would you like to do?                '''+Fore.RED+'''█▀▀█ █▀ �
             del3b()
 
         elif decfac in ("3c", "3C", "3 c", "3 C"):
-            del3c()
+            if str(settingscommondumpfetch(10)) == "Administrator":
+                del3c()
+            else:
+                print("This function is restricted on your account.")
 
         elif decfac in ("3d", "3D", "3 d", "3 D"):
             del3d()
 
         elif decfac in ("3e", "3E", "3 e", "3 E"):
-            del3e()
-            logger.write("\n--------------------------------------- \n")
-            logger.write("Sales log accessed! ")
+            if str(settingscommondumpfetch(10)) == "Administrator":
+                del3e()
+                logger.write("\n--------------------------------------- \n")
+                logger.write("Sales log accessed! ")
+            else:
+                print("This function is restricted on your account.")
 
 
         elif decfac in ("3f", "3F", "3 f", "3 F"):
-            del3f()
-            logger.write("\n\n--------------------------------------- \n")
-            logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
-            with HiddenPrints():
-                try:
-                    sender = telegram_bot_sendtext(dt_string + "\n" + "Customer data exported to CSV- REDFLAG Urgent Security Notice!")
-                    print(sender)
-                except Exception:
-                    pass
-            logger.write("Sales data exported to CSV! ")
-            logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
-            logger.write("--------------------------------------- \n\n\n")
+            if str(settingscommondumpfetch(10)) == "Administrator":
+                del3f()
+                logger.write("\n\n--------------------------------------- \n")
+                logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+                with HiddenPrints():
+                    try:
+                        sender = telegram_bot_sendtext(dt_string + "\n" + "Customer data exported to CSV- REDFLAG Urgent Security Notice!")
+                        print(sender)
+                    except Exception:
+                        pass
+                logger.write("Sales data exported to CSV! ")
+                logger.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n")
+                logger.write("--------------------------------------- \n\n\n")
+            else:
+                    print("This function is restricted on your account.")
 
         elif decfac in ("3g", "3G", "3 f", "3 F"):
-            print("Deep Archival Engine")
-            del3g()
+            if str(settingscommondumpfetch(10)) == "Administrator":
+                print("Deep Archival Engine")
+                del3g()
+            else:
+                    print("This function is restricted on your account.")
 
         elif decfac in (None, "", " "):
             print("Please select a valid main-menu option. erc101\n\n")
