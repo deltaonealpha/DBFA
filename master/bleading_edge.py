@@ -2520,6 +2520,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
     def OAuthvalidate():
         from datetime import datetime
         import sqlite3, time, os
+        currdir = str(os.getcwd())
         os.system('cls')
         now = datetime.now()
         try: #To avoid error when time is 00:00:00
@@ -4081,23 +4082,41 @@ Checking for updates. . .
                     from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
                     init(convert = True)
                     print(Fore.CYAN+'''\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nOptions:              
-    1  - Hire an employee                    5  - Scheduler & Leave Application
-    2  - View employee records               
-    3  - Update employee details             6  - Mark attendance
-    4  - Fire an employee ༼ ●'◡'● ༽つ        7  - Work records - All
-                                            8  - Work records - oID-specf.
-    11 - Pay salary                          9  - Work records - All (past 30)
-    12 - <<< Back to DBFA menu               10 - Work records - oID-specf. (past 30)          
+1  - Hire an employee                    5  - Scheduler & Leave Application
+2  - View employee records               
+3  - Update employee details             6  - Mark attendance
+4  - Fire an employee ༼ ●'◡'● ༽つ        7  - Work records - All
+perms - Add new user account             8  - Work records - oID-specf.
+11 - Pay salary                          9  - Work records - All (past 30)
+12 - <<< Back to DBFA menu               10 - Work records - oID-specf. (past 30)          
 
-    What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █▀█  █▀▀ █▀█  █▀▀█ Employee'''+Fore.CYAN+'''
-    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄ Manager 2.12'''+Fore.CYAN+'''
-    '''+Fore.MAGENTA+'''The Ultimate Employee Buster ~'''+Fore.CYAN+'''     
-    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
+What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █▀█  █▀▀ █▀█  █▀▀█ Employee'''+Fore.CYAN+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄ Manager 2.12'''+Fore.CYAN+'''
+'''+Fore.MAGENTA+'''The Ultimate Employee Buster ~'''+Fore.CYAN+'''     
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
 
                 while (1):
                     empmenu()
                     empfac = input("What would you like to do? ")
                     
+                    if str(empfac) in ("perms", "PERMS", "Perms", "pERMS"):
+                        print("User Account Creation Wizard ")
+                        import sqlite3
+                        settings = sqlite3.connect(r'dbfasettings.db')
+                        settingsx = settings.cursor()
+                        settingsx.execute("SELECT MAX(Sno) FROM passkeyhandler")
+                        sno = (int(settingsx.fetchall()[0][0]) + 1)
+                        uid = input("Enter username for new account: ")
+                        kpass = input("Enter password for:" + str(uid) + ": ")
+                        confkpass = input("Confirm password: ")
+                        if kpass == confkpass:
+                            print("Alloting permission set 'sales_group' to ", uid)
+                            settingsx.execute(("INSERT INTO passkeyhandler(Sno, Col1, Col2) VALUES (?, ?, ?)"), (sno, uid, kpass))
+                            settings.commit()
+                            time.sleep(2)
+                            print("User account registered. Reboot DBFA Client from login to view changes.")
+                        else:
+                            print("Wrong re-entry of password. Retry from Employee Manager.")
                     if empfac == "1":
                         print("DBFA will now be opening a seperate window due to GUI-restrictions.")
                         time.sleep(2)
