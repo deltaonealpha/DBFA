@@ -19,3 +19,4 @@ pip install pynput
 pip install matplotlib
 pip install oschmod
 pip install telegram-send
+pip install PyQt5

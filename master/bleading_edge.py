@@ -198,7 +198,7 @@ def dmain():
             file.truncate(0)
             file.write('%d'%last_update_id)
         #echo_all(updates)
-        time.sleep(0.5)
+
     else:
         if settingscommonfetch(9) == 0:
             with open('lastupdateid2.txt', 'a+') as file:
@@ -214,11 +214,6 @@ def dmain():
             os._exit(0)
             os._exit(1)
             os._exit(0)
-    time.sleep(0.5)
-
-
-
-
 
 try:
     import getpass, time, pathlib, sqlite3, sys, os #sys, os for system-level ops
@@ -319,7 +314,6 @@ try:
         pass
     else:
         print("Getting the database online.......")
-        time.sleep(0.2)
         con = sqlite3.connect(r'DBFA.db')
         print("Rebuilding database..")
         c = con.cursor()
@@ -336,8 +330,7 @@ try:
     except PermissionError:
         pass
 
-
-
+    import sqlite3
     #Stock Order Manager
     xon = sqlite3.connect(r'DBFA_vend.db')
     xbr7 = xon.cursor()
@@ -431,25 +424,26 @@ try:
 
     # DBFA Logo Printer
     def logoprintxrt():
-                print("        ___ ______ ___   _____________    ____________     _______")
-                time.sleep(0.02)
-                print("       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /")
-                time.sleep(0.02)
-                print("      /  /       /  /  /  /       /  /  /  /             /  /  / /")
-                time.sleep(0.02)
-                print("     /  /       /  /  /  /_______/  /  /  /  CLI        /  /   / /")
-                time.sleep(0.02)
-                print("    /  /       /  /  / // // // // /  /  /_________    /  /____/ /")
-                time.sleep(0.02)
-                print("   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ /")
-                time.sleep(0.02)
-                print("  /  /       /  /  /  /       /  /  /  /             /  /      / /")
-                time.sleep(0.02)
-                print(" /  /_______/  /  /  /______ /  /  /  /             /  /       / /")
-                time.sleep(0.02)
-                print("/__/_______/__/  /__/_______/__/  /__/             /__/        /__/")
-                print(" ")
-                print(" ")
+        #VID: DBFA Inception 1.0
+        print("        ___ ______ ___   _____________    ____________     _______")
+        time.sleep(0.01)
+        print("       /  /_______/  /  /  /_______/  /  /  /________/    /  /_/ /")
+        time.sleep(0.01)
+        print("      /  /       /  /  /  /       /  /  /  /             /  /  / /")
+        time.sleep(0.01)
+        print("     /  /       /  /  /  /_______/  /  /  /  CLI        /  /   / /")
+        time.sleep(0.01)
+        print("    /  /       /  /  / // // // // /  /  /_________    /  /____/ /")
+        time.sleep(0.01)
+        print("   /  /       /  /  /  /-------/  /  /  /_________/   /  /_____/ /")
+        time.sleep(0.01)
+        print("  /  /       /  /  /  /       /  /  /  /             /  /      / /")
+        time.sleep(0.01)
+        print(" /  /_______/  /  /  /______ /  /  /  /             /  /       / /")
+        time.sleep(0.01)
+        print("/__/_______/__/  /__/_______/__/  /__/             /__/        /__/")
+        print(" ")
+        print(" ")
 
 
 
@@ -1552,7 +1546,7 @@ This is a dynamically generated schedule with alternating shifts. Employees on l
             empmas.commit()
 
             telegram_bot_grouptext(bot_message.replace("&", "and"))
-            time.sleep(2)
+            time.sleep(0.5)
             telegram_bot_sendtext(bot_message.replace("&", "and"))            
             print(sched)
             contfac = input("Enter a button to continue ~ : ")
@@ -1620,14 +1614,14 @@ This is a dynamically generated schedule with alternating shifts. Employees on l
                             Options:  
 █▀▀█ █▀█  █▀▀ █▀█  █▀▀█   1  - Issue a Bill                                              4  - Store Report
 █__█ █▀▀█ █▀  █▬█  ▄▄▄▄   2  - Manage Customers:                                         5  - Manage Deliveries
-CLIENT 8.54 DONNAGER                a: Register a Customer    c: Purchase Records        6  - DBFA Options 
+CLIENT Inception 1.0                a: Register a Customer    c: Purchase Records        6  - DBFA Options 
 '''+Fore.MAGENTA+'''  The OG Store Manager'''+Fore.CYAN+'''              b: Customer Registry      d: Find a Customer         7  - Start DBFA Backup & Switch 
                                     e: Export data as CSV                                8  - Analyse Sales
                           3  - Store Options:                                          '''+Fore.MAGENTA+'''emp/EMP - DBFA Employee Manager'''+Fore.CYAN+'''
-                                           a: Manage Stock           c: Manage Vouchers         9  - View Software License
-                                    b: DBFA Stock Master      d: Product Listing         10 - About DBFA 8.4
-                                    e: Sales Log              f: Export data as CSV      11 - Check for updates
-                                    g: Invoice Deep Archive                              12 - Quit
+                                           a: Manage Stock           c: Manage Vouchers         9 - About DBFA
+                                    b: DBFA Stock Master      d: Product Listing         10 - Check for updates
+                                    e: Sales Log              f: Export data as CSV      11 - Quit
+                                    g: Invoice Deep Archive                              
 - 'mark'/'MARK': to mark attendance                                                                                                                            
 '''+Fore.MAGENTA+'''                          
 DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* - >> next  '''+Fore.CYAN+'''
@@ -1641,15 +1635,15 @@ DBFA Music Controls:: *prev* - << previous | *pause* - <|> pause/play | *next* -
         b: Customer Registry      d: Find a Customer           7  - DBFA Backup & Switch 
         e: Export data as CSV                                  8  - Analyse Sales
 3  - Store Options:                                            '''+Fore.MAGENTA+'''emp/EMP - DBFA Employee Manager'''+Fore.CYAN+'''
-        a: Manage Stock           c: Manage Vouchers           9  - View Software License
-        b: DBFA Stock Master      d: Product Listing           10 - About DBFA 8.4
-        e: Sales Log              f: Export data as CSV        11 - Check for updates
-        g: Invoice Deep Archive                                12 - Quit
+        a: Manage Stock           c: Manage Vouchers           9  - About DBFA 
+        b: DBFA Stock Master      d: Product Listing           10 - Check for updates
+        e: Sales Log              f: Export data as CSV        11 - Quit
+        g: Invoice Deep Archive                                
 - 'mark'/'MARK': to mark attendance                               
 '''+Fore.MAGENTA+'''                                                                 
 What would you like to do?                        The OG Store Manager'''+Fore.WHITE+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█'''+Fore.CYAN+'''
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄'''+Fore.CYAN+'''
-DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.54 DONNAGER   \n'''
+DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             INCEPTION 1.0 CLIENT   \n'''
 +Back.CYAN+Fore.BLACK+'''Administrator Controls'''+Back.BLACK+Fore.CYAN+'''                              
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
 #  '''+Fore.RED+'''
@@ -1669,7 +1663,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
 '''+Fore.MAGENTA+'''                                                                 
 What would you like to do?                        The OG Store Manager'''+Fore.WHITE+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█'''+Fore.CYAN+'''
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄'''+Fore.CYAN+'''
-DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.54 DONNAGER  \n'''
+DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             INCEPTION 1.0 CLIENT  \n'''
 +Back.RED+Fore.BLACK+'''Restricted access mode'''+Back.BLACK+Fore.CYAN+'''                               
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
 
@@ -1683,7 +1677,6 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                 print(Back.BLACK + Fore.MAGENTA+ "Pending deliveries: " + str(delcount) + " "  + "           DBFA User: " + os.getlogin() + "             "+ dt_string + Fore.CYAN)
                 print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
             else:
-                print("DONNAGER 8.01 RC-2 Test Beta")
                 print(Fore.BLACK + Back.CYAN + "No deliveries pending! " + Back.BLACK + Fore.CYAN)
             if str(settingscommondumpfetch(10)) == "Administrator":
                 print(logoxnew)
@@ -1698,7 +1691,6 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                 print(Back.BLACK + Fore.MAGENTA+ "Pending deliveries: " + str(delcount) + " "  + "       DBFA User: " + os.getlogin() + "              "+ dt_string + Fore.CYAN)
                 print("-----------------------------------------------------------------------------------------------------------------------")
             else:
-                print("DONNAGER 8.01 RC-2 Test Beta")
                 print(Fore.BLACK + Back.CYAN + "No deliveries pending! " + Back.BLACK + Fore.CYAN)
             print(logoxold)
         #Settings Checker
@@ -2052,7 +2044,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                                 ccrt.append(str(jkx))
 
                         col_labels = ('ID', 'Customer NAME', 'EMAIL', 'ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points')
-                        print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f"))
+                        print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f", tablefmt='fancy_grid'))
 
                         print(" ")
                 else:
@@ -2070,7 +2062,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                             ccrt.append(str(jkx))
 
                     col_labels = ('ID', 'Customer NAME', 'EMAIL', 'ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points')
-                    print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f"))
+                    print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f", tablefmt='fancy_grid'))
             else:
                 srtx = "%"
                 for i in searchcon:
@@ -2094,7 +2086,7 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             CLIENT 8.
                             ccrt.append(str(jkx))
 
                     col_labels = ('ID', 'Customer NAME', 'EMAIL', 'ID', 'Name', 'Purchases Made', 'Total', 'Loyalty Points')
-                    print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f"))
+                    print(tabulate(zip(col_labels, ccrt), floatfmt = ".4f", tablefmt='fancy_grid'))
                 else:
                     print("Customer not found.")
         except:
@@ -2278,7 +2270,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
         except PermissionError:
                 pass
         print("Store listing (as per updated records): ")
-        print(tabulate(tablx, headers = titlex, floatfmt = ".4f"))
+        print(tabulate(tablx, headers = titlex, floatfmt = ".4f", tablefmt='fancy_grid'))
 
 
 
@@ -2646,7 +2638,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
 
 
     print("---------------------------------\n\n༼ つ ◕_◕ ༽つ delta IntelliSense Updater\n\n---------------------------------")
-    time.sleep(0.5)
+    time.sleep(0.1)
     print("Talking to server ~ ")
     url = "https://raw.githubusercontent.com/deltaonealpha/DBFA_UpdateHandler/master/updates.txt"
     r = requests.get(url)
@@ -3448,33 +3440,7 @@ c. ) 'Enter' to return to main menu
                     pass
             else:
                     print("This function is restricted on your account.")
-
-        #License        
-        elif decfac == "9":
-            print("Fetching latest licensing information.......")
-            print(" ")
-            print(" ")
-            logoprintxrt()
-            time.sleep(1.5)
-            print(" ")
-            print(" ")
-            print("DBFA by Pranav Balaji, 2020")
-            print(" ")
-            print("_______ Licensing _______")
-            print("           GNU PUBLIC LICENSE - TERMS AND CONDITIONS")
-            print("    <deltaBillingFramework>  Copyright (C) 2020 Pranav Balaji and Sushant Gupta")
-            print("    This program comes with ABSOLUTELY NO WARRANTY; for details type *show w*.")
-            print("    This is free software, and you are welcome to redistribute it")
-            print("    under certain conditions; type *show c* for details. ")
-            toaster.show_toast("DFBA Framework Runtime Broker", "©2020: DBFA by Pranav Balaji and Sushant Gupta", duration = 1.5)
-            print(" ")
-            print(" ")
-            print("Visit: www.github.com/deltaonealpha/deltaBillingFramework for complete licensing terms. ")
-            print(" ")
-            print(" ")
-            time.sleep(2)
-            webbrowser.open('https://telegra.ph/DBFA-Licensing-Information-08-16')
-            print("--------------------------------------------------")
+            
         
 
         #Stock Ordering Option
@@ -3548,7 +3514,26 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
                 mainmenu()
 
         #DevChangelog Option
-        elif decfac == "10":
+        elif decfac == "9":
+            print("\nAbout DBFA: ")
+            print("DBFA Inception 1.0 by deltaonealpha")
+            print("Fetching latest licensing information.......")
+            logoprintxrt()
+            time.sleep(0.5)
+            print(" ")
+            print("_______ Licensing _______")
+            print("           GNU PUBLIC LICENSE - TERMS AND CONDITIONS")
+            print("    <deltaBillingFramework>  Copyright (C) 2020 Pranav Balaji and Sushant Gupta")
+            print("    This program comes with ABSOLUTELY NO WARRANTY; for details type *show w*.")
+            print("    This is free software, and you are welcome to redistribute it")
+            print("    under certain conditions; type *show c* for details. ")
+            toaster.show_toast("DFBA Framework Runtime Broker", "©2020: DBFA by Pranav Balaji and Sushant Gupta", duration = 1.5)
+            print(" ")
+            print("Visit: www.github.com/deltaonealpha/deltaBillingFramework for complete licensing terms. ")            
+            print(" ")
+            print(" ")
+            webbrowser.open('https://telegra.ph/DBFA-Licensing-Information-08-16')
+            print("--------------------------------------------------")
             print("\n\nLatest Development Changelog: \n")
             webbrowser.open('https://telegra.ph/DBFA-8-RC2-Highlights-08-17')
             webbrowser.open('https://telegra.ph/DBFA-8-Release-Candidate---1-08-16')
@@ -3981,7 +3966,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
 
 
         #DBFA Updater
-        elif decfac == "11":
+        elif decfac == "10":
             if str(settingscommondumpfetch(10)) == "Administrator":
                 import requests, os, time, shutil, oschmod
                 os.system('cls')
@@ -4033,7 +4018,7 @@ Checking for updates. . .
                 print("This function is restricted on your account.")
 
         #Exit System
-        elif decfac == "12":
+        elif decfac == "11":
             if os.path.exists(r'userblock.txt'):
                 userblock.close()
                 os.remove(r'userblock.txt')
@@ -4088,7 +4073,8 @@ Checking for updates. . .
 4  - Fire an employee ༼ ●'◡'● ༽つ        7  - Work records - All
 perms - Add new user account             8  - Work records - oID-specf.
 11 - Pay salary                          9  - Work records - All (past 30)
-12 - <<< Back to DBFA menu               10 - Work records - oID-specf. (past 30)          
+12 - <<< Back to DBFA menu               10 - Work records - oID-specf. (past 30)
+                                         13 - View Salary Payment Records          
 
 What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █▀█  █▀▀ █▀█  █▀▀█ Employee'''+Fore.CYAN+'''
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''█__█ █▀▀█ █▀  █▬█  ▄▄▄▄ Manager 2.12'''+Fore.CYAN+'''
@@ -4117,6 +4103,17 @@ What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █
                             print("User account registered. Reboot DBFA Client from login to view changes.")
                         else:
                             print("Wrong re-entry of password. Retry from Employee Manager.")
+                    
+                    if empfac == "13":
+                            import sqlite3
+                            empmas = sqlite3.connect(r'dbfaempmaster.db')
+                            empmascur = empmas.cursor()
+                            empmascur.execute("SELECT * FROM salpay")
+                            datastream = empmascur.fetchall()
+                            from tabulate import tabulate
+                            print("Payment records: ")
+                            print(tabulate(datastream, headers=['Employee ID:', "DATE of payment:", 'Amount paid:'], tablefmt='fancy_grid'))
+
                     if empfac == "1":
                         print("DBFA will now be opening a seperate window due to GUI-restrictions.")
                         time.sleep(2)

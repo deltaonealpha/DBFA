@@ -2,16 +2,29 @@ deltaDBFA Infinity Development Changelog | author: @deltaonealpha
 - Changelog for DBFA consisting of all changes since DBFA 7
 --------------------------------------------------------------
 TODO:
-<<DONE>> - User accounts (admin, cashier et cetera)
-- Add option to create new account and assign perms (admin/ cashier) [option available from admin acc only]
+- Add option to change UAC password
 --------------------------------------------------------------
 
+30-10-2020 20:43
+> DBFA Boot process sped up by 28% (4.9 seconds! (14 seconds >>> 10.1 seconds))
+> Unified tabulate theme universally (fancy_grid style)
+> Added option - "View Salary Payment Records"
+
+30-10-2020 20:11
+> Removed "View License" option and merged it inside "About DBFA"
+> Added new bootscreen (flash) to source for ```INCEPTION - 1```
+
+28-10-2020 18:27
+> Added option to create new 'sales-group-level' accounts in employee manager. (create new account)
+> Patched curdir bug during login authentication.
+
 27-10-2020 11:59
+> Added an auto-fetched user accounts checkbox in login (run_DBFA and wrelogin). 
+  Option to type-in usernames in still available from the checkbox itself.
 > Presenting User Account Controls in DBFA
   Administrator/ Cashier accounts (more can be easily added)
   Restricted operations for cashier accounts.
   Option to have separate accounts for different cashiers.
-
 
 24-10-2020 13:59
 > Presenting Automatic Update Installation (DBFA Updater v2)
@@ -81,6 +94,8 @@ RE > All file references (paths) have been changed to automatically detect the i
 
 11-10-2020
 > All menu designs are now unified across DBFA.
+
+^^^^^^^^^^^^^^^^ INCEPTION 1.0 ABOVE ^^^^^^^^^^^^^^^^
 
 10-10-2020
 > Started work on PHASE - II of DBFA - Unifying menu designs across the code.
