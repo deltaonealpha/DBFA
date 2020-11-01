@@ -2,8 +2,19 @@ deltaDBFA Infinity Development Changelog | author: @deltaonealpha
 - Changelog for DBFA consisting of all changes since DBFA 7
 --------------------------------------------------------------
 TODO:
-- Add option to change UAC password
+               - Add option to change UAC password
+<<<==DONE==>>> - SUPERCACHING
+<<<==DONE==>>> - DB prod add option
 --------------------------------------------------------------
+
+01-11-2020 12:22 (vmcbt)
+> The way DBFA handles product listing has been completely revamped.
+> Instead of lists & dictionaries which house product names and costs, the settings database now handles this.
+> Presenting SUPERCACHING. Unlike other codes which 
+  refer the db everytime for every product (which adds time delay), DBFA fetches ALL listing details
+  each time billing is started, and caches the data in its memory. This reduces A LOT of time.
+> Added option to add a listing now! (Changes reflect in all source dbs)
+> SUPERCACHING applied to all parts of the code where listing is refered.
 
 30-10-2020 20:43
 > DBFA Boot process sped up by 28% (4.9 seconds! (14 seconds >>> 10.1 seconds))

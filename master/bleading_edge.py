@@ -55,6 +55,53 @@ def settingsdatafetch(SettingsType):
     settingsfetch = (settingsx.fetchall()[0][0])
     return settingsfetch
 
+def getlisting():
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+
+    xnamiex = []
+    xdatax = []
+    settingsx.execute("SELECT Name FROM listing")
+    for i in settingsx.fetchall():
+        xnamiex.append(i[0])
+    settingsx.execute("SELECT Cost FROM listing")
+    for i in settingsx.fetchall():
+        xdatax.append(i[0])
+    return (xnamiex, xdatax)
+
+def dictgetlisting():
+    import sqlite3
+    settings = sqlite3.connect(r'dbfasettings.db')
+    settingsx = settings.cursor()
+
+    xnamiex = []
+    xdatax = []
+    settingsx.execute("SELECT Name FROM listing")
+    for i in settingsx.fetchall():
+        xnamiex.append(i[0])
+    settingsx.execute("SELECT Cost FROM listing")
+    for i in settingsx.fetchall():
+        xdatax.append(i[0])
+    namiex, datax = xnamiex, xdatax
+    lenx = []
+    for i in range(1, len(namiex)+1):
+        lenx.append(i)
+    listres = {} 
+    for key in lenx: 
+        for value in namiex: 
+            listres[int(key)] = str(value)
+            namiex.remove(value) 
+            break  
+    costres = {}
+    for key in lenx: 
+        for value in datax: 
+            costres[int(key)] = str(value)
+            datax.remove(value) 
+            break   
+    return(listres, costres)
+
+
 def securedatafetch(SettingsType):
     import sqlite3
     settings = sqlite3.connect(r'dbfasettings.db')
@@ -558,8 +605,7 @@ try:
         prodprofit INTEGER,
         prodsales INTEGER,
         netprof INTEGER);""")
-        namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F1", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.1", "Essentials Wired Speaker - STEREO", "Tactical Series Power Bank 30000mah", "Essentials Power Bank 10000mah", "Essentials Mouse", "Logitech G604 LightSpeed Wireless", "Tactical Essentials Keyboard", "DROP GS21k RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 45W Laptop Adapter", "lapcare 60W Laptop Adapter","Spigen Phone Case(s)", "Essentials Phone Charger 15W", "HyperPower Type-C Gallium-Nitride Charger 120W", "ASUS Zephyrus G4 Gaming Laptop", "DELL XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
-        profitx = [2000, 4500, 5700, 2000, 2100, 1470, 300, 11000, 400, 2000, 100, 370, 450, 120, 50, 275, 649, 140, 50, 1050, 978, 150, 100, 320, 98, 75, 170, 60, 275, 90, 210, 780, 50, 35, 50, 30, 100, 8000, 9000, 1790]
+        namiex, datax = getlisting()
         profitmarker = 0
         for crrt in namiex:
             profvalue = profitx[profitmarker]
@@ -741,7 +787,7 @@ try:
 
 
     # Report Stock Fetcher
-    namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F1", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.1", "Essentials Wired Speaker - STEREO", "Tactical Series Power Bank 30000mah", "Essentials Power Bank 10000mah", "Essentials Mouse", "Logitech G604 LightSpeed Wireless", "Tactical Essentials Keyboard", "DROP GS21k RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 45W Laptop Adapter", "lapcare 60W Laptop Adapter","Spigen Phone Case(s)", "Essentials Phone Charger 15W", "HyperPower Type-C Gallium-Nitride Charger 120W", "ASUS Zephyrus G4 Gaming Laptop", "DELL XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
+    namiex, datax = getlisting()
     def repstockfetch(): 
         global tabarter
         ssh = sqlite3.connect('DBFA_handler.db')
@@ -826,7 +872,7 @@ try:
         
         ssh = sqlite3.connect(r'DBFA_handler.db')
         ssh7 = ssh.cursor()
-        namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F1", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.1", "Essentials Wired Speaker - STEREO", "Tactical Series Power Bank 30000mah", "Essentials Power Bank 10000mah", "Essentials Mouse", "Logitech G604 LightSpeed Wireless", "Tactical Essentials Keyboard", "DROP GS21k RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 45W Laptop Adapter", "lapcare 60W Laptop Adapter","Spigen Phone Case(s)", "Essentials Phone Charger 15W", "HyperPower Type-C Gallium-Nitride Charger 120W", "ASUS Zephyrus G4 Gaming Laptop", "DELL XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
+        namiex, datax = getlisting()
         for crrt in namiex:
             gg = (namiex.index(crrt)) + 1
             str = "insert into sshandler(prodid, prodname, ssstock) values(?, ?, ?)"
@@ -1152,7 +1198,7 @@ try:
         from datetime import date
         datex = date.today()
 
-        profer = [2000, 4500, 5700, 2000, 2100, 1470, 300, 11000, 400, 2000, 100, 370, 450, 120, 50, 275, 649, 140, 50, 1050, 978, 150, 100, 320, 98, 75, 170, 60, 275, 90, 210, 780, 50, 35, 50, 30, 100, 8000, 9000, 1790]
+        profer = [2000, 4500, 5700, 2000, 2100, 1470, 300, 11000, 400, 2000, 100, 370, 450, 120, 50, 275, 649, 140, 50, 1050, 978, 150, 100, 320, 98, 75, 170, 60, 275, 90, 210, 780, 50, 35, 50, 30, 100, 8000, 9000, 1790, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         for i in prodid:
             netprof += profer[int(i)]
 
@@ -1655,10 +1701,10 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             INCEPTION
         b: Customer Registry      d: Find a Customer           
                                                                
 3  - Store Options:                                            '''+Fore.MAGENTA+'''emp/EMP - DBFA Employee Manager'''+Fore.CYAN+'''
-        a: Manage Stock                                        9  - View Software License
-        b: DBFA Stock Master      d: Product Listing           10 - About DBFA 8.4
+        a: Manage Stock                                        9  - About DBFA
+        b: DBFA Stock Master      d: Product Listing           
                                                                
-                                                               12 - Quit
+                                                               11 - Quit
 - 'mark'/'MARK': to mark attendance                               
 '''+Fore.MAGENTA+'''                                                                 
 What would you like to do?                        The OG Store Manager'''+Fore.WHITE+''' █▀▀█ █▀█  █▀▀ █▀█  █▀▀█'''+Fore.CYAN+'''
@@ -2165,12 +2211,41 @@ Options:                              Store Options >>> DBFA Stock Master v1
     f: Contact Vendor
     g: Edit Vendor Contact
     h: Modify Low-Stock Warning Bar
+    i: Add new product listing ~~ 
 
 What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
 '''+Fore.CYAN+'''Stock Master ~'''+Fore.MAGENTA+'''     
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
         stkmaster = input("Select:: ")
+        if stkmaster in ("i", "I"):
+            prodn = input("Enter new product name: ")
+            costn = input("Enter the price to sell " + str(prodn) + " for (EXCLUDING TAX): ")
+            categn = input("Enter category for product (refer docs for help): ")
+            conffac = input("\nList new product with name " + str(prodn) + " for (excluding tax) price ₹" + str(costn) + " under category " + str(categn) + "? (y/n): ")
+            if conffac in ("y", "Y"):
+                print(". . .")
+                import sqlite3
+                settings = sqlite3.connect(r'dbfasettings.db')
+                settingsx = settings.cursor()
+                settingsx.execute("SELECT MAX(PID) FROM listing")
+                maxpid = settingsx.fetchall()[0][0]+1
+                settingsx.execute("INSERT INTO listing(PID, Name, Cost, Category) VALUES (?, ?, ?, ?)", (maxpid, prodn, costn, categn))
+                settings.commit()
+                isolx = sqlite3.connect(r'DBFA_vend.db')
+                isolxx = isolx.cursor()
+                isolxx.execute("INSERT INTO stock(prodid, prodname, ordqty, delivered, delstat, vendor, vendcont, lowstock) VALUES(?, ?, ?, ?, ?, ?, ?, ?)", (maxpid, prodn, 0, 0, "DELIVERED", "deltaSystems", "vendor@dbfa.com", 5))
+                isolx.commit()
+                ssh = sqlite3.connect('DBFA_handler.db')
+                ssh7 = ssh.cursor()
+                ssh7.execute("INSERT INTO sshandler(prodid, prodname, ssstock) VALUES(?, ?, ?)", (maxpid, prodn, 0))
+                ssh.commit()
+                settingsx.execute("SELECT * FROM listing WHERE PID = ?", (str(maxpid), ))
+                print("Product listed: ", settingsx.fetchall())
+            else:
+                print("New listing cancelled! ~ ")
+
+
         if stkmaster in ("a", "A"):
             idquery = int(input("Enter the product ID: "))
             qtyquery = int(input("Enter the amount to order: "))
@@ -2269,6 +2344,16 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
                 os.remove(r'userblock.zconf')
         except PermissionError:
                 pass
+        # Store listing::
+        namie, data = dictgetlisting()
+        namiex, datax = getlisting()
+        # dataxr is currently redundant
+        dataxr = []
+        for i in datax:
+            i = "₹" + '%d' % i
+            dataxr.append(i)
+        tablx = zip(namiex, dataxr)
+        titlex = ["Product:", "Pricing:"]
         print("Store listing (as per updated records): ")
         print(tabulate(tablx, headers = titlex, floatfmt = ".4f", tablefmt='fancy_grid'))
 
@@ -2395,11 +2480,8 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
     print("-----------------------------------------------------------------------------------------------------")
 
     # Store listing::
-    data = {"1":40000, "2":55000, "3":67000, "4":25000, "5":21000, "6":14000, "7":13000, "8":220000, "9":4500, "10":17000, "11":1200, "12":3700, "13":4500, "14":2200, "15":700, "16":2750, "17":6499, "18":1499, "19":799, "20":27000, "21":6750, "22":2100, "23":1199, "24":3210, "25":989, "26":750, "27":1700, "28":600, "29":2175, "30":890, "31":2100, "32":7158, "33":597, "34":347, "35":500, "36":300, "37":1097, "38":80000, "39":87900, "40":23790}
-    namie = {"1":"TV 4K OLED 50", "2":"TV FHD OLED 50", "3":"8K QLED 80", "4":"Redmi K20 PRO", "5":"Redmi K20", "6":"Redmi Note 8 PRO", "7":"POCOPHONE F1", "8":"Mi MIX ALPHA", "9":"Wireless Headphones", "10":"Noise-Cancelling Wireless Headphones", "11":"Essentials Headphones", "12":"Gaming Headphones", "13":"Truly-Wireless Eadphones", "14":"Neckband-Style Wireless Earphones", "15":"Essentials Earphones", "16":"Gaming Earphones", "17":"30W Bluetooth Speakers", "18":"10W Bluetooth Speakers", "19":"Essentials Bluetooth Speaker", "20":"ULTRA Home Theatre", "21":"Essentials Home Theatre", "22":"  Wired Speaker - 5.1", "23":"  Essentials Wired Speaker - STEREO", "24":"Tactical Power Bank 30000mah", "25":"Essentials Power Bank 10000mah", "26":"Essentials Mouse", "27":"Logitech G604 LightSpeed Wireless", "28":"Tactical Essentials Keyboard", "29":"DROP GS21k RGB Gaming Keyboard", "30":"Polowski Tactical Flashlight", "31":"OneFiber Wi-Fi Router AX17", "32":"Mijia Mesh Wi-Fi Router", "33":"lapcare 120W Laptop Adapter", "34":"lapcare 60W Laptop Adapter", "35":"Spigen Phone Case(s)", "36":"Essentials Phone Charger 10W", "37":"HyperPower Type-C Gallium-Nitride Charger 100W", "38":"ASUS Zephyrus G14 Gaming Laptop", "39":"L XPS 15 Content Creator's Laptop", "40":"Hewlett-Packard Essential's Student's Laptop (Chromebook)"}
-    namiex = ["TV 4K OLED 50", "TV FHD OLED 50", "8K QLED 80", "Redmi K20 PRO", "Redmi K20", "Redmi Note 9 PRO", "POCOPHONE F1", "Mi MIX ALPHA", "Wireless Headphones", "Noise-Cancelling Wireless Headphones", "Essentials Headphones", "Gaming Headphones", "Truly-Wireless Eadphones", "Neckband-Style Wireless Earphones", "Essentials Earphones", "Gaming Earphones", "30W Bluetooth Speakers", "20W Bluetooth Speakers", "Essentials Bluetooth Speaker", "BOSE QC35", "Essentials Home Theatre", "Wired Speaker - 5.1", "Essentials Wired Speaker - STEREO", "Tactical Series Power Bank 30000mah", "Essentials Power Bank 10000mah", "Essentials Mouse", "Logitech G604 LightSpeed Wireless", "Tactical Essentials Keyboard", "DROP GS21k RGB Gaming Keyboard", "Polowski Tactical Flashlight", "OneFiber Wi-Fi Router AX7", "Mijia Mesh Wi-Fi Router", "lapcare 45W Laptop Adapter", "lapcare 60W Laptop Adapter","Spigen Phone Case(s)", "Essentials Phone Charger 15W", "HyperPower Type-C Gallium-Nitride Charger 120W", "ASUS Zephyrus G4 Gaming Laptop", "DELL XPS 5 Content Creator's Laptop", "Hewlett-Packard Essential's Student's Laptop (Chromebook)"]
-    datax = [40000, 55000, 67000, 25000, 21000, 14000, 3000, 220000, 4500, 17000, 1200, 3700, 4500, 2200, 700, 2750, 6499, 1499, 799, 27000, 6750, 2100, 1199, 3210, 989, 750, 1700, 600, 2175, 890, 2100, 7158, 597, 347, 500, 300, 1097, 80000, 87900, 23790]
-
+    namie, data = dictgetlisting()
+    namiex, datax = getlisting()
     # dataxr is currently redundant
     dataxr = []
     for i in datax:
@@ -2807,26 +2889,32 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
             billiemaster = 0 #variable for totalling the price
             time.sleep(0.0247) #for a seamless experience
             afac = 0
+            namie, data = dictgetlisting()
+            namiex, datax = getlisting()
             dde_productlist = ""
             while(1):
                 item = input("Enter product code: ")
                 if item == "0":
                     break
-                elif item in data:
+                elif int(item) in data:
                     ssxstockmaster(item)
                     if ssxvarscheck == 1:
-                        billiemaster+=data[item]
+                        item = int(item)
+                        #print(item)
+                        #print(data)
+                        #print(data[int(item)])
+                        billiemaster+=int(data[int(item)])
                         dde_productlist += str(item) + '00'
-                        print("Purchased: ", namie[item], " for: ", data[item])
+                        print("Purchased: ", namie[item], " for: ", data[int(item)])
                         repupdate(item)
                         lenxr = len(namie[item])
-                        costlenxr = len(str(data[item]))        
+                        costlenxr = len(str(data[int(item)]))
                         cj = 10 - costlenxr
                         pi = 60 - lenxr
-                        idlerxx = namie[item] + " "*pi + "₹"+'%d'%data[item] + " "*cj + "1 qty. ~"
+                        idlerxx = namie[item] + " "*pi + "₹"+'%d'%int(data[int(item)]) + " "*cj + "1 qty. ~"
                         purcheck += idlerxx
                         print("---")
-                        priceprod = "₹" + '%d' % data[item]
+                        priceprod = "₹" + '%d' % int(data[int(item)])
                         logger.write("Appending product to order: \n")  #writing to file
                         profer.append(item)
                         logger.write(namie[item])
@@ -5217,6 +5305,8 @@ except:
             marker = 1
             issue = i
         elif live_md5 == local_md5:
+            marker = 2
+        else:
             marker = 2
 
         time.sleep(3)
