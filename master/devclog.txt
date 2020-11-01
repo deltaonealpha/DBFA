@@ -7,6 +7,13 @@ TODO:
 <<<==DONE==>>> - DB prod add option
 --------------------------------------------------------------
 
+01-11-2020
+> Presenting the DBFA Security Dashboard.
+  Gives you a visual representation of program & dependancy health
+  and security-related options (clear records/ change passwords/ encryption toggle, 2FA toggle)
+> Moved security options from 'DBFA Options' to 'DBFA Security Dashoard'
+> Menu numbering changes (security, settings in the last now)
+
 01-11-2020 12:22 (vmcbt)
 > The way DBFA handles product listing has been completely revamped.
 > Instead of lists & dictionaries which house product names and costs, the settings database now handles this.
