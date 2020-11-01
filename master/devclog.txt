@@ -7,7 +7,11 @@ TODO:
 <<<==DONE==>>> - DB prod add option
 --------------------------------------------------------------
 
-01-11-2020
+01-11-2020 18:22
+> Improved "Security Dashboard" (adjusted dimensions)
+> Added check for internet connection (displays helpful info when disconnected instead of crashing out).
+
+01-11-2020 15:22
 > Presenting the DBFA Security Dashboard.
   Gives you a visual representation of program & dependancy health
   and security-related options (clear records/ change passwords/ encryption toggle, 2FA toggle)

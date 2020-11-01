@@ -4941,56 +4941,57 @@ What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █
                 os.system('cls')
                 init(convert = True)
                 print(Fore.WHITE+'''
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-DBFA Security Dashboard                                           deltasoftware
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+DBFA Security Dashboard                                                             deltasoftware
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 '''+Fore.RED+'''Administrator Access Granted
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
                 if netcon == 1:
                     if uptd == 1:
                         print(Fore.GREEN+'''
-  █▀▀▀▀▀▀█              
-█▀        ▀█            Security Status  : DBFA is up-to-date ~ 
-█        ▄ █            File Integrity   : Acceptable
-█      ▄▀  █            Storage Integrity: Strong
- █ █▄▄▀   █             Webhook Health   : Strong (INTERNET CONNECTED)
-  ██    ██              
-   ▀▀▀▀▀▀'''+Fore.CYAN)
+          █▀▀▀▀▀▀█              
+        █▀        ▀█                    Security Status  : DBFA is up-to-date ~ 
+        █        ▄ █                    File Integrity   : Acceptable
+        █      ▄▀  █                    Storage Integrity: Strong
+         █ █▄▄▀   █                     Webhook Health   : Strong (INTERNET CONNECTED)
+          ██    ██              
+           ▀▀▀▀▀▀'''+Fore.CYAN)
                     else:
                             print(Fore.RED+'''
-  █▀▀▀▀▀▀█              
-█▀  ▄   ▄ ▀█            Security Status  : DBFA is running on an OUTDATED build!
-█    ▀▄▀   █            File Integrity   : Acceptable
-█   ▄▀ ▀▄  █            Storage Integrity: Strong
- █        █             Webhook Health   : Strong (INTERNET CONNECTED)
-  ██    ██              
-   ▀▀▀▀▀▀'''+Fore.CYAN)
+          █▀▀▀▀▀▀█              
+        █▀  ▄   ▄ ▀█                    Security Status  : DBFA is running on an OUTDATED build!
+        █    ▀▄▀   █                    File Integrity   : Acceptable
+        █   ▄▀ ▀▄  █                    Storage Integrity: Strong
+         █        █                     Webhook Health   : Strong (INTERNET CONNECTED)
+          ██    ██              
+           ▀▀▀▀▀▀'''+Fore.CYAN)
                 elif netcon == 0:
                     print(Fore.RED+'''
-  █▀▀▀▀▀▀█              
-█▀  ▄   ▄ ▀█            Security Status  : Connection to server unavailable!
-█    ▀▄▀   █            File Integrity   : Acceptable
-█   ▄▀ ▀▄  █            Storage Integrity: Strong
- █        █             Webhook Health   : DISCONNECTED (NO INTERNET)
-  ██    ██              
-   ▀▀▀▀▀▀'''+Fore.CYAN)
+          █▀▀▀▀▀▀█              
+        █▀  ▄   ▄ ▀█                    Security Status  : Connection to server unavailable!
+        █    ▀▄▀   █                    File Integrity   : Acceptable
+        █   ▄▀ ▀▄  █                    Storage Integrity: Strong
+         █        █                     Webhook Health   : DISCONNECTED (NO INTERNET)
+          ██    ██              
+           ▀▀▀▀▀▀'''+Fore.CYAN)
                 print(Fore.WHITE+'''
-a - '''+Fore.RED+'''DELETE ALL'''+Fore.WHITE+' customer records                      :'+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.RED+'''|'''+Fore.CYAN+'''
-b - '''+Fore.RED+'''DELETE ALL'''+Fore.WHITE+' store records                         :'+Fore.WHITE, '|'+Fore.RED+"██ Proceed > | "+Fore.CYAN)
+a - '''+Fore.RED+'''DELETE ALL'''+Fore.WHITE+' customer records                                         :'+Fore.WHITE, '|'+Fore.RED+"██ Proceed > "+Fore.RED+'''|'''+Fore.CYAN+'''
+b - '''+Fore.RED+'''DELETE ALL'''+Fore.WHITE+' store records                                            :'+Fore.WHITE, '|'+Fore.RED+"██ Proceed > | "+Fore.CYAN)
                 print('''
 c - Change '''+Fore.RED+'''ADMINISTRATOR'''+Fore.CYAN+''' password 
 d - Change password for employee accounts >>\n''')
                 #if (settingscommonfetch(5)) == 0:
-                print(Fore.MAGENTA+"e - Enable database encryption                       : UNDER DEVELOPMENT "+Fore.CYAN+'      ')
+                print(Fore.MAGENTA+"e - Enable database encryption                                          : UNDER DEVELOPMENT "+Fore.CYAN+'      ')
                 #else:
                     #print("e - Enable database encryption                       :", (Fore.RED+'|████'+Fore.RED+' OFF|      '+Fore.WHITE))
                 if (settingscommonfetch(6)) == 1:
-                    print(Fore.CYAN+"f - Enable DBFA Secure Two-Factor-Authenication      :", Fore.GREEN+'| ON '+Fore.GREEN+'████|'+Fore.CYAN+'      ')
+                    print(Fore.CYAN+"f - Enable DBFA Secure Two-Factor-Authenication                         :", Fore.GREEN+'| ON '+Fore.GREEN+'████|'+Fore.CYAN+'      ')
                 else:
-                    print(Fore.CYAN+"f - Enable DBFA Secure Two-Factor-Authenication      :", (Fore.RED+'|████'+Fore.RED+' OFF|      '+Fore.CYAN))
+                    print(Fore.CYAN+"f - Enable DBFA Secure Two-Factor-Authenication                         :", (Fore.RED+'|████'+Fore.RED+' OFF|      '+Fore.CYAN))
 
                 print('''\ng - <<< Return to main menu
-'''+Fore.RED+'''▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
+'''+Fore.RED+'''▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
                 dsoa = input("What would you like to do?: "+Fore.WHITE)
                 if dsoa in ("a", "A"):
                     print('''This option PERMANENTLY CLEARS ALL DBFA CUSTOMER RECORDS.
@@ -5182,6 +5183,24 @@ d - Change password for employee accounts >>\n''')
         else:
             print("Please select a valid main-menu option. erc101\n\n")
 
+except (requests.ConnectionError, requests.Timeout) as exception:
+    import os, time
+    os.system('cls')
+    from colorama import init, Fore, Back, Style #color-settings
+    print(Fore.RED+"We at DBFA take pride in our security. \nWhile we want to provide everyone with the best DBFA experience ever, we cannot cut on security.")
+    print("Due to this commitment of ours, DBFA cannot function without an active internet connection.")
+    init(convert = True)
+    print(Fore.RED+'''
+          █▀▀▀▀▀▀█              
+        █▀  ▄   ▄ ▀█                    Security Status  : Connection to server unavailable!
+        █    ▀▄▀   █                    File Integrity   : Acceptable
+        █   ▄▀ ▀▄  █                    Storage Integrity: Strong
+         █        █                     Webhook Health   : DISCONNECTED (NO INTERNET)
+          ██    ██              
+           ▀▀▀▀▀▀''')
+    
+    print("\nPlease arrange the same and re-run DBFA Client."+Fore.WHITE+"\n\nDBFA Error Code: del1012rt-naincon\n\nYou may use this error code for further reference/ support. Please note it down. DBFA will automatically exit in 200 seconds.")
+    time.sleep(200)
 except:
     try:
         import os, requests, time

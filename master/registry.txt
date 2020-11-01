@@ -5660,3 +5660,6 @@ Date and time:
 01/11/2020 12:16:56 
 Appending product to order: 
 KZ ZST X IEMs 
+----------------------------------------- 
+ed
+Automated Store Registry:
