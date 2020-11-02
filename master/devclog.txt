@@ -7,6 +7,11 @@ TODO:
 <<<==DONE==>>> - DB prod add option
 --------------------------------------------------------------
 
+02-11-2020 11:00
+> Moved "new login account" option from employee manager >> Security Dashboard
+> Completed "change admin account password"
+> Changes reflected (re-arranged) in the "DBFA Security Dashboard"
+
 01-11-2020 18:22
 > Improved "Security Dashboard" (adjusted dimensions)
 > Added check for internet connection (displays helpful info when disconnected instead of crashing out).

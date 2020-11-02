@@ -4005,7 +4005,7 @@ Checking for updates. . .
 2  - View employee records               
 3  - Update employee details             6  - Mark attendance
 4  - Fire an employee ༼ ●'◡'● ༽つ        7  - Work records - All
-perms - Add new user account             8  - Work records - oID-specf.
+                                         8  - Work records - oID-specf.
 11 - Pay salary                          9  - Work records - All (past 30)
 12 - <<< Back to DBFA menu               10 - Work records - oID-specf. (past 30)
                                          13 - View Salary Payment Records          
@@ -4018,26 +4018,6 @@ What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █
                 while (1):
                     empmenu()
                     empfac = input("What would you like to do? ")
-                    
-                    if str(empfac) in ("perms", "PERMS", "Perms", "pERMS"):
-                        print("User Account Creation Wizard ")
-                        import sqlite3
-                        settings = sqlite3.connect(r'dbfasettings.db')
-                        settingsx = settings.cursor()
-                        settingsx.execute("SELECT MAX(Sno) FROM passkeyhandler")
-                        sno = (int(settingsx.fetchall()[0][0]) + 1)
-                        uid = input("Enter username for new account: ")
-                        kpass = input("Enter password for:" + str(uid) + ": ")
-                        confkpass = input("Confirm password: ")
-                        if kpass == confkpass:
-                            print("Alloting permission set 'sales_group' to ", uid)
-                            settingsx.execute(("INSERT INTO passkeyhandler(Sno, Col1, Col2) VALUES (?, ?, ?)"), (sno, uid, kpass))
-                            settings.commit()
-                            time.sleep(2)
-                            print("User account registered. Reboot DBFA Client from login to view changes.")
-                        else:
-                            print("Wrong re-entry of password. Retry from Employee Manager.")
-                    
                     if empfac == "13":
                             import sqlite3
                             empmas = sqlite3.connect(r'dbfaempmaster.db')
@@ -4980,17 +4960,18 @@ a - '''+Fore.RED+'''DELETE ALL'''+Fore.WHITE+' customer records                 
 b - '''+Fore.RED+'''DELETE ALL'''+Fore.WHITE+' store records                                            :'+Fore.WHITE, '|'+Fore.RED+"██ Proceed > | "+Fore.CYAN)
                 print('''
 c - Change '''+Fore.RED+'''ADMINISTRATOR'''+Fore.CYAN+''' password 
-d - Change password for employee accounts >>\n''')
+d - Change password for employee accounts >>
+e - Create more login accounts (UAC - sls-level-permset ) >>\n''')
                 #if (settingscommonfetch(5)) == 0:
-                print(Fore.MAGENTA+"e - Enable database encryption                                          : UNDER DEVELOPMENT "+Fore.CYAN+'      ')
+                print(Fore.MAGENTA+"f - Enable database encryption                                          : UNDER DEVELOPMENT "+Fore.CYAN+'      ')
                 #else:
                     #print("e - Enable database encryption                       :", (Fore.RED+'|████'+Fore.RED+' OFF|      '+Fore.WHITE))
                 if (settingscommonfetch(6)) == 1:
-                    print(Fore.CYAN+"f - Enable DBFA Secure Two-Factor-Authenication                         :", Fore.GREEN+'| ON '+Fore.GREEN+'████|'+Fore.CYAN+'      ')
+                    print(Fore.CYAN+"g - Enable DBFA Secure Two-Factor-Authenication                         :", Fore.GREEN+'| ON '+Fore.GREEN+'████|'+Fore.CYAN+'      ')
                 else:
-                    print(Fore.CYAN+"f - Enable DBFA Secure Two-Factor-Authenication                         :", (Fore.RED+'|████'+Fore.RED+' OFF|      '+Fore.CYAN))
+                    print(Fore.CYAN+"g - Enable DBFA Secure Two-Factor-Authenication                         :", (Fore.RED+'|████'+Fore.RED+' OFF|      '+Fore.CYAN))
 
-                print('''\ng - <<< Return to main menu
+                print('''\nh - <<< Return to main menu
 '''+Fore.RED+'''▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬''')
                 dsoa = input("What would you like to do?: "+Fore.WHITE)
                 if dsoa in ("a", "A"):
@@ -5046,10 +5027,44 @@ d - Change password for employee accounts >>\n''')
 
                     print()
                 if dsoa in ("c", "C"):
-                    print("Option under development! ")
+                    print("Change password for ADMINISTRATOR account ~ ")
+                    time.sleep(0.5)
+                    import sqlite3
+                    settings = sqlite3.connect(r'dbfasettings.db')
+                    settingsx = settings.cursor()
+                    password = input("Enter new password for *ADMINISTRATOR ACCOUNT*: ")
+                    passworfconf = input("Confirm password: ")
+                    if password == passworfconf:
+                        confac = input("Change password for the administrator account? (y/n): ")
+                        if confac in ("y", "Y"):
+                            settingsx.execute(("UPDATE passkeyhandler SET Col1 = ? WHERE Sno = ?"), (passworfconf, 6))
+                            settings.commit()
+                        else:
+                            print("Password change cancelled ~ ")
+                    else:
+                        print("Password confirmation invalid! ~ ")
                 if dsoa in ("d", "D"):
                     print("Option under development! ")
                 if dsoa in ("e", "E"):
+                    print("User Account Creation Wizard ")
+                    import sqlite3
+                    settings = sqlite3.connect(r'dbfasettings.db')
+                    settingsx = settings.cursor()
+                    settingsx.execute("SELECT MAX(Sno) FROM passkeyhandler")
+                    sno = (int(settingsx.fetchall()[0][0]) + 1)
+                    uid = input("Enter username for new account: ")
+                    kpass = input("Enter password for:" + str(uid) + ": ")
+                    confkpass = input("Confirm password: ")
+                    if kpass == confkpass:
+                        print("Alloting permission set 'sales_group' to ", uid)
+                        settingsx.execute(("INSERT INTO passkeyhandler(Sno, Col1, Col2) VALUES (?, ?, ?)"), (sno, uid, kpass))
+                        settings.commit()
+                        time.sleep(2)
+                        print("User account registered. Reboot DBFA Client from login to view changes.")
+                    else:
+                        print("Wrong re-entry of password. Retry from Employee Manager.")
+                    
+                if dsoa in ("f", "F"):
                     print('''In our process of phasing-out .txt based storage in favour of sqlite storage, 
                 we at DBFA are trying to make our files even tougher to access than ever before without valid credentials.
 
@@ -5060,7 +5075,7 @@ d - Change password for employee accounts >>\n''')
                 This process might impact DBFA's data integrity. We recommend you to run *DBFA Backup&Switch* from option *5*
                 before you attempt to encrypt/ decrypt DBFA databases by running this command.\n''')
 
-                if dsoa in ("f", "F"):
+                if dsoa in ("g", "G"):
                     print("----DBFA 2FA MANAGER----")
                     print("DBFA allows you to use 2FA to safeguard your account if your password gets compromised.\n")
                     print("Please do note that enabling/ disabling 2FA will reboot DBFA Store Manager!~\n")
