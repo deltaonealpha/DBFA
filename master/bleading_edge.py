@@ -798,7 +798,7 @@ try:
         tabarter = []
         for i in axrows:
             ssh7.execute("SELECT DISTINCT ssstock FROM sshandler WHERE prodid = ?;", (i,))
-            a = [('%s'%(i)), namiex[i], "Stock Remaining: ", '%s'%(ssh7.fetchall()[0])]
+            a = [('%s'%(i)), namiex[(i-1)], "Stock Remaining: ", '%s'%(ssh7.fetchall()[0])]
             tabarter.append(a)
         if tabarter == []:
             tabarter.append("--")
@@ -2222,6 +2222,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
             prodn = input("Enter new product name: ")
             costn = input("Enter the price to sell " + str(prodn) + " for (EXCLUDING TAX): ")
             categn = input("Enter category for product (refer docs for help): ")
+            profn = input("Enter the amount of profit earned (included in price) for this product: ")
             conffac = input("\nList new product with name " + str(prodn) + " for (excluding tax) price ₹" + str(costn) + " under category " + str(categn) + "? (y/n): ")
             if conffac in ("y", "Y"):
                 print(". . .")
@@ -2240,6 +2241,10 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
                 ssh7 = ssh.cursor()
                 ssh7.execute("INSERT INTO sshandler(prodid, prodname, ssstock) VALUES(?, ?, ?)", (maxpid, prodn, 0))
                 ssh.commit()
+                netprof = sqlite3.connect('recmaster.db')
+                netprofx = netprof.cursor()
+                netprofx.execute("INSERT INTO recmasterx(prodid, prodname, prodprofit, prodsales, netprof) VALUES (?, ?, ?, ?, ?)", (maxpid, prodn, profn, 0, 0))
+                netprof.commit()
                 settingsx.execute("SELECT * FROM listing WHERE PID = ?", (str(maxpid), ))
                 print("Product listed: ", settingsx.fetchall())
             else:
@@ -3401,7 +3406,16 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
                 t10dot = ("<br /><br /><br /><br /><br /><br /><b>DBFA Stock Orders Report: </b><br />Product stock yet to be recieved: <br /><br />")
                 t11dot = ("<br /><br /><b>DBFA Sales Analysis Plotter: </b><br />DBFA uses advanced data analysis algorithms to generate this plot. This is as per the latest data sets available. <br />")
                 colas = (30, 300, 60, 50, 50)
-                rowheights = (20, 20, 20, 20, 20,  20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,20,20,20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 )
+                
+                netprof = sqlite3.connect('recmaster.db')
+                netprofx = netprof.cursor()
+                netprofx.execute("SELECT * FROM recmasterx")
+                dataout = netprofx.fetchall()
+                rowheights = ()
+                leng = len(dataout)
+                for i in range(1, leng+2):
+                    rowheights += (20,)
+
                 text1=Paragraph(t1dot)
                 text2=Paragraph(t2dot)
                 text3=Paragraph(t3dot)
@@ -5023,6 +5037,7 @@ e - Create more login accounts (UAC - sls-level-permset ) >>\n''')
                     elif settfac1x == "n":
                         print("Cancelled ~")
                     else:
+
                         print("That's an invalid input... ")
 
                     print()

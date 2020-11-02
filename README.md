@@ -1,23 +1,94 @@
-# DBFA 8 Store Manager <span style="color: #496dd0">#RadicallyNew</span>
-##### 09/10/2020: DBFA 8.60 (beta) release (see changelog)
+# DBFA Store Manager <span style="color: #496dd0">INCEPTION 1.0</span>
+##### 02/11/2020: DBFA INCEPTION 1.0 MAJOR RELEASE (see releases/ changelog)
 
-### A NEW .exe installer is now available for DBFA releases (8.60 & +) which automatically deploys the latest DBFA release with an additional built-in Python installer if the Python installation is unavailable and an updater.
-
-A store manager like none other, DBFA handles everything from billing and inventory to employees, payments, shifts and even deliveries, while staying open source! ;)
-
-DBFA comes with ultra-light data structures and superior security features, which we take pride over.
+After a year of continuous and rigid development, we are finally satisfied with what DBFA has become, a mature, stable and secure piece of software which we can pride over. Presenting a brand new DBFA, the INCEPTION 1.0.
 
 
-NOTE: DBFA consumer-grade builds are published via GitHub releases while master houses the latest source which may/ may not work at all.
 
-## Source Highlights:
-<h5>> Decreased program boot times by 4-5 seconds and per-menu-cycle times by 2 seconds!
-<h5>> Started transitioning all menu designs to the new (main menu like) schema, starting with the Employee Manager menu.
-<h5>> DBFA Employee Manager v2.1 (auto-shift scheduling, leave applications, automated salary calculation and work monitoring)
-<h5>> DBFA Incremental Security Update (09/10/2020)
-<h5>> Updated with newly written 8.52docs</h5>
+A store manager like none other, DBFA handles everything from billing and inventory to employees, payments, shifts and even deliveries, while staying open source! ;) DBFA comes with ultra-light data structures and superior security features, which we take pride over.
+
+NOTE: Please download DBFA from the releases section ONLY. 
+
+A NEW .exe installer is now available for DBFA releases (8.60 & +) which automatically deploys the latest DBFA release with an additional built-in Python installer if the Python installation is unavailable and an updater.
+
+
+
+## Release highlights (Inception 1.0):
+
+---
+
+**Quirky Highlights**
+
+---
+
+\-     **Presenting SUPERCACHING**: Unlike other codes which refer db values for every product, thereby adding time delay, DBFA fetches all details each time billing is started, and caches the data in its memory, thereby greatly increasing speed and reliability. SUPERCACHING is dynamically refreshed whenever the source is changed.
+
+\-     DBFA now maintains a “**store group**” with all employees where the schedule is sent daily.
+
+\-     All menu and table **designs are now unified** across DBFA.
+
+\-     Added option - "**View Salary Payment Records**"
+
+\-     The way DBFA handles product listing has been completely revamped: Product listing has been moved to database storage.
+
+\-     You can now **add a new product listing** from DBFA itself.
+
+\-     DBFA now automatically detects the installation directory, even if moved from the default directory.
+
+----
+
+**Time and Speed**
+
+---
+
+\-     Optimized DBFA to **boot 46% faster!** (9.9 seconds faster (19 seconds >>> 10.1 seconds)).
+
+\-     Reduced menu loading time by 2 seconds.
+
+---
+
+**Updater & Deployment**
+
+---
+
+\-     **Presenting DBFA Backup & Switch v2.0** with backup restoration. Restoration needs the backup installation’s admin password to restore. Backup metadata is scanned, and files are updated accordingly.
+
+\-     **UPDATER 2.0** can automatically deploy update files, increment version IDs, and make relevant data structure changes and clean-up post updating DBFA. The update changelog is also shown prior to obtaining update confirmation from the user.
+
+---
+
+**Security & Security Dashboard**
+
+---
+
+\-     **Presenting DBFA Login Accounts:** Multiple accounts can now be used to log into DBFA (1 x admin-level; unlimited cashier-level) with restricted access for non-admins. Login script has a checkbox to choose from, though usernames can still be typed.
+
+\-     **Presenting the DBFA Security Dashboard**: Gives you a visual representation of program and dependencies health, with security-related options (clear records/ change passwords/ encryption toggle, 2FA toggle/ create login accounts)
+
+\-     Employee Manager now needs administrator authentication.
+
+-----
+
+**Quality of Life Improvements**
+
+-----
+
+\-     INCEPTION 1.0’s **boot-screen** incorporates our **new design language**.
+
+\-     Rectified all program/ webhook/ external bugs and reconfigured DBFA to avoid crashes.
+
+\-     “View License” has now been merged with “About DBFA” and service status page has been moved to https://dashboard.deltaone.tech/dbfa.html.
+
+\-     The menu has been reorganized for **better categorical sorting**.
+
+\-     Added check for internet connection (displays helpful info when disconnected instead of crashing out).
+
+\-     All password/ key references have been removed from the driver code.
+
+
 
 ## Roadmap
+
 - [ ] Convert main authentication to server-based.
 - [ ] Start transitioning from CLI to GUI elements.
 
@@ -87,87 +158,6 @@ List of [contributors](https://github.com/deltaonealpha/DBFA/contributors) who p
 ## License:
 This project is licensed under the GNU General Public License - Version 1.c, April 2020 - see the [LICENSE.md](LICENSE.md) file for more details.
 
-## Changelog:
-<h4>Only recent changes are hosted here. For previous changelogs: https://telegra.ph/DBFA-8-Release-Candidate---1-08-16</h4>
-
-<h3>Changelog 8.60 Donnager (beta)</h3>
-- Updated DBFA Employee Manager v(1.0) >>> v(2.1)
-
-- DBFA Smart Shift-Scheduler (Auto-schedules the day before, Telegrams the owner. (Coming soon: Email sched. to all employees))
-
-- Leave Applications: Apply for a leave a day before and DBFA will automatically change the schedule!
-
-- Automatic salary calculations (depends on post, days, weekly hours and overtime worked and applicable bonus-es)
-
-- Rectified detection rules for the webhook.
-
-
-<h3>Changelog 8.55 Donnager (stable)</h3>
-
-- DBFA Incremental Security Update (03/10/2020): Presenting DBFA Web Hook Security. The admin can now type 'disableDBFA' in our Telegram bot and DBFA access on related installations will be disabled from the next menu cycle/ boot until re-enabled by the admin. DBFA will exit and display a webpage showing operational status and reasons for exiting.
-
-- (v8.56: 24/09/2020): Added GUI-prompt for sending customer invoice emails.
-
-- Presenting delta File Integrity Validation Service (auto-launches on crash)
-Error catching across the WHOLE length of the code!
-https://telegra.ph/file/da2c8cc43ec658c6c8273.png
-
-- Changed 2FA model from OTP-based to Telegram inline-button validation.
-
-- Presenting login v2 with a synchronous multi-logging with a timeout of a minute.
-
-- Presenting bypass prevention service v2.
-
-- Presenting DBFA employee manager (attendance/ pay salary/ hire/ change details/ fire employee ༼ ●'◡'● ༽つ).
-
-- Improvements to primary login system.
-
-- Improvements to bypass prevention service.
-
-- More in-depth logging.
-
-- Docs have been re-written from scratch.
-
-- Improved updater version tracking (option: "Check for Updates")
-
-- Rectified all general and text formatting bugs.
-
-- More changes and base blobs for future features added.
-
-<h3>Changelog 8.3 Donnager (stable)</h3>
-
--    Presenting DBFA two-factor-authenication!
-
--    Completely new logo and menu design (settings toggle to switch to old menu-style)
-
-
--    Presenting DBFA Options (settings; adjust every visual aspect to your liking)
-
--    Presenting DBFA Deliveries 
-
--    Presenting DBFA Stock Orders
-
--    Presenting DBFA Sales Analyzer (profit-date plot; also added to the pdf store report)
-
--    Presenting DBFA Store Music Controls (Thanks to XanderMJ (github.com/XanderMJ/spotilib))
-
--    Introducing DBFA quick control! (3a, 3b,.... instead of 3 [wait], and then a, b,.... .etc.)
-
-
-
--    Added version 8 boot image
-
--    Nuked all redundancies from the repo (net package size now under 50mb)
-
--    New sales logger v2 (sqlite)
-
--    Now export sales and customer data to CSV files.
-
--    Now add product-specific low-stock warnings     
-
--    Enabled invoice ID with retention
-
--    Updated menu with DBFA upstream changes
-
-
+## Source Changelog:
+<h4><a href = "https://telegra.ph/DBFA-8-Release-Candidate---1-08-16">Click Here</a></h4>
 

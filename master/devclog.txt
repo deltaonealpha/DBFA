@@ -1,8 +1,10 @@
 deltaDBFA Infinity Development Changelog | author: @deltaonealpha
 - Changelog for DBFA consisting of all changes since DBFA 7
 --------------------------------------------------------------
+Nightly Source Updates Registry ~~ 
+--------------------------------------------------------------
 TODO:
-               - Add option to change UAC password
+<<<==DONE==>>> - Add option to change UAC password
 <<<==DONE==>>> - SUPERCACHING
 <<<==DONE==>>> - DB prod add option
 --------------------------------------------------------------

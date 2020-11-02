@@ -1,12 +1,77 @@
 deltaDBFA Infinity Development Changelog | author: @deltaonealpha
 - Changelog for DBFA consisting of all changes since DBFA 7
 --------------------------------------------------------------
-TODO:
-- User accounts (admin, cashier et cetera)
-- Package DBFA with dummy dbs from now, DBFA will detect
-  missing files and autogenerate dummy files (basically 
-  restore them from a built-in dummy backup yey nice ideaahh)
+Nightly Source Updates Registry ~~ 
 --------------------------------------------------------------
+TODO:
+<<<==DONE==>>> - Add option to change UAC password
+<<<==DONE==>>> - SUPERCACHING
+<<<==DONE==>>> - DB prod add option
+--------------------------------------------------------------
+
+02-11-2020 11:00
+> Moved "new login account" option from employee manager >> Security Dashboard
+> Completed "change admin account password"
+> Changes reflected (re-arranged) in the "DBFA Security Dashboard"
+
+01-11-2020 18:22
+> Improved "Security Dashboard" (adjusted dimensions)
+> Added check for internet connection (displays helpful info when disconnected instead of crashing out).
+
+01-11-2020 15:22
+> Presenting the DBFA Security Dashboard.
+  Gives you a visual representation of program & dependancy health
+  and security-related options (clear records/ change passwords/ encryption toggle, 2FA toggle)
+> Moved security options from 'DBFA Options' to 'DBFA Security Dashoard'
+> Menu numbering changes (security, settings in the last now)
+
+01-11-2020 12:22 (vmcbt)
+> The way DBFA handles product listing has been completely revamped.
+> Instead of lists & dictionaries which house product names and costs, the settings database now handles this.
+> Presenting SUPERCACHING. Unlike other codes which 
+  refer the db everytime for every product (which adds time delay), DBFA fetches ALL listing details
+  each time billing is started, and caches the data in its memory. This reduces A LOT of time.
+> Added option to add a listing now! (Changes reflect in all source dbs)
+> SUPERCACHING applied to all parts of the code where listing is refered.
+
+30-10-2020 20:43
+> DBFA Boot process sped up by 28% (4.9 seconds! (14 seconds >>> 10.1 seconds))
+> Unified tabulate theme universally (fancy_grid style)
+> Added option - "View Salary Payment Records"
+
+30-10-2020 20:11
+> Removed "View License" option and merged it inside "About DBFA"
+> Added new bootscreen (flash) to source for ```INCEPTION - 1```
+
+28-10-2020 18:27
+> Added option to create new 'sales-group-level' accounts in employee manager. (create new account)
+> Patched curdir bug during login authentication.
+
+27-10-2020 11:59
+> Added an auto-fetched user accounts checkbox in login (run_DBFA and wrelogin). 
+  Option to type-in usernames in still available from the checkbox itself.
+> Presenting User Account Controls in DBFA
+  Administrator/ Cashier accounts (more can be easily added)
+  Restricted operations for cashier accounts.
+  Option to have separate accounts for different cashiers.
+
+24-10-2020 13:59
+> Presenting Automatic Update Installation (DBFA Updater v2)
+  In earlier builds, updater used to just download new update files and instruct the user to copy-replace the files.
+  With this build, DBFA automatically does the following when "Update now" is chosen:
+      - Downloads update
+      - Unpackages update files
+      - Installs updates (copy-replaces on its own!)
+      - Increments DBFA version ID
+      - Cleans up and deletes unpackages and downloaded files
+
+23-10-2020 18:33
+> DBFA now comes with a setup for first-time installations.
+  It auto-generates missing files as dummy files, creates dummy databases
+  which will be populated as the user starts using DBFA.
+  It also provides the user with a "First Time Installation Wizard", where it completely 
+  guides the user through getting Telegram and EMail requirements ready, takes them and stores them.
+  An option to set admin and cashier password is also given at this time.
 
 23-10-2020 18:00
 > Presenting DBFA Restoration (Backup & Switch v2.0)
@@ -14,9 +79,7 @@ TODO:
   On selecting 'restore', DBFA will open a file dialog where you can chose the backup .zip file.
   DBFA will automatically scan the backup file's metadata and figure out the earlier installation's password, which
   would be required to complete restoration.
-
   Upon recieving a valid password, DBFA will restore the backed-up data smoothly and restart DBFA client.
-
 
 23-10-2020 08:59 Critical Security Patch
 > All keys moved from settings > settings >>> to >>> settings > passkeyhandler for organizational purposes.
@@ -60,6 +123,8 @@ RE > All file references (paths) have been changed to automatically detect the i
 
 11-10-2020
 > All menu designs are now unified across DBFA.
+
+^^^^^^^^^^^^^^^^ INCEPTION 1.0 ABOVE ^^^^^^^^^^^^^^^^
 
 10-10-2020
 > Started work on PHASE - II of DBFA - Unifying menu designs across the code.

@@ -1,1 +1,1 @@
-del 1 dummy
+del1    dummy

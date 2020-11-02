@@ -1,0 +1,29 @@
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+DBFA Update Package █▀▀█ █▀█  █▀▀ █▀█  █▀▀█
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ █__█ █▀▀█ █▀  █▬█  ▄▄▄▄
+
+-----------------------------------------DISCLAIMER-----------------------------------------
+* I/delta would NOT be responsible for anything that this update or DBFA (if) would cause.
+* Always use ONLY the internal updater built-in to DBFA. DO NOT USE 3rd PARTY DOWNLOADS!!!
+* I am not responsible for bricked devices, dead SD cards, thermonuclear war, 
+* or you getting fired because your alarm app failed. Please do some research 
+* if you have any concerns about features included in this update or in DBFA
+* before flashing it! YOU are choosing to make these installations, and if
+* you blame me in any way for what happens to your device, I will laugh at you.
+* BOOM! goes the dynamite
+--------------------------------------------------------------------------------------------
+
+Instructions:
+ - CLOSE DBFA and all its programs. (ofc XDD)
+ - Open DBFA's installation directory > 'master' folder (I presume you're already here).
+ - Open the 'DBFA' folder and copy everything it contains.
+ - Paste this in the 'master' folder. You should get a 'replace' option when you paste for the updated files.
+ - That should be it!
+
+NOTE: I recommend taking a backup, either manually or through DBFA Backup & Switch before you proceed.
+      As DBFA Backup & Switch is currently in beta, yeah, I'd recommend a full manual backup.
+
+
+Hope you're having, and will have a good experience with DBFA!
+
+------------------------------------------------------------- deltaonealpha (developer)

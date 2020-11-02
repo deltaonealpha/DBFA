@@ -90,7 +90,6 @@ def mover():
     if os.path.exists(currdir+'\\TempRestoration'):
         shutil.rmtree(currdir+'\\TempRestoration', ignore_errors=True)
     print("DBFA Backup Restoration Completed! ~")
-    os.startfile(currdir+'\\run_DBFA.pyw')
 
 import os, shutil, time
 if os.path.exists(currdir+'\\TempRestoration'):
@@ -184,7 +183,7 @@ settingsmodifier(4, initset_gchatid)
 time.sleep(1)
 ###############SAVING
 print("For the DBFA bot to send you messages, search for the bot 'Get ID', and send it any text. It will respond with your 'Chat ID'. Please submit the same below: ")
-initset_schatid = input("Enter your 'Char ID' as recieved from the 'Get ID' bot: ")
+initset_schatid = input("Enter your 'Chat ID' as recieved from the 'Get ID' bot: ")
 settingsmodifier(3, initset_schatid)
 time.sleep(1)
 ###############SAVING

@@ -19,3 +19,4 @@ pynput
 matplotlib
 oschmod
 telegram-send
+PyQt5
