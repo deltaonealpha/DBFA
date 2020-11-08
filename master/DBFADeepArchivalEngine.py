@@ -175,3 +175,25 @@ def deepfetch_deeparchival():
         os.startfile(temp)
         del temp
         print("DEEP ARCHIVAL VAULT: Invoice generated and moved to the 'Generated Invoices' directory ~ ")
+
+
+def deepfetch_deeplisting():
+    import sqlite3, os
+    from sqlite3 import Error
+    import os, time
+    from datetime import datetime, date
+    now = datetime.now()
+    dt_string = str(now.strftime("%Y/%m/%d")) +" 00:00:00" #datetime object containing current date and time    
+    month = datetime.now().month - 1
+    if month < 1:
+        month = 12 + month  # At this point month is 0 or a negative number so we add
+    if len(str(month)) == 1:
+        month = "0"+str(month)
+    dt1mb = str('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d")) +" 00:00:00"
+    dde = sqlite3.connect(r'DeepArchivalVault.db')
+    ddex = dde.cursor()
+    ddex.execute("SELECT Invid, Date, substr(Key, 1, 30) FROM archive WHERE Date > ? GROUP by Date", (dt1mb,))
+    datastream = ddex.fetchall()
+    datastream = [('Inv. ID', 'Date', 'Key')] + list(datastream)
+    return datastream
+    

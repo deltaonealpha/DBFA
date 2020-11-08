@@ -4,10 +4,14 @@ deltaDBFA Infinity Development Changelog | author: @deltaonealpha
 Nightly Source Updates Registry ~~ 
 --------------------------------------------------------------
 TODO:
-<<<==DONE==>>> - Add option to change UAC password
-<<<==DONE==>>> - SUPERCACHING
-<<<==DONE==>>> - DB prod add option
+Internal Test Builds - ToDo:
+    (_// Completed) - Split Bill
 --------------------------------------------------------------
+
+08-11-2020 14:53
+> DBFA Billing now has an option to split-bill.
+> Removed \n-crash bug during product selection & the lylpts bug with the PDF engine.
+
 
 02-11-2020 11:00
 > Moved "new login account" option from employee manager >> Security Dashboard
@@ -164,7 +168,6 @@ https://telegra.ph/file/6f49752bb0198dec26b1a.png
 
 
 24-09-20 11:10
-
 > Fixed menu formatting over 8.46.1
 > Updated MD5
 

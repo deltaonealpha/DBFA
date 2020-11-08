@@ -5678,3 +5678,55 @@ Automated Store Registry:
 ----------------------------------------- 
 ed
 Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+08/11/2020 14:45:26 
+Appending product to order: 
+Essentials Headphones 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi Note 9 PRO 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+TV FHD OLED 50 
+Appending product to order: 
+Redmi K20 PRO 
+Appending product to order: 
+Redmi Note 9 PRO 
+Appending product to order: 
+Redmi K20 
+Total amount billed for: 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+08/11/2020 14:47:52 
+Appending product to order: 
+Essentials Earphones 
+Appending product to order: 
+Essentials Earphones 
+Appending product to order: 
+Essentials Power Bank 10000mah 
+Appending product to order: 
+Redmi K20 
+Appending product to order: 
+Redmi K20 

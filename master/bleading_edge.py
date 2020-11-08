@@ -1,16 +1,23 @@
 '''
 ██▀▀ ██  ██▀▀▀██   ██▀▀▀▀  ██▀▀▀██  ██▀▀▀▀██ 
-██   ██  ██   ██   ██      ██   ██  ██    ██ CLI
 ██   ██  ██▀▀▀▀██  ██▀▀    ██▬▬▬██           Store
 ██___██  ██    ██  ██      ██   ██  ████████ Manager
-
 by deltaonealpha and sushimuncher
 
-package dbfafartingspider
-* The program FartingSpider implements an application that
-* houses a solution for complete store management.
-*
-* @author deltaonealpha
+DBFA Store Manager Client - Build Details:
+--------------------------------------
+Version Information: INCEPTION 1.0
+Date               : 06-11-2020
+Build Branch       : Source
+Release Identifier : INCEPTION
+
+ds-ddbfa.incp.client:101
+
+https://github.com/deltaonealpha/DBFA
+https://gitlab.com/deltaonealpha/DBFA
+https://software.deltaone.tech
+--------------------------------------
+--------------------------------------
 '''
 ###########################################################################
 # vs                                                                      #
@@ -22,7 +29,7 @@ import traceback
 import json, requests, time, urllib, sys
 
 import os, time
-global curdir, parentdir, fontsdir
+global curdir, currdir, parentdir, fontsdir
 currdir = str(os.getcwd())
 from pathlib import Path
 path = Path(os.getcwd())
@@ -177,7 +184,6 @@ def dmain():
         file.close()
     with open('lastupdateid2.txt', 'r+') as file:
         xid = file.read()
-    #print(xid)
     last_update_id = int(xid)
     #print(last_update_id)
     import webbrowser
@@ -1652,7 +1658,8 @@ This is a dynamically generated schedule with alternating shifts. Employees on l
         print(" ")
         filedel = open('./DBFAdeliveries.txt', 'r+')
         for line in filedel:
-            delcount+=1
+            if line not in ("", " ", (), [], None, "\n"):
+                delcount+=1
         filedel.close()
         pro7d = salesdatefetch()
         protd = salestodayfetch()
@@ -2213,8 +2220,8 @@ Options:                              Store Options >>> DBFA Stock Master v1
     h: Modify Low-Stock Warning Bar
     i: Add new product listing ~~ 
 
-What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+What would you like to do?            '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
 '''+Fore.CYAN+'''Stock Master ~'''+Fore.MAGENTA+'''     
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
         stkmaster = input("Select:: ")
@@ -2631,7 +2638,7 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
             oauthx.execute("UPDATE LoginHandler SET Value = 0, TimeMark = 0")
             oauth.commit()
             oauth.close()   
-            os.startfile(curdir+'\\authtimeout.pyw')
+            os.startfile(currdir+'\\authtimeout.pyw')
             time.sleep(1)
             os._exit(0)
         elif int(netr)-int(stamp) < 60:
@@ -2901,39 +2908,43 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
                 item = input("Enter product code: ")
                 if item == "0":
                     break
-                elif int(item) in data:
-                    ssxstockmaster(item)
-                    if ssxvarscheck == 1:
-                        item = int(item)
-                        #print(item)
-                        #print(data)
-                        #print(data[int(item)])
-                        billiemaster+=int(data[int(item)])
-                        dde_productlist += str(item) + '00'
-                        print("Purchased: ", namie[item], " for: ", data[int(item)])
-                        repupdate(item)
-                        lenxr = len(namie[item])
-                        costlenxr = len(str(data[int(item)]))
-                        cj = 10 - costlenxr
-                        pi = 60 - lenxr
-                        idlerxx = namie[item] + " "*pi + "₹"+'%d'%int(data[int(item)]) + " "*cj + "1 qty. ~"
-                        purcheck += idlerxx
-                        print("---")
-                        priceprod = "₹" + '%d' % int(data[int(item)])
-                        logger.write("Appending product to order: \n")  #writing to file
-                        profer.append(item)
-                        logger.write(namie[item])
-                        ssxstockmaintainer(item)
-                        logger.write(" \n")
-                        writer = writer + "\n Purchased: " + "\n" + namie[item] + "\n" + priceprod + "\n"
-                        afac+=1
+                if item not in ("", " ", (), [], "\n"):
+                    if int(item) in data:
+                        ssxstockmaster(item)
+                        if ssxvarscheck == 1:
+                            item = int(item)
+                            #print(item)
+                            #print(data)
+                            #print(data[int(item)])
+                            billiemaster+=int(data[int(item)])
+                            dde_productlist += str(item) + '00'
+                            print("Purchased: ", namie[item], " for: ", data[int(item)])
+                            repupdate(item)
+                            lenxr = len(namie[item])
+                            costlenxr = len(str(data[int(item)]))
+                            cj = 10 - costlenxr
+                            pi = 60 - lenxr
+                            idlerxx = namie[item] + " "*pi + "₹"+'%d'%int(data[int(item)]) + " "*cj + "1 qty. ~"
+                            purcheck += idlerxx
+                            print("---")
+                            priceprod = "₹" + '%d' % int(data[int(item)])
+                            logger.write("Appending product to order: \n")  #writing to file
+                            profer.append(item)
+                            logger.write(namie[item])
+                            ssxstockmaintainer(item)
+                            logger.write(" \n")
+                            writer = writer + "\n Purchased: " + "\n" + namie[item] + "\n" + priceprod + "\n"
+                            afac+=1
+                        else:
+                            print("Product currently out-of-stock. The inconvenience is regretted..\n")
+                            print("---")
+                            continue
                     else:
-                        print("Product currently out-of-stock. The inconvenience is regretted..\n")
+                        print("Product not found. Please retry ")
                         print("---")
-                        continue
                 else:
-                    print("Product not found. Please retry ")
-                    print("---")
+                        print("Product not found. Please retry ")
+                        print("---")
 
             #tax = int(input("Enter the net tax %: "))  #comment and uncomment tkinter lines to use GUI-based input
             time.sleep(0.15)  #for a seamless experience
@@ -2977,9 +2988,34 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
                 telethon = telethon + "\n" + "Tax amount: 18%" + "\n"  + "Discount: " + discountx + "%" + "\n" + "\n"
                 writer = writer + "\n" + "\n" + "-----------------------------" + "\n" + "Tax amount: 18%"  + "\n"  + discountx + "\n"  + "\n" 
                 delxfac = input("Enter *d* for delivery; skip for in-store purchase: ")
-                if delxfac != "d":
-                    netpay = payboxie(custt, total)
-                    xpayboxie()
+                if delxfac != "d":                    
+                    splitfac = input("Split bill? (y/n): ")
+                    netpay = total
+                    netsplitpay = total
+                    if splitfac in ("Y", "y"):
+                        try:
+                            splitcountfac = int(input("Enter the number of people to split for: "))
+                        except:
+                            try:
+                                print("Person count must be real! ~")
+                                splitcountfac = int(input("Enter the number of people to split for: "))
+                            except:
+                                print("Billing splitting has been cancelled due to repetitive invalid inputs. Bill will be generated without a split.")
+                                splitcountfac = 1
+                        if "." in str(((netpay)/int(splitcountfac))):
+                            splitpay = float(eval((str(((netpay)/int(splitcountfac))).split('.')[0] + '.' + (str(((netpay)/int(splitcountfac))).split('.')[1])[0:2])))
+                        else:
+                            splitpay = float(eval(netpay/int(splitcountfac)))
+                        print("Net payable amount per person (for ", splitcountfac, " persons): ", splitpay)
+                        splitmark = 1
+                        redeemindic = 0
+                        time.sleep(1)
+                        netpay = total
+                        xpayboxie()
+                    else:
+                        netpay = payboxie(custt, total)
+                        splitmark = 0
+                        xpayboxie()
                 else:
                     # Add a delivery
                     print("---- DBFA Deliveries ----")
@@ -3007,7 +3043,8 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
                         delcount = 0
                         filedel = open('./DBFAdeliveries.txt', 'r')
                         for line in filedel:
-                            delcount+=1
+                            if line not in ("", " ", (), [], None, "\n"):
+                                delcount+=1
                         filedel = open('./DBFAdeliveries.txt', 'a+')
                         strprofer = ""
                         for i in profer:
@@ -3069,18 +3106,37 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
                             print("Redeemed loyalty points worth: ₹", lylpoints)
                         else:
                             print("Redeemed loyalty points worth: ₹", total)
-                    print("--------------------------------------------------------------------------------")
-                    print("Amount to be paid: ₹","%.2f" % netpay)
-                    print("--------------------------------------------------------------------------------")
+                    if splitmark == 0:
+                        print("--------------------------------------------------------------------------------")
+                        print("Amount to be paid: ₹","%.2f" % netpay)
+                        print("--------------------------------------------------------------------------------")
+                    else:
+                        print("--------------------------------------------------------------------------------")
+                        print("Amount payable per person (POST SPLIT): ₹","%.2f" % splitpay)
+                        print("Total payees                          : ", splitcountfac)
+                        print("--------------------------------------------------------------------------------")
+                        print("Amount to be paid: ₹","%.2f" % netpay)
+                        print("--------------------------------------------------------------------------------")
                     toaster.show_toast("DFBA Billing:  Total billed for-",str(total), duration = 1)
                     logger.write("Total amount billed for: \n") #writing to file
                     if custt in ("", " ", 0, None) and cccheck == 0:
                         pass
                     else:
-                        writer += "Used DBFA loyalty points worth: " + '%s'%lylpoints + "\n"
+                        try:
+                            writer += "Used DBFA loyalty points worth: " + '%s'%lylpoints + "\n"
+                        except:
+                            writer += "Loyalty points were not redeemed on this transaction." + "\n"
                     #regin.write("NET TOTAL: \n") #writing to file
-                    telethon = telethon + "NET TOTAL: \n" + "₹" + str(netpay) + "\n" 
-                    writer = writer + "NET TOTAL: \n" + str(netpay) + "\n" 
+                    if splitmark == 1:
+                        telethon = telethon + "NET TOTAL AFTER SPLIT PER PERSON: \n" + "₹" + str(splitpay) + "\n" 
+                        telethon = telethon + "Number of payees (after bill-split): \n" + str(splitcountfac) + "\n" 
+                        telethon = telethon + "Net Total: \n" + str(netpay) + "\n" 
+                        writer = writer + "NET TOTAL AFTER SPLIT PER PERSON: \n" + str(splitpay) + "\n" 
+                        writer = writer + "Number of payees (after bill-split): \n" + str(splitcountfac) + "\n" 
+                        writer = writer + "Net Total: \n" + str(netpay) + "\n" 
+                    else:
+                        telethon = telethon + "NET TOTAL: \n" + "₹" + str(netpay) + "\n" 
+                        writer = writer + "NET TOTAL: \n" + str(netpay) + "\n" 
                     logger.write(str(total))
 
                     # delta DDE - Deep Archival Engine
@@ -3199,8 +3255,8 @@ Options:                                               Client >>> Manage Custome
     d: Find a Customer 
     e: Export Records as CSV 
 
-What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+What would you like to do?                '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
 '''+Fore.CYAN+'''Manage Customers ~'''+Fore.MAGENTA+'''     
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
             selected = input("What would you like to do? "+Fore.WHITE)
@@ -3274,8 +3330,8 @@ Options:                                                  Client >>> Store Optio
     f: Export Sales Data as CSV 
     g: Invoice Deep Archive 
 
-What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+What would you like to do?                '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
 '''+Fore.CYAN+'''Store Options ~'''+Fore.MAGENTA+'''     
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
             storeselected = input("What would you like to do? ")
@@ -3370,6 +3426,32 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
                 col_labels = [("P. ID", "P. Name", "Qty. to be delivered", "Status", "Vendor")]
                 rowsxtb = col_labels + rowsrec
 
+                import os, time
+                currdir = str(os.getcwd())
+                from pathlib import Path
+                path = Path(os.getcwd())
+                parentdir = str(Path(path.parent))
+                userdir = os.path.expanduser('~')
+                url = "https://raw.githubusercontent.com/deltaonealpha/DBFA_UpdateHandler/master/updates.txt"
+                r = requests.get(url)
+                dbfaver = ((str(r.content.decode('utf-8'))))[4:]
+                xdbfaver = ((str(r.content.decode('utf-8'))))
+                with open(parentdir+'\\updates.txt', 'r+') as upread:
+                    upread = (str(upread.read())).strip()
+                spass1 = []
+                spass2 = []
+                for i in dbfaver:
+                    spass1.append(i)
+                for j in upread[4: ]:
+                    spass2.append(j)
+                if float(upread[4: ]) > float(dbfaver):
+                    pass
+                else:
+                    if xdbfaver == upread:
+                        repvalx = 'repval1.png'
+                    elif spass1 != spass2:
+                        repvalx = 'repval2.png'
+
                 def add_page_number(canvas, doc):
                     canvas.saveState()
                     canvas.setFont('Times-Roman', 10)
@@ -3385,7 +3467,7 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
                 csvexx=sql.connect(currdir+'\\DBFA_CUSTCC.db')
                 print("Fetching data from database - II...")
                 cursorx = csvexx.cursor()
-                axct = cursorx.execute("select * from custcc")
+                axct = cursorx.execute("select custid, custname, purchasecount, printf('%.2f', ptotalx), printf('%.2f', points) from custcc")
                 axctx = []
                 for i in axct:
                     axctx.append(i)
@@ -3393,12 +3475,67 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
                 doc = SimpleDocTemplate("dbfastorerep.pdf", pagesize=A4,
                                                     rightMargin=2*cm,leftMargin=1.5*cm,
                                                     topMargin=1*cm,bottomMargin=2*cm)
+                
+                delcount = 0
+                filedel = open('./DBFAdeliveries.txt', 'r+')
+                for line in filedel:
+                    if line not in ("", " ", (), [], None, "\n"):
+                        delcount+=1
+                filedel.close()
+                if delcount != 0:
+                    delcount = "<b>Number of pending deliveries: </b>"+str(delcount)
+                else:
+                    delcount = "<b>No deliveries pending ~ </b>"
+                                
+                import time, os, requests, datetime
+                from datetime import datetime, date
+                empmas = sqlite3.connect(r'dbfaempmaster.db')
+                empmascur = empmas.cursor()
+                empmascur.execute("SELECT DISTINCT * FROM emp")
+                dump = empmascur.fetchall()
+                Oiddump = []
+                for row in dump:
+                    Oiddump.append(row[0])
+                Oiddump = "<br /><b>Employee IDs registered: </b>" + str(Oiddump) + "<br /><br /><b>Attendance Records & Metrics: </b><br /><br />"
+                now = datetime.now()
+                dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
+                month = datetime.now().month - 1
+                if month < 1:
+                    month = 12 + month  # At this point month is 0 or a negative number so we add
+                if len(str(month)) == 1:
+                    month = "0"+str(month)
+                dt1mb = ('%s'%now.strftime("%Y")+'%s'%"/"+'%s'%month+'%s'%"/"+now.strftime("%d"))
+                empmascur.execute("SELECT * FROM attendance WHERE Date BETWEEN ? AND ? ORDER BY Date ASC", (dt1mb, dt_string))
+                returned = empmascur.fetchall()
+                attendreturned = [('Date', 'Employee OID', 'Time', 'Marked', 'In/Out')] + list(returned)
+                from DBFADeepArchivalEngine import deepfetch_deeparchival, encoder_deeparchival
+                from DBFADeepArchivalEngine import alphadecoder, dttdecoder, decoder_deeparchival, deepfetch_deeplisting
+                ddareport = deepfetch_deeplisting()
+                empmas = sqlite3.connect(r'dbfasales.db')
+                empmascur = empmas.cursor()
+                now = datetime.now()
+                dt_string = now.strftime("%Y/%m/%d")  #datetime object containing current date and time    
+                month = datetime.now().month - 1
+                if month < 1:
+                    month = 12 + month  # At this point month is 0 or a negative number so we add
+                if len(str(month)) == 1:
+                    month = "0"+str(month)
+                dt1mb = ('%s'%now.strftime("%Y")+'%s'%"-"+'%s'%month+'%s'%"-"+now.strftime("%d"))
+                empmascur.execute("SELECT * FROM sales WHERE date BETWEEN ? AND ?", (dt1mb, dt_string))
+                rtreturned = empmascur.fetchall()
+                rtreturned = [('Sales No. ', 'Cust. ID', 'Product IDs', 'Total Amount', 'Profit Earned', 'Date')] + list(rtreturned)
+                
                 # container for the 'Flowable' objects
                 elements = []
                 telegram_bot_sendtext("Access alert: Store Report")
                 t1dot = ("<b>DBFA Automatic Store Report: </b> <br />This report has been automatically generated. This lists the profit earned, stock analytics and customer records as logged by DBFA.<br /><br />")
                 t2dot = ("DBFA synchronously updates its database alongwith algorithmic data interpretation to deliver these reports. <br />This report contains information from the start of using DBFA on this system.<br /><br />")
-                t6dot = ("Report generated on: " + dt_string)
+                t6dot = ("Report generated on: " + dt_string + "<br /><br />")
+                t20dot = ("<b>Installation Version:</b> DBFA Inception 1.0<br /><br />")
+                t21dot = ("<br /><b>Vouchers In-Circulation:</b><br />")
+                t22dot = ("<br />"+delcount+"<br />")
+                t26dot = ("<br /><br /><b>Sales records for this month:</b><br /><br />")
+                t27dot = ("<bt /><br /><br /><b>DBFA Deep Archival Engine Data (past month): </b><br /><br />")
                 t3dot = ("<br /><br /><b>Most sold listing: </b><br />")
                 t4dot = ("<br /><br /><b>Total profit per listing: </b><br /><br />")
                 t5dot = ("<br /><br /><b>Most profit making listing: </b><br /><br />")
@@ -3415,7 +3552,12 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
                 leng = len(dataout)
                 for i in range(1, leng+2):
                     rowheights += (20,)
-
+                import sqlite3
+                isol = sqlite3.connect(r'cponmgmtsys.db')
+                isolx = isol.cursor()
+                isolx.execute("SELECT DISTINCT cponid, cponlim FROM cponmaster")
+                voucherrows = isolx.fetchall()
+                voucherrows = [('Voucher Identifier', 'Usage Left')] + list(voucherrows)
                 text1=Paragraph(t1dot)
                 text2=Paragraph(t2dot)
                 text3=Paragraph(t3dot)
@@ -3425,11 +3567,22 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
                 text8=Paragraph(t8dot)
                 text10=Paragraph(t10dot)
                 text11=Paragraph(t11dot)
+                text20=Paragraph(t20dot)
+                text21=Paragraph(t21dot)
+                text22=Paragraph(t22dot)
+                text23=Paragraph(Oiddump)
+                text26=Paragraph(t26dot)
+                text27=Paragraph(t27dot)
+                textfiller=Paragraph("<br />")
                 x=Table(rows, colas, rowheights)
                 t=Table(arterxout)
                 t2=Table(xarterxout)
                 t4=Table(axctx)
                 t5=Table(rowsxtb)
+                t6=Table(voucherrows)
+                t7=Table(attendreturned)
+                t8=Table(rtreturned, colWidths=[80,80,140,120,70,70])
+                t9=Table(ddareport, colWidths=[50,110,250])
                 if tabarter == ['--']:
                     t7dot = ("<br /><br /><b>All listings currently in stock!</b><br /><br />")
                 else:
@@ -3454,6 +3607,10 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
                 t3.setStyle(GRID_STYLE)
                 t4.setStyle(GRID_STYLE)
                 t5.setStyle(GRID_STYLE)
+                t6.setStyle(GRID_STYLE)
+                t7.setStyle(GRID_STYLE)
+                t8.setStyle(GRID_STYLE)
+                t9.setStyle(GRID_STYLE)
                 x.setStyle(GRID_STYLE)
                 # -------------------------------------------------------------------------------
                 import sqlite3, time
@@ -3484,13 +3641,22 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
                 # Finally, display
                 plt.savefig('DBFAplot.png', dpi=300, bbox_inches='tight')
                 # -------------------------------------------------------------------------------
-
+                secck = Image(repvalx)
+                secck.drawHeight =  1.5*inch
+                secck.drawWidth = 4.04*inch
                 delI = Image('DBFAplot.png')
                 delI.drawHeight =  4.2*inch
                 delI.drawWidth = 5.5*inch
                 elements.append(text1)
                 elements.append(text2)
                 elements.append(text6)
+                elements.append(text20)
+                elements.append(secck)
+                elements.append(text21)
+                elements.append(t6)
+                elements.append(text22)
+                elements.append(text23)
+                elements.append(t7)
                 elements.append(text3)
                 elements.append(t)
                 elements.append(text5)
@@ -3505,12 +3671,20 @@ What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ �
                 elements.append(t5)
                 elements.append(text11)
                 elements.append(delI)
+                elements.append(textfiller)
+                elements.append(text26)
+                elements.append(t8)
+                elements.append(text27)
+                elements.append(t9)
                 # write the document to disk
                 doc.build(elements,
                     onFirstPage=add_page_number,
                     onLaterPages=add_page_number,)
-                print("Report Created. ")
-                for i in tqdm (range (100), desc="Publishing Report: "):
+                for i in tqdm (range (100), desc="Analysing Data    : "):
+                    time.sleep(0.00001)
+                for i in tqdm (range (100), desc="Fetching Logs     : "):
+                    time.sleep(0.00001)
+                for i in tqdm (range (100), desc="Publishing Report : "):
                     time.sleep(0.00001)
                 print("Opening store report now")
                 os.startfile('dbfastorerep.pdf')
@@ -3560,8 +3734,8 @@ a: View existing deliveries
 b: Show delivery count
 c: Confirm a delivery
 
-What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+What would you like to do?            '''+Fore.MAGENTA+'''
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.MAGENTA+'''
 '''+Fore.CYAN+'''DBFA Delivery Handler ~'''+Fore.MAGENTA+'''     
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
             delfacx = input("Select: ")
@@ -3578,7 +3752,8 @@ What would you like to do?            '''+Fore.WHITE+'''█▀▀ █ █ ██
                 delcount = 0
                 filedel = open('./DBFAdeliveries.txt', 'r+')
                 for line in filedel:
-                    delcount+=1
+                    if line not in ("", " ", (), [], None, "\n"):
+                        delcount+=1
                 filedel.close()
                 if delcount != 0:
                     print("Number of pending deliveries: ", delcount)
@@ -4105,8 +4280,8 @@ What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █
         7. Change Designation (POST)
         8. Change Salary 
 
-    What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
-    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+    What would you like to do?                '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
     '''+Fore.CYAN+'''Employee Details Modifier ~'''+Fore.MAGENTA+'''     
     ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)                  
                             subfac = input("What would you like to do? ")
@@ -4348,8 +4523,8 @@ What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █
         b. Apply for a leave (effective tomorrow only)
         c. Return to main menu ~ 
 
-    What would you like to do?                '''+Fore.WHITE+'''█▀▀ █ █ ██   █▀█▀█ █▀ █▀██ █ █ DBFA'''+Fore.MAGENTA+'''
-    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+'''▀▀█ █_█ ███  █ ▬ █ █_ █ ▬█ █_█ Manager'''+Fore.MAGENTA+'''
+    What would you like to do?                '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
+    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
     '''+Fore.CYAN+'''Shift Scheduler ~'''+Fore.MAGENTA+'''     
     ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'''+Fore.WHITE)
                         submen = input("What would you like to do?: ")
@@ -4538,7 +4713,6 @@ What would you like to do?                    '''+Fore.WHITE+'''█▀▀█ █
                                 print(sender)
                             except Exception:
                                 pass
-                        print("Coming soon! ")
                         import sqlite3, time, os, requests, datetime
                         from datetime import datetime, date
 
