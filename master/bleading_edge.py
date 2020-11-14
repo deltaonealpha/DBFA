@@ -841,6 +841,17 @@ try:
         rec.commit()
         recx.close()
 
+    def repremupdate(prodid):
+        rec = sqlite3.connect(r'recmaster.db')
+        recx = rec.cursor()
+        # hidden prints here ig
+        updatexr = ("UPDATE recmasterx SET prodsales = prodsales - 1 WHERE prodid = ?")
+        updatexxr = ("UPDATE recmasterx SET netprof = prodsales*prodprofit WHERE prodid = ?")
+        indicator = (prodid, )
+        recx.execute(updatexr, indicator)
+        recx.execute(updatexxr, indicator)
+        rec.commit()
+        recx.close()
 
     # Feature not released
     # Invoice Master Record Maintainer
@@ -923,6 +934,17 @@ try:
         ssh = sqlite3.connect('DBFA_handler.db')
         ssh7 = ssh.cursor()
         updatetrtt = """UPDATE sshandler SET ssstock = ssstock - 1 WHERE prodid = ?"""
+        xrindicatortt = (prodid,)
+        ssh7.execute(updatetrtt, xrindicatortt)
+        ssh.commit()
+        ssh7.close()
+        #time.sleep(1)
+        #toaster.show_toast("DBFA QuickVend Service - Background Sync", duration = 0.4)
+    
+    def remssxstockmaintainer(prodid):
+        ssh = sqlite3.connect('DBFA_handler.db')
+        ssh7 = ssh.cursor()
+        updatetrtt = """UPDATE sshandler SET ssstock = ssstock + 1 WHERE prodid = ?"""
         xrindicatortt = (prodid,)
         ssh7.execute(updatetrtt, xrindicatortt)
         ssh.commit()
@@ -1930,9 +1952,9 @@ DBFA Music Controls: *prev* <<< | *pause* <|> | *next* >>>             INCEPTION
                     netpay = total
                     return total
                 else:
-                    pass
-                time.sleep(1)
-                os.system(command)
+                    redeemindic = 0
+                    netpay = total
+                    return total
             else:
                 netpay = total
                 return total
@@ -2904,11 +2926,51 @@ What would you like to do?            '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
             namie, data = dictgetlisting()
             namiex, datax = getlisting()
             dde_productlist = ""
+            xrinit = 0
+            lstrst = 0
+            ppped = 0
+            from colorama import init, Fore, Back, Style #color-settings for the partner/sponsor adverts
             while(1):
+                runnedstat = 0
+                print(Fore.YELLOW+"\n\n_________________________")
+                print(Fore.YELLOW+"Currently in cart: ")
+                print(Fore.YELLOW+"-------")
+                printobj = purcheck.split("~")
+                for i in printobj:
+                    print(Fore.MAGENTA+i)
+                if xrinit == 1 and ppped == 0:
+                    print(Fore.YELLOW+"___________________________________________________________________________\nType 'lastrem' to remove last added produt\n___________________________________________________________________________\n"+Fore.WHITE)
+                else:
+                    print(Fore.YELLOW+"___________________________________________________________________________\n"+Fore.WHITE)
                 item = input("Enter product code: ")
                 if item == "0":
                     break
-                if item not in ("", " ", (), [], "\n"):
+                elif str(item) in ("lastrem", "LASTREM", "Lastrem", "LastRem", "lASTREM", "lASTrEM"):
+                    runnedstat = 1
+                    if xrinit == 1 and ppped == 0:
+                        print("  ")
+                        billiemaster = billiemaster - int(data[int(lstrst)])
+                        dde_productlist = dde_productlist.replace((str(lstrst)+'00'), "")
+                        repremupdate(int(lstrst))
+                        lenxr = len(namie[int(lstrst)])
+                        costlenxr = len(str(data[int(lstrst)]))
+                        cj = 10 - costlenxr
+                        pi = 60 - lenxr
+                        idlerxx = namie[lstrst] + " "*pi + "₹"+'%d'%int(data[int(lstrst)]) + " "*cj + "1 qty. ~"
+                        purcheck = purcheck.replace(idlerxx, "", 1)
+                        profer = profer[:-1]
+                        logger.write("Last cart item removed! ~ ")
+                        priceprod = "₹" + '%d' % int(data[int(lstrst)])
+                        writer = writer.replace(("\n Purchased: " + "\n" + namie[lstrst] + "\n" + priceprod + "\n"), "", 1)
+                        remssxstockmaintainer(int(lstrst))
+                        afac = afac - 1
+                        print("Last cart product removed ~ ")
+                        ppped = 1
+                        time.sleep(2)
+                    else:
+                        print("No products in cart! ~")
+
+                if item not in ("", " ", (), [], "\n") and runnedstat != 1:
                     if int(item) in data:
                         ssxstockmaster(item)
                         if ssxvarscheck == 1:
@@ -2919,6 +2981,8 @@ What would you like to do?            '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
                             billiemaster+=int(data[int(item)])
                             dde_productlist += str(item) + '00'
                             print("Purchased: ", namie[item], " for: ", data[int(item)])
+                            xrinit = 1
+                            lstrst = int(item)
                             repupdate(item)
                             lenxr = len(namie[item])
                             costlenxr = len(str(data[int(item)]))
@@ -2934,17 +2998,22 @@ What would you like to do?            '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
                             ssxstockmaintainer(item)
                             logger.write(" \n")
                             writer = writer + "\n Purchased: " + "\n" + namie[item] + "\n" + priceprod + "\n"
+                            ppped = 0
                             afac+=1
                         else:
                             print("Product currently out-of-stock. The inconvenience is regretted..\n")
                             print("---")
                             continue
+                            time.sleep(1)
                     else:
                         print("Product not found. Please retry ")
                         print("---")
+                        time.sleep(1)
                 else:
+                    if runnedstat != 1:
                         print("Product not found. Please retry ")
                         print("---")
+                        time.sleep(1)
 
             #tax = int(input("Enter the net tax %: "))  #comment and uncomment tkinter lines to use GUI-based input
             time.sleep(0.15)  #for a seamless experience
@@ -3013,9 +3082,11 @@ What would you like to do?            '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
                         netpay = total
                         xpayboxie()
                     else:
-                        netpay = payboxie(custt, total)
                         splitmark = 0
+                        netpay = total
+                        netpay = payboxie(custt, netpay)
                         xpayboxie()
+                    
                 else:
                     # Add a delivery
                     print("---- DBFA Deliveries ----")
@@ -3106,14 +3177,19 @@ What would you like to do?            '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
                             print("Redeemed loyalty points worth: ₹", lylpoints)
                         else:
                             print("Redeemed loyalty points worth: ₹", total)
-                    if splitmark == 0:
-                        print("--------------------------------------------------------------------------------")
-                        print("Amount to be paid: ₹","%.2f" % netpay)
-                        print("--------------------------------------------------------------------------------")
-                    else:
-                        print("--------------------------------------------------------------------------------")
-                        print("Amount payable per person (POST SPLIT): ₹","%.2f" % splitpay)
-                        print("Total payees                          : ", splitcountfac)
+                    try:
+                        if splitmark == 0:
+                            print("--------------------------------------------------------------------------------")
+                            print("Amount to be paid: ₹","%.2f" % netpay)
+                            print("--------------------------------------------------------------------------------")
+                        else:
+                            print("--------------------------------------------------------------------------------")
+                            print("Amount payable per person (POST SPLIT): ₹","%.2f" % splitpay)
+                            print("Total payees                          : ", splitcountfac)
+                            print("--------------------------------------------------------------------------------")
+                            print("Amount to be paid: ₹","%.2f" % netpay)
+                            print("--------------------------------------------------------------------------------")
+                    except:
                         print("--------------------------------------------------------------------------------")
                         print("Amount to be paid: ₹","%.2f" % netpay)
                         print("--------------------------------------------------------------------------------")

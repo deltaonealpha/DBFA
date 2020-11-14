@@ -8,8 +8,15 @@ Internal Test Builds - ToDo:
     (_// Completed) - Split Bill
 --------------------------------------------------------------
 
+09-11-2020 20:27
+> Added option to remove last product from cart
+  (Cost, listing, profit report, stock, everything is re-incremented.)
+  (Product is also removed from live listing. Only first occurence is removed.)
+
 08-11-2020 14:53
+> Live-cart listing: DBFA now lists all in-cart products during product selection.
 > DBFA Billing now has an option to split-bill.
+> Bill split is reflected in PDF invoice and Telegram toasts.
 > Removed \n-crash bug during product selection & the lylpts bug with the PDF engine.
 
 

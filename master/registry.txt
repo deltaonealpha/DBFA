@@ -5730,3 +5730,70 @@ Appending product to order:
 Redmi K20 
 Appending product to order: 
 Redmi K20 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+09/11/2020 19:44:30 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+09/11/2020 20:00:38 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Last cart item removed! ~ Total amount billed for: 
+4147.7
+-----------------  Cust. ID: 
+1  
+Date and time: 
+09/11/2020 20:03:01 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+Essentials Earphones 
+Appending product to order: 
+Essentials Earphones 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+09/11/2020 20:05:23 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+Neckband-Style Wireless Earphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+Appending product to order: 
+Wired Speaker - 5.1 
+Last cart item removed! ~ ----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+09/11/2020 20:15:58 
+Appending product to order: 
+Gaming Headphones 
+Appending product to order: 
+30W Bluetooth Speakers 
+----------------------------------------- 
+ed
+Automated Store Registry:
+-----------------  Cust. ID: 
+1  
+Date and time: 
+09/11/2020 20:19:07 
+Appending product to order: 
+30W Bluetooth Speakers 
+Appending product to order: 
+Essentials Bluetooth Speaker 
