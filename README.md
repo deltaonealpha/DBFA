@@ -1,4 +1,5 @@
 # DBFA Store Manager <span style="color: #496dd0">INCEPTION 1.0</span>
+### Latest release changelog: http://latestdbfa.software.deltaone.tech/
 ##### 02/11/2020: DBFA INCEPTION 1.0 MAJOR RELEASE (see releases/ changelog)
 
 After a year of continuous and rigid development, we are finally satisfied with what DBFA has become, a mature, stable and secure piece of software which we can pride over. Presenting a brand new DBFA, the INCEPTION 1.0.
