@@ -1,19 +1,11 @@
-splitfac = input("Split bill? (y/n): ")
-if splitfac in ("Y", "y"):
-    try:
-        splitcountfac = int(input("Enter the number of people to split for: "))
-    except:
-        try:
-            print("Person count must be real! ~")
-            splitcountfac = int(input("Enter the number of people to split for: "))
-        except:
-            print("Billing splitting has been cancelled due to repetitive invalid inputs. Bill will be generated without a split.")
-            splitcountfac = 1
-    if "." in str(((netpay)/int(splitcountfac))):
-        splitpay = float(eval((str(((netpay)/int(splitcountfac))).split('.')[0] + '.' + (str(((netpay)/int(splitcountfac))).split('.')[1])[0:2])))
-    else:
-        splitpay = float(eval(netpay/int(splitcountfac)))
-else:
-    pass
+import sqlite3
+settings = sqlite3.connect(r'test2.db')
+settingsx = settings.cursor()
 
-print((splitpay))
+# xa2 = input("wut: ")
+# settingsx.execute("SELECT * FROM xtable WHERE a2 = (?)", (xa2,))
+# print(settingsx.fetchall())
+
+settingsx.execute("SELECT xtable.a1, xtable.a2, xtable2.b3 FROM xtable, xtable2 WHERE xtable.a2 = xtable2.b3")
+print(settingsx.fetchall())
+

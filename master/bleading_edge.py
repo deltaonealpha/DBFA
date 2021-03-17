@@ -273,7 +273,7 @@ try:
     from tabularprint import table
     from tqdm import tqdm 
     import webbrowser
-    dmain()
+    #dmain()
     # Credits to XanderMJ (https://github.com/XanderMJ/spotilib) for Spotify controls
     import spotilib
 
@@ -1635,7 +1635,7 @@ This is a dynamically generated schedule with alternating shifts. Employees on l
             pass        
 
 
-        dmain()
+        #dmain()
         
         from datetime import datetime, date
         now = datetime.now()
@@ -2471,8 +2471,7 @@ What would you like to do?            '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
 
     def del3f():
         import sqlite3 as sql
-        import os
-        import csv
+        import os, csv
         from sqlite3 import Error
 
         try:
@@ -2693,7 +2692,7 @@ What would you like to do?            '''+Fore.WHITE+''''''+Fore.MAGENTA+'''
         # Create the Updater and pass it your bot's token.
         # Make sure to set use_context=True to use the new context based callbacks
         # Post version 12 this will no longer be necessary
-        updater = Updater("1215404401:AAEvVBwzogEhOvBaW5iSpHRbz3Tnc7fCZis", use_context=True)
+        updater = Updater("1215404401:AAHjtbhmEAVBdR_A0b6DeGjg8u6n2hY0moo", use_context=True)
 
         updater.dispatcher.add_handler(CommandHandler('auth', start))
         updater.dispatcher.add_handler(CallbackQueryHandler(button))
@@ -5625,10 +5624,8 @@ except:
 
     except IndexError:
         print("----------------------------------------------")
-        print("dnss internal error: (error code - rep.pvt-01)")
+        print("dnss error code: (rp.pt-01)")
         time.sleep(10)
 
 
 # End of program
-# Available on github: www.github.com/deltaonealpha/DBFA
-# https://deltaonealpha.github.io/DBFA/
